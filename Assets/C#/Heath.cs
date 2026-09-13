@@ -58,6 +58,10 @@ public class Heath : MonoBehaviour
 
         camp = _camp;
         max = HP;
+        // 阵营染色先算在局部变量里。不能直接写 sp.color：
+        // HitLight 打开后 sp.color 归 FlashEffect 的闪烁协程所有，它每帧覆盖，
+        // 闪烁结束时还会写回自己那份 originColor。
+        Color baseColor = sp != null ? sp.color : Color.white;
         switch (camp)
         {
             case 0:
@@ -66,12 +70,12 @@ public class Heath : MonoBehaviour
             case 1:
 
                 gameObject.layer = 6;
-                if (vm && sp != null && !OrignalColor) sp.color = (Color.cyan + Color.blue) / 2f;
+                if (vm && sp != null && !OrignalColor) baseColor = (Color.cyan + Color.blue) / 2f;
                 break;
             case 2:
 
                 gameObject.layer = 7;
-                if (vm && sp != null && !OrignalColor) sp.color = Color.red;
+                if (vm && sp != null && !OrignalColor) baseColor = Color.red;
                 break;
         }
         if (IgnoteCampCollider && camp != 0)
@@ -85,7 +89,31 @@ public class Heath : MonoBehaviour
                 gameObject.layer += 2;
             } 
         }
-        if(sp != null) _color_start = sp.color;
+        _color_start = baseColor;
+        ApplyBaseColor();
+    }
+
+    /// <summary>
+    /// 用当前 _color_start 与 HP 算出底色并写出去。
+    /// 有 FlashEffect 时必须走 SetOriginColor —— 它持有 sp.color 的所有权，
+    /// 直接写 sp.color 会被它的闪烁协程覆盖，闪烁结束后还会写回过期的旧底色
+    /// （破碎期间 HP 为负，那份旧底色是负色，表现就是“修完还是黑的”）。
+    /// </summary>
+    public void ApplyBaseColor()
+    {
+        if (sp == null) return;
+        Color a = _color_start;
+        if (max != 0)
+        {
+            a *= HP / max;
+            a.a = 1f;
+        }
+        else
+        {
+            a = Color.black;
+        }
+        if (HitLight && flash != null) flash.SetOriginColor(a);
+        else sp.color = a;
     }
 
     public GameObject showHit;
@@ -140,27 +168,9 @@ public class Heath : MonoBehaviour
         }
         else
         {
-            Color a = _color_start;
-            if (max != 0)
-            {
-                a *= HP / max;
-                a.a = 1f;
-            }
-            else
-            {
-                a = Color.black;
-            }
-            if (HitLight && flash != null)
-            {
-                // 底色（含 HP 变暗）交给 FlashEffect 统一持有，
-                // 由它负责受击变亮，以及闪烁结束后写回底色
-                flash.SetOriginColor(a);
-                flash.WhileBeHit();
-            }
-            else
-            {
-                sp.color = a;
-            }
+            // 底色（含 HP 变暗）统一由 ApplyBaseColor 写；有 FlashEffect 时它持有所有权
+            ApplyBaseColor();
+            if (HitLight && flash != null) flash.WhileBeHit();
         }
     }
     public void Die()

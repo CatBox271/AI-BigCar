@@ -10,12 +10,13 @@ public class VideoCameraFollow : MonoBehaviour
     public static VideoCameraFollow vcf;
     private void Awake()
     {
+        state = -100000000;
         CenterList = new();
         vcf = this;
     }
     public Transform RF;//RedFirst
     public Transform BF;//BlueFirst
-    int state = -1;
+    public static float state = -100000000;
 
     private void Update()
     {
@@ -27,31 +28,32 @@ public class VideoCameraFollow : MonoBehaviour
     public float IX = 0;
     public float V;
     Vector3 T;
+
+    bool combined = false;
     void Move()
     {
-        switch (state)
+        if (state == -100000000) return;
+        if (!combined)
         {
-            case -1:
-                if ((RF != null && Mathf.Abs(RF.position.x) < 20) || (BF != null && Mathf.Abs(BF.position.x) < 20)) state = 0;
-                break;
-            case 0:
-                float R = 0; float B = 0;
-                if (RF != null) R = RF.position.x - -110;
-                if (BF != null) B = 110 - BF.position.x;
-                if (R > B)
-                {
-                    AimX = (R - 110);
-                }
-                else
-                {
-                    AimX = (110 - B);
-                }
-                T = transform.position;
-                IX = Mathf.Lerp(IX, AimX, V);
-                T.x = Mathf.Lerp(T.x, IX, V);
-                transform.position = T;
-                break;
+            combined = true;
+            transform.position = new Vector3(state, transform.position.y, transform.position.z);
+            transform.GetChild(0).gameObject.SetActive(true);
         }
+        float R = 0; float B = 0;
+        if (RF != null) R = RF.position.x - -110;
+        if (BF != null) B = 110 - BF.position.x;
+        if (R > B)
+        {
+            AimX = (R - 110);
+        }
+        else
+        {
+            AimX = (110 - B);
+        }
+        T = transform.position;
+        IX = Mathf.Lerp(IX, AimX, V);
+        T.x = Mathf.Lerp(T.x, IX, V);
+        transform.position = T;
     }
     void Calculate()
     {
@@ -103,15 +105,7 @@ public class VideoCameraFollow : MonoBehaviour
             }
         });
 
-        try
-        {
-            if (R != -1) RF = CenterList[RI[R]].transform;
-            if (B != -1) BF = CenterList[BI[B]].transform;
-        }
-        catch(Exception e)
-        {
-            Debug.LogError(e);
-            Debug.Log($"R{RI[R]},RI.count{RI.Count}|B{BI[B]},BI.count{BI.Count}");
-        }
+        if (R != -1) RF = CenterList[RI[R]].transform;
+        if (B != -1) BF = CenterList[BI[B]].transform;
     }
 }

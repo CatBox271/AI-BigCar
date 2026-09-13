@@ -4,17 +4,30 @@ using UnityEngine;
 
 public class CameraCombine : MonoBehaviour
 {
-    
-    List<Collider2D> call = new();
+    public Transform aim;
+    public bool Left = true;
     private void FixedUpdate()
     {
-        call.Clear();
-        call.AddRange(Physics2D.OverlapPointAll(transform.position));
-        var crash = call.Find(s => s.gameObject != gameObject && s.CompareTag("Finish"));
-            if(crash!=null)
+        if (Left)
         {
-            Destroy(gameObject);
-            Destroy(crash.gameObject);
+            if (aim.position.x < transform.position.x)
+            {
+                Combine();
+            }
         }
+        else
+        {
+            if (aim.position.x > transform.position.x)
+            {
+                Combine();
+            }
+        }
+    }
+
+    private void Combine()
+    {
+        VideoCameraFollow.state = (aim.parent.parent.position.x + transform.parent.parent.position.x) / 2f;
+        Destroy(aim.parent.parent.gameObject);
+        Destroy(transform.parent.parent.gameObject);
     }
 }

@@ -4,20 +4,42 @@ using UnityEngine;
 
 public class CanFixed : MonoBehaviour
 {
+    public Rigidbody2D rb;
     private Heath h;
-    private Collider2D col;
     private float HP;
     public Artillery at;
 
     void Start()
     {
         TryGetComponent(out h);
-        TryGetComponent(out col);
+
         h.ND();
         HP = h.HP;
     }
 
     bool Break;
+
+    private int lastLayer = int.MinValue;
+
+    // 改 Layer 时连子物体一起改：碰撞与索敌都按 Layer 判定，
+    // 只改根物体会让自带 Collider 的子物体留在旧层上。
+    // lastLayer 记住上次下发的层号，Update 每帧调用时不重复遍历子树。
+    private void SetLayerAll(int layer)
+    {
+        if (layer == lastLayer && gameObject.layer == layer) return;
+        lastLayer = layer;
+        SetLayerAll(gameObject, layer);
+    }
+
+    private static void SetLayerAll(GameObject go, int layer)
+    {
+        go.layer = layer;
+        Transform t = go.transform;
+        for (int i = 0; i < t.childCount; i++)
+        {
+            SetLayerAll(t.GetChild(i).gameObject, layer);
+        }
+    }
 
     private void Update()
     {
@@ -25,7 +47,7 @@ public class CanFixed : MonoBehaviour
         {
             if (!Break)
             {
-                gameObject.layer = 0;
+                SetLayerAll(0);
                 h.camp = 0;
                 at.enabled = true;
                 HP *= 1.25f;
@@ -33,7 +55,6 @@ public class CanFixed : MonoBehaviour
                 Break = true;
                 at.enabled = false;
             }
-            col.isTrigger = false;
             if (h.HP < -HP)
             {
                 h.HP = HP;
@@ -41,12 +62,12 @@ public class CanFixed : MonoBehaviour
                 if (h.KeepRecord[1] > h.KeepRecord[2])
                 {
                     h.Set(1);
-                    gameObject.layer = 6;
+                    SetLayerAll(6);
                 }
                 else
                 {
                     h.Set(2);
-                    gameObject.layer = 7;
+                    SetLayerAll(7);
                 }
                 h.KeepRecord = new() { 0, 0, 0 };
                 h.ND();
@@ -61,7 +82,7 @@ public class CanFixed : MonoBehaviour
                 Break = false;
             }
             at.enabled = true;
-            gameObject.layer = h.camp == 1 ? 6 : 7;
+            SetLayerAll(h.camp == 1 ? 6 : 7);
         }
     }
 }

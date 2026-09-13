@@ -129,7 +129,6 @@ MonoBehaviour:
   Barrel: {fileID: 0}
   count: 0
   rb: {fileID: 3436015065707692188}
-  CalculateTimes: 5
   ac: []
   volume: 0
   IdleOpposite: 0
@@ -353,7 +352,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 901262355059574385}
-  m_Layer: 11
+  m_Layer: 5
   m_Name: RightTowel
   m_TagString: Site
   m_Icon: {fileID: 0}
@@ -485,6 +484,7 @@ MonoBehaviour:
   _color_start: {r: 0, g: 0, b: 0, a: 0}
   die: 0
   HitLight: 1
+  flash: {fileID: 0}
   OrignalColor: 0
   Castle: 1
   DieWithCollider: 0
@@ -616,5 +616,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8ea3e4957b80f478b845019f1b905d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 500
+  rb: {fileID: 0}
   at: {fileID: 233346598806555460}

@@ -7,7 +7,7 @@ public class VideoFollow : MonoBehaviour
 {
     public bool Red;
 
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         Move();
     }

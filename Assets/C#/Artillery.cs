@@ -128,108 +128,30 @@ public class Artillery : MonoBehaviour
     }
     public Rigidbody2D rb;
 
-    (float,float) XYT(Transform Self, Transform Aim,float T)
-    {
-        // 目标/自身可能没有自己的 Rigidbody2D（物理刚体挂在祖先上，例如 RightTowel (4)/Triangle (1)）。
-        // GetComponentInParent 沿父链找最近的一个，这正是 Unity 判定“该碰撞体由哪个刚体驱动”的规则；
-        // 整条链都没有则返回 null，下面按静止处理，不会再抛 MissingComponentException。
-        Rigidbody2D AimRb = Aim.GetComponentInParent<Rigidbody2D>();
-
-        // 原实现无条件先取 Self.parent 的刚体再被 rb 覆盖，父物体为 null 时会直接抛异常
-        Rigidbody2D SelfRb = rb;
-        if (SelfRb == null && Self.parent != null) SelfRb = Self.parent.GetComponentInParent<Rigidbody2D>();
-        if (SelfRb == null) SelfRb = Self.GetComponentInParent<Rigidbody2D>();
-
-        float AimVx = AimRb != null ? AimRb.velocity.x : 0f;
-        float AimVy = AimRb != null ? AimRb.velocity.y : 0f;
-        float SelfVx = SelfRb != null ? SelfRb.velocity.x : 0f;
-        float SelfVy = SelfRb != null ? SelfRb.velocity.y : 0f;
-
-        float DX = (Aim.position.x - Self.position.x) + (AimVx - SelfVx) * T;
-        float DY = (Aim.position.y - Self.position.y) + (AimVy - SelfVy) * T;
-        float DY2 = DY * DY;
-        float DX2 = DX * DX;
-        float V = _bulletSpeed;
-        float V2 = V * V;
-
-        float A = 0.25f * Gravity * Gravity;
-        float B = -(DY * -Gravity + V2);
-        float C = DY2 + DX2;
-        float Delta = B * B - 4 * A * C;
-
-
-        float T2 = float.NaN;
-        if (Delta > 0)
-        {
-            T2 = (-B + Mathf.Sqrt(Delta)) / (2 * A);
-            float compare = (-B - Mathf.Sqrt(Delta)) / (2 * A);
-
-            if (compare < T2)
-            {
-                if (compare > 0)
-                {
-                    T2 = compare;
-                }
-            }
-            if (T2 < 0)
-            {
-                T2 = float.NaN;
-            }
-        }
-        float cosθ = DX / V / T;
-        float sinθ = (DY - 0.5f * -Gravity * T * T) / V / T;
-        float θ = Mathf.Rad2Deg * Mathf.Acos(cosθ);
-        if (sinθ < 0)
-        {
-            θ *= -1f;
-        }
-        return (Mathf.Sqrt(T2) , θ);
-    }
-
-    public int CalculateTimes = 5;
     bool LookToEnemy(Transform pos,bool H)
     {
         if (pos != null)
         {
             if (H)
             {
-                float T = 0;
-                float θ = 0;
-                float Lastθ = 0;
-                for (int t = 0; t < CalculateTimes; t++)
-                {
-                    Lastθ = θ;
-                    (float, float) ff = XYT(transform, pos, T);
-                    T = ff.Item1;
-                    θ = ff.Item2;
-                    if (T == float.NaN || θ == float.NaN)
-                    {
-                        T = -1 * (t + 1);
-                        break;
-                    }
-                }
-                bool answer = false;
-                if (T < 0)
-                {
-                    if (T != -1)
-                    {
-                        θ = Lastθ;
-                        answer = true;
-                    }
-                    else
-                    {
-                        answer = false;
-                    }
-                }
-                else
-                {
-                    answer = true;
+                // 刚体与相对速度每次瞄准只解析一次（原先在迭代里重复 5~20 次原生查找）
+                Rigidbody2D aimRb = pos.GetComponentInParent<Rigidbody2D>();
+                Rigidbody2D selfRb = rb;
+                if (selfRb == null && transform.parent != null) selfRb = transform.parent.GetComponentInParent<Rigidbody2D>();
+                if (selfRb == null) selfRb = GetComponentInParent<Rigidbody2D>();
 
-                }
-                if (!float.IsNormal(θ)) answer = false;
+                float px = pos.position.x - transform.position.x;
+                float py = pos.position.y - transform.position.y;
+                float vrx = (aimRb != null ? aimRb.velocity.x : 0f) - (selfRb != null ? selfRb.velocity.x : 0f);
+                float vry = (aimRb != null ? aimRb.velocity.y : 0f) - (selfRb != null ? selfRb.velocity.y : 0f);
+
+                float angle;
+                bool answer = BallisticMath.Solve(px, py, vrx, vry, _bulletSpeed, Gravity, out _, out angle)
+                              && !float.IsNaN(angle) && !float.IsInfinity(angle);
+
                 if (answer)
                 {
-                    transform.eulerAngles = new Vector3(0, 0, θ);
+                    transform.eulerAngles = new Vector3(0, 0, angle);
                 }
                 else
                 {
