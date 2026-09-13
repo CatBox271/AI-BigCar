@@ -1,0 +1,5435 @@
+fileFormatVersion: 2
+guid: c466500f1b74f064bb4acd5243a68113
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 0
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 1
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 0
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    resizeAlgorithm: 1
+    textureFormat: 4
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 12
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: box_idle_0
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 964
+        width: 27
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5185185, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 3.5, y: 21}
+        - {x: 8.5, y: 26}
+        - {x: 10.5, y: 24}
+        - {x: 10.5, y: 16}
+        - {x: 12.5, y: 14}
+        - {x: 12.5, y: 9}
+        - {x: 13.5, y: 9}
+        - {x: 13.5, y: 7}
+        - {x: 11.5, y: 5}
+        - {x: 11.5, y: 2}
+        - {x: 7.5, y: -2}
+        - {x: 7.5, y: -12}
+        - {x: 5.5, y: -14}
+        - {x: 5.5, y: -23}
+        - {x: 6.5, y: -23}
+        - {x: 6.5, y: -26}
+        - {x: -4.5, y: -26}
+        - {x: -4.5, y: -14}
+        - {x: -7.5, y: -14}
+        - {x: -10.5, y: -11}
+        - {x: -11.5, y: -9}
+        - {x: -11.5, y: -2}
+        - {x: -12.5, y: -2}
+        - {x: -12.5, y: -1}
+        - {x: -11.5, y: 0}
+        - {x: -8.5, y: 0}
+        - {x: -10.5, y: 2}
+        - {x: -10.5, y: 5}
+        - {x: -12.5, y: 7}
+        - {x: -12.5, y: 9}
+        - {x: -11.5, y: 9}
+        - {x: -11.5, y: 13}
+        - {x: -9.5, y: 16}
+        - {x: -9.5, y: 24}
+        - {x: -7.5, y: 26}
+        - {x: -2.5, y: 21}
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9dcdb6d4d9a6094c8af6cba5a114e03
+      internalID: -217604828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_idle_2
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 964
+        width: 30
+        height: 51
+      alignment: 9
+      pivot: {x: 0.53333336, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22a4846e5fec4164cbe2bc9cf90da2da
+      internalID: -471565012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_idle_4
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 964
+        width: 30
+        height: 51
+      alignment: 9
+      pivot: {x: 0.5666667, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: beda0068a09a2d040b6e048d81a6c796
+      internalID: 1960335941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_idle_6
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 964
+        width: 30
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5666667, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aef9a83b2ff0a8a46841738628aa0a47
+      internalID: 1685858780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_idle_8
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 964
+        width: 28
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5357143, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5618abbcfc2427046821ea6a19fbaa97
+      internalID: -994404287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_idle_10
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 964
+        width: 28
+        height: 51
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c398e02ed7e52084caac47a98e59e5b0
+      internalID: -1091700683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_idle_12
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 964
+        width: 26
+        height: 51
+      alignment: 9
+      pivot: {x: 0.5, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3165c72864814d4f9592ecfc75ffd17
+      internalID: 1358416070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_idle_14
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 964
+        width: 27
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5185185, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6fc2e5d14833784ba2ebdcdf2b86591
+      internalID: -1315727405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_idle_1
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 905
+        width: 27
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5185185, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 996fa2cdd0c3113448520ad4b128c80c
+      internalID: 479573287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_idle_3
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 904
+        width: 29
+        height: 51
+      alignment: 9
+      pivot: {x: 0.55172414, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17d3acbb256e2144ca5a9e40d02c8957
+      internalID: -780035378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_idle_5
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 904
+        width: 29
+        height: 51
+      alignment: 9
+      pivot: {x: 0.55172414, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcf1f99e954a4294f836ee21ab0cfa81
+      internalID: 1422532839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_idle_7
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 904
+        width: 30
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5666667, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0744f0fd53d63014caca2185bf76ab31
+      internalID: 560650866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_idle_9
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 904
+        width: 26
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b836304af8d8e0d42a8a834131a9022f
+      internalID: -1788799959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_idle_11
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 904
+        width: 26
+        height: 51
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 982885b403bbbe242ac3e65b9b694785
+      internalID: -1867453826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_idle_13
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 904
+        width: 26
+        height: 51
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e5e064e563984545974ecfc7ed37a3d
+      internalID: -1121226001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_idle_15
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 904
+        width: 27
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5185185, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e81af8f3cdfd4f549a608381dd7e2672
+      internalID: -1308357230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gun
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 970
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b6bace3b6d530145b749099e216d463
+      internalID: -103656048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knife
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 965
+        width: 11
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c3d91ac954ed474f8a0394d6e5b8cb4
+      internalID: 1580692723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_show_0
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 876
+        width: 9
+        height: 9
+      alignment: 9
+      pivot: {x: 0.44444445, y: -3.4444444}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ade96a5b078456a408d9685c57a590ee
+      internalID: -735234745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_show_1
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 876
+        width: 9
+        height: 9
+      alignment: 9
+      pivot: {x: 0.44444445, y: -3.4444444}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8c9c6b55a6ef5847830f9d46a3df6ec
+      internalID: -1381886372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_show_2
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 876
+        width: 9
+        height: 9
+      alignment: 9
+      pivot: {x: 0.44444445, y: -3.4444444}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71c12c1748771e5459cc4065536a79fd
+      internalID: 914576587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_show_4
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 874
+        width: 14
+        height: 13
+      alignment: 9
+      pivot: {x: 0.42857143, y: -2.2307692}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 716941903a6a113418a24dec6b475235
+      internalID: 227116771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_show_5
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 872
+        width: 17
+        height: 17
+      alignment: 9
+      pivot: {x: 0.47058824, y: -1.5882353}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 813755492f96631498314d5b77484abd
+      internalID: 2033925048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_show_6
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 871
+        width: 19
+        height: 19
+      alignment: 9
+      pivot: {x: 0.47368422, y: -1.3684211}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f029b2ad56f18644baa365f1e876078
+      internalID: 1406449245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_confused_0
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 841
+        width: 31
+        height: 52
+      alignment: 9
+      pivot: {x: 0.4516129, y: 0.01923077}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43040163c5924ce4ba177be23d497c38
+      internalID: -489895996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_lie_0
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 839
+        width: 34
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45f7f62dc0b7c71419dc16eddcea5652
+      internalID: 1505922728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_show_7
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 846
+        width: 21
+        height: 21
+      alignment: 9
+      pivot: {x: 0.47619048, y: -1.1904762}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9acf6c217aa00cc49a6c1f091646a82b
+      internalID: 1145068198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_show_8
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 844
+        width: 25
+        height: 24
+      alignment: 9
+      pivot: {x: 0.48, y: -0.9583333}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b8e3781f73186144bcb65566a1058ac
+      internalID: 1304746889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_show_9
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 842
+        width: 26
+        height: 26
+      alignment: 9
+      pivot: {x: 0.5, y: -0.8076923}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa3374eb91a553c4dbebdcc93ec798af
+      internalID: -602576455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_show_10
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 840
+        width: 26
+        height: 29
+      alignment: 9
+      pivot: {x: 0.5, y: -0.6551724}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc764aef19ff1f944b57bb3faa9489d4
+      internalID: 808216979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_show_11
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 804
+        width: 26
+        height: 34
+      alignment: 9
+      pivot: {x: 0.5, y: -0.47058824}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 994087bc3c467ef44b322a267db29833
+      internalID: -1213218843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_show_12
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 800
+        width: 26
+        height: 40
+      alignment: 9
+      pivot: {x: 0.5, y: -0.3}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea8cb931d4911d448bca23b179c0f13e
+      internalID: 535751340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_show_13
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 794
+        width: 26
+        height: 46
+      alignment: 9
+      pivot: {x: 0.5, y: -0.13043478}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f0ea4e4fa93ab342b94803da24b016e
+      internalID: -177297190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_show_14
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 786
+        width: 26
+        height: 51
+      alignment: 9
+      pivot: {x: 0.5, y: -0.019607844}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6b77a2bf4850ae4a97223bdddb842c6
+      internalID: -1127671346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_show_15
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 785
+        width: 27
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5185185, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 810c2c6bc6019eb4d972b7280e41d354
+      internalID: -1613135771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_show_16
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 781
+        width: 27
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5185185, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f96cf69070191b40bff6c14c84b77a7
+      internalID: 1630686857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_show_17
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 781
+        width: 27
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5185185, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24dda6c75d2a8064c97712ef2475bd34
+      internalID: 674559761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_show_18
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 781
+        width: 27
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5185185, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85d8e21f4416f2542875a757558c1f54
+      internalID: 1233323619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_show_19
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 781
+        width: 27
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5185185, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44b5ff141743fa343b88f78dcb403b80
+      internalID: -50558090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_show_20
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 781
+        width: 27
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5185185, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8aad8126ae4011d4fa1c0091c4355b2a
+      internalID: 634163357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_move_0
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 960
+        width: 27
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5185185, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36456e97953db1145be29a61e6748d39
+      internalID: -1802608711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_move_1
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 960
+        width: 28
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5357143, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 622c26b647c36f04eaa960c97c1d4cc3
+      internalID: -64623221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_move_2
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 960
+        width: 28
+        height: 58
+      alignment: 9
+      pivot: {x: 0.5357143, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d848d00df37868842a42054df8a6d054
+      internalID: 244705411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_move_3
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 960
+        width: 29
+        height: 61
+      alignment: 9
+      pivot: {x: 0.55172414, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f93bf7e463a4164fbcd61f605fa9440
+      internalID: 263474074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_move_4
+      rect:
+        serializedVersion: 2
+        x: 507
+        y: 960
+        width: 31
+        height: 64
+      alignment: 9
+      pivot: {x: 0.58064514, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdf88c9f3e76c83499dd7131c530d029
+      internalID: 1170925837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_move_5
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 960
+        width: 30
+        height: 61
+      alignment: 9
+      pivot: {x: 0.53333336, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f674289fe768e7c48a33568773e44ed4
+      internalID: 438122730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_move_6
+      rect:
+        serializedVersion: 2
+        x: 572
+        y: 960
+        width: 30
+        height: 59
+      alignment: 9
+      pivot: {x: 0.5666667, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29e0b92b8e9093b4cab8f474d6588bfd
+      internalID: 1143511507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_move_7
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 960
+        width: 28
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5357143, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b5b7ab3d8aecb44ca3aa98710e452ab
+      internalID: 110812653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_move_8
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 960
+        width: 27
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5185185, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ad777718900829428a29b5a54b61750
+      internalID: -501493416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_move_9
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 960
+        width: 28
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddf786860398cf540a6d868ea7745488
+      internalID: -896081109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_move_10
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 960
+        width: 28
+        height: 57
+      alignment: 9
+      pivot: {x: 0.5357143, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdc1ccdc0e6f8cd41b12a365bbf501c9
+      internalID: -1379008031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_move_11
+      rect:
+        serializedVersion: 2
+        x: 737
+        y: 960
+        width: 28
+        height: 61
+      alignment: 9
+      pivot: {x: 0.5357143, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8da4a8e35ca9900468c810e28c304b08
+      internalID: -1440600101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_move_12
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 960
+        width: 29
+        height: 63
+      alignment: 9
+      pivot: {x: 0.55172414, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02ee08888823a8549acd8d92ac6fcbb1
+      internalID: -388782489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_move_13
+      rect:
+        serializedVersion: 2
+        x: 811
+        y: 960
+        width: 29
+        height: 61
+      alignment: 9
+      pivot: {x: 0.51724136, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6115eae6972b1e54887609fc5f92f588
+      internalID: -619013150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_move_14
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 960
+        width: 29
+        height: 57
+      alignment: 9
+      pivot: {x: 0.51724136, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a083458d114b354085bc145149043a1
+      internalID: 1765450027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_move_15
+      rect:
+        serializedVersion: 2
+        x: 881
+        y: 960
+        width: 28
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5357143, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1582ea3bb24a12740a7860e5dbee7e0b
+      internalID: -1269408837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_idle_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 720
+        width: 29
+        height: 55
+      alignment: 9
+      pivot: {x: 0.51724136, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15bc11456146eef43b80bb58940be777
+      internalID: -1680443323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_idle_2
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 720
+        width: 29
+        height: 55
+      alignment: 9
+      pivot: {x: 0.51724136, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eaf271a8bd7e52446acec4ea9547b21d
+      internalID: -147398502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_idle_4
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 720
+        width: 30
+        height: 55
+      alignment: 9
+      pivot: {x: 0.53333336, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf57a7f316506264c95e5fa75444f649
+      internalID: 1229091031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_idle_6
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 720
+        width: 29
+        height: 55
+      alignment: 9
+      pivot: {x: 0.51724136, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9dd110dafce0c9428eb561fa0733397
+      internalID: 1600850061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_idle_8
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 720
+        width: 29
+        height: 55
+      alignment: 9
+      pivot: {x: 0.51724136, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d719b0e1e356f544f916cb314819e9f6
+      internalID: -1499503664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_idle_10
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 720
+        width: 29
+        height: 55
+      alignment: 9
+      pivot: {x: 0.51724136, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e62f9dde52379504c818e440e690404a
+      internalID: -1010110543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_idle_12
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 720
+        width: 30
+        height: 55
+      alignment: 9
+      pivot: {x: 0.53333336, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7451de23068c5c3489bf51740f2fbdc5
+      internalID: -1597410165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_idle_14
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 720
+        width: 29
+        height: 55
+      alignment: 9
+      pivot: {x: 0.51724136, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae439e228df362b4e9d163d1ea319ad5
+      internalID: -2009143854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_idle_1
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 660
+        width: 29
+        height: 55
+      alignment: 9
+      pivot: {x: 0.51724136, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b34b879b835447a4fb1c3a1f38e10f1f
+      internalID: -1459833385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_idle_3
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 660
+        width: 29
+        height: 55
+      alignment: 9
+      pivot: {x: 0.51724136, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ddc4b7d20679044d8bd09ff59767166
+      internalID: 574524141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_idle_5
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 660
+        width: 30
+        height: 55
+      alignment: 9
+      pivot: {x: 0.53333336, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a34715a65162514ba4c8b4e8cd7ee7f
+      internalID: 389168716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_idle_7
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 660
+        width: 28
+        height: 55
+      alignment: 9
+      pivot: {x: 0.5357143, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd9e4086769769a45860bec4156171ba
+      internalID: -1349086189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_idle_9
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 660
+        width: 28
+        height: 55
+      alignment: 9
+      pivot: {x: 0.5357143, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aec52dd2db3e0ef4d8eab5121df1a947
+      internalID: 537486743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_idle_11
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 660
+        width: 30
+        height: 55
+      alignment: 9
+      pivot: {x: 0.53333336, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75dee8ae3b882874594bb291bb348f99
+      internalID: 138811698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_idle_13
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 660
+        width: 29
+        height: 55
+      alignment: 9
+      pivot: {x: 0.51724136, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 302472dca287f3740b5a392e0ed7d437
+      internalID: 2145276453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_idle_15
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 660
+        width: 30
+        height: 55
+      alignment: 9
+      pivot: {x: 0.53333336, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa069779a99fa6c468d1c89bf9378709
+      internalID: -2094963112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_move_0
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 720
+        width: 27
+        height: 55
+      alignment: 9
+      pivot: {x: 0.4814815, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3dd5a462ff0bb4844858e984da247efc
+      internalID: -1193864431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_move_1
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 720
+        width: 27
+        height: 55
+      alignment: 9
+      pivot: {x: 0.4814815, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d138900e31e15d948b15f1de1e44c909
+      internalID: -814456461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_move_2
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 720
+        width: 29
+        height: 55
+      alignment: 9
+      pivot: {x: 0.51724136, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d984c5231fad4142baad0359064d257
+      internalID: 1286791733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_move_3
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 720
+        width: 28
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c0b489b912521e409e783e3321ac1ea
+      internalID: 405353958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_move_4
+      rect:
+        serializedVersion: 2
+        x: 499
+        y: 720
+        width: 26
+        height: 55
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a6dcaf01b318514cb00db978a3e0875
+      internalID: 487241272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_move_5
+      rect:
+        serializedVersion: 2
+        x: 539
+        y: 720
+        width: 27
+        height: 55
+      alignment: 9
+      pivot: {x: 0.4814815, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdac6492ba867974290f70521382ab63
+      internalID: 1930195087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_move_6
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 720
+        width: 27
+        height: 55
+      alignment: 9
+      pivot: {x: 0.4814815, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73c3efacba7d93340a9c25aa44cbf42c
+      internalID: 501187972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_move_7
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 720
+        width: 27
+        height: 55
+      alignment: 9
+      pivot: {x: 0.4814815, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0760c76b710f48d499224bcfd77a2b28
+      internalID: -384038521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_move_8
+      rect:
+        serializedVersion: 2
+        x: 643
+        y: 720
+        width: 29
+        height: 55
+      alignment: 9
+      pivot: {x: 0.51724136, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30da47f9d99a65f48b0de5d507df3232
+      internalID: 253753010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_nomal_hit_0
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 896
+        width: 31
+        height: 52
+      alignment: 9
+      pivot: {x: 0.516129, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5e9d0b09253b8541b12db1367ad7173
+      internalID: 433904710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_nomal_hit_1
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 896
+        width: 31
+        height: 52
+      alignment: 9
+      pivot: {x: 0.516129, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa8bc1fc35825754db867057815f563d
+      internalID: 1940307224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_nomal_hit_2
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 896
+        width: 33
+        height: 51
+      alignment: 9
+      pivot: {x: 0.5757576, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e90cbea288aa2904697e7fdcd8dff55e
+      internalID: 1584045485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_nomal_hit_3
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 896
+        width: 33
+        height: 52
+      alignment: 9
+      pivot: {x: 0.58064514, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02060ba070e64f44b827e455700f09e6
+      internalID: 37681335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_nomal_hit_4
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 896
+        width: 31
+        height: 52
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0886b645b8ff2e843b82ad313c793131
+      internalID: 445662799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_nomal_hit_5
+      rect:
+        serializedVersion: 2
+        x: 518
+        y: 896
+        width: 35
+        height: 52
+      alignment: 9
+      pivot: {x: 0.37142858, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34cd8c64f93addf41a9549344b3aa8d2
+      internalID: 1554830929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_critical_hit_0
+      rect:
+        serializedVersion: 2
+        x: 573
+        y: 896
+        width: 30
+        height: 50
+      alignment: 9
+      pivot: {x: 0.43333337, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82332fdd135e63742a291aa9d45acbe4
+      internalID: -1776753706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_critical_hit_1
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 896
+        width: 28
+        height: 50
+      alignment: 9
+      pivot: {x: 0.46428573, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d92740c5ed306d41be78a1efdaace60
+      internalID: -891891661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_critical_hit_2
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 896
+        width: 29
+        height: 50
+      alignment: 9
+      pivot: {x: 0.44827586, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84355e1ba5322af4db6b1f6026df6082
+      internalID: 175327337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_critical_hit_3
+      rect:
+        serializedVersion: 2
+        x: 691
+        y: 896
+        width: 36
+        height: 52
+      alignment: 9
+      pivot: {x: 0.41666666, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c86c7d49039bd34db195eedb07e8a73
+      internalID: -1453313116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_critical_hit_4
+      rect:
+        serializedVersion: 2
+        x: 733
+        y: 896
+        width: 40
+        height: 52
+      alignment: 9
+      pivot: {x: 0.425, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b5be5c0879b46f4c91b5a634cec0cf8
+      internalID: -185996425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_critical_hit_back
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 896
+        width: 31
+        height: 52
+      alignment: 9
+      pivot: {x: 0.54838705, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e453fb5ec7670704e966db4c094cbd7a
+      internalID: 459550844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_show_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 876
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38b9e28a659a47c42b58df2e9dac9cdf
+      internalID: 1214078490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_swarm_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 596
+        width: 33
+        height: 61
+      alignment: 9
+      pivot: {x: 0.5151515, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b33d6b4fac183564aa34c93fee4b18b2
+      internalID: 1453142321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_swarm_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 596
+        width: 33
+        height: 60
+      alignment: 9
+      pivot: {x: 0.5151515, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: babee536dd2f1df48bd6133bbfda84b3
+      internalID: -2025269583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_swarm_2
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 596
+        width: 33
+        height: 49
+      alignment: 9
+      pivot: {x: 0.5151515, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21ca3aeaf7cd0b045a92f509124519cc
+      internalID: -518603259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_swarm_3
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 596
+        width: 52
+        height: 33
+      alignment: 9
+      pivot: {x: 0.48076925, y: 0.42424244}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa2eab29b0edbc347a6ad023f25f8c47
+      internalID: 322138661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_swarm_4
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 596
+        width: 45
+        height: 33
+      alignment: 9
+      pivot: {x: 0.51111114, y: 0.45454547}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22caca5a66029664a927c8973e7c8de6
+      internalID: 2144699101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_swarm_5
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 596
+        width: 35
+        height: 45
+      alignment: 9
+      pivot: {x: 0.54285717, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34a6ccc8fd7d4e8428b369c9558bb276
+      internalID: 1518436039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_swarm_6
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 596
+        width: 35
+        height: 45
+      alignment: 9
+      pivot: {x: 0.54285717, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6112c6f0109b9f743b6b32fd77acced9
+      internalID: -850199977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_swarm_7
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 596
+        width: 32
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 100325599fa69de4eb97795b0fe36804
+      internalID: -561593246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_swarm_8
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 596
+        width: 32
+        height: 47
+      alignment: 9
+      pivot: {x: 0.5, y: 0.021276595}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92c3b1de341aab94b9b925d4e70e228b
+      internalID: -1606399617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_swarm_9
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 596
+        width: 32
+        height: 49
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4bfb2db06f903646a8c94715290f750
+      internalID: -1827910108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_swarm_10
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 596
+        width: 28
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bf50000e07d88548bf6e0c53b48728e
+      internalID: -277710378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_swarm_11
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 596
+        width: 27
+        height: 55
+      alignment: 9
+      pivot: {x: 0.4814815, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99dd94e8d1bd8b84a913d9ecca26b073
+      internalID: 1337396438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_attract_0
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 781
+        width: 28
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 357300d5e56aa4e4ca8b1d7845232d97
+      internalID: -849021327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_attract_1
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 781
+        width: 27
+        height: 52
+      alignment: 9
+      pivot: {x: 0.4814815, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a01019005c300b4f82d00d878b19380
+      internalID: -1296149746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_attract_2
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 781
+        width: 28
+        height: 51
+      alignment: 9
+      pivot: {x: 0.46428573, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73d936206d3e1294aa255c183266796f
+      internalID: 1107639060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_attract_3
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 781
+        width: 29
+        height: 51
+      alignment: 9
+      pivot: {x: 0.4827586, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d70db9ddbc53d543831ba406c480b81
+      internalID: 1296061401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_attract_4
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 781
+        width: 31
+        height: 51
+      alignment: 9
+      pivot: {x: 0.516129, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad24a653a4bfaa340906ad5e866455da
+      internalID: -1397253984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_attract_5
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 781
+        width: 31
+        height: 51
+      alignment: 9
+      pivot: {x: 0.516129, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b11a7a0d9d829446b12b47eecd17bef
+      internalID: -2076636566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_attract_6
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 781
+        width: 31
+        height: 51
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ddb28b8e626fe24b8a49a2195366282
+      internalID: -1331936056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_attract_7
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 781
+        width: 32
+        height: 51
+      alignment: 9
+      pivot: {x: 0.4375, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fef44ec5619ea04b88f0231ae81c90c
+      internalID: -1261850093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_attract_8
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 781
+        width: 28
+        height: 51
+      alignment: 9
+      pivot: {x: 0.46428573, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d89b14597dad8104789a40f9f9aa770c
+      internalID: -1216876686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_die_0
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 848
+        width: 26
+        height: 43
+      alignment: 9
+      pivot: {x: 0.53846157, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aedbe3b19a81a2c43bb69f4d4f19ac41
+      internalID: 512970552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_die_1
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 848
+        width: 38
+        height: 38
+      alignment: 9
+      pivot: {x: 0.55263156, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fbc60c7c9f49e04d847416142bd4086
+      internalID: -931499190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_die_2
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 848
+        width: 41
+        height: 38
+      alignment: 9
+      pivot: {x: 0.53658533, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6c100e7bdaeef845be64e45d729da5b
+      internalID: 1522839661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_die_3
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 848
+        width: 40
+        height: 38
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c9492a49cec70347ad728281172cf44
+      internalID: -225847450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_die_4
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 848
+        width: 26
+        height: 38
+      alignment: 9
+      pivot: {x: 0.53846157, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 284edc293fcff3141ae4620ea61cbefd
+      internalID: -1284406898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_die_5
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 848
+        width: 26
+        height: 39
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 331d5ffafce10f14b99cddc44b8e9ef0
+      internalID: 1723031091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_die_6
+      rect:
+        serializedVersion: 2
+        x: 593
+        y: 848
+        width: 39
+        height: 39
+      alignment: 9
+      pivot: {x: 0.82051283, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fb2aef5d9cdbee4a928e033f71a3f6d
+      internalID: -1739766708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_die_7
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 848
+        width: 48
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e54af80b2be442843888319418c5fa3e
+      internalID: -73048774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_normal_hit_0
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 660
+        width: 31
+        height: 55
+      alignment: 9
+      pivot: {x: 0.61290324, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b69d360879b3414ba6c72b2fdd2089b
+      internalID: -107169325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_normal_hit_1
+      rect:
+        serializedVersion: 2
+        x: 382
+        y: 660
+        width: 34
+        height: 55
+      alignment: 9
+      pivot: {x: 0.5882353, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5c6637ceae058c48b499b2c5f447b15
+      internalID: 1683846914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_normal_hit_2
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 660
+        width: 33
+        height: 55
+      alignment: 9
+      pivot: {x: 0.54545456, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 107edaf46083fa04eb9710c88c2f9b41
+      internalID: 1632036661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_normal_hit_3
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 660
+        width: 31
+        height: 54
+      alignment: 9
+      pivot: {x: 0.58064514, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcbac41b6b9c90848afc8e4ea5daa4aa
+      internalID: -1187501723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_normal_hit_4
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 660
+        width: 28
+        height: 55
+      alignment: 9
+      pivot: {x: 0.46428573, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70e8317af95d3d942bba1d7d8691dab7
+      internalID: 1613646182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_critical_hit_0
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 660
+        width: 41
+        height: 52
+      alignment: 9
+      pivot: {x: 0.48780486, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1862a8de3b6d4cc48bd93c1afb4e9d99
+      internalID: -1429116615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_critical_hit_1
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 660
+        width: 33
+        height: 51
+      alignment: 9
+      pivot: {x: 0.45454547, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2bd411e456707d49857bf208ca9f61f
+      internalID: 38790904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_critical_hit_2
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 660
+        width: 37
+        height: 52
+      alignment: 9
+      pivot: {x: 0.4864865, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 901221ba0f7e24c438dcde0851bedba5
+      internalID: 1446339663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_critical_hit_3
+      rect:
+        serializedVersion: 2
+        x: 653
+        y: 660
+        width: 32
+        height: 52
+      alignment: 9
+      pivot: {x: 0.53125, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68f309b8206b1514fb5819d69a0e25f0
+      internalID: -2130583122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_critical_hit_4
+      rect:
+        serializedVersion: 2
+        x: 693
+        y: 660
+        width: 31
+        height: 50
+      alignment: 9
+      pivot: {x: 0.516129, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17ca280416c4bff4db5893791c68b612
+      internalID: -1348423524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_critical_hit_5
+      rect:
+        serializedVersion: 2
+        x: 733
+        y: 660
+        width: 31
+        height: 46
+      alignment: 9
+      pivot: {x: 0.516129, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10186fb310f491c46ac3ee11e5ae3096
+      internalID: 2051938348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_critical_hit_6
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 660
+        width: 35
+        height: 46
+      alignment: 9
+      pivot: {x: 0.54285717, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e5d6f5f78e94b5459dc8a9cb6a7c157
+      internalID: -1793728172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_critical_hit_7
+      rect:
+        serializedVersion: 2
+        x: 825
+        y: 660
+        width: 34
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5294118, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be80fe045d0c9224d9d9664cf3afe9ca
+      internalID: 643411356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_alive_0
+      rect:
+        serializedVersion: 2
+        x: 878
+        y: 661
+        width: 31
+        height: 43
+      alignment: 9
+      pivot: {x: 0.54838705, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f65f7e13a19042e4eb81cf648aba70c4
+      internalID: 1054272567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_alive_1
+      rect:
+        serializedVersion: 2
+        x: 878
+        y: 608
+        width: 31
+        height: 42
+      alignment: 9
+      pivot: {x: 0.54838705, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2aa211674ff02b84aa6871b6aeb888c8
+      internalID: 272970694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_alive_2
+      rect:
+        serializedVersion: 2
+        x: 826
+        y: 607
+        width: 31
+        height: 44
+      alignment: 9
+      pivot: {x: 0.54838705, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd5badcfbde0f514f854cfd3b814191e
+      internalID: 455567024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_alive_3
+      rect:
+        serializedVersion: 2
+        x: 777
+        y: 607
+        width: 33
+        height: 47
+      alignment: 9
+      pivot: {x: 0.54545456, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f6bcd91f821326419a74f7b52aa6ba1
+      internalID: 1724198687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_alive_4
+      rect:
+        serializedVersion: 2
+        x: 733
+        y: 608
+        width: 29
+        height: 45
+      alignment: 9
+      pivot: {x: 0.51724136, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4468286ea18c8649a47457f5a7bbb3d
+      internalID: -1533833169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_alive_5
+      rect:
+        serializedVersion: 2
+        x: 693
+        y: 608
+        width: 29
+        height: 48
+      alignment: 9
+      pivot: {x: 0.51724136, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e1cc43686c3a2344b9dd2878080ffa9
+      internalID: 746996364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_die_0
+      rect:
+        serializedVersion: 2
+        x: 690
+        y: 720
+        width: 31
+        height: 38
+      alignment: 9
+      pivot: {x: 0.54838705, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e9fbf693559f6a4eaa71f5e6fc44ddb
+      internalID: 1305661784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_die_3
+      rect:
+        serializedVersion: 2
+        x: 729
+        y: 720
+        width: 31
+        height: 38
+      alignment: 9
+      pivot: {x: 0.54838705, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e847e74b20c43a44987612fe34b91d63
+      internalID: -1401565302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_die_6
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 720
+        width: 31
+        height: 38
+      alignment: 9
+      pivot: {x: 0.54838705, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e035e00f22033ff4298caafa8ac5a8d2
+      internalID: 2071960502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_die_7
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 720
+        width: 54
+        height: 22
+      alignment: 9
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28b67c631d102964091ef4b5156a8a23
+      internalID: 1397430146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_ready_attack_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 534
+        width: 28
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5357143, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f59d823a46904c4fa61dc94d40d6c30
+      internalID: -1153349551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_ready_attack_1
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 534
+        width: 28
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5357143, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa53acc6e05f1114da7224c22ce75472
+      internalID: 746430623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_attack_0
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 534
+        width: 34
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5588235, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8b87ff5a157e97469284db2d37ab40c
+      internalID: 594603850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_attack_1
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 534
+        width: 39
+        height: 54
+      alignment: 9
+      pivot: {x: 0.23076923, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2dde9c5e641a4d408f16c43eab94f9e
+      internalID: -1259138346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_attack_2
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 534
+        width: 40
+        height: 54
+      alignment: 9
+      pivot: {x: 0.22500001, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce78708650df9044fbcd9fb784540e11
+      internalID: 764630170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_attack_3
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 534
+        width: 40
+        height: 54
+      alignment: 9
+      pivot: {x: 0.22500001, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 293387e5b0872fe4cb2a6c0b3f8942e7
+      internalID: -953071122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_attack_4
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 534
+        width: 40
+        height: 54
+      alignment: 9
+      pivot: {x: 0.22500001, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d136ac24b70c90478583d4fbfda4e08
+      internalID: -1545077532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_attack_5
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 534
+        width: 57
+        height: 54
+      alignment: 9
+      pivot: {x: 0.2631579, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1aa4ad733a2504947aae6e7b864f5d12
+      internalID: -1044943307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_attack_6
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 534
+        width: 31
+        height: 55
+      alignment: 9
+      pivot: {x: 0.48387095, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 104074a678d1b9b40a6b0a42b04042ba
+      internalID: -1813125711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_attack_7
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 534
+        width: 28
+        height: 55
+      alignment: 9
+      pivot: {x: 0.5357143, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a50c302a099dc6745965b8306c4ce1d5
+      internalID: -1995270139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_attack_8
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 534
+        width: 28
+        height: 55
+      alignment: 9
+      pivot: {x: 0.5357143, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd5a92a28b4fd1843aae5eddd0e6faab
+      internalID: -1309474059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_attack_9
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 534
+        width: 28
+        height: 55
+      alignment: 9
+      pivot: {x: 0.5357143, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8deb26ebd14837240bc6168feef6030e
+      internalID: -567428045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_attack_10
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 534
+        width: 28
+        height: 55
+      alignment: 9
+      pivot: {x: 0.5357143, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41412a0bb2558f34a891d26c6747e1d3
+      internalID: -657030749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_normal_hit_5
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 596
+        width: 28
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5714286, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3161f0b11f585d34183646e26dad18f0
+      internalID: 888685141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_alive_6
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 608
+        width: 28
+        height: 49
+      alignment: 9
+      pivot: {x: 0.5, y: 0.020408163}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08dbaf51f3608b3418a4b4cd05024e48
+      internalID: 1258188634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_die_5
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 768
+        width: 31
+        height: 38
+      alignment: 9
+      pivot: {x: 0.5483871, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93e729498b0a36643b5f7e2de99fb549
+      internalID: -2059248356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_die_4
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 768
+        width: 31
+        height: 38
+      alignment: 9
+      pivot: {x: 0.5483871, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efda0b95ac8e94140aa86ce49d85b6c4
+      internalID: -1239997131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_die_2
+      rect:
+        serializedVersion: 2
+        x: 729
+        y: 768
+        width: 31
+        height: 38
+      alignment: 9
+      pivot: {x: 0.5483871, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 800110aebfa4ccd4880187887c5f5bf9
+      internalID: 1985530558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_die_1
+      rect:
+        serializedVersion: 2
+        x: 691
+        y: 768
+        width: 31
+        height: 38
+      alignment: 9
+      pivot: {x: 0.5483871, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2baa7656132d0d54c877daf535712c1f
+      internalID: -1600411772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_idle_0
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 400
+        width: 20
+        height: 54
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b16ebc09b2669e4c86872b78d09661b
+      internalID: -1037696832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_idle_1
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 336
+        width: 20
+        height: 54
+      alignment: 9
+      pivot: {x: 0.55, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39878cc7b26318c4da03a3dcfb5f3c3b
+      internalID: -1943958606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_idle_2
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 400
+        width: 23
+        height: 53
+      alignment: 9
+      pivot: {x: 0.5652174, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2462e55cd550d3e418e470927ce7af32
+      internalID: 862297685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_idle_3
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 336
+        width: 24
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5416667, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91f0f542d7f357f478764477171e8e84
+      internalID: -1861409630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_idle_4
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 400
+        width: 22
+        height: 55
+      alignment: 9
+      pivot: {x: 0.54545456, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38c3ae8a540774349808bc7c13c436f0
+      internalID: -1311780762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_idle_5
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 336
+        width: 21
+        height: 54
+      alignment: 9
+      pivot: {x: 0.52380955, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 161b25291fefae348b15e8ae3996bd58
+      internalID: 2093963479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_idle_6
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 400
+        width: 21
+        height: 55
+      alignment: 9
+      pivot: {x: 0.52380955, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b72c885836c0a14aa3396c6ba55dcc3
+      internalID: -1480053884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_idle_7
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 336
+        width: 23
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5217391, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42f7d168cdd4387439d50d01e8fc2f38
+      internalID: 608868529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_idle_8
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 400
+        width: 24
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da25dfa254175fb47a8b92daa3cf5249
+      internalID: 741052485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_idle_9
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 336
+        width: 20
+        height: 54
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66221de5645f0c246be266733452fdef
+      internalID: 1490966693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_idle_10
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 400
+        width: 22
+        height: 57
+      alignment: 9
+      pivot: {x: 0.54545456, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 795f1cbffc8ad4346b989570a58fa300
+      internalID: 172542432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_idle_11
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 336
+        width: 22
+        height: 56
+      alignment: 9
+      pivot: {x: 0.54545456, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1845b02ab32bf74a82ef3269315e75a
+      internalID: -303917443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_idle_12
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 400
+        width: 25
+        height: 56
+      alignment: 9
+      pivot: {x: 0.56, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cec4d183b8857044a596043abc48ebc
+      internalID: 40573791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_idle_13
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 336
+        width: 26
+        height: 56
+      alignment: 9
+      pivot: {x: 0.53846157, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6eebf0622f2dfbc45849940ca9b981f7
+      internalID: 506385512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_idle_14
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 400
+        width: 27
+        height: 55
+      alignment: 9
+      pivot: {x: 0.5185185, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2bb945229ce7994baeddfc682ca3d06
+      internalID: 2044343378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_idle_15
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 336
+        width: 23
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5217391, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e4ee32fad5ae274ebe6295c1ef72ee3
+      internalID: -1275252092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_idle_17
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 336
+        width: 23
+        height: 57
+      alignment: 9
+      pivot: {x: 0.5652174, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ae01b5a8a711174ea1d3ecddf4b42e1
+      internalID: 299685243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_idle_16
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 400
+        width: 24
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5416667, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c42de70aa5774a48b86fb02fa8feca2
+      internalID: -1532201645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_idle_18
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 400
+        width: 25
+        height: 54
+      alignment: 9
+      pivot: {x: 0.56, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b652367a86e00b046851e73030a72bf4
+      internalID: 1331423418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_idle_19
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 336
+        width: 27
+        height: 58
+      alignment: 9
+      pivot: {x: 0.5185185, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52477b8a070f5cd4bb47103d816ae2d7
+      internalID: 1082157494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_walk_0
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 400
+        width: 22
+        height: 55
+      alignment: 9
+      pivot: {x: 0.54545456, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 182d91f4338377b46a803747b158c37b
+      internalID: 933326235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_walk_1
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 400
+        width: 24
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03afd4cb1a0233042a20ef095200e914
+      internalID: -528289258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_walk_2
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 400
+        width: 26
+        height: 55
+      alignment: 9
+      pivot: {x: 0.53846157, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87d6f92ce7444de49b8f95698e92d880
+      internalID: 978280131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_walk_3
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 400
+        width: 20
+        height: 57
+      alignment: 9
+      pivot: {x: 0.5, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b3fb737fb26fe546912f1083580d38d
+      internalID: -121516459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_walk_4
+      rect:
+        serializedVersion: 2
+        x: 471
+        y: 400
+        width: 23
+        height: 68
+      alignment: 9
+      pivot: {x: 0.5217391, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cce543826184b841b95b11cbd3d5308
+      internalID: 63685170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_walk_5
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 400
+        width: 21
+        height: 74
+      alignment: 9
+      pivot: {x: 0.52380955, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4d19bce36ac8a04c8b9a2896098eefa
+      internalID: 599584246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_walk_6
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 400
+        width: 23
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5217391, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 478f7f04a9520ee45a8ce413b8213b9f
+      internalID: -1090250260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_walk_7
+      rect:
+        serializedVersion: 2
+        x: 567
+        y: 400
+        width: 23
+        height: 75
+      alignment: 9
+      pivot: {x: 0.5217391, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3b248a2703095347a1dffca6f14de0b
+      internalID: 2119435390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_walk_8
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 400
+        width: 23
+        height: 68
+      alignment: 9
+      pivot: {x: 0.5217391, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdcf4d08cd72e254d964d57636f73d10
+      internalID: -1878352859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_walk_9
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 400
+        width: 23
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5217391, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf54d5446a998af4bbcef41f3f36880e
+      internalID: 1820911125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_walk_10
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 400
+        width: 22
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c73ca9582e424e40ba64a9a57c793f6
+      internalID: 615965888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_walk_11
+      rect:
+        serializedVersion: 2
+        x: 694
+        y: 400
+        width: 25
+        height: 53
+      alignment: 9
+      pivot: {x: 0.56, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c27b81dac274324287c74777ff58780
+      internalID: -71054306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_walk_12
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 400
+        width: 25
+        height: 53
+      alignment: 9
+      pivot: {x: 0.56, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3aee4da76f5e497459f77b933f98934b
+      internalID: -607141957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_walk_13
+      rect:
+        serializedVersion: 2
+        x: 759
+        y: 400
+        width: 24
+        height: 55
+      alignment: 9
+      pivot: {x: 0.5416667, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82337dc010a6b8f458aadab0e7d925b8
+      internalID: 2100204238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_walk_14
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 393
+        width: 20
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 529ea033850124942a3db69b85f92689
+      internalID: -215334205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_walk_15
+      rect:
+        serializedVersion: 2
+        x: 471
+        y: 396
+        width: 23
+        height: 72
+      alignment: 9
+      pivot: {x: 0.5217391, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 381679662d7b8044e87ab6838f7eb0e7
+      internalID: -943985141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_walk_16
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 396
+        width: 23
+        height: 72
+      alignment: 9
+      pivot: {x: 0.5217391, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fbdc303ddc8eae4ea5ae014133b487d
+      internalID: 164789959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_walk_17
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 393
+        width: 23
+        height: 63
+      alignment: 9
+      pivot: {x: 0.5217391, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98bfdc6b26691384d8ab7db1c0341c08
+      internalID: -503397406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_swarm_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 264
+        width: 61
+        height: 71
+      alignment: 9
+      pivot: {x: 0.5081967, y: 0.08450704}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae744fdd323c93043b3448b6c5aecdac
+      internalID: -1685532230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_swarm_1
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 264
+        width: 63
+        height: 71
+      alignment: 9
+      pivot: {x: 0.50793654, y: 0.08450704}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1285938bda834b4f99b00f3b8310ca4
+      internalID: 2082732137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_swarm_2
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 264
+        width: 70
+        height: 68
+      alignment: 9
+      pivot: {x: 0.51428574, y: 0.0882353}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b390cfafe81ca745b4b4f46313771be
+      internalID: 342359386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_swarm_3
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 197
+        width: 50
+        height: 54
+      alignment: 9
+      pivot: {x: 0.53999996, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff56d7261e9c2e8489aff0f5b2c54d9a
+      internalID: -1671315359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_swarm_4
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 198
+        width: 72
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5138889, y: 0.1875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c17bc34c59d7d74a94f56ead66222e9
+      internalID: 1965385292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_swarm_5
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 142
+        width: 36
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5833333, y: 0.037037037}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6abe7bd572021fe40bad2389ab0e7a86
+      internalID: -1517089285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_swarm_6
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 141
+        width: 30
+        height: 55
+      alignment: 9
+      pivot: {x: 0.53333336, y: 0.054545455}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adfe3d9fc7e4ac640bc202425e764776
+      internalID: -973333493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_swarm_7
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 141
+        width: 29
+        height: 56
+      alignment: 9
+      pivot: {x: 0.55172414, y: 0.053571433}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98644b3b17009fc4f8f56abf153532d9
+      internalID: 1342252974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_swarm_8
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 144
+        width: 23
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5217391, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c54da308ee490a489b853977d297678
+      internalID: 235207741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: san
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 341
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f04bc1932671ea84094526b7a0370970
+      internalID: -1678780653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_weapon_1
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 367
+        width: 13
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 773529acc7f6a704cac34926ebd015b1
+      internalID: 175891525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_weapon_0
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 336
+        width: 9
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8d89d6609967524ea5d7d7ef9157e87
+      internalID: 1958081882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_attack_0
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 336
+        width: 20
+        height: 54
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4547e982b89949f48b6931799665ceed
+      internalID: 673090966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_attack_1
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 336
+        width: 27
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5555556, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e65af49eafd84948b18a4e02b5273cc
+      internalID: 187498540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_attack_2
+      rect:
+        serializedVersion: 2
+        x: 471
+        y: 336
+        width: 30
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 876d0f42ce0082e41bc3e4f3f3507f46
+      internalID: 1459422574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_attack_3
+      rect:
+        serializedVersion: 2
+        x: 507
+        y: 336
+        width: 27
+        height: 55
+      alignment: 9
+      pivot: {x: 0.4074074, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9f616f7329b19647885c6fc284bc657
+      internalID: -1242263952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_attack_4
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 336
+        width: 25
+        height: 55
+      alignment: 9
+      pivot: {x: 0.35999998, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5362bc7cb13364b41af9f35a52015220
+      internalID: -693258750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_attack_5
+      rect:
+        serializedVersion: 2
+        x: 571
+        y: 336
+        width: 27
+        height: 55
+      alignment: 9
+      pivot: {x: 0.4074074, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7177a9d9c5cc8cc45859d6a3f4f9a027
+      internalID: -2072098951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_attack_6
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 336
+        width: 26
+        height: 54
+      alignment: 9
+      pivot: {x: 0.3846154, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e35a9e6d9f3e10458c40ecab570a591
+      internalID: 1764084242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_win_0
+      rect:
+        serializedVersion: 2
+        x: 712
+        y: 832
+        width: 26
+        height: 51
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b749e1468535234f9a8cb4964c61a09
+      internalID: -6109273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_win_1
+      rect:
+        serializedVersion: 2
+        x: 751
+        y: 832
+        width: 28
+        height: 51
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a6ff479bb37be341b155e69e0bb215d
+      internalID: -1610564279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_win_2
+      rect:
+        serializedVersion: 2
+        x: 788
+        y: 832
+        width: 26
+        height: 51
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37375a0b86c45fc44a2bfe0fdf470766
+      internalID: 1727907670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_win_3
+      rect:
+        serializedVersion: 2
+        x: 823
+        y: 832
+        width: 28
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5357143, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3b727dc96a0efb4c88ac1ca50019019
+      internalID: 646987724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_win_4
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 832
+        width: 28
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4779732a9ff6cda469acef9968dcaf42
+      internalID: 707133093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: box_win_5
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 832
+        width: 28
+        height: 52
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41ae50f3c7d939f4191a678ed861ce5f
+      internalID: -1121011208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_win_0
+      rect:
+        serializedVersion: 2
+        x: 563
+        y: 596
+        width: 27
+        height: 55
+      alignment: 9
+      pivot: {x: 0.5185185, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45461aba7e0e489468f1e35cd539323c
+      internalID: -66120048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_win_1
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 596
+        width: 27
+        height: 55
+      alignment: 9
+      pivot: {x: 0.5185185, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24443e3c058ecb54482615053a72c046
+      internalID: 873557997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: nihility_win_2
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 596
+        width: 27
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5185185, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9a7fddf2eb2de64d8be82d329295245
+      internalID: -1679282154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_win_0
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 272
+        width: 21
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5714286, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bc9f9ff924710243a51bda6c98cf6c1
+      internalID: -1349334158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_win_1
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 272
+        width: 20
+        height: 54
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39f8c2e119d273a429c39d68333e3cb7
+      internalID: 1894802367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_win_2
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 272
+        width: 21
+        height: 54
+      alignment: 9
+      pivot: {x: 0.52380955, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7702dcdd6dea4e949965b2213cb5dcea
+      internalID: 1549151203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_win_3
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 272
+        width: 20
+        height: 54
+      alignment: 9
+      pivot: {x: 0.55, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 894701b2a7c69414dacdc3fbefbe583c
+      internalID: 769552501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_win_4
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 272
+        width: 20
+        height: 54
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8cbab366b45e6343adf8150d18e2347
+      internalID: 680538438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_win_5
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 272
+        width: 20
+        height: 54
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6d7cea15f88a6e4386f04b50c27491f
+      internalID: -1299984962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_win_6
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 272
+        width: 20
+        height: 54
+      alignment: 9
+      pivot: {x: 0.55, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5abfc918193310f40a82fb8be4501c26
+      internalID: -1853031522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 6e1590c8fcc785a489a6c70010e81376
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      white_walk_0: 933326235
+      box_show_1: -1381886372
+      white_idle_17: 299685243
+      box_idle_10: -1091700683
+      white_walk_4: 63685170
+      box_die_2: 1522839661
+      white_attack_6: 1764084242
+      knife: 1580692723
+      box_idle_2: -471565012
+      box_show_15: -1613135771
+      nihility_normal_hit_1: 1683846914
+      white_idle_1: 395587909
+      box_win_4: 707133093
+      box_lie_0: 1505922728
+      nihility_alive_3: 1724198687
+      box_critical_hit_1: -891891661
+      nihility_win_2: -1679282154
+      box_nomal_hit_0: 433904710
+      box_idle_11: -1867453826
+      white_walk_14: -215334205
+      box_move_13: -619013150
+      nihility_die_0: 1305661784
+      box_idle_6: 1685858780
+      white_walk_16: 164789959
+      nihility_attack_7: -1995270139
+      box_show_6: 1406449245
+      white_idle_0: -1037696832
+      box_show_0: -735234745
+      box_move_8: -501493416
+      box_show_9: -602576455
+      nihility_swarm_7: -561593246
+      nihility_attack_5: -1044943307
+      nihility_die_2: 1985530558
+      nihility_swarm_9: -1827910108
+      nihility_swarm_1: -2025269583
+      nihility_normal_hit_2: 1632036661
+      box_move_1: -64623221
+      box_nomal_hit_4: 445662799
+      nihility_move_7: -384038521
+      nihility_idle_14: -2009143854
+      white_swarm_6: -973333493
+      box_critical_hit_3: -1453313116
+      nihility_critical_hit_0: -1429116615
+      box_nomal_hit_3: 37681335
+      white_swarm_2: 342359386
+      box_idle_7: 560650866
+      "\u50CF\u7D20\u76D2\u732B_25": -1940569753
+      nihility_move_6: 501187972
+      white_idle_5: 2093963479
+      box_show_12: 535751340
+      box_attract_2: 1107639060
+      nihility_idle_8: -1499503664
+      nihility_die_1: -1600411772
+      nihility_idle_11: 138811698
+      white_idle_15: -1275252092
+      nihility_normal_hit_4: 1613646182
+      white_swarm_1: 2082732137
+      box_critical_hit_5: -103049472
+      box_die_5: 1723031091
+      white_walk_2: 978280131
+      nihility_idle_6: 1600850061
+      nihility_idle_15: -2094963112
+      box_die_7: -73048774
+      box_show_4: 227116771
+      white_win_4: 680538438
+      box_show_19: -50558090
+      box_die_4: -1284406898
+      nihility_swarm_3: 322138661
+      white_walk_5: 599584246
+      box_move_2: 244705411
+      nihility_idle_2: -147398502
+      white_idle_9: 1490966693
+      white_win_0: -1349334158
+      nihility_normal_hit_3: -1187501723
+      nihility_alive_1: 272970694
+      white_attack_2: 1459422574
+      nihility_swarm_2: -518603259
+      box_show_13: -177297190
+      box_die_6: -1739766708
+      white_idle_11: -303917443
+      box_win_0: -6109273
+      white_attack_5: -2072098951
+      nihility_critical_hit_1: 38790904
+      nihility_swarm_4: 2144699101
+      nihility_normal_hit_5: 888685141
+      box_critical_hit_back: 459550844
+      white_idle_3: -1861409630
+      box_show_11: -1213218843
+      nihility_critical_hit_6: -1793728172
+      box_show_2: 914576587
+      white_walk_10: 615965888
+      box_idle_12: 1358416070
+      nihility_move_0: -1193864431
+      box_move_0: -1802608711
+      white_swarm_7: 1342252974
+      white_weapon_0: 1958081882
+      nihility_swarm_5: 1518436039
+      box_idle_0: -217604828
+      gun: -103656048
+      nihility_attack_0: 594603850
+      nihility_move_2: 1286791733
+      nihility_attack_10: -657030749
+      white_attack_3: -1242263952
+      nihility_win_1: 873557997
+      box_idle_8: -994404287
+      white_idle_8: 741052485
+      white_attack_4: -693258750
+      white_swarm_8: 235207741
+      white_walk_13: 2100204238
+      white_weapon_1: 175891525
+      white_win_2: 1549151203
+      nihility_ready_attack_1: 746430623
+      nihility_idle_5: 389168716
+      box_confused_0: -489895996
+      box_nomal_hit_1: 1940307224
+      box_show_3: 1214078490
+      white_swarm_4: 1965385292
+      box_attract_3: 1296061401
+      box_win_5: -1121011208
+      white_walk_8: -1878352859
+      nihility_attack_9: -567428045
+      box_attract_1: -1296149746
+      nihility_attack_6: -1813125711
+      white_swarm_3: -1671315359
+      white_swarm_0: -1685532230
+      box_critical_hit_4: -185996425
+      nihility_swarm_6: -850199977
+      nihility_move_5: 1930195087
+      nihility_alive_2: 455567024
+      nihility_attack_1: -1259138346
+      box_idle_4: 1960335941
+      nihility_alive_4: -1533833169
+      white_win_3: 769552501
+      nihility_move_1: -814456461
+      box_win_3: 646987724
+      k3: 787774416
+      box_critical_hit_0: -1776753706
+      white_walk_15: -943985141
+      san: -1678780653
+      box_attract_8: -1216876686
+      box_move_4: 1170925837
+      box_critical_hit_2: 175327337
+      box_die_0: 512970552
+      nihility_normal_hit_0: -107169325
+      white_walk_11: -71054306
+      white_win_6: -1853031522
+      white_attack_0: 673090966
+      nihility_alive_6: 1258188634
+      white_win_1: 1894802367
+      box_attract_5: -2076636566
+      box_show_18: 1233323619
+      nihility_die_3: -1401565302
+      white_idle_6: -1480053884
+      white_walk_17: -503397406
+      white_walk_3: -121516459
+      box_move_12: -388782489
+      box_move_14: 1765450027
+      nihility_attack_4: -1545077532
+      box_move_3: 263474074
+      box_attract_4: -1397253984
+      "\u50CF\u7D20\u76D2\u732B_13": -1601148172
+      nihility_idle_7: -1349086189
+      nihility_die_6: 2071960502
+      nihility_critical_hit_5: 2051938348
+      box_idle_5: 1422532839
+      box_move_10: -1379008031
+      box_move_5: 438122730
+      nihility_die_7: 1397430146
+      box_move_9: -896081109
+      white_idle_19: 1082157494
+      nihility_idle_10: -1010110543
+      nihility_attack_2: 764630170
+      box_show_5: 2033925048
+      box_show_14: -1127671346
+      nihility_idle_12: -1597410165
+      box_move_15: -1269408837
+      box_idle_13: -1121226001
+      box_show_8: 1304746889
+      box_idle_15: -1308357230
+      white_walk_6: -1090250260
+      nihility_idle_0: -1680443323
+      white_walk_9: 1820911125
+      nihility_alive_5: 746996364
+      box_win_2: 1727907670
+      nihility_idle_3: 574524141
+      nihility_idle_13: 2145276453
+      white_walk_12: -607141957
+      white_idle_14: 2044343378
+      box_attract_0: -849021327
+      white_walk_1: -528289258
+      nihility_alive_0: 1054272567
+      white_walk_7: 2119435390
+      box_show_16: 1630686857
+      nihility_critical_hit_4: -1348423524
+      box_nomal_hit_5: 1554830929
+      white_idle_2: 862297685
+      box_idle_3: -780035378
+      box_show_7: 1145068198
+      nihility_critical_hit_7: 643411356
+      box_move_7: 110812653
+      nihility_ready_attack_0: -1153349551
+      box_idle_1: 479573287
+      box_attract_7: -1261850093
+      nihility_die_5: -2059248356
+      nihility_attack_3: -953071122
+      white_idle_4: -1311780762
+      white_attack_1: 187498540
+      white_idle_10: 172542432
+      box_attract_6: -1331936056
+      box_nomal_hit_2: 1584045485
+      box_move_11: -1440600101
+      box_idle_9: -1788799959
+      box_die_3: -225847450
+      white_idle_7: 608868529
+      white_idle_13: 506385512
+      nihility_move_4: 487241272
+      white_idle_18: 1331423418
+      box_die_1: -931499190
+      white_idle_12: 40573791
+      box_show_10: 808216979
+      nihility_move_3: 405353958
+      box_idle_14: -1315727405
+      white_swarm_5: -1517089285
+      nihility_die_4: -1239997131
+      nihility_swarm_10: -277710378
+      nihility_swarm_0: 1453142321
+      nihility_idle_9: 537486743
+      white_win_5: -1299984962
+      nihility_idle_1: -1459833385
+      box_win_1: -1610564279
+      nihility_idle_4: 1229091031
+      white_idle_16: -1532201645
+      nihility_swarm_11: 1337396438
+      box_show_20: 634163357
+      nihility_critical_hit_3: -2130583122
+      box_show_17: 674559761
+      nihility_win_0: -66120048
+      nihility_move_8: 253753010
+      nihility_swarm_8: -1606399617
+      nihility_critical_hit_2: 1446339663
+      nihility_attack_8: -1309474059
+      box_move_6: 1143511507
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
