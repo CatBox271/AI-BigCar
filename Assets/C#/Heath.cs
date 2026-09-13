@@ -12,6 +12,10 @@ public class Heath : MonoBehaviour
     public bool die;
 
     public bool HitLight;
+
+    [Tooltip("受击变亮效果。HitLight 打开时由 Awake 自动挂载")]
+    public FlashEffect flash;
+
     public bool OrignalColor;
 
     public bool Castle;
@@ -24,10 +28,21 @@ public class Heath : MonoBehaviour
     {
         max = HP;
         TryGetComponent(out sp);
+        HeathRegistry.Add(this);
+        if (HitLight)
+        {
+            flash = GetComponent<FlashEffect>();
+            if (flash == null) flash = gameObject.AddComponent<FlashEffect>();
+        }
         if (Castle)
         {
             Set(camp);
         }
+    }
+
+    private void OnDestroy()
+    {
+        HeathRegistry.Remove(this);
     }
     public bool Bullet;
 
@@ -72,9 +87,6 @@ public class Heath : MonoBehaviour
         }
         if(sp != null) _color_start = sp.color;
     }
-
-    private bool HitAnimFinish = true;
-    private Color _lightPercent;
 
     public GameObject showHit;
 
@@ -128,7 +140,7 @@ public class Heath : MonoBehaviour
         }
         else
         {
-            Color a = _color_start + _lightPercent;
+            Color a = _color_start;
             if (max != 0)
             {
                 a *= HP / max;
@@ -138,11 +150,16 @@ public class Heath : MonoBehaviour
             {
                 a = Color.black;
             }
-            if (sp != null) sp.color = a;
-            if (HitLight && HitAnimFinish)
+            if (HitLight && flash != null)
             {
-                StartCoroutine("HitAnim");
-                return;
+                // 底色（含 HP 变暗）交给 FlashEffect 统一持有，
+                // 由它负责受击变亮，以及闪烁结束后写回底色
+                flash.SetOriginColor(a);
+                flash.WhileBeHit();
+            }
+            else
+            {
+                sp.color = a;
             }
         }
     }
@@ -156,22 +173,4 @@ public class Heath : MonoBehaviour
     }
 
     public int GetHitTimes = 0;
-
-    IEnumerator HitAnim()
-    {
-        HitAnimFinish = false;
-
-        _lightPercent = new Color(0.4f, 0.4f, 0.4f, 0);
-
-        yield return new WaitForSeconds(0.1f);
-        for (int i = 0; i < 5; i++)
-        {
-            _lightPercent -= new Color(0.4f, 0.4f, 0.4f, 0) / 5f;
-            yield return null;
-        }
-        _lightPercent = Color.clear;
-        yield return new WaitForSeconds(0.1f);
-        HitAnimFinish = true;
-        enabled = HP<= 0;
-    }
 }

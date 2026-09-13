@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camp: 0
-  coolTime: 0.75
+  coolTime: 0.5
   Radius: 15
   Hit: 50
   bullet: {fileID: 5397835180330912514, guid: 72a1ad9028b714641b97b5c038fc19ac, type: 3}

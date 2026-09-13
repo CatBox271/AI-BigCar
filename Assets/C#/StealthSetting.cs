@@ -8,8 +8,14 @@ public class StealthSetting : MonoBehaviour
     Heath h;
     SpriteRenderer sp;
     Color orign;
+    private void Awake()
+    {
+        HeathRegistry.AddStealth(this);
+    }
+
     private void OnDestroy()
     {
+        HeathRegistry.RemoveStealth(this);
         Back();
     }
 

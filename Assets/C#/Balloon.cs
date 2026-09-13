@@ -17,14 +17,8 @@ public class Balloon : MonoBehaviour
     {
         if (ac.Length != 0)
         {
-            GameObject go = Instantiate(VanishWhenAudioDone.StaticAudio, transform.parent);
-            go.transform.localPosition = new();
-            go.transform.localEulerAngles = new();
-            AudioSource audio = go.GetComponent<AudioSource>();
-            audio.clip = ac[Random.Range(0, ac.Length)];
-            audio.volume = volume;
-            audio.pitch = pitch;
-            audio.Play();
+            // 挂在 transform.parent 上：Balloon 本身马上就会被销毁，声音不能跟着一起没
+            VanishWhenAudioDone.Play(transform.parent, ac[Random.Range(0, ac.Length)], volume, pitch);
         }
     }
 }

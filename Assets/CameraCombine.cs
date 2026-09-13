@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraCombine : MonoBehaviour
 {
+    
     List<Collider2D> call = new();
     private void FixedUpdate()
     {

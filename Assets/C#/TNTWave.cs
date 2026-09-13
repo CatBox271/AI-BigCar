@@ -60,7 +60,7 @@ public class TNTWave : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out Rigidbody2D rb))
         {
             Vector2 n = (rb.transform.position - transform.position).normalized * value;
-            rb.velocity += n / Mathf.Pow(Mathf.Max(rb.mass, 1), 2);
+            rb.velocity += n / Mathf.Pow(Mathf.Max(rb.mass, 1), 2) / 5f;
         }
     }
 }

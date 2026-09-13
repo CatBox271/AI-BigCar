@@ -6,7 +6,7 @@ public class CanFixed : MonoBehaviour
 {
     private Heath h;
     private Collider2D col;
-    public float HP;
+    private float HP;
     public Artillery at;
 
     void Start()

@@ -56,24 +56,32 @@ public class Artillery : MonoBehaviour
     private Transform FindEnemy()
     {
         bool fly = transform.position.y > 0;
+        float queryRadius = Radius + (fly ? 10f : 0f);
 
-        Collider2D[] collider2D = Physics2D.OverlapCircleAll(transform.position, Radius + (fly ? 10f : 0f));
+        // 共享范围查询：同一格子的炮塔复用同一份候选集（见 RangeQueryCache）。
+        // 每个开火周期仍然重新选目标，所以转火行为与原来一致。
+        Collider2D[] collider2D;
+        int hitCount = RangeQueryCache.Get(transform.position, queryRadius, camp, out collider2D);
 
         float _dis = Radius+1;
         Transform _pos = null;
-        for (int i = 0; i < collider2D.Length; i++)
+        for (int i = 0; i < hitCount; i++)
         {
-            if (collider2D[i].TryGetComponent(out StealthSetting _) && !Castle) continue;
-            if (!collider2D[i].TryGetComponent<Heath>(out var h)) continue;
+            Collider2D col = collider2D[i];
+            // 共享缓存会保留引用到刷新间隔结束，期间目标可能已被销毁；
+            // 用 Unity 的假空判断（== null）跳过，这是 C 方案引入的必要防护
+            if (col == null) continue;
+            if (!Castle && HeathRegistry.IsStealth(col)) continue;
+            if (!HeathRegistry.TryGetHeath(col, out Heath h)) continue;
             if (Castle && (h.gameObject.layer == 8 || h.gameObject.layer == 9)) continue;
             if (h.camp == camp) continue;
             if (h.HP<=0 && !h.CompareTag("Site")) continue;
-            Vector2 distanceBetween = transform.position - collider2D[i].transform.position;
+            Vector2 distanceBetween = transform.position - col.transform.position;
             float _newdis = distanceBetween.magnitude;
 
             if (_newdis < _dis)
             {
-                _pos = collider2D[i].transform;
+                _pos = col.transform;
                 _dis = _newdis;
             }
         }
@@ -122,12 +130,23 @@ public class Artillery : MonoBehaviour
 
     (float,float) XYT(Transform Self, Transform Aim,float T)
     {
-        Rigidbody2D AimRb = Aim.GetComponent<Rigidbody2D>();
+        // 目标/自身可能没有自己的 Rigidbody2D（物理刚体挂在祖先上，例如 RightTowel (4)/Triangle (1)）。
+        // GetComponentInParent 沿父链找最近的一个，这正是 Unity 判定“该碰撞体由哪个刚体驱动”的规则；
+        // 整条链都没有则返回 null，下面按静止处理，不会再抛 MissingComponentException。
+        Rigidbody2D AimRb = Aim.GetComponentInParent<Rigidbody2D>();
 
-        Rigidbody2D SelfRb = Self.parent.GetComponent<Rigidbody2D>();
-        if (rb != null) SelfRb = rb;
-        float DX = (Aim.position.x - Self.position.x) + (AimRb.velocity.x - SelfRb.velocity.x) * T;
-        float DY = (Aim.position.y - Self.position.y) + (AimRb.velocity.y - SelfRb.velocity.y) * T;
+        // 原实现无条件先取 Self.parent 的刚体再被 rb 覆盖，父物体为 null 时会直接抛异常
+        Rigidbody2D SelfRb = rb;
+        if (SelfRb == null && Self.parent != null) SelfRb = Self.parent.GetComponentInParent<Rigidbody2D>();
+        if (SelfRb == null) SelfRb = Self.GetComponentInParent<Rigidbody2D>();
+
+        float AimVx = AimRb != null ? AimRb.velocity.x : 0f;
+        float AimVy = AimRb != null ? AimRb.velocity.y : 0f;
+        float SelfVx = SelfRb != null ? SelfRb.velocity.x : 0f;
+        float SelfVy = SelfRb != null ? SelfRb.velocity.y : 0f;
+
+        float DX = (Aim.position.x - Self.position.x) + (AimVx - SelfVx) * T;
+        float DY = (Aim.position.y - Self.position.y) + (AimVy - SelfVy) * T;
         float DY2 = DY * DY;
         float DX2 = DX * DX;
         float V = _bulletSpeed;
@@ -157,14 +176,14 @@ public class Artillery : MonoBehaviour
                 T2 = float.NaN;
             }
         }
-        float cos�� = DX / V / T;
-        float sin�� = (DY - 0.5f * -Gravity * T * T) / V / T;
-        float �� = Mathf.Rad2Deg * Mathf.Acos(cos��);
-        if (sin�� < 0)
+        float cosθ = DX / V / T;
+        float sinθ = (DY - 0.5f * -Gravity * T * T) / V / T;
+        float θ = Mathf.Rad2Deg * Mathf.Acos(cosθ);
+        if (sinθ < 0)
         {
-            �� *= -1f;
+            θ *= -1f;
         }
-        return (Mathf.Sqrt(T2) , ��);
+        return (Mathf.Sqrt(T2) , θ);
     }
 
     public int CalculateTimes = 5;
@@ -175,15 +194,15 @@ public class Artillery : MonoBehaviour
             if (H)
             {
                 float T = 0;
-                float �� = 0;
-                float Last�� = 0;
+                float θ = 0;
+                float Lastθ = 0;
                 for (int t = 0; t < CalculateTimes; t++)
                 {
-                    Last�� = ��;
+                    Lastθ = θ;
                     (float, float) ff = XYT(transform, pos, T);
                     T = ff.Item1;
-                    �� = ff.Item2;
-                    if (T == float.NaN || �� == float.NaN)
+                    θ = ff.Item2;
+                    if (T == float.NaN || θ == float.NaN)
                     {
                         T = -1 * (t + 1);
                         break;
@@ -194,7 +213,7 @@ public class Artillery : MonoBehaviour
                 {
                     if (T != -1)
                     {
-                        �� = Last��;
+                        θ = Lastθ;
                         answer = true;
                     }
                     else
@@ -207,10 +226,10 @@ public class Artillery : MonoBehaviour
                     answer = true;
 
                 }
-                if (!float.IsNormal(��)) answer = false;
+                if (!float.IsNormal(θ)) answer = false;
                 if (answer)
                 {
-                    transform.eulerAngles = new Vector3(0, 0, ��);
+                    transform.eulerAngles = new Vector3(0, 0, θ);
                 }
                 else
                 {
@@ -253,16 +272,8 @@ public class Artillery : MonoBehaviour
     {
         if (ac.Length != 0)
         {
-            if (VanishWhenAudioDone.StaticAudio != null)
-            {
-                GameObject go = Instantiate(VanishWhenAudioDone.StaticAudio, transform);
-                go.transform.localPosition = new();
-                go.transform.localEulerAngles = new();
-                AudioSource audio = go.GetComponent<AudioSource>();
-                audio.clip = ac[Random.Range(0, ac.Length)];
-                audio.volume = volume;
-                audio.Play();
-            }
+            // 复用音效对象，避免每发子弹都 Instantiate 一个带 AudioSource 的物体
+            VanishWhenAudioDone.Play(transform, ac[Random.Range(0, ac.Length)], volume);
         }
     }
 }

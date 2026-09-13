@@ -14,12 +14,16 @@ public class Shield : MonoBehaviour
     public float shield_value;
     private float ordinary_value;
     private SpriteRenderer sp_s;
+    private FlashEffect flash;
     // Start is called before the first frame update
     void Start()
     {
         shield.SetActive(false);
         TryGetComponent(out h);
         sp_s = shield.GetComponent<SpriteRenderer>();
+        flash = GetComponent<FlashEffect>();
+        if (flash == null) flash = gameObject.AddComponent<FlashEffect>();
+        flash.sp = sp_s;
     }
 
     // Update is called once per frame
@@ -27,7 +31,13 @@ public class Shield : MonoBehaviour
     {
 
         shield.transform.localPosition = new Vector3(0, 0, 0);
-        sp_s.color = Color.white * Mathf.Max(0.4f,shield_value / ordinary_value) + _lightPercent;
+        // 底色（含护盾值下降的变暗）每帧刷新给 FlashEffect，由它统一持有 sp_s.color。
+        // ordinary_value 在 work 置位前为 0，直接相除会得到 Infinity，
+        // 而 FlashEffect 里的 Color.Lerp 遇到 Infinity 会算出 NaN，故先兜底。
+        float ratio = ordinary_value != 0f ? shield_value / ordinary_value : 1f;
+        Color baseColor = Color.white * Mathf.Max(0.4f, ratio);
+        if (flash != null) flash.SetOriginColor(baseColor);
+        else sp_s.color = baseColor;
         if (h.camp == 0) return;
         if (!work)
         {
@@ -35,7 +45,6 @@ public class Shield : MonoBehaviour
             shield.layer = gameObject.layer;
             ordinary_value = shield_value;
             StopAllCoroutines();
-            HitAnimFinish = true;
             StartCoroutine("On");
         }
         if (shield_value < 0)
@@ -44,7 +53,6 @@ public class Shield : MonoBehaviour
             {
                 duringTime = restTime;
                 StopAllCoroutines();
-                HitAnimFinish = true;
                 StartCoroutine("Off");
             }
             duringTime -= Time.deltaTime;
@@ -52,7 +60,6 @@ public class Shield : MonoBehaviour
             {
                 shield_value = ordinary_value;
                 StopAllCoroutines();
-                HitAnimFinish = true;
                 StartCoroutine("On");
             }
             return;
@@ -67,9 +74,9 @@ public class Shield : MonoBehaviour
         {
             Instantiate(showHit, vec, new Quaternion()).GetComponent<ShowHit>().Setting(h.camp, value);
         }
-        if (HitAnimFinish)
+        if (flash != null)
         {
-            StartCoroutine("HitAnim");
+            flash.WhileBeHit();
         }
     }
     IEnumerator On()
@@ -97,24 +104,5 @@ public class Shield : MonoBehaviour
     }
 
 
-    private bool HitAnimFinish = true;
-    private Color _lightPercent;
     public GameObject showHit;
-
-    IEnumerator HitAnim()
-    {
-        HitAnimFinish = false;
-
-        _lightPercent = new Color(0.4f, 0.4f, 0.4f, 0);
-
-        yield return new WaitForSeconds(0.1f);
-        for (int i = 0; i < 5; i++)
-        {
-            _lightPercent -= new Color(0.4f, 0.4f, 0.4f, 0) / 5f;
-            yield return null;
-        }
-        _lightPercent = Color.clear;
-        yield return new WaitForSeconds(0.1f);
-        HitAnimFinish = true;
-    }
 }
