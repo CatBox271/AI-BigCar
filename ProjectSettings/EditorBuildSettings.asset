@@ -6,37 +6,37 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Menu.unity
+    path: Assets/Scenes/ChallengeLevel/Menu.unity
     guid: d41e029931869ce4895173a598d040f6
   - enabled: 1
-    path: Assets/Scenes/Creat.unity
+    path: "Assets/Scenes/\u521B\u4F5C\u6A21\u5F0F/Creat.unity"
     guid: a4318bf9c5c52be46af4000a83d57e01
   - enabled: 1
-    path: Assets/Scenes/Creat 1.unity
+    path: "Assets/Scenes/\u521B\u4F5C\u6A21\u5F0F/Creat 1.unity"
     guid: 944ae578fc0b4e142a73cd2d22281f77
   - enabled: 1
-    path: Assets/Scenes/Speed 3.unity
+    path: Assets/Scenes/ChallengeLevel/Speed 3.unity
     guid: e5f3791563bdc2d4081c47f7da6fe77a
   - enabled: 1
-    path: Assets/Scenes/Fight 1.unity
+    path: Assets/Scenes/ChallengeLevel/Fight 1.unity
     guid: c7a5084622c45e1469b2fb774dff1fca
   - enabled: 1
-    path: Assets/Scenes/Fight.unity
+    path: Assets/Scenes/ChallengeLevel/Fight.unity
     guid: b81bd1e3be0d9be41a77044ff61e905e
   - enabled: 1
-    path: Assets/Scenes/Speed 1.unity
+    path: Assets/Scenes/ChallengeLevel/Speed 1.unity
     guid: 247663c2d4968f14f8956d04d27b9c58
   - enabled: 1
-    path: Assets/Scenes/Speed 2.unity
+    path: Assets/Scenes/ChallengeLevel/Speed 2.unity
     guid: 4ea380675388fc24e9b9b40b4c60abe3
   - enabled: 1
-    path: Assets/Scenes/Start 1.unity
+    path: Assets/Scenes/ChallengeLevel/Start 1.unity
     guid: e5c4e6e37e535b147b69a91c1203fc9f
   - enabled: 1
-    path: Assets/Scenes/LevelChoose.unity
+    path: Assets/Scenes/ChallengeLevel/LevelChoose.unity
     guid: 0c010a30151af304e82baa6f5e3c24b5
   - enabled: 1
-    path: Assets/Scenes/Speed.unity
+    path: Assets/Scenes/ChallengeLevel/Speed.unity
     guid: 9b8e262cbcf4519449088a503d481866
   - enabled: 1
     path: Assets/Scenes/NormalLevel/Level0.unity

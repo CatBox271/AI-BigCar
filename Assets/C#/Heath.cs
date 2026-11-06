@@ -62,14 +62,18 @@ public class Heath : MonoBehaviour
         // HitLight 打开后 sp.color 归 FlashEffect 的闪烁协程所有，它每帧覆盖，
         // 闪烁结束时还会写回自己那份 originColor。
         Color baseColor = sp != null ? sp.color : Color.white;
+        // 层表见 ProjectSettings/TagManager：
+        //   本体      中立 6 / 左 7（camp 2 红）/ 右 8（camp 1 蓝）
+        //   无队内碰撞 9 / 10 / 11   ← IgnoteCampCollider 时在下面 +3
+        //   弹        12 / 13 / 14   ← Bullet 时在下面 +6
         switch (camp)
         {
             case 0:
-                gameObject.layer = 11;
+                gameObject.layer = 6;
                 break;
             case 1:
 
-                gameObject.layer = 6;
+                gameObject.layer = 8;
                 if (vm && sp != null && !OrignalColor) baseColor = (Color.cyan + Color.blue) / 2f;
                 break;
             case 2:
@@ -78,15 +82,15 @@ public class Heath : MonoBehaviour
                 if (vm && sp != null && !OrignalColor) baseColor = Color.red;
                 break;
         }
-        if (IgnoteCampCollider && camp != 0)
+        if (IgnoteCampCollider)
         {
-            gameObject.layer += 6;
+            gameObject.layer += 3;
         }
         else
         {
             if (Bullet)
             {
-                gameObject.layer += 2;
+                gameObject.layer += 6;
             } 
         }
         _color_start = baseColor;
@@ -148,8 +152,8 @@ public class Heath : MonoBehaviour
             {
                 if (TryGetComponent(out TryConnect tc))
                 {
-                    if (tc.rb_1 != null) tc.rb_1.gameObject.layer = 11;
-                    if (tc.rb_2 != null) tc.rb_2.gameObject.layer = 11;
+                    if (tc.rb_1 != null) tc.rb_1.gameObject.layer = 9;
+                    if (tc.rb_2 != null) tc.rb_2.gameObject.layer = 9;
                 }
             }
             Die();

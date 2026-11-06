@@ -55,12 +55,14 @@ public class OnFire : MonoBehaviour
 
     public void FireSpread()
     {
-        int mask = 1 << 0 | 1 << 6 | 1 << 7 | 1 << 12 | 1 << 13;
-        if (h.camp != 0)
-        {
-            mask ^= 1 << (h.camp + 5);
-            mask ^= 1 << (h.camp + 11);
-        }
+        // 中立 6/9/12、左 7/10/13、右 8/11/14 都参与蔓延，再剔掉自己阵营那三层
+        int mask = 1 << 0
+                 | 1 << 6 | 1 << 7 | 1 << 8
+                 | 1 << 9 | 1 << 10 | 1 << 11
+                 | 1 << 12 | 1 << 13 | 1 << 14;
+        if (h.camp == 1) mask &= ~(1 << 8 | 1 << 11 | 1 << 14);
+        else if (h.camp == 2) mask &= ~(1 << 7 | 1 << 10 | 1 << 13);
+        else mask &= ~(1 << 6 | 1 << 9 | 1 << 12);
         Collider2D[] col = Physics2D.OverlapCircleAll(transform.position, 1f, mask);
         for (int i = 0; i < col.Length; i++)
         {

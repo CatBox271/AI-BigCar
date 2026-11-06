@@ -33,7 +33,7 @@ public class Cannon : MonoBehaviour,ION
         h.camp = H.camp;
         rb.velocity = new Vector3(RB.velocity.x, RB.velocity.y) + Speed * 2 * (Quaternion.AngleAxis(Angle, Vector3.forward) * transform.right);
         RB.velocity = new Vector3(RB.velocity.x, RB.velocity.y) - Speed * 0.75f * rb.mass / RB.mass * (Quaternion.AngleAxis(Angle, Vector3.forward) * transform.right);
-        rb.gameObject.layer = h.camp == 1 ? 8 : 9;
+        rb.gameObject.layer = h.camp == 1 ? 14 : 13;
         bu._camp = h.camp;
         Destroy(h.gameObject, 30f);
     }

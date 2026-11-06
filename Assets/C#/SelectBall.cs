@@ -14,12 +14,12 @@ public class SelectBall : MonoBehaviour
         if (Red)
         {
             sp.color = Color.red;
-            gameObject.layer = 14;
+            gameObject.layer = 15;   // 选球层（旧 RedSelectBall 的位置）
         }
         else
         {
             sp.color = new Color(0, 0.5f, 1);
-            gameObject.layer = 15;
+            gameObject.layer = 16;   // 选球层（旧 BlueSelectBall 的位置）
         }
     }
 

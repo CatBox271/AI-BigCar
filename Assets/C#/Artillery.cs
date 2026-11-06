@@ -95,17 +95,17 @@ public class Artillery : MonoBehaviour
         if (camp == 1)
         {
             give_color = new Color(0.5f, 0.5f, 1f);
-            go.layer = 8;
+            go.layer = 14;
         }
         else
         {
             if (camp == 0)
             {
-                go.layer = 11;
+                go.layer = 12;
             }
             else
             {
-                go.layer = 9;
+                go.layer = 13;
                 give_color = new Color(1f, 0.5f, 0.5f);
 
             }

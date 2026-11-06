@@ -47,7 +47,7 @@ public class CanFixed : MonoBehaviour
         {
             if (!Break)
             {
-                SetLayerAll(0);
+                SetLayerAll(6);
                 h.camp = 0;
                 at.enabled = true;
                 HP *= 1.25f;
@@ -62,7 +62,7 @@ public class CanFixed : MonoBehaviour
                 if (h.KeepRecord[1] > h.KeepRecord[2])
                 {
                     h.Set(1);
-                    SetLayerAll(6);
+                    SetLayerAll(8);
                 }
                 else
                 {
@@ -82,7 +82,8 @@ public class CanFixed : MonoBehaviour
                 Break = false;
             }
             at.enabled = true;
-            SetLayerAll(h.camp == 1 ? 6 : 7);
+            // 中立 6 / 左 7（camp 2 红）/ 右 8（camp 1 蓝）；camp 0 在上面已经 return
+            SetLayerAll(h.camp == 1 ? 8 : 7);
         }
     }
 }

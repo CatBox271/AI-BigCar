@@ -45,7 +45,7 @@ public class BroadswordMines : MonoBehaviour
             v.z = 0;
             Quaternion rotation = Quaternion.FromToRotation(Vector3.right, v); 
             go.transform.rotation = rotation;
-            go.layer = gameObject.layer + 2;
+            go.layer = gameObject.layer + 6;   // 本体层 → 同阵营弹层（中立 6→12、左 7→13、右 8→14）
             bullet b =
             go.GetComponent<bullet>();
             b.SetDistance(MaxDistance);

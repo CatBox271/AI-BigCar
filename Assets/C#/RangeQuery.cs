@@ -4,10 +4,9 @@ using UnityEngine;
 /// 全局范围查询工具：按阵营生成 layer 掩码 + 无分配的圆形重叠查询。
 ///
 /// 阵营层约定来自 Heath.Set()：
-///   camp 0 中立 → layer 11 (Neuro)
-///   camp 1 红方 → layer 6 (Red) ；VideoMode 下 IgnoteCampCollider 生效 → layer 12 (RedIngnote)
-///   camp 2 蓝方 → layer 7 (Blue)；VideoMode 下 IgnoteCampCollider 生效 → layer 13 (BlueIngnote)
-///   子弹在以上基础上再 +2（8 = RedBullet，9 = BlueBullet）
+///   本体层    中立 6 / 左 7（camp 2 红）/ 右 8（camp 1 蓝）
+///   无队内碰撞 9 / 10 / 11 —— VideoMode 下 IgnoteCampCollider 生效
+///   弹层     12 / 13 / 14
 /// 因此"排除自己阵营占用的层"就能让物理层直接完成阵营过滤，
 /// 不必把整个半径内的碰撞体都取回来再逐个判 camp（实测候选数可从 127 降到 27，
 /// 且筛选结果与原实现逐项一致）。
@@ -15,22 +14,24 @@ using UnityEngine;
 public static class RangeQuery
 {
     public const int LayerDefault = 0;
-    public const int LayerRed = 6;
-    public const int LayerBlue = 7;
-    public const int LayerRedBullet = 8;
-    public const int LayerBlueBullet = 9;
-    public const int LayerNeuro = 11;
-    public const int LayerRedIngnote = 12;
-    public const int LayerBlueIngnote = 13;
+    public const int LayerNeutral = 6;          // 中立本体
+    public const int LayerLeft = 7;             // 左方本体（camp 2 红）
+    public const int LayerRight = 8;            // 右方本体（camp 1 蓝）
+    public const int LayerNeutralNoTeam = 9;    // 中立·无队内碰撞
+    public const int LayerLeftNoTeam = 10;      // 左方·无队内碰撞
+    public const int LayerRightNoTeam = 11;     // 右方·无队内碰撞
+    public const int LayerNeutralBullet = 12;   // 中立弹
+    public const int LayerLeftBullet = 13;      // 左方弹
+    public const int LayerRightBullet = 14;     // 右方弹
 
-    /// <summary>该阵营自身占用的层位。用于计算敌我掩码。</summary>
+    /// <summary>该阵营自身占用的层位（本体 / 无队内碰撞 / 弹）。用于计算敌我掩码。</summary>
     public static int SelfLayerBits(int camp)
     {
         switch (camp)
         {
-            case 0: return 1 << LayerNeuro;
-            case 1: return (1 << LayerRed) | (1 << LayerRedIngnote);
-            case 2: return (1 << LayerBlue) | (1 << LayerBlueIngnote);
+            case 0: return (1 << LayerNeutral) | (1 << LayerNeutralNoTeam) | (1 << LayerNeutralBullet);
+            case 1: return (1 << LayerRight) | (1 << LayerRightNoTeam) | (1 << LayerRightBullet);
+            case 2: return (1 << LayerLeft) | (1 << LayerLeftNoTeam) | (1 << LayerLeftBullet);
             default: return 0;
         }
     }

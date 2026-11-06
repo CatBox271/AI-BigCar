@@ -45,6 +45,8 @@ public class OwnCar : MonoBehaviour
     }
     public bool Sending;
 
+    private int carFrameworkIndex = 0;
+
     IEnumerator SendCarNum(int Times)
     {
         if (Camp == 2)
@@ -61,11 +63,13 @@ public class OwnCar : MonoBehaviour
         Sending = true;
         ClearFloatBlock();
 
+
         //循环
         for (int t = 0; t < Times; t++)
         {
+
             //车辆生成
-            CarStart();
+            CarStart($"载具{carFrameworkIndex}-{t}");
 
             yield return null;
             yield return null;
@@ -77,6 +81,9 @@ public class OwnCar : MonoBehaviour
                 yield return new WaitForSeconds(0.5f);
             }
         }
+        carFrameworkIndex++;
+
+
         Sending = false;
         CarNum = 1;
         if (Camp == 2)
@@ -186,7 +193,7 @@ public class OwnCar : MonoBehaviour
         {
             if (SendCar && !Sending)
             {
-                StartCoroutine("SendCarNum", CarNum);
+                StartCoroutine(SendCarNum(CarNum));
                 SendCar = false;
             }
             return;
@@ -679,7 +686,17 @@ public class OwnCar : MonoBehaviour
         } while (limite < 4 && !connect);
     }
 
-    public void CarStart()
+    public Transform SwarmNewCarFramework(Transform AimTransform,string name)
+    {
+        GameObject go = new GameObject(name);
+        Transform tf = go.transform;
+        tf.position = AimTransform.position;
+        tf.parent = AimTransform;
+
+        return tf;
+    }
+
+    public void CarStart(string framework_name = "")
     {
         //添加加成
         foreach (Heath h in FindHeath(transform))
@@ -784,16 +801,17 @@ public class OwnCar : MonoBehaviour
         //移动所有
         if (VideoSwarmPoint != null)
         {
+            //先新建一个空的物体方便管理
+            Transform CarFramework = SwarmNewCarFramework(VideoSwarmPoint, framework_name);
+
             for (int i = transform.childCount - 1; i > -1; i--)
             {
                 Transform ttf = transform.GetChild(i);
-
                 // 移动到位置
-
-                ttf.parent = VideoSwarmPoint;
-                Vector3 Offset = VideoSwarmPoint.position - transform.position;
+                ttf.parent = CarFramework;
+                Vector3 Offset = CarFramework.position - transform.position;
                 ttf.position += Offset;
-                //也许不需要这个了吗？
+                //也许不需要这个了吗
                 EnablePower(ttf);
             }
         }

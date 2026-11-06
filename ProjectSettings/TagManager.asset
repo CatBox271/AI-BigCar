@@ -22,18 +22,18 @@ TagManager:
   - Balls
   - Water
   - UI
-  - Red
-  - Blue
-  - RedBullet
-  - BlueBullet
-  - Zoom
-  - Neuro
-  - RedIngnote
-  - BlueIngnote
-  - RedSelectBall
-  - BlueSelectBall
-  - RedDoor
-  - BlueDoor
+  - "\u4E2D\u7ACB"
+  - "\u5DE6"
+  - "\u53F3"
+  - "\u4E2D\u7ACB\u65E0\u961F\u5185\u78B0\u649E"
+  - "\u5DE6\u65E0\u961F\u5185\u78B0\u649E"
+  - "\u53F3\u65E0\u961F\u5185\u78B0\u649E"
+  - "\u4E2D\u7ACB\u5F39"
+  - "\u5DE6\u5F39"
+  - "\u53F3\u5F39"
+  - 
+  - 
+  - 
   - 
   - 
   - 
