@@ -6,17 +6,17 @@ using UnityEngine;
 
 public class VideoCameraFollow : MonoBehaviour
 {
+    [Header("相机地图半宽")]
+    public float cameraW = 0;
     public static List<Heath> CenterList = new();
     public static VideoCameraFollow vcf;
     private void Awake()
     {
-        state = -100000000;
         CenterList = new();
         vcf = this;
     }
     public Transform RF;//RedFirst
     public Transform BF;//BlueFirst
-    public static float state = -100000000;
 
     private void Update()
     {
@@ -28,31 +28,31 @@ public class VideoCameraFollow : MonoBehaviour
     public float IX = 0;
     public float V;
     Vector3 T;
-
-    bool combined = false;
     void Move()
     {
-        if (state == -100000000) return;
-        if (!combined)
-        {
-            combined = true;
-            transform.position = new Vector3(state, transform.position.y, transform.position.z);
-            transform.GetChild(0).gameObject.SetActive(true);
-        }
-        float R = 0; float B = 0;
-        if (RF != null) R = RF.position.x - -110;
-        if (BF != null) B = 110 - BF.position.x;
+        float R = -110; float B = 110;
+        if (RF != null) R = RF.position.x;
+        if (BF != null) B = BF.position.x;
         if (R > B)
         {
-            AimX = (R - 110);
+            //交叉
+            if (R + B > 0)
+            {
+                AimX = R;
+            }
+            else
+            {
+                AimX = B;
+            }
         }
         else
         {
-            AimX = (110 - B);
+            AimX = (R + B) / 2f;
         }
         T = transform.position;
         IX = Mathf.Lerp(IX, AimX, V);
         T.x = Mathf.Lerp(T.x, IX, V);
+
         transform.position = T;
     }
     void Calculate()
@@ -107,5 +107,33 @@ public class VideoCameraFollow : MonoBehaviour
 
         if (R != -1) RF = CenterList[RI[R]].transform;
         if (B != -1) BF = CenterList[BI[B]].transform;
+    }
+
+    public float RX
+    {
+        get
+        {
+            float R = 0;
+            if (RF != null) R = 110 + RF.position.x;
+            return Mathf.Min(R - 110, MX - cameraW);
+        }
+    }
+
+    public float BX
+    {
+        get
+        {
+            float B = 0;
+            if (BF != null) B = 110 - BF.position.x;
+            return Mathf.Max(110 - B, MX + cameraW);
+        }
+    }
+
+    public float MX
+    {
+        get 
+        {
+            return transform.position.x;
+        }
     }
 }

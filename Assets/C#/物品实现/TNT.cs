@@ -72,6 +72,17 @@ public class TNT : MonoBehaviour,ION
     }
 
     private static bool quitting;
+
+    // 编辑器设置里关掉了 Domain Reload（EnterPlayModeOptions=3），静态字段不会在进 Play 时重置。
+    // 一旦 OnApplicationQuit 把它写成 true，同一个域里之后每一局 TNT 死亡都会被 OnDestroy 里的
+    // 第一道守卫挡掉（表现为“一局炸一局不炸”）。SubsystemRegistration 每次进 Play 都会执行，
+    // 即使关着 Domain Reload 也一样，用来把这个闸门复位。
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetStatics()
+    {
+        quitting = false;
+    }
+
     private void OnApplicationQuit() { quitting = true; }
 
     private void OnDestroy()
