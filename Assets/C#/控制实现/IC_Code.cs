@@ -133,7 +133,8 @@ public class IC_Code : MonoBehaviour,ION
             B7,
             B8,
         };
-        VideoMode = SceneProp.Instance != null && SceneProp.Instance.VideoMode;
+        SceneProp sceneProp = SceneProp.Instance;
+        VideoMode = sceneProp != null && (sceneProp.gameMode == SceneProp.GameMode.video || sceneProp.gameMode == SceneProp.GameMode.card);
     }
 
 

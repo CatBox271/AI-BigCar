@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShowNum1 : MonoBehaviour
+public class CanvasShowNum : MonoBehaviour
 {
     public int num;
     public Sprite[] texture2D;

@@ -25,7 +25,6 @@ public class CameraCombine : MonoBehaviour
         }
         //Àë¿ª»º³å
         float rate = »ºÈë»º³ö.Evaluate(_blendTime / blendTime);
-        print(_blendTime / blendTime+","+rate);
         OwnF.BlendRate = AimF.BlendRate = rate;
 
         OwnF.CombinedX = VideoCameraFollow.vcf.MX - VideoCameraFollow.vcf.cameraW;

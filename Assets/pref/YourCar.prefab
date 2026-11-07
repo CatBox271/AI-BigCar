@@ -105,6 +105,7 @@ MonoBehaviour:
   RangeUP: 0
   CarNum: 1
   SendCar: 1
+  OperationCamera: {fileID: 0}
   MouseOn: 0
   Started: 0
   origin_save: []

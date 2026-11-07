@@ -20,7 +20,8 @@ public class Stealth : MonoBehaviour
     private void Awake()
     {
         first += Random.Range(0, 3);
-        Video = SceneProp.Instance != null && SceneProp.Instance.VideoMode;
+        SceneProp sceneProp = SceneProp.Instance;
+        Video = sceneProp != null && (sceneProp.gameMode == SceneProp.GameMode.video || sceneProp.gameMode == SceneProp.GameMode.card);
         if (Video) first = -1;
     }
     public float SetAddTime = 20f;

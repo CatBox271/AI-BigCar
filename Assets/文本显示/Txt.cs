@@ -26,7 +26,7 @@ public class Txt : MonoBehaviour
                 {
                     sn.Set(i, size, offset, color, word_offset, VerticalOffset);
                 }
-                if (swarm.TryGetComponent(out ShowNum1 sn1))
+                if (swarm.TryGetComponent(out CanvasShowNum sn1))
                 {
                     sn1.Set(i, size, offset, color, word_offset, VerticalOffset);
                 }

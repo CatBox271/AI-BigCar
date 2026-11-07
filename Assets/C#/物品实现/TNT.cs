@@ -16,7 +16,8 @@ public class TNT : MonoBehaviour,ION
     }
     private void Start()
     {
-        Video = SceneProp.Instance != null && SceneProp.Instance.VideoMode;
+        SceneProp sceneProp = SceneProp.Instance;
+        Video = sceneProp != null && (sceneProp.gameMode == SceneProp.GameMode.video || sceneProp.gameMode == SceneProp.GameMode.card);
     }
 
 

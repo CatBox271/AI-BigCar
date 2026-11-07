@@ -187,6 +187,8 @@ public class OwnCar : MonoBehaviour
 
     public bool SendCar;
 
+    public Camera OperationCamera;
+
     private void LateUpdate()
     {
         if (VideoSwarmPoint != null)
@@ -196,14 +198,13 @@ public class OwnCar : MonoBehaviour
                 StartCoroutine(SendCarNum(CarNum));
                 SendCar = false;
             }
-            return;
         }
         switch (GameManager.gameState)
         {
             case GameManager.GameState.Watch:
                 if (Input.GetMouseButtonDown(0))
                 {
-                    foreach (Collider2D col in Physics2D.OverlapPointAll(Camera.main.ScreenToWorldPoint(Input.mousePosition)))
+                    foreach (Collider2D col in Physics2D.OverlapPointAll(OperationCamera.ScreenToWorldPoint(Input.mousePosition)))
                     {
                         if (col.gameObject == gameObject)
                         {
@@ -213,7 +214,7 @@ public class OwnCar : MonoBehaviour
                 }
                 if (Input.GetMouseButtonUp(0))
                 {
-                    foreach (Collider2D col in Physics2D.OverlapPointAll(Camera.main.ScreenToWorldPoint(Input.mousePosition)))
+                    foreach (Collider2D col in Physics2D.OverlapPointAll(OperationCamera.ScreenToWorldPoint(Input.mousePosition)))
                     {
 
                         if (Time.time - lastTime < 0.5f)
@@ -253,8 +254,7 @@ public class OwnCar : MonoBehaviour
                         tc.LayInShow();
                     }
                 }
-
-                Vector2 Offset = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+                Vector2 Offset = OperationCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
                 HaveStart = 2;
                 Vector2 Size = ColliderArea;
                 if (Mathf.Abs(Offset.x) < Size.x / 2f && Mathf.Abs(Offset.y) < Size.y / 2f)

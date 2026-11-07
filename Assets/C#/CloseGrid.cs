@@ -8,7 +8,8 @@ public class CloseGrid : MonoBehaviour,IStart
     Sprite OpenSprite;
     public void SetStart(float t)
     {
-        if (SceneProp.Instance == null || !SceneProp.Instance.VideoMode)
+        SceneProp sceneProp = SceneProp.Instance;
+        if (sceneProp == null || !(sceneProp.gameMode == SceneProp.GameMode.video || sceneProp.gameMode == SceneProp.GameMode.card))
         {
             SpriteRenderer sp = GetComponent<SpriteRenderer>();
             OpenSprite = sp.sprite;

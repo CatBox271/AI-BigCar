@@ -26,7 +26,8 @@ public class BroadswordMines : MonoBehaviour
         if (!st) return;
         if (!flip && health.camp == 2)
         {
-            bool vm = SceneProp.Instance != null && SceneProp.Instance.VideoMode;
+            SceneProp sceneProp = SceneProp.Instance;
+            bool vm = sceneProp != null && (sceneProp.gameMode == SceneProp.GameMode.video || sceneProp.gameMode == SceneProp.GameMode.card);
             flip = !vm;
             GetComponent<SpriteRenderer>().flipX = !vm;
         }
