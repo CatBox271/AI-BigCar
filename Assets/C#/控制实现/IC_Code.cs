@@ -133,10 +133,7 @@ public class IC_Code : MonoBehaviour,ION
             B7,
             B8,
         };
-        if (Camera.main.name == "VideoMode")
-        {
-            VideoMode = true;
-        }
+        VideoMode = SceneProp.Instance != null && SceneProp.Instance.VideoMode;
     }
 
 

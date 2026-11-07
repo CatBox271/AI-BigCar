@@ -9,7 +9,7 @@ public class FollowMouse : MonoBehaviour
     private readonly float video_speed = 20f;
     private void Start()
     {
-        Video = Camera.main.name == "VideoMode";
+        Video = SceneProp.Instance != null && SceneProp.Instance.VideoMode;
         if (Video)
         {
             if (!TryGetComponent(out rb))

@@ -26,8 +26,9 @@ public class BroadswordMines : MonoBehaviour
         if (!st) return;
         if (!flip && health.camp == 2)
         {
-            flip = Camera.main.name != "VideoMode" ;
-            GetComponent<SpriteRenderer>().flipX = Camera.main.name != "VideoMode";
+            bool vm = SceneProp.Instance != null && SceneProp.Instance.VideoMode;
+            flip = !vm;
+            GetComponent<SpriteRenderer>().flipX = !vm;
         }
         if (Find())
         {

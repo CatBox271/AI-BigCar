@@ -16,7 +16,7 @@ public class TNT : MonoBehaviour,ION
     }
     private void Start()
     {
-        Video = Camera.main.name == "VideoMode";
+        Video = SceneProp.Instance != null && SceneProp.Instance.VideoMode;
     }
 
 

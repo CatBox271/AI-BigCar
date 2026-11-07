@@ -53,7 +53,7 @@ public class Heath : MonoBehaviour
     private bool NotDisappear;
     public void Set(int _camp)
     {
-        bool vm = Camera.main.name == "VideoMode";
+        bool vm = SceneProp.Instance != null && SceneProp.Instance.VideoMode;
         if (vm) IgnoteCampCollider = true;
 
         camp = _camp;

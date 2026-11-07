@@ -38,7 +38,7 @@ public class LevelCamera : MonoBehaviour
     private void Awake()
     {
         AimPos = new(-2, -2, -2);
-        if (Camera.main.name == "VideoMode")
+        if (SceneProp.Instance != null && SceneProp.Instance.VideoMode)
         {
             GameManager.gameState = GameManager.GameState.Start;
         }

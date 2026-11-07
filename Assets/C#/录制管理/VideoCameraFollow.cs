@@ -108,7 +108,15 @@ public class VideoCameraFollow : MonoBehaviour
         if (R != -1) RF = CenterList[RI[R]].transform;
         if (B != -1) BF = CenterList[BI[B]].transform;
     }
-
+    public float RRX
+    {
+        get
+        {
+            float R = -110;
+            if (RF != null) R = RF.position.x;
+            return R;
+        }
+    }
     public float RX
     {
         get
@@ -118,7 +126,15 @@ public class VideoCameraFollow : MonoBehaviour
             return Mathf.Min(R - 110, MX - cameraW);
         }
     }
-
+    public float BRX
+    {
+        get
+        {
+            float B = 110;
+            if (BF != null) B = BF.position.x;
+            return B;
+        }
+    }
     public float BX
     {
         get

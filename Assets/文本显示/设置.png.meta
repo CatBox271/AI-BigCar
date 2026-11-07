@@ -3,10 +3,10 @@ guid: 6a79dbf014dc4f3458c9ef1103c8acc4
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -20,11 +20,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -36,9 +37,9 @@ TextureImporter:
     filterMode: 0
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -63,6 +64,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
   cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
@@ -75,6 +77,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -87,6 +90,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -99,6 +103,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -111,6 +116,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -123,6 +129,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -135,6 +142,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -697,35 +705,34 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      setting_num_4: -77878653
-      setting_switch_text: 1253961979
       setting_cancel: -377855350
-      setting_num_2: 129718073
-      setting_num_7: -1114323512
-      setting_slide_background: 1746696241
-      setting_text_move: 226846774
-      setting_switch: -2125768593
-      setting_num_5: -90948080
+      setting_num_0: -1284975553
       setting_num_1: -1334761160
-      setting_text_slide_bar: -1933953660
-      setting_slide_bar: -1930288712
-      setting_text_2D: 123906873
-      setting_text_rotate: 1063408005
-      setting_switch_green: 1458722895
+      setting_num_2: 129718073
       setting_num_3: 1399251772
+      setting_num_4: -77878653
+      setting_num_5: -90948080
       setting_num_6: 1112073922
+      setting_num_7: -1114323512
+      setting_num_8: -1217183610
+      setting_num_9: -1301482870
+      setting_slide_background: 1746696241
+      setting_slide_bar: -1930288712
       setting_swich_white: 13575725
+      setting_switch: -2125768593
+      setting_switch_green: 1458722895
+      setting_switch_red: 1998732937
+      setting_switch_text: 1253961979
+      setting_text_2D: 123906873
+      setting_text_60_frames: -436428597
+      setting_text_move: 226846774
+      setting_text_rotate: 1063408005
       setting_text_scale: -1865484937
       setting_text_slide_background: -1939713198
-      setting_switch_red: 1998732937
+      setting_text_slide_bar: -1933953660
       "\u8BBE\u7F6E_Mask": -867293042
-      setting_num_0: -1284975553
-      setting_text_60_frames: -436428597
-      setting_num_9: -1301482870
-      setting_num_8: -1217183610
-  spritePackingTag: 
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

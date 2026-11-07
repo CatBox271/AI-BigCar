@@ -20,7 +20,7 @@ public class Stealth : MonoBehaviour
     private void Awake()
     {
         first += Random.Range(0, 3);
-        Video = Camera.main.name == "VideoMode";
+        Video = SceneProp.Instance != null && SceneProp.Instance.VideoMode;
         if (Video) first = -1;
     }
     public float SetAddTime = 20f;

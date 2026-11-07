@@ -9,7 +9,7 @@ public class SwarmAnim : MonoBehaviour
     public string path;
     private void Awake()
     {
-        if (Camera.main.name == "VideoMode")
+        if (SceneProp.Instance != null && SceneProp.Instance.VideoMode)
         {
             path = "Anim/Center";
         }
