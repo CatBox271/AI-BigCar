@@ -6,6 +6,9 @@ using UnityEngine.EventSystems;
 public class FollowMouse : MonoBehaviour
 {
     public bool NullBlock;
+    public Camera Cam;//屏幕→世界换算用的相机，为空退回 Camera.main；卡片模式下由 CardOb 指定为卡牌视图
+    public CardOb FromCard;//卡片模式：本次拖拽由哪张卡发起，落位成功或取消后回调它
+    private Camera FollowCam => Cam != null ? Cam : Camera.main;
     private readonly float video_speed = 20f;
     private void Start()
     {
@@ -28,8 +31,20 @@ public class FollowMouse : MonoBehaviour
     Rigidbody2D rb;
     public void MoveAway()
     {
+        if (FromCard != null)//卡片模式：退回卡片，不进入方块栏
+        {
+            FromCard.OnPlaceCancel(this);
+            Destroy(gameObject);
+            return;
+        }
         BlockManager.bm.GetBlock(name, transform);
         Destroy(gameObject);
+    }
+
+    static List<OwnCar> FindCars()//卡片模式下 BlockManager 可能不可用，兜底直接找场景里的车
+    {
+        if (BlockManager.bm != null) return BlockManager.bm.FindCar();
+        return new List<OwnCar>(FindObjectsOfType<OwnCar>());
     }
     public void Moto(Transform tf)
     {
@@ -78,6 +93,11 @@ public class FollowMouse : MonoBehaviour
         if (Video) return;
         if (Input.touchCount >= 2)
         {
+            if (FromCard != null)
+            {
+                MoveAway();
+                return;
+            }
             BlockManager.bm.GetBlock(name, transform);
             Destroy(this);
             return;
@@ -90,14 +110,16 @@ public class FollowMouse : MonoBehaviour
                 return;
             }
             
-            List<OwnCar> ocl = BlockManager.bm.FindCar();
+            CardOb card = FromCard;
+            List<OwnCar> ocl = FindCars();
             bool find = false;
             foreach (OwnCar oc in ocl)
             {
-                if (oc.MouseOn > -1 && oc.MouseOn < oc.ColliderArea.x * oc.ColliderArea.y)
+                if (oc != null && oc.MouseOn > -1 && oc.MouseOn < oc.ColliderArea.x * oc.ColliderArea.y)
                 {
                     ClickTo(oc.transform);
-                    MV_Manager.GetRecord();
+                    if (card != null) card.OnPlaced(this);
+                    else MV_Manager.GetRecord();
                     find = true;
                     break;
                 }
@@ -106,7 +128,9 @@ public class FollowMouse : MonoBehaviour
         }
         else
         {
-            Vector3 v3 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Camera cam = FollowCam;
+            if (cam == null) return;
+            Vector3 v3 = cam.ScreenToWorldPoint(Input.mousePosition);
             v3.z = 0;
             transform.position = v3;
         }

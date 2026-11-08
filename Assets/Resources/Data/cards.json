@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "cards": [
+    {
+      "id": "laser",
+      "card_state": 0,
+      "block_kind": "Laser",
+      "chinese_name": "",
+      "describe": "",
+      "adjudication": "",
+      "cost": 0,
+      "count": 1,
+      "enabled": true,
+      "behaviour": []
+    },
+    {
+      "id": "iron_frame",
+      "card_state": 0,
+      "block_kind": "Block",
+      "chinese_name": "",
+      "describe": "",
+      "adjudication": "",
+      "cost": 0,
+      "count": 1,
+      "enabled": true,
+      "behaviour": []
+    },
+    {
+      "id": "drill",
+      "card_state": 0,
+      "block_kind": "drill",
+      "chinese_name": "",
+      "describe": "",
+      "adjudication": "",
+      "cost": 0,
+      "count": 1,
+      "enabled": true,
+      "behaviour": []
+    },
+    {
+      "id": "shield",
+      "card_state": 0,
+      "block_kind": "shield",
+      "chinese_name": "",
+      "describe": "",
+      "adjudication": "",
+      "cost": 0,
+      "count": 1,
+      "enabled": true,
+      "behaviour": []
+    },
+    {
+      "id": "drive_wheel",
+      "card_state": 0,
+      "block_kind": "PowerWheel",
+      "chinese_name": "",
+      "describe": "",
+      "adjudication": "",
+      "cost": 0,
+      "count": 1,
+      "enabled": true,
+      "behaviour": []
+    }
+  ]
+}

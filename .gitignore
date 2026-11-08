@@ -83,3 +83,7 @@ desktop.ini
 # 置于末尾：需晚于上面的 !/[Aa]ssets/**/*.meta 规则，否则 .meta 会被重新纳入
 /Assets/Plugins/RenderHeads/
 /Assets/Plugins/RenderHeads.meta
+
+# 开发期 Python 工具缓存
+__pycache__/
+*.pyc
