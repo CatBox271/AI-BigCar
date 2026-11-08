@@ -8,9 +8,11 @@ public class OwnCar : MonoBehaviour
     public int Camp;
     public List<List<GameObject>> AllObject = new();
     public Vector2Int ColliderArea;
-    public  LevelCamera LC;
+    public LevelCamera LC;
     float lastTime;
     public int CenterCount = 0;
+
+    public bool CardMode => SceneProp.Instance != null && SceneProp.Instance.gameMode == SceneProp.GameMode.card;
 
     public SpriteRenderer sp;
     public Transform VideoSwarmPoint;
@@ -81,8 +83,12 @@ public class OwnCar : MonoBehaviour
                 yield return new WaitForSeconds(0.5f);
             }
         }
+        if (SceneProp.Instance.gameMode == SceneProp.GameMode.card)
+        {
+            //循环结束应该清空车辆引用
+            ClearCar();
+        }
         carFrameworkIndex++;
-
 
         Sending = false;
         CarNum = 1;
@@ -188,7 +194,7 @@ public class OwnCar : MonoBehaviour
     public bool SendCar;
 
     public Camera OperationCamera;
-    private Camera _operationCamera
+    public Camera OperationCam//对外的操作相机，空则回填 Camera.main
     {
         get
         {
@@ -216,7 +222,7 @@ public class OwnCar : MonoBehaviour
             case GameManager.GameState.Watch:
                 if (Input.GetMouseButtonDown(0))
                 {
-                    foreach (Collider2D col in Physics2D.OverlapPointAll(_operationCamera.ScreenToWorldPoint(Input.mousePosition)))
+                    foreach (Collider2D col in Physics2D.OverlapPointAll(OperationCam.ScreenToWorldPoint(Input.mousePosition)))
                     {
                         if (col.gameObject == gameObject)
                         {
@@ -226,7 +232,7 @@ public class OwnCar : MonoBehaviour
                 }
                 if (Input.GetMouseButtonUp(0))
                 {
-                    foreach (Collider2D col in Physics2D.OverlapPointAll(_operationCamera.ScreenToWorldPoint(Input.mousePosition)))
+                    foreach (Collider2D col in Physics2D.OverlapPointAll(OperationCam.ScreenToWorldPoint(Input.mousePosition)))
                     {
 
                         if (Time.time - lastTime < 0.5f)
@@ -266,7 +272,7 @@ public class OwnCar : MonoBehaviour
                         tc.LayInShow();
                     }
                 }
-                Vector2 Offset = _operationCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+                Vector2 Offset = OperationCam.ScreenToWorldPoint(Input.mousePosition) - transform.position;
                 HaveStart = 2;
                 Vector2 Size = ColliderArea;
                 if (Mathf.Abs(Offset.x) < Size.x / 2f && Mathf.Abs(Offset.y) < Size.y / 2f)
@@ -288,7 +294,7 @@ public class OwnCar : MonoBehaviour
                 //点击移动逻辑
                 if (Input.touchCount != 2)
                 {
-                    if (PutModeChange.Line)
+                    if (PutModeChange.Line && !CardMode)//卡牌模式禁止长按连续放置
                     {
                         if (Input.GetMouseButton(0) && !GameManager.DeleteMode)
                         {
@@ -340,7 +346,7 @@ public class OwnCar : MonoBehaviour
                             }
                         }
                         if (MouseOn == -1) return;
-                        if ((Input.GetMouseButton(1) || (Input.GetMouseButton(0) && GameManager.DeleteMode)) && !BlockManager.bm.IsOnUIElement(Input.mousePosition))//右键删除
+                        if (!CardMode && (Input.GetMouseButton(1) || (Input.GetMouseButton(0) && GameManager.DeleteMode)) && !BlockManager.bm.IsOnUIElement(Input.mousePosition))//右键删除（卡牌模式禁止）
                         {
                             if (Time.time - lastRight < 0.25f)
                             {
@@ -447,8 +453,24 @@ public class OwnCar : MonoBehaviour
     {
         if (!FindLast(where, GameManager.layIn, out int Index, out TryConnect _)) return;
         SwarmBlock.BlockChoose = AllObject[where][Index];
-        AllObject[where][Index].AddComponent<FollowMouse>();
+        FollowMouse fm = AllObject[where][Index].AddComponent<FollowMouse>();
+        fm.Cam = OperationCam;//拖动已放置的部件也要用载具的操作相机，否则会跳到 Camera.main 的世界坐标
+        fm.FromCar = this;//记住来源，放置冲突时退回原格子
+        fm.FromIndex = where;
         AllObject[where].RemoveAt(Index);
+    }
+    public void ReturnBlock(GameObject go, int where)//放置冲突：把拖出去的部件退回原格子
+    {
+        if (go == null) return;
+        go.transform.parent = transform;
+        if (where < 0 || where >= AllObject.Count)
+        {
+            Destroy(go);
+            return;
+        }
+        go.transform.localPosition = IndexToPos(where);
+        if (!AllObject[where].Contains(go)) AllObject[where].Add(go);
+        FixedOn(where, false, false, true);//重新吸附回原格，KeepOnFail 避免再次销毁
     }
     bool FindLast(int where,int layIn,out int Index,out TryConnect tc)
     {
@@ -513,7 +535,7 @@ public class OwnCar : MonoBehaviour
         AllObject[i].RemoveAt(ii);
         return set;
     }
-    public bool FixedOn(int i,bool SetLayIn = true,bool DontDestroy = false)
+    public bool FixedOn(int i,bool SetLayIn = true,bool DontDestroy = false,bool KeepOnFail = false)
     {
         int t = AllObject[i].Count - 1;
         if (t == -1) return false;
@@ -562,7 +584,7 @@ public class OwnCar : MonoBehaviour
                 {
                     back = true;
                     if (!FindFirst(i, tc.layIn, out int Index, out ty)) return RemoveFromAllObject(i, t, false);
-                    if (!tc.Rotable && tc.CantConnect[4] == ty.CantConnect[4] && !ty.Inside)//直接取代
+                    if (!CardMode && !tc.Rotable && tc.CantConnect[4] == ty.CantConnect[4] && !ty.Inside)//直接取代（卡牌模式禁止外框同类覆盖）
                     {
                         //Video模式不要取代
                         if (DontDestroy) return RemoveFromAllObject(i, t, false);
@@ -579,8 +601,11 @@ public class OwnCar : MonoBehaviour
                 }
                 if (back)
                 {
-                    BlockManager.bm.GetBlock(AllObject[i][t], 1);
-                    if (!DontDestroy) Destroy(AllObject[i][t]);
+                    if (!DontDestroy && !KeepOnFail)//KeepOnFail 时保留物体，交给调用方退回
+                    {
+                        BlockManager.bm.GetBlock(AllObject[i][t], 1);
+                        Destroy(AllObject[i][t]);
+                    }
                     AllObject[i].RemoveAt(t);
                     return false;
                 }

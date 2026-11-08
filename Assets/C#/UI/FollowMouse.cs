@@ -6,9 +6,26 @@ using UnityEngine.EventSystems;
 public class FollowMouse : MonoBehaviour
 {
     public bool NullBlock;
-    public Camera Cam;//屏幕→世界换算用的相机，为空退回 Camera.main；卡片模式下由 CardOb 指定为卡牌视图
+    public Camera Cam;//屏幕→世界换算用的相机；为空时继承所属载具的 OperationCam，再退回 Camera.main
     public CardOb FromCard;//卡片模式：本次拖拽由哪张卡发起，落位成功或取消后回调它
-    private Camera FollowCam => Cam != null ? Cam : Camera.main;
+    public OwnCar FromCar;//本次拖拽的部件原本在哪辆车里（OwnCar.Move 拖已有部件时记录）
+    public int FromIndex = -1;//原本的格子索引，放置冲突时退回这里
+    private Camera autoCam;//自动解析到的相机缓存
+    private Camera FollowCam
+    {
+        get
+        {
+            if (Cam != null) return Cam;
+            if (autoCam != null) return autoCam;
+            OwnCar owner = GetComponentInParent<OwnCar>();
+            autoCam = owner != null ? owner.OperationCam : Camera.main;
+            return autoCam;
+        }
+    }
+    private void OnEnable()
+    {
+        autoCam = null;//父级可能变了，缓存重算
+    }
     private readonly float video_speed = 20f;
     private void Start()
     {
@@ -29,12 +46,22 @@ public class FollowMouse : MonoBehaviour
         }
     }
     Rigidbody2D rb;
-    public void MoveAway()
+    public void MoveAway()//放置失败/取消的统一退回入口
     {
-        if (FromCard != null)//卡片模式：退回卡片，不进入方块栏
+        if (FromCard != null)//来自卡牌：退回卡片，不进入方块栏
         {
             FromCard.OnPlaceCancel(this);
             Destroy(gameObject);
+            return;
+        }
+        if (FromCar != null && FromIndex >= 0)//来自板子格子：退回原位置
+        {
+            OwnCar car = FromCar;
+            int index = FromIndex;
+            FromCar = null;
+            FromIndex = -1;
+            car.ReturnBlock(gameObject, index);
+            Destroy(this);
             return;
         }
         BlockManager.bm.GetBlock(name, transform);
@@ -60,14 +87,17 @@ public class FollowMouse : MonoBehaviour
         Destroy(this);
     }
 
-    public void ClickTo(Transform tf)
+    public bool ClickTo(Transform tf)//返回是否真的落位成功；失败时物体保留，交给 MoveAway 退回
     {
         transform.parent = tf;
         OwnCar oc = tf.GetComponent<OwnCar>();
+        if (oc == null) return false;
+        if (oc.MouseOn < 0 || oc.MouseOn >= oc.AllObject.Count) return false;
         transform.localPosition = oc.IndexToPos(oc.MouseOn);
         oc.AllObject[oc.MouseOn].Add(gameObject);
-        oc.FixedOn(oc.MouseOn);
-        Destroy(this);
+        bool ok = oc.FixedOn(oc.MouseOn, true, false, FromCard != null || FromCar != null);
+        if (ok) Destroy(this);
+        return ok;
     }
 
     public void ClickTo(Transform tf,int to)
@@ -117,10 +147,12 @@ public class FollowMouse : MonoBehaviour
             {
                 if (oc != null && oc.MouseOn > -1 && oc.MouseOn < oc.ColliderArea.x * oc.ColliderArea.y)
                 {
-                    ClickTo(oc.transform);
-                    if (card != null) card.OnPlaced(this);
-                    else MV_Manager.GetRecord();
-                    find = true;
+                    if (ClickTo(oc.transform))//落位成功才消耗卡片/记录，冲突则走 MoveAway 退回
+                    {
+                        if (card != null) card.OnPlaced(this);
+                        else MV_Manager.GetRecord();
+                        find = true;
+                    }
                     break;
                 }
             }
