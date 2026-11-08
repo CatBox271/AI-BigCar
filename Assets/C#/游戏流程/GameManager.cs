@@ -4,6 +4,25 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public class BlockInfo
+    {
+        public string code_name;
+        public string chinese_name;
+        public string describe;
+        public BlockInfo() { }
+        public BlockInfo(string _code_name, string _chinese_name, string _describe)
+        {
+            code_name = _code_name;
+            chinese_name = _chinese_name;
+            describe = _describe;
+        }
+    }
+    public static readonly List<BlockInfo> BlockLibary = new()
+    {
+        new("Null", "空气", "什么也没有"),
+    };
+
+
     /// <summary>
     /// 物体名字和数字对照表
     /// </summary>
