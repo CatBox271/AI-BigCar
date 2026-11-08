@@ -47,7 +47,7 @@ public class StartBlock : MonoBehaviour
                     int R;
                     do
                     {
-                        R = Random.Range(1, GameManager.BlockIndex.Count);
+                        R = Random.Range(1, GameManager.BlockLibrary.Count);
                     } while (R == 4 || R == 1 || R == 12 || R == 2);
                     bool Find = false;
                     for (int n = 0; n < ItemList.Count; n+= 2)

@@ -107,7 +107,7 @@ public class GetBlock : MonoBehaviour
 
     public void TryBLock(int kind,bool Red)
     {
-        GameObject BlockKind = Resources.Load("GameObject/" + GameManager.BlockIndex[kind]) as GameObject;
+        GameObject BlockKind = Resources.Load("GameObject/" + GameManager.GetBlockCodeName(kind)) as GameObject;
         GameObject go = Instantiate(BlockKind);
         go.name = BlockKind.name;
         go.transform.localScale = BlockKind.transform.localScale;

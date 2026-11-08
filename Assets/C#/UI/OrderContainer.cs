@@ -23,10 +23,10 @@ public class OrderContainer : MonoBehaviour
         {
             DestroyImmediate(transform.GetChild(i).gameObject);
         }
-        for (int i = 1; i < GameManager.BlockIndex.Count; i++)
+        for (int i = 1; i < GameManager.BlockLibrary.Count; i++)
         {
             SwarmBlock sb = Instantiate(Container, transform).GetComponent<SwarmBlock>();
-            sb.BlockKind = Resources.Load("GameObject/" + GameManager.BlockIndex[i]) as GameObject;
+            sb.BlockKind = Resources.Load("GameObject/" + GameManager.GetBlockCodeName(i)) as GameObject;
             sb.gameObject.SetActive(true);
             sb.Infinity = true;
             sb.Refresh();

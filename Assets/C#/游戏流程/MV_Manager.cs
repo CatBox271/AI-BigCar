@@ -287,7 +287,7 @@ public class MV_Manager : MonoBehaviour
                 float add = Mathf.Abs(float.Parse(now[a]));
                 if (add != 0)
                 {
-                    nowItem.Add(GameManager.BlockIndex[(int)add]);
+                    nowItem.Add(GameManager.GetBlockCodeName((int)add));
                 }
                 if (add == 46) a += 101;
             }
@@ -299,7 +299,7 @@ public class MV_Manager : MonoBehaviour
                 float add = Mathf.Abs(float.Parse(towards[a]));
                 if (add != 0)
                 {
-                    toItem.Add(GameManager.BlockIndex[(int)add]);
+                    toItem.Add(GameManager.GetBlockCodeName((int)add));
                 }
                 if (add == 46) a += 101;
             }

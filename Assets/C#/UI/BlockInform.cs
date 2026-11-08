@@ -3,18 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BlockDictionary
-{
-    public string[] ALL;
-}
 public class BlockInform : MonoBehaviour
 {
-    
     public Text text;
     public string BlockName;
-
-    public List<string> NameList = new();
-    public List<string> InformList = new();
 
     public void SetName(string Name)
     {
@@ -24,15 +16,11 @@ public class BlockInform : MonoBehaviour
             State = false;
         }
         else
-            {
-            if (NameList.Count == 0)
-            {
-                Load();
-               
-            }
-            int i = NameList.IndexOf(BlockName);
-            if (i != -1)
-            text.text = InformList[i];
+        {
+            // 名字统一走 GameManager.BlockLibrary：SwarmBlock 传进来的是预制体根物体名，
+            // 也就是 BlockInfo.code_name
+            int i = GameManager.GetBlockIndexByCode(BlockName);
+            if (i != -1) text.text = GameManager.BlockLibrary[i].describe;
             State = true;
         }
     }
@@ -57,16 +45,5 @@ public class BlockInform : MonoBehaviour
     private void Awake()
     {
         TryGetComponent(out rt);
-    }
-    public void Load()
-    {
-        string json = Resources.Load("BlockDictionary").ToString();
-        var test = JsonUtility.FromJson<BlockDictionary>(json);
-
-        for (int i = 0; i < test.ALL.Length; i += 2)
-        {
-            NameList.Add(test.ALL[i]);
-            InformList.Add(test.ALL[i+1]);
-        }
     }
 }

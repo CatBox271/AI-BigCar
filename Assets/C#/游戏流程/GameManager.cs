@@ -148,69 +148,24 @@ public class GameManager : MonoBehaviour
     }
     #endregion;
 
-    /// <summary>
-    /// 物体名字和数字对照表
-    /// </summary>
-    public static readonly List<string> BlockIndex = new()
+    #region 贴图管理
+    public static Sprite GetResourcesSprite(string path)//通用获取方法
+    { 
+        
+    }
+    public static Sprite GetBlockSprite(int index)
+    { 
+        
+    }
+    public static Sprite GetBlockSprite(string code_name)//用code_name的名字
     {
-        "Null",//0
-        "Artillery",
-        "Block",
-        "BroadswordMines",//3
-        "Center",
-        "drill",
-        "Engine",//6
-        "FixingBag",
-        "Groscope",
-        "Laser",//9
-        "panzer",
-        "PowerPropellers",
-        "PowerWheel",//12
-        "RPG",
-        "shield",
-        "Stealth",//15
-        "TNT",
-        "BrakeWheel",
-        "Umbrella",//18
-        "Spring",
-        "PowerStickWheel",
-        "PowerUmbrella",//21
-        "HalfBlock",
-        "NoColliderBlock",
-        "PowerSmallPropellers",//24
-        "Wing",
-        "Tail",
-        "H-Balloon",//27
-        "He-Balloon",
-        "GearBox",
-        "HydraulicRod",//30
-        "PowerWheelBig",
-        "PowerWheelHuge",
-        "PowerFan",//33
-        "HydraulicHinge",
-        "CompressionTank",
-        "AntiwaterBlock",//36
-        "FloatingBlock",
-        "PowerWaterPropellers",
-        "PowerWaterSmallPropellers",//39
-        "PowerWaterWheel",
-        "GeneralCannon",
-        "Battery",//42
-        "NuclearBattery",
-        "Generator",
-        "CIWS",//45
-        "IC",
-        "TurbinEngine",
-        "H-Block",//48
-        "He-Block",
-        "Sail",
-        "Chainsaw",//51
-        "Flamethrower",
-        "WoodBlock",
-        "Cola",
-        "Sprite",
-        "PowerHinge",
-    };
+
+    }
+    public static Sprite GetBlockSprite(string chinese_name)//用code_name的名字
+    {
+
+    }
+    #endregion
 
     public static GameState gameState = GameState.Watch;
     public enum GameState

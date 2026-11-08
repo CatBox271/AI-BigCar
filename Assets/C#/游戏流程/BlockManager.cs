@@ -138,7 +138,7 @@ public class BlockManager : MonoBehaviour
                     {
                         try
                         {
-                            string n = GameManager.BlockIndex[(int)add];
+                            string n = GameManager.GetBlockCodeName((int)add);
                             last_go = PutBlock(n, index,ocl[i].transform);
                             //对战模式下，要把物体设置为可碰撞
                             if (ocl_index != -1)
@@ -201,7 +201,7 @@ public class BlockManager : MonoBehaviour
                 if (ItemList[i] > 0)
                 {
                     bm.Add();
-                    GameObject bk = Resources.Load("GameObject/" + GameManager.BlockIndex[(int)ItemList[i]]) as GameObject;
+                    GameObject bk = Resources.Load("GameObject/" + GameManager.GetBlockCodeName((int)ItemList[i])) as GameObject;
                     sb = BlockList.GetChild(BlockList.childCount - 1).GetComponent<SwarmBlock>();
                     sb.BlockKind = bk;
                     sb.Num = (int)ItemList[i + 1];
@@ -258,7 +258,7 @@ public class BlockManager : MonoBehaviour
                         {
                             n = n.Remove(n.IndexOf("("));
                         }
-                        int add = GameManager.BlockIndex.IndexOf(n);
+                        int add = GameManager.GetBlockIndexByCode(n);
                         if (add != -1)
                         {
                             if (ia > 0)
@@ -311,7 +311,7 @@ public class BlockManager : MonoBehaviour
                         {
                             nn = nn.Remove(nn.IndexOf("("));
                         }
-                        float n = GameManager.BlockIndex.IndexOf(nn);
+                        float n = GameManager.GetBlockIndexByCode(nn);
                         ItemList.Add(n);
                         ItemList.Add(sb.Num);
                     }

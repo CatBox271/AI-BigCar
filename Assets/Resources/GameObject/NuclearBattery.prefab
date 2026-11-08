@@ -24,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3600058728642981564}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.048, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8776386315825442659}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3456443582973419692
 SpriteRenderer:
@@ -108,13 +108,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7156987465340882957}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.243, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8776386315825442659}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3190396177588878486
 SpriteRenderer:
@@ -198,6 +198,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8776386315825442656}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -11.671475, y: 1.1014287, z: 0}
   m_LocalScale: {x: 0.85, y: 0.85, z: 0.85}
@@ -206,7 +207,6 @@ Transform:
   - {fileID: 2385242677411300041}
   - {fileID: 3722750283605785093}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9060239312342585833
 MonoBehaviour:
@@ -248,9 +248,11 @@ MonoBehaviour:
   Center: 0
   Inside: 1
   Rotable: 0
+  LayerCross: 0
   addPercent: 1
   ConnectStrongth: 1050
   forward: 0
+  layIn: 0
 --- !u!114 &7094400935970505839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,8 +268,10 @@ MonoBehaviour:
   camp: 0
   HP: 20
   max: 0
+  _color_start: {r: 0, g: 0, b: 0, a: 0}
   die: 0
   HitLight: 1
+  flash: {fileID: 0}
   OrignalColor: 1
   Castle: 0
   DieWithCollider: 0
@@ -300,6 +304,12 @@ Rigidbody2D:
   m_AngularDrag: 0.01
   m_GravityScale: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -314,6 +324,25 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -343,8 +372,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allConnect: []
-  allWay: []
+  CAList: []
   BlockOffset: 
+  VID: -1
 --- !u!212 &7212149176507387808
 SpriteRenderer:
   m_ObjectHideFlags: 0
