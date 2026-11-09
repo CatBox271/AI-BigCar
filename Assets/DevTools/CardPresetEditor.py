@@ -17,7 +17,19 @@ import sys
 import tempfile
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
+HERE = Path(__file__).resolve().parent
+
+
+def find_project_root():
+    """从脚本位置往上找，认 ProjectSettings + Assets 同时存在的目录为工程根。
+    这样工具放在 Assets 里还是工程根目录下都能跑。"""
+    for p in [HERE] + list(HERE.parents):
+        if (p / "Assets").is_dir() and (p / "ProjectSettings").is_dir():
+            return p
+    return HERE.parent
+
+
+PROJECT_ROOT = find_project_root()
 DATA_DIR = PROJECT_ROOT / "Assets" / "Resources" / "Data"
 BLOCKLIB_PATH = DATA_DIR / "BlockLibrary.json"
 CARDS_PATH = DATA_DIR / "cards.json"
