@@ -567,7 +567,6 @@ class App:
             row=r, column=1, sticky="w", pady=(0, 2))
         r += 1
 
-        ttk.Label(box, text="费用 / 张数", font=UI_FONT).grid(row=r, column=0, sticky="nw", pady=3, padx=(0, 6))
         numrow = ttk.Frame(box)
         numrow.grid(row=r, column=1, sticky="we", pady=3)
         self.cost_var = tk.StringVar()
