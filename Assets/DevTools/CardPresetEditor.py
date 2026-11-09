@@ -5,10 +5,12 @@
 - 编辑对象：Assets/Resources/Data/cards.json（卡片预设，可读可写）
 - 图标：Assets/Resources/Sprite/<code_name>.png（大小写不敏感）
 
+卡片靠 chinese_name + block_kind 识别，字段与 CardOb 一致，没有自造的唯一键。
+
 用法：
-    python DevTools/CardPresetEditor.py            # 打开窗口
-    python DevTools/CardPresetEditor.py --selftest # 只跑数据读写自检
-    python DevTools/CardPresetEditor.py --smoke    # 建窗口后自动关闭，验证界面能起来
+    python Assets/DevTools/CardPresetEditor.py            # 打开窗口
+    python Assets/DevTools/CardPresetEditor.py --selftest # 只跑数据自检
+    python Assets/DevTools/CardPresetEditor.py --smoke    # 建窗口后自动关闭
 """
 
 import json
@@ -21,8 +23,7 @@ HERE = Path(__file__).resolve().parent
 
 
 def find_project_root():
-    """从脚本位置往上找，认 ProjectSettings + Assets 同时存在的目录为工程根。
-    这样工具放在 Assets 里还是工程根目录下都能跑。"""
+    """从脚本位置往上找，认同时有 ProjectSettings 和 Assets 的目录为工程根。"""
     for p in [HERE] + list(HERE.parents):
         if (p / "Assets").is_dir() and (p / "ProjectSettings").is_dir():
             return p
@@ -35,14 +36,11 @@ BLOCKLIB_PATH = DATA_DIR / "BlockLibrary.json"
 CARDS_PATH = DATA_DIR / "cards.json"
 SPRITE_DIR = PROJECT_ROOT / "Assets" / "Resources" / "Sprite"
 
-CARD_KEYS = ["id", "card_state", "block_kind", "chinese_name", "describe",
+# 与 CardOb 的字段一一对应（没有 id 这种自造键）
+CARD_KEYS = ["card_state", "block_kind", "chinese_name", "describe",
              "adjudication", "cost", "count", "behaviour"]
 
 STATE_NAMES = ["实物牌", "技能牌"]
-
-# 方块库读不到时的兜底样例
-FALLBACK_SEED = [("laser", "Laser"), ("block", "Block"), ("drill", "drill"),
-                 ("shield", "shield"), ("power_wheel", "PowerWheel")]
 
 
 # ---------------------------------------------------------------- 数据层
@@ -52,12 +50,11 @@ def load_blocks():
     with open(BLOCKLIB_PATH, encoding="utf-8") as f:
         doc = json.load(f)
     blocks = doc.get("blocks") or []
-    by_code = {b["code_name"]: b for b in blocks}
-    return blocks, by_code
+    return blocks, {b["code_name"]: b for b in blocks}
 
 
 def sprite_index():
-    """code_name(小写) -> png 路径，用来兼容 Engine/engine.png 这种大小写不一致。"""
+    """code_name(小写) -> png 路径，兼容 Engine/engine.png 这种大小写不一致。"""
     idx = {}
     if SPRITE_DIR.is_dir():
         for p in SPRITE_DIR.iterdir():
@@ -66,63 +63,36 @@ def sprite_index():
     return idx
 
 
-def make_card(card_state=0, block_kind="", cost=0, count=1):
+def make_card(card_state=0, block_kind="", cost=1, count=1, chinese_name=""):
     return {
-        "id": "",
         "card_state": card_state,
         "block_kind": block_kind,
-        "chinese_name": "",   # 留空 → 代码回退 BlockLibrary
-        "describe": "",       # 留空 → 代码回退 BlockLibrary
-        "adjudication": "",   # 留空 → 代码回退 BlockLibrary
+        "chinese_name": chinese_name,   # 生成时默认取方块库里的中文名
+        "describe": "",                 # 留空 → 代码回退 BlockLibrary
+        "adjudication": "",             # 留空 → 代码回退 BlockLibrary
         "cost": cost,
         "count": count,
         "behaviour": [],
     }
 
 
-def to_id(code):
-    """code_name -> 代码引用用的 id：CamelCase / 连字符统一成小写下划线。"""
-    s = "".join(ch if (ch.isalnum() and ch.isascii()) else "_" for ch in code)
-    out = []
-    for i, ch in enumerate(s):
-        if ch.isupper() and i > 0 and not s[i - 1].isupper():
-            out.append("_")
-        out.append(ch.lower())
-    return "_".join(p for p in "".join(out).split("_") if p)
+def block_card(block):
+    """按方块表的一条记录生成一张实物卡（中文名直接填上）。"""
+    return make_card(block_kind=block.get("code_name", ""),
+                     chinese_name=block.get("chinese_name", ""))
 
 
 def seed_cards():
-    """默认把方块库里每个方块都建成一张卡（跳过占位的 Null）。"""
+    """默认把方块库里每个方块都建成一张实物卡（跳过占位的 Null）。"""
     try:
         blocks, _ = load_blocks()
     except Exception:
         blocks = []
-    out = []
-    used = set()
-    for b in blocks:
-        code = b.get("code_name", "")
-        if not code or code == "Null":
-            continue
-        c = make_card(block_kind=code)
-        cid = to_id(code) or "card"
-        base, n = cid, 1
-        while cid in used:
-            n += 1
-            cid = "%s_%d" % (base, n)
-        used.add(cid)
-        c["id"] = cid
-        out.append(c)
-    if out:
-        return out
-    for cid, code in FALLBACK_SEED:
-        c = make_card(block_kind=code)
-        c["id"] = cid
-        out.append(c)
-    return out
+    return [block_card(b) for b in blocks if b.get("code_name") not in ("", "Null")]
 
 
 def load_cards():
-    """cards.json 不存在就生成样例；返回 (cards, created)。"""
+    """cards.json 不存在就生成一份；返回 (cards, created)。"""
     if not CARDS_PATH.exists():
         cards = seed_cards()
         save_cards(cards)
@@ -141,7 +111,7 @@ def load_cards():
 
 
 def save_cards(cards):
-    """按固定字段顺序、UTF-8 无 BOM、LF 写盘；先写临时文件再替换，避免写坏。"""
+    """按固定字段顺序、UTF-8 无 BOM、LF 写盘；先写临时文件再替换。"""
     doc = {"version": 1, "cards": [{k: c[k] for k in CARD_KEYS} for c in cards]}
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     fd, tmp = tempfile.mkstemp(dir=str(DATA_DIR), suffix=".tmp")
@@ -159,19 +129,10 @@ def save_cards(cards):
 def validate(cards, by_code):
     """返回错误描述列表，空列表代表可以保存。"""
     errs = []
-    seen = {}
     for i, c in enumerate(cards):
-        cid = str(c.get("id", "")).strip()
-        name = cid or ("第 %d 张" % (i + 1))
-        if not cid:
-            errs.append("%s：id 不能为空" % name)
-        elif cid in seen:
-            errs.append("%s：id 与第 %d 张重复" % (cid, seen[cid] + 1))
-        else:
-            seen[cid] = i
-        if int(c.get("card_state", 0)) not in (0, 1):
-            errs.append("%s：卡片状态只能是 0 或 1" % name)
-        if int(c.get("card_state", 0)) == 0:
+        name = c.get("chinese_name") or c.get("block_kind") or ("第 %d 张" % (i + 1))
+        st = int(c.get("card_state", 0)) if int(c.get("card_state", 0)) in (0, 1) else 0
+        if st == 0:
             code = str(c.get("block_kind", ""))
             if not code:
                 errs.append("%s：实物牌必须选方块种类" % name)
@@ -189,19 +150,25 @@ def selftest():
     print("方块表：%d 条" % len(blocks))
     cards, created = load_cards()
     print("cards.json：%d 张%s" % (len(cards), "（新建）" if created else ""))
+    assert all("id" not in c for c in cards), "cards.json 里还有 id 字段"
+    print("字段：%s" % ", ".join(CARD_KEYS))
     errs = validate(cards, by_code)
     if errs:
         print("校验失败：")
         for e in errs:
             print("  - " + e)
         return 1
+    print("校验通过")
+
     probe = []
     added = ensure_all_block_cards(probe, blocks)
-    print("全 Block 生成实物卡：%d 张（应为方块数-1）" % added)
-    again = ensure_all_block_cards(probe, blocks)
-    assert again == 0, "重复生成没有去重"
+    print("全 Block 生成实物卡：%d 张" % added)
+    assert ensure_all_block_cards(probe, blocks) == 0, "重复生成没有去重"
     assert len(probe) == len([b for b in blocks if b["code_name"] != "Null"])
-    print("校验通过")
+    missing = [c for c in probe if not c["chinese_name"]]
+    assert not missing, "生成时没填 chinese_name：%d 张" % len(missing)
+    print("生成时中文名已按方块表填好")
+
     before = json.dumps(cards, ensure_ascii=False, sort_keys=True)
     fd, tmp = tempfile.mkstemp(suffix=".json")
     os.close(fd)
@@ -211,8 +178,7 @@ def selftest():
             json.dump(doc, f, ensure_ascii=False, indent=2)
         with open(tmp, encoding="utf-8") as f:
             back = json.load(f)["cards"]
-        after = json.dumps(back, ensure_ascii=False, sort_keys=True)
-        assert before == after, "写盘再回读内容不一致"
+        assert before == json.dumps(back, ensure_ascii=False, sort_keys=True), "写盘再回读不一致"
         print("读写往返一致")
     finally:
         os.remove(tmp)
@@ -223,23 +189,14 @@ def selftest():
 # ---------------------------------------------------------------- 补全实物卡
 
 def ensure_all_block_cards(cards, blocks):
-    """把方块库里还没有实物卡的 Block 各补一张，已在的不重复生成。返回新增数量。"""
+    """方块库里还没有实物卡的 Block 各补一张，已在的不重复生成。返回新增数量。"""
     have = {c.get("block_kind") for c in cards if int(c.get("card_state", 0)) == 0}
-    ids = {c.get("id") for c in cards}
     added = 0
     for b in blocks:
         code = b.get("code_name", "")
         if not code or code == "Null" or code in have:
             continue
-        c = make_card(block_kind=code)
-        base = to_id(code) or "card"
-        cid, n = base, 1
-        while cid in ids:
-            n += 1
-            cid = "%s_%d" % (base, n)
-        ids.add(cid)
-        c["id"] = cid
-        cards.append(c)
+        cards.append(block_card(b))
         have.add(code)
         added += 1
     return added
@@ -301,7 +258,9 @@ class App:
         self.root = root
         self.blocks, self.by_code = load_blocks()
         self.cards, created = load_cards()
-        self.sel = None
+        self.sel = None                 # 表单正在编辑的那一张
+        self.selection = []             # 多选的下标列表
+        self.anchor = None
         self.dirty = False
         self.icons = IconCache()
         self.behaviour = []
@@ -309,8 +268,8 @@ class App:
         self.cols_now = 0
 
         root.title("卡片预设编辑器 — %s" % CARDS_PATH.name)
-        root.geometry("1280x840")
-        root.minsize(900, 560)
+        root.geometry("1300x860")
+        root.minsize(920, 560)
 
         style = ttk.Style()
         try:
@@ -323,11 +282,13 @@ class App:
         self._build_body()
         self.refresh_wall()
         if self.cards:
-            self.select(0)
+            self.set_selection([0], anchor=0)
         self.update_status("已生成卡片墙（%d 张）" % len(self.cards) if created else "")
 
         root.protocol("WM_DELETE_WINDOW", self.on_close)
         root.bind("<Control-s>", lambda e: self.save())
+        root.bind("<Escape>", lambda e: self.set_selection([]))
+        root.bind("<Control-a>", lambda e: self.set_selection(list(range(len(self.cards)))))
         root.after(120, self._init_sash)
 
     def _init_sash(self):
@@ -353,13 +314,15 @@ class App:
         ttk.Separator(bar, orient="vertical").pack(side="left", fill="y", padx=8)
         btn("新增卡", self.add_card, 7)
         btn("全部Block生成实物卡", self.gen_all_cards, 18)
-        btn("删除选中", self.delete_card, 9)
+        btn("全选", lambda: self.set_selection(list(range(len(self.cards)))), 6)
+        btn("清空选择", lambda: self.set_selection([]), 9)
+        btn("删除选中", self.delete_selection, 9)
         ttk.Separator(bar, orient="vertical").pack(side="left", fill="y", padx=8)
         btn("打开数据目录", self.open_folder, 12)
 
         ttk.Label(bar, text="筛选").pack(side="left", padx=(14, 2))
         self.filter_var = tk.StringVar()
-        ttk.Entry(bar, textvariable=self.filter_var, width=16).pack(side="left")
+        ttk.Entry(bar, textvariable=self.filter_var, width=14).pack(side="left")
         self.filter_var.trace_add("write", lambda *a: self.refresh_wall())
 
     # ---------------- 主体
@@ -370,7 +333,6 @@ class App:
         self.paned = ttk.PanedWindow(self.root, orient="horizontal")
         self.paned.pack(side="top", fill="both", expand=True, padx=8, pady=(0, 4))
 
-        # 左：卡片墙
         left = ttk.Frame(self.paned)
         self.paned.add(left, weight=3)
         self.canvas = tk.Canvas(left, background=WALL_BG, highlightthickness=0)
@@ -381,11 +343,16 @@ class App:
         self.wall = tk.Frame(self.canvas, background=WALL_BG)
         self.canvas.create_window((0, 0), window=self.wall, anchor="nw", tags="wall")
         self.canvas.bind("<Configure>", self._on_canvas_configure)
+        self.canvas.bind("<Button-1>", lambda e: self.set_selection([]))
 
-        # 右：编辑面板
         right = ttk.Frame(self.paned)
         self.paned.add(right, weight=2)
-        self._build_form(right)
+        self.form_host = ttk.Frame(right)
+        self.form_host.pack(fill="both", expand=True)
+        self.single_frame = ttk.Frame(self.form_host)
+        self.batch_frame = ttk.Frame(self.form_host, padding=(10, 10))
+        self._build_form(self.single_frame)
+        self._build_batch(self.batch_frame)
 
     def _on_canvas_configure(self, event):
         self.canvas.itemconfigure("wall", width=event.width)
@@ -405,8 +372,12 @@ class App:
         code = c.get("block_kind", "")
         info = self.by_code.get(code, {})
         title = c.get("chinese_name") or info.get("chinese_name") or code
-        text = "%s %s %s" % (title, c.get("id", ""), code)
-        return kw in text.lower()
+        return kw in ("%s %s" % (title, code)).lower()
+
+    def card_title(self, c):
+        code = c.get("block_kind", "")
+        info = self.by_code.get(code, {})
+        return c.get("chinese_name") or info.get("chinese_name") or (code or "未选方块")
 
     def refresh_wall(self, keep_scroll=True):
         y = self.canvas.yview()[0] if keep_scroll else 0.0
@@ -430,8 +401,7 @@ class App:
 
     def _make_card(self, i, c):
         code = c.get("block_kind", "")
-        info = self.by_code.get(code, {})
-        title = c.get("chinese_name") or info.get("chinese_name") or (code or "未选方块")
+        title = self.card_title(c)
         frame = tk.Frame(self.wall, width=CARD_W, height=CARD_H, bg=CARD_BG,
                          highlightthickness=3, highlightbackground=CARD_BORDER)
         frame.grid_propagate(False)
@@ -457,7 +427,7 @@ class App:
         icon.pack(side="top", expand=True)
 
         for w in (frame, top, cost, name, sub, icon):
-            w.bind("<Button-1>", lambda e, idx=i: self.select(idx))
+            w.bind("<Button-1>", lambda e, idx=i: self.on_card_click(idx, e))
             w.bind("<MouseWheel>", self._on_wheel)
         self.card_widgets[i] = {"frame": frame, "cost": cost, "name": name, "sub": sub,
                                 "icon": icon, "code": code}
@@ -476,20 +446,12 @@ class App:
         self.canvas.yview_scroll(int(-event.delta / 120), "units")
 
     def _highlight(self):
+        sel = set(self.selection)
         for i, w in self.card_widgets.items():
-            w["frame"].configure(highlightbackground=CARD_SELECTED if i == self.sel else CARD_BORDER)
-
-    def select(self, i):
-        if i == self.sel:
-            self._highlight()
-            return
-        self.flush_form()
-        self.sel = i
-        self.load_form(i)
-        self._highlight()
+            w["frame"].configure(highlightbackground=CARD_SELECTED if i in sel else CARD_BORDER)
 
     def sync_card(self, i=None):
-        """把当前卡片的数据同步到墙上的那张卡（改名/改费用/改种类即时可见）。"""
+        """把数据同步到墙上的那张卡。"""
         if i is None:
             i = self.sel
         w = self.card_widgets.get(i)
@@ -497,16 +459,74 @@ class App:
             return
         c = self.cards[i]
         code = c.get("block_kind", "")
-        info = self.by_code.get(code, {})
         w["cost"].configure(text=str(c.get("cost", 0)))
-        w["name"].configure(text=c.get("chinese_name") or info.get("chinese_name") or (code or "未选方块"))
+        w["name"].configure(text=self.card_title(c))
         w["sub"].configure(text=self._sub_text(c))
         img = self.icons.get(code, 84) if int(c.get("card_state", 0)) == 0 else None
         w["icon"].configure(image=img or "")
         w["icon"].image = img
         w["code"] = code
 
-    # ---------------- 编辑面板
+    # ---------------- 选择
+    def on_card_click(self, i, event):
+        ctrl = bool(event.state & 0x0004)
+        shift = bool(event.state & 0x0001)
+        if shift and self.anchor is not None:
+            lo, hi = sorted((self.anchor, i))
+            self.set_selection(list(range(lo, hi + 1)), anchor=self.anchor)
+        elif ctrl:
+            sel = list(self.selection)
+            if i in sel:
+                sel.remove(i)
+            else:
+                sel.append(i)
+            self.set_selection(sel, anchor=i)
+        else:
+            self.set_selection([i], anchor=i)
+
+    def set_selection(self, sel, anchor=None):
+        sel = [x for x in dict.fromkeys(sel) if 0 <= x < len(self.cards)]
+        self.selection = sel
+        if anchor is not None:
+            self.anchor = anchor
+        elif sel:
+            self.anchor = sel[-1]
+        else:
+            self.anchor = None
+        self.after_selection_change()
+
+    def after_selection_change(self):
+        if len(self.selection) == 1:
+            new = self.selection[0]
+            if self.sel != new:
+                self.flush_form()
+                self.sel = new
+                self.load_form(new)
+            self.show_panel("single")
+        elif self.selection:
+            self.flush_form()
+            self.sel = self.selection[-1]
+            self.show_panel("batch")
+        else:
+            self.flush_form()
+            self.sel = None
+            self.show_panel("single")
+            self.clear_form()
+        self._highlight()
+        self.update_status()
+
+    def show_panel(self, kind):
+        if kind == "single":
+            self.batch_frame.pack_forget()
+            if not self.single_frame.winfo_ismapped():
+                self.single_frame.pack(fill="both", expand=True)
+        else:
+            self.single_frame.pack_forget()
+            if not self.batch_frame.winfo_ismapped():
+                self.batch_frame.pack(fill="both", expand=True)
+            self.batch_info.configure(text="已选中 %d 张卡片" % len(self.selection))
+
+    # ---------------- 单张编辑面板
     def _build_form(self, parent):
         self.kind_values = ["(无 / 技能牌)"] + [
             "%s  (%s)" % (b["chinese_name"], b["code_name"])
@@ -527,11 +547,6 @@ class App:
             r += 1
             return widget
 
-        self.id_var = tk.StringVar()
-        e = ttk.Entry(box, textvariable=self.id_var)
-        e.bind("<KeyRelease>", lambda ev: self.flush_form())
-        row("ID", e)
-
         self.state_var = tk.StringVar(value=STATE_NAMES[0])
         cb = ttk.Combobox(box, textvariable=self.state_var, values=STATE_NAMES,
                           state="readonly", font=UI_FONT)
@@ -541,19 +556,19 @@ class App:
         self.kind_var = tk.StringVar(value=self.kind_values[0])
         cb2 = ttk.Combobox(box, textvariable=self.kind_var, values=self.kind_values,
                            state="readonly", font=UI_FONT)
-        cb2.bind("<<ComboboxSelected>>", lambda e: self.sync_card())
+        cb2.bind("<<ComboboxSelected>>", lambda e: self.on_kind_change())
         row("方块种类", cb2)
 
         self.cname_var = tk.StringVar()
         e2 = ttk.Entry(box, textvariable=self.cname_var)
         e2.bind("<KeyRelease>", lambda ev: self.sync_card())
         row("中文名", e2)
-        ttk.Label(box, text="留空则用方块库的中文名", foreground="#888", font=UI_FONT_S).grid(
+        ttk.Label(box, text="改名即时反映到卡片上", foreground="#888", font=UI_FONT_S).grid(
             row=r, column=1, sticky="w", pady=(0, 2))
         r += 1
 
-        numrow = ttk.Frame(box)
         ttk.Label(box, text="费用 / 张数", font=UI_FONT).grid(row=r, column=0, sticky="nw", pady=3, padx=(0, 6))
+        numrow = ttk.Frame(box)
         numrow.grid(row=r, column=1, sticky="we", pady=3)
         self.cost_var = tk.StringVar()
         self.count_var = tk.StringVar()
@@ -597,6 +612,42 @@ class App:
         self.t_desc.bind("<KeyRelease>", lambda e: self.flush_form())
         self.t_adj.bind("<KeyRelease>", lambda e: self.flush_form())
 
+    def _build_batch(self, parent):
+        ttk.Label(parent, text="多选模式", font=UI_FONT_B).pack(anchor="w")
+        self.batch_info = ttk.Label(parent, text="", foreground="#2f8fff", font=UI_FONT)
+        self.batch_info.pack(anchor="w", pady=(2, 10))
+
+        self.b_use_cost = tk.BooleanVar(value=True)
+        self.b_use_count = tk.BooleanVar(value=False)
+        self.b_use_state = tk.BooleanVar(value=False)
+        self.b_cost = tk.StringVar(value="1")
+        self.b_count = tk.StringVar(value="1")
+        self.b_state = tk.StringVar(value=STATE_NAMES[0])
+
+        def line(var, text, widget):
+            f = ttk.Frame(parent)
+            f.pack(fill="x", pady=3)
+            ttk.Checkbutton(f, text=text, variable=var).pack(side="left")
+            widget(f).pack(side="left", padx=(6, 0))
+
+        line(self.b_use_cost, "费用", lambda f: tk.Spinbox(f, from_=0, to=99, width=6,
+                                                          textvariable=self.b_cost, font=UI_FONT))
+        line(self.b_use_count, "张数", lambda f: tk.Spinbox(f, from_=0, to=99, width=6,
+                                                           textvariable=self.b_count, font=UI_FONT))
+        line(self.b_use_state, "卡片状态", lambda f: ttk.Combobox(f, textvariable=self.b_state,
+                                                              values=STATE_NAMES, state="readonly",
+                                                              width=8, font=UI_FONT))
+
+        bar = ttk.Frame(parent)
+        bar.pack(fill="x", pady=(14, 0))
+        ttk.Button(bar, text="应用到选中", command=self.apply_batch).pack(side="left")
+        ttk.Button(bar, text="删除选中", command=self.delete_selection).pack(side="left", padx=6)
+
+        ttk.Label(parent, foreground="#888", font=UI_FONT_S, justify="left",
+                  text="多选时只能批量改费用、张数、卡片状态。\n"
+                       "方块种类、中文名、描述、判词、词条请单选后编辑。").pack(anchor="w", pady=(14, 0))
+
+    # ---------------- 表单读写
     def kind_code(self):
         return self.kind_to_code.get(self.kind_var.get(), "")
 
@@ -606,24 +657,30 @@ class App:
                 return disp
         return self.kind_values[0]
 
-    def _set_text(self, widget, value):
+    def on_kind_change(self):
+        code = self.kind_code()
+        if code and not self.cname_var.get().strip():
+            self.cname_var.set(self.by_code.get(code, {}).get("chinese_name", ""))
+        self.sync_card()
+
+    @staticmethod
+    def _set_text(widget, value):
         widget.delete("1.0", "end")
         widget.insert("1.0", value or "")
 
     def flush_form(self):
         if self.sel is None or self.sel >= len(self.cards):
             return
+        if not self.single_frame.winfo_ismapped():
+            return
         c = self.cards[self.sel]
         old = json.dumps(c, ensure_ascii=False, sort_keys=True)
-        c["id"] = self.id_var.get().strip()
         c["card_state"] = 0 if self.state_var.get() == STATE_NAMES[0] else 1
-        code = self.kind_code()
-        if code is not None:
-            c["block_kind"] = code
-        c["chinese_name"] = self.cname_var.get()
+        c["block_kind"] = self.kind_code()
+        c["chinese_name"] = self.cname_var.get().strip()
         c["describe"] = self.t_desc.get("1.0", "end-1c")
         c["adjudication"] = self.t_adj.get("1.0", "end-1c")
-        c["cost"] = self.to_int(self.cost_var.get(), 0)
+        c["cost"] = self.to_int(self.cost_var.get(), 1)
         c["count"] = self.to_int(self.count_var.get(), 1)
         c["behaviour"] = list(self.behaviour)
         if json.dumps(c, ensure_ascii=False, sort_keys=True) != old:
@@ -639,16 +696,26 @@ class App:
 
     def load_form(self, idx):
         c = self.cards[idx]
-        self.id_var.set(c.get("id", ""))
         st = int(c.get("card_state", 0)) if int(c.get("card_state", 0)) in (0, 1) else 0
         self.state_var.set(STATE_NAMES[st])
         self.kind_var.set(self.kind_display(c.get("block_kind", "")))
         self.cname_var.set(c.get("chinese_name", ""))
-        self.cost_var.set(str(c.get("cost", 0)))
+        self.cost_var.set(str(c.get("cost", 1)))
         self.count_var.set(str(c.get("count", 1)))
         self._set_text(self.t_desc, c.get("describe", ""))
         self._set_text(self.t_adj, c.get("adjudication", ""))
         self.behaviour = list(c.get("behaviour") or [])
+        self.refresh_behaviour()
+
+    def clear_form(self):
+        self.state_var.set(STATE_NAMES[0])
+        self.kind_var.set(self.kind_values[0])
+        self.cname_var.set("")
+        self.cost_var.set("1")
+        self.count_var.set("1")
+        self._set_text(self.t_desc, "")
+        self._set_text(self.t_adj, "")
+        self.behaviour = []
         self.refresh_behaviour()
 
     def refresh_behaviour(self):
@@ -685,24 +752,14 @@ class App:
     def add_card(self):
         self.flush_form()
         c = make_card()
-        c["id"] = self.unique_id("card")
         self.cards.append(c)
         self.dirty = True
         self.refresh_wall()
-        self.select(len(self.cards) - 1)
-        self.update_status("已新增一张卡")
-
-    def unique_id(self, base):
-        ids = {c.get("id") for c in self.cards}
-        if base not in ids:
-            return base
-        i = 2
-        while "%s_%d" % (base, i) in ids:
-            i += 1
-        return "%s_%d" % (base, i)
+        self.set_selection([len(self.cards) - 1], anchor=len(self.cards) - 1)
+        self.update_status("已新增一张卡（费用默认 1）")
 
     def gen_all_cards(self):
-        """点一下：方块库里所有还没做成卡的 Block，批量生成实物卡。"""
+        """方块库里所有还没做成卡的 Block，一次批量生成实物卡。"""
         self.flush_form()
         added = ensure_all_block_cards(self.cards, self.blocks)
         if added:
@@ -712,21 +769,53 @@ class App:
         else:
             self.update_status("所有 Block 都已经是卡片了（%d 张）" % len(self.cards))
 
-    def delete_card(self, i=None):
-        if i is None:
-            i = self.sel
-        if i is None or i >= len(self.cards):
+    def apply_batch(self):
+        if not self.selection:
             return
-        c = self.cards[i]
-        if not messagebox.askyesno("删除", "确定删除卡片 %s ？" % (c.get("id") or "第 %d 张" % (i + 1))):
+        cost = self.to_int(self.b_cost.get(), None) if self.b_use_cost.get() else None
+        count = self.to_int(self.b_count.get(), None) if self.b_use_count.get() else None
+        state = (0 if self.b_state.get() == STATE_NAMES[0] else 1) if self.b_use_state.get() else None
+        for i in self.selection:
+            c = self.cards[i]
+            if cost is not None:
+                c["cost"] = cost
+            if count is not None:
+                c["count"] = count
+            if state is not None:
+                c["card_state"] = state
+            self.sync_card(i)
+        self.dirty = True
+        self.update_status("已批量修改 %d 张" % len(self.selection))
+
+    def delete_selection(self):
+        if not self.selection:
+            return
+        n = len(self.selection)
+        if not messagebox.askyesno("删除", "确定删除选中的 %d 张卡片？" % n):
             return
         self.sel = None
-        del self.cards[i]
+        for i in sorted(self.selection, reverse=True):
+            if 0 <= i < len(self.cards):
+                del self.cards[i]
+        self.selection = []
+        self.anchor = None
         self.dirty = True
         self.refresh_wall()
-        if self.cards:
-            self.select(min(i, len(self.cards) - 1))
-        self.update_status("已删除一张卡")
+        self.after_selection_change()
+        self.update_status("已删除 %d 张" % n)
+
+    def delete_card(self, i):
+        c = self.cards[i]
+        if not messagebox.askyesno("删除", "确定删除卡片「%s」？" % self.card_title(c)):
+            return
+        if self.sel == i:
+            self.sel = None
+        del self.cards[i]
+        self.selection = [x for x in self.selection if x != i]
+        self.dirty = True
+        self.refresh_wall()
+        self.after_selection_change()
+        self.update_status("已删除 1 张")
 
     def save(self):
         self.flush_form()
@@ -752,10 +841,14 @@ class App:
         self.cards, _ = load_cards()
         self.icons = IconCache()
         self.sel = None
+        self.selection = []
+        self.anchor = None
         self.dirty = False
         self.refresh_wall()
         if self.cards:
-            self.select(0)
+            self.set_selection([0], anchor=0)
+        else:
+            self.after_selection_change()
         self.update_status("已重新载入（%d 张）" % len(self.cards))
 
     def open_folder(self):
@@ -766,7 +859,8 @@ class App:
 
     def update_status(self, extra=""):
         mark = "● 未保存" if self.dirty else "已保存"
-        text = "卡片 %d 张 | Block %d 条 | %s" % (len(self.cards), len(self.blocks), mark)
+        text = "卡片 %d 张 | Block %d 条 | 已选 %d 张 | %s" % (
+            len(self.cards), len(self.blocks), len(self.selection), mark)
         if extra:
             text += " | " + extra
         self.status.configure(text=text)
@@ -790,8 +884,11 @@ def main():
     if "--smoke" in args:
         root.update_idletasks()
         root.update()
-        print("UI OK：卡片 %d 张，Block %d 条，卡片墙格子 %d 个，列数 %d"
-              % (len(app.cards), len(app.blocks), len(app.card_widgets), app._cols()))
+        app.set_selection([0, 1, 2])
+        root.update_idletasks()
+        print("UI OK：卡片 %d 张，Block %d 条，卡片墙格子 %d 个，列数 %d，多选 %d 张"
+              % (len(app.cards), len(app.blocks), len(app.card_widgets),
+                 app._cols(), len(app.selection)))
         root.destroy()
         return 0
     root.mainloop()

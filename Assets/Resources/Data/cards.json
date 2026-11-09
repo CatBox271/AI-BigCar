@@ -2,10 +2,9 @@
   "version": 1,
   "cards": [
     {
-      "id": "laser",
       "card_state": 0,
       "block_kind": "Laser",
-      "chinese_name": "",
+      "chinese_name": "激光炮",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -13,10 +12,9 @@
       "behaviour": []
     },
     {
-      "id": "iron_frame",
       "card_state": 0,
       "block_kind": "Block",
-      "chinese_name": "",
+      "chinese_name": "铁框",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -24,10 +22,9 @@
       "behaviour": []
     },
     {
-      "id": "drill",
       "card_state": 0,
       "block_kind": "drill",
-      "chinese_name": "",
+      "chinese_name": "钻头",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -35,10 +32,9 @@
       "behaviour": []
     },
     {
-      "id": "shield",
       "card_state": 0,
       "block_kind": "shield",
-      "chinese_name": "",
+      "chinese_name": "能量盾",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -46,10 +42,9 @@
       "behaviour": []
     },
     {
-      "id": "drive_wheel",
       "card_state": 0,
       "block_kind": "PowerWheel",
-      "chinese_name": "",
+      "chinese_name": "驱动轮",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -57,10 +52,9 @@
       "behaviour": []
     },
     {
-      "id": "artillery",
       "card_state": 0,
       "block_kind": "Artillery",
-      "chinese_name": "",
+      "chinese_name": "自动炮台",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -68,10 +62,9 @@
       "behaviour": []
     },
     {
-      "id": "broadsword_mines",
       "card_state": 0,
       "block_kind": "BroadswordMines",
-      "chinese_name": "",
+      "chinese_name": "阔剑地雷",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -79,10 +72,9 @@
       "behaviour": []
     },
     {
-      "id": "center",
       "card_state": 0,
       "block_kind": "Center",
-      "chinese_name": "",
+      "chinese_name": "核心",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -90,10 +82,9 @@
       "behaviour": []
     },
     {
-      "id": "engine",
       "card_state": 0,
       "block_kind": "Engine",
-      "chinese_name": "",
+      "chinese_name": "引擎",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -101,10 +92,9 @@
       "behaviour": []
     },
     {
-      "id": "fixing_bag",
       "card_state": 0,
       "block_kind": "FixingBag",
-      "chinese_name": "",
+      "chinese_name": "修复器",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -112,10 +102,9 @@
       "behaviour": []
     },
     {
-      "id": "groscope",
       "card_state": 0,
       "block_kind": "Groscope",
-      "chinese_name": "",
+      "chinese_name": "陀螺仪",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -123,10 +112,9 @@
       "behaviour": []
     },
     {
-      "id": "panzer",
       "card_state": 0,
       "block_kind": "panzer",
-      "chinese_name": "",
+      "chinese_name": "铸铁装甲",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -134,10 +122,9 @@
       "behaviour": []
     },
     {
-      "id": "power_propellers",
       "card_state": 0,
       "block_kind": "PowerPropellers",
-      "chinese_name": "",
+      "chinese_name": "螺旋桨",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -145,10 +132,9 @@
       "behaviour": []
     },
     {
-      "id": "rpg",
       "card_state": 0,
       "block_kind": "RPG",
-      "chinese_name": "",
+      "chinese_name": "火箭筒",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -156,10 +142,9 @@
       "behaviour": []
     },
     {
-      "id": "stealth",
       "card_state": 0,
       "block_kind": "Stealth",
-      "chinese_name": "",
+      "chinese_name": "隐身装置",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -167,10 +152,9 @@
       "behaviour": []
     },
     {
-      "id": "tnt",
       "card_state": 0,
       "block_kind": "TNT",
-      "chinese_name": "",
+      "chinese_name": "TNT",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -178,10 +162,9 @@
       "behaviour": []
     },
     {
-      "id": "brake_wheel",
       "card_state": 0,
       "block_kind": "BrakeWheel",
-      "chinese_name": "",
+      "chinese_name": "刹车轮",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -189,10 +172,9 @@
       "behaviour": []
     },
     {
-      "id": "umbrella",
       "card_state": 0,
       "block_kind": "Umbrella",
-      "chinese_name": "",
+      "chinese_name": "减速伞",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -200,10 +182,9 @@
       "behaviour": []
     },
     {
-      "id": "spring",
       "card_state": 0,
       "block_kind": "Spring",
-      "chinese_name": "",
+      "chinese_name": "弹簧",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -211,10 +192,9 @@
       "behaviour": []
     },
     {
-      "id": "power_stick_wheel",
       "card_state": 0,
       "block_kind": "PowerStickWheel",
-      "chinese_name": "",
+      "chinese_name": "吸盘轮",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -222,10 +202,9 @@
       "behaviour": []
     },
     {
-      "id": "power_umbrella",
       "card_state": 0,
       "block_kind": "PowerUmbrella",
-      "chinese_name": "",
+      "chinese_name": "动力伞",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -233,10 +212,9 @@
       "behaviour": []
     },
     {
-      "id": "half_block",
       "card_state": 0,
       "block_kind": "HalfBlock",
-      "chinese_name": "",
+      "chinese_name": "半框",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -244,10 +222,9 @@
       "behaviour": []
     },
     {
-      "id": "no_collider_block",
       "card_state": 0,
       "block_kind": "NoColliderBlock",
-      "chinese_name": "",
+      "chinese_name": "无实体框",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -255,10 +232,9 @@
       "behaviour": []
     },
     {
-      "id": "power_small_propellers",
       "card_state": 0,
       "block_kind": "PowerSmallPropellers",
-      "chinese_name": "",
+      "chinese_name": "小型螺旋桨",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -266,10 +242,9 @@
       "behaviour": []
     },
     {
-      "id": "wing",
       "card_state": 0,
       "block_kind": "Wing",
-      "chinese_name": "",
+      "chinese_name": "机翼",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -277,10 +252,9 @@
       "behaviour": []
     },
     {
-      "id": "tail",
       "card_state": 0,
       "block_kind": "Tail",
-      "chinese_name": "",
+      "chinese_name": "尾翼",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -288,10 +262,9 @@
       "behaviour": []
     },
     {
-      "id": "h_balloon",
       "card_state": 0,
       "block_kind": "H-Balloon",
-      "chinese_name": "",
+      "chinese_name": "氢气球",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -299,10 +272,9 @@
       "behaviour": []
     },
     {
-      "id": "he_balloon",
       "card_state": 0,
       "block_kind": "He-Balloon",
-      "chinese_name": "",
+      "chinese_name": "氦气球",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -310,10 +282,9 @@
       "behaviour": []
     },
     {
-      "id": "gear_box",
       "card_state": 0,
       "block_kind": "GearBox",
-      "chinese_name": "",
+      "chinese_name": "变速箱",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -321,10 +292,9 @@
       "behaviour": []
     },
     {
-      "id": "hydraulic_rod",
       "card_state": 0,
       "block_kind": "HydraulicRod",
-      "chinese_name": "",
+      "chinese_name": "液压杆",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -332,10 +302,9 @@
       "behaviour": []
     },
     {
-      "id": "power_wheel_big",
       "card_state": 0,
       "block_kind": "PowerWheelBig",
-      "chinese_name": "",
+      "chinese_name": "大型驱动轮",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -343,10 +312,9 @@
       "behaviour": []
     },
     {
-      "id": "power_wheel_huge",
       "card_state": 0,
       "block_kind": "PowerWheelHuge",
-      "chinese_name": "",
+      "chinese_name": "巨型驱动轮",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -354,10 +322,9 @@
       "behaviour": []
     },
     {
-      "id": "power_fan",
       "card_state": 0,
       "block_kind": "PowerFan",
-      "chinese_name": "",
+      "chinese_name": "风扇",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -365,10 +332,9 @@
       "behaviour": []
     },
     {
-      "id": "hydraulic_hinge",
       "card_state": 0,
       "block_kind": "HydraulicHinge",
-      "chinese_name": "",
+      "chinese_name": "液压铰链",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -376,10 +342,9 @@
       "behaviour": []
     },
     {
-      "id": "compression_tank",
       "card_state": 0,
       "block_kind": "CompressionTank",
-      "chinese_name": "",
+      "chinese_name": "压缩气罐",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -387,10 +352,9 @@
       "behaviour": []
     },
     {
-      "id": "antiwater_block",
       "card_state": 0,
       "block_kind": "AntiwaterBlock",
-      "chinese_name": "",
+      "chinese_name": "防水框",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -398,10 +362,9 @@
       "behaviour": []
     },
     {
-      "id": "floating_block",
       "card_state": 0,
       "block_kind": "FloatingBlock",
-      "chinese_name": "",
+      "chinese_name": "泡沫塑料",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -409,10 +372,9 @@
       "behaviour": []
     },
     {
-      "id": "power_water_propellers",
       "card_state": 0,
       "block_kind": "PowerWaterPropellers",
-      "chinese_name": "",
+      "chinese_name": "水中螺旋桨",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -420,10 +382,9 @@
       "behaviour": []
     },
     {
-      "id": "power_water_small_propellers",
       "card_state": 0,
       "block_kind": "PowerWaterSmallPropellers",
-      "chinese_name": "",
+      "chinese_name": "小型水中螺旋桨",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -431,10 +392,9 @@
       "behaviour": []
     },
     {
-      "id": "power_water_wheel",
       "card_state": 0,
       "block_kind": "PowerWaterWheel",
-      "chinese_name": "",
+      "chinese_name": "水陆两栖轮",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -442,10 +402,9 @@
       "behaviour": []
     },
     {
-      "id": "general_cannon",
       "card_state": 0,
       "block_kind": "GeneralCannon",
-      "chinese_name": "",
+      "chinese_name": "通用火炮",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -453,10 +412,9 @@
       "behaviour": []
     },
     {
-      "id": "battery",
       "card_state": 0,
       "block_kind": "Battery",
-      "chinese_name": "",
+      "chinese_name": "电池",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -464,10 +422,9 @@
       "behaviour": []
     },
     {
-      "id": "nuclear_battery",
       "card_state": 0,
       "block_kind": "NuclearBattery",
-      "chinese_name": "",
+      "chinese_name": "核电池",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -475,10 +432,9 @@
       "behaviour": []
     },
     {
-      "id": "generator",
       "card_state": 0,
       "block_kind": "Generator",
-      "chinese_name": "",
+      "chinese_name": "发电机",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -486,10 +442,9 @@
       "behaviour": []
     },
     {
-      "id": "ciws",
       "card_state": 0,
       "block_kind": "CIWS",
-      "chinese_name": "",
+      "chinese_name": "近防炮",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -497,10 +452,9 @@
       "behaviour": []
     },
     {
-      "id": "ic",
       "card_state": 0,
       "block_kind": "IC",
-      "chinese_name": "",
+      "chinese_name": "可编程芯片",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -508,10 +462,9 @@
       "behaviour": []
     },
     {
-      "id": "turbin_engine",
       "card_state": 0,
       "block_kind": "TurbinEngine",
-      "chinese_name": "",
+      "chinese_name": "涡轮引擎",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -519,10 +472,9 @@
       "behaviour": []
     },
     {
-      "id": "h_block",
       "card_state": 0,
       "block_kind": "H-Block",
-      "chinese_name": "",
+      "chinese_name": "氢气框",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -530,10 +482,9 @@
       "behaviour": []
     },
     {
-      "id": "he_block",
       "card_state": 0,
       "block_kind": "He-Block",
-      "chinese_name": "",
+      "chinese_name": "氦气框",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -541,10 +492,9 @@
       "behaviour": []
     },
     {
-      "id": "sail",
       "card_state": 0,
       "block_kind": "Sail",
-      "chinese_name": "",
+      "chinese_name": "帆",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -552,10 +502,9 @@
       "behaviour": []
     },
     {
-      "id": "chainsaw",
       "card_state": 0,
       "block_kind": "Chainsaw",
-      "chinese_name": "",
+      "chinese_name": "电锯",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -563,10 +512,9 @@
       "behaviour": []
     },
     {
-      "id": "flamethrower",
       "card_state": 0,
       "block_kind": "Flamethrower",
-      "chinese_name": "",
+      "chinese_name": "火焰喷射器",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -574,10 +522,9 @@
       "behaviour": []
     },
     {
-      "id": "wood_block",
       "card_state": 0,
       "block_kind": "WoodBlock",
-      "chinese_name": "",
+      "chinese_name": "木框",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -585,10 +532,9 @@
       "behaviour": []
     },
     {
-      "id": "cola",
       "card_state": 0,
       "block_kind": "Cola",
-      "chinese_name": "",
+      "chinese_name": "可乐",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -596,10 +542,9 @@
       "behaviour": []
     },
     {
-      "id": "sprite",
       "card_state": 0,
       "block_kind": "Sprite",
-      "chinese_name": "",
+      "chinese_name": "雪碧",
       "describe": "",
       "adjudication": "",
       "cost": 0,
@@ -607,10 +552,9 @@
       "behaviour": []
     },
     {
-      "id": "power_hinge",
       "card_state": 0,
       "block_kind": "PowerHinge",
-      "chinese_name": "",
+      "chinese_name": "动力铰链",
       "describe": "",
       "adjudication": "",
       "cost": 0,
