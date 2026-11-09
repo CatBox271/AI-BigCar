@@ -3,11 +3,11 @@
   "cards": [
     {
       "card_state": 0,
-      "block_kind": "Laser",
-      "chinese_name": "激光炮",
+      "block_kind": "Artillery",
+      "chinese_name": "机枪",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -17,47 +17,7 @@
       "chinese_name": "铁框",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
-      "count": 1,
-      "behaviour": []
-    },
-    {
-      "card_state": 0,
-      "block_kind": "drill",
-      "chinese_name": "钻头",
-      "describe": "",
-      "adjudication": "",
-      "cost": 0,
-      "count": 1,
-      "behaviour": []
-    },
-    {
-      "card_state": 0,
-      "block_kind": "shield",
-      "chinese_name": "能量盾",
-      "describe": "",
-      "adjudication": "",
-      "cost": 0,
-      "count": 1,
-      "behaviour": []
-    },
-    {
-      "card_state": 0,
-      "block_kind": "PowerWheel",
-      "chinese_name": "驱动轮",
-      "describe": "",
-      "adjudication": "",
-      "cost": 0,
-      "count": 1,
-      "behaviour": []
-    },
-    {
-      "card_state": 0,
-      "block_kind": "Artillery",
-      "chinese_name": "自动炮台",
-      "describe": "",
-      "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -67,17 +27,17 @@
       "chinese_name": "阔剑地雷",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
     {
       "card_state": 0,
-      "block_kind": "Center",
-      "chinese_name": "核心",
+      "block_kind": "drill",
+      "chinese_name": "钻头",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -87,7 +47,7 @@
       "chinese_name": "引擎",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -97,7 +57,7 @@
       "chinese_name": "修复器",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -107,7 +67,17 @@
       "chinese_name": "陀螺仪",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
+      "count": 1,
+      "behaviour": []
+    },
+    {
+      "card_state": 0,
+      "block_kind": "Laser",
+      "chinese_name": "激光炮",
+      "describe": "",
+      "adjudication": "",
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -117,7 +87,7 @@
       "chinese_name": "铸铁装甲",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -127,17 +97,27 @@
       "chinese_name": "螺旋桨",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
     {
       "card_state": 0,
-      "block_kind": "RPG",
-      "chinese_name": "火箭筒",
+      "block_kind": "PowerWheel",
+      "chinese_name": "驱动轮",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
+      "count": 1,
+      "behaviour": []
+    },
+    {
+      "card_state": 0,
+      "block_kind": "shield",
+      "chinese_name": "能量盾",
+      "describe": "",
+      "adjudication": "",
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -147,7 +127,7 @@
       "chinese_name": "隐身装置",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -157,7 +137,7 @@
       "chinese_name": "TNT",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -167,7 +147,7 @@
       "chinese_name": "刹车轮",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -177,7 +157,7 @@
       "chinese_name": "减速伞",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -187,7 +167,7 @@
       "chinese_name": "弹簧",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -197,7 +177,7 @@
       "chinese_name": "吸盘轮",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -207,7 +187,7 @@
       "chinese_name": "动力伞",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -217,7 +197,7 @@
       "chinese_name": "半框",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -227,7 +207,7 @@
       "chinese_name": "无实体框",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -237,7 +217,7 @@
       "chinese_name": "小型螺旋桨",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -247,7 +227,7 @@
       "chinese_name": "机翼",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -257,7 +237,7 @@
       "chinese_name": "尾翼",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -267,7 +247,7 @@
       "chinese_name": "氢气球",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -277,7 +257,7 @@
       "chinese_name": "氦气球",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -287,7 +267,7 @@
       "chinese_name": "变速箱",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -297,7 +277,7 @@
       "chinese_name": "液压杆",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -307,7 +287,7 @@
       "chinese_name": "大型驱动轮",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -317,7 +297,7 @@
       "chinese_name": "巨型驱动轮",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -327,17 +307,7 @@
       "chinese_name": "风扇",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
-      "count": 1,
-      "behaviour": []
-    },
-    {
-      "card_state": 0,
-      "block_kind": "HydraulicHinge",
-      "chinese_name": "液压铰链",
-      "describe": "",
-      "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -347,7 +317,7 @@
       "chinese_name": "压缩气罐",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -357,7 +327,7 @@
       "chinese_name": "防水框",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -367,7 +337,7 @@
       "chinese_name": "泡沫塑料",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -377,7 +347,7 @@
       "chinese_name": "水中螺旋桨",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -387,7 +357,7 @@
       "chinese_name": "小型水中螺旋桨",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -397,7 +367,7 @@
       "chinese_name": "水陆两栖轮",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -407,7 +377,7 @@
       "chinese_name": "通用火炮",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -417,7 +387,7 @@
       "chinese_name": "电池",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -427,7 +397,7 @@
       "chinese_name": "核电池",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -437,27 +407,7 @@
       "chinese_name": "发电机",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
-      "count": 1,
-      "behaviour": []
-    },
-    {
-      "card_state": 0,
-      "block_kind": "CIWS",
-      "chinese_name": "近防炮",
-      "describe": "",
-      "adjudication": "",
-      "cost": 0,
-      "count": 1,
-      "behaviour": []
-    },
-    {
-      "card_state": 0,
-      "block_kind": "IC",
-      "chinese_name": "可编程芯片",
-      "describe": "",
-      "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -467,7 +417,7 @@
       "chinese_name": "涡轮引擎",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -477,7 +427,7 @@
       "chinese_name": "氢气框",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -487,7 +437,7 @@
       "chinese_name": "氦气框",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -497,7 +447,7 @@
       "chinese_name": "帆",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -507,7 +457,7 @@
       "chinese_name": "电锯",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -517,7 +467,7 @@
       "chinese_name": "火焰喷射器",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -527,7 +477,7 @@
       "chinese_name": "木框",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -537,7 +487,7 @@
       "chinese_name": "可乐",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     },
@@ -547,17 +497,7 @@
       "chinese_name": "雪碧",
       "describe": "",
       "adjudication": "",
-      "cost": 0,
-      "count": 1,
-      "behaviour": []
-    },
-    {
-      "card_state": 0,
-      "block_kind": "PowerHinge",
-      "chinese_name": "动力铰链",
-      "describe": "",
-      "adjudication": "",
-      "cost": 0,
+      "cost": 1,
       "count": 1,
       "behaviour": []
     }

@@ -550,7 +550,7 @@ class App:
         self.state_var = tk.StringVar(value=STATE_NAMES[0])
         cb = ttk.Combobox(box, textvariable=self.state_var, values=STATE_NAMES,
                           state="readonly", font=UI_FONT)
-        cb.bind("<<ComboboxSelected>>", lambda e: self.sync_card())
+        cb.bind("<<ComboboxSelected>>", lambda e: self.apply_live())
         row("卡片状态", cb)
 
         self.kind_var = tk.StringVar(value=self.kind_values[0])
@@ -561,7 +561,7 @@ class App:
 
         self.cname_var = tk.StringVar()
         e2 = ttk.Entry(box, textvariable=self.cname_var)
-        e2.bind("<KeyRelease>", lambda ev: self.sync_card())
+        e2.bind("<KeyRelease>", lambda ev: self.apply_live())
         row("中文名", e2)
         ttk.Label(box, text="改名即时反映到卡片上", foreground="#888", font=UI_FONT_S).grid(
             row=r, column=1, sticky="w", pady=(0, 2))
@@ -573,10 +573,10 @@ class App:
         self.cost_var = tk.StringVar()
         self.count_var = tk.StringVar()
         tk.Spinbox(numrow, from_=0, to=99, width=5, textvariable=self.cost_var,
-                   command=self.sync_card, font=UI_FONT).pack(side="left")
+                   command=self.apply_live, font=UI_FONT).pack(side="left")
         ttk.Label(numrow, text="张").pack(side="left", padx=(8, 4))
         tk.Spinbox(numrow, from_=0, to=99, width=5, textvariable=self.count_var,
-                   command=self.sync_card, font=UI_FONT).pack(side="left")
+                   command=self.apply_live, font=UI_FONT).pack(side="left")
         r += 1
 
         ttk.Label(box, text="描述", font=UI_FONT).grid(row=r, column=0, sticky="nw", pady=3, padx=(0, 6))
@@ -609,8 +609,8 @@ class App:
             ttk.Button(side, text=text, width=5, command=cmd).pack(pady=1)
         r += 1
 
-        self.t_desc.bind("<KeyRelease>", lambda e: self.flush_form())
-        self.t_adj.bind("<KeyRelease>", lambda e: self.flush_form())
+        self.t_desc.bind("<KeyRelease>", lambda e: self.apply_live())
+        self.t_adj.bind("<KeyRelease>", lambda e: self.apply_live())
 
     def _build_batch(self, parent):
         ttk.Label(parent, text="多选模式", font=UI_FONT_B).pack(anchor="w")
@@ -661,12 +661,17 @@ class App:
         code = self.kind_code()
         if code and not self.cname_var.get().strip():
             self.cname_var.set(self.by_code.get(code, {}).get("chinese_name", ""))
-        self.sync_card()
+        self.apply_live()
 
     @staticmethod
     def _set_text(widget, value):
         widget.delete("1.0", "end")
         widget.insert("1.0", value or "")
+
+    def apply_live(self):
+        """输入先落回数据，再刷新那条卡片，避免拿旧值刷新。"""
+        self.flush_form()
+        self.sync_card()
 
     def flush_form(self):
         if self.sel is None or self.sel >= len(self.cards):
