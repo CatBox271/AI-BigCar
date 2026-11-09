@@ -574,9 +574,8 @@ class App:
         self.count_var = tk.StringVar()
         tk.Spinbox(numrow, from_=0, to=99, width=5, textvariable=self.cost_var,
                    command=self.apply_live, font=UI_FONT).pack(side="left")
-        ttk.Label(numrow, text="张").pack(side="left", padx=(8, 4))
         tk.Spinbox(numrow, from_=0, to=99, width=5, textvariable=self.count_var,
-                   command=self.apply_live, font=UI_FONT).pack(side="left")
+                   command=self.apply_live, font=UI_FONT).pack(side="left", padx=(14, 0))
         r += 1
 
         ttk.Label(box, text="描述", font=UI_FONT).grid(row=r, column=0, sticky="nw", pady=3, padx=(0, 6))
