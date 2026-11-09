@@ -36,7 +36,7 @@ CARDS_PATH = DATA_DIR / "cards.json"
 SPRITE_DIR = PROJECT_ROOT / "Assets" / "Resources" / "Sprite"
 
 CARD_KEYS = ["id", "card_state", "block_kind", "chinese_name", "describe",
-             "adjudication", "cost", "count", "enabled", "behaviour"]
+             "adjudication", "cost", "count", "behaviour"]
 
 STATE_NAMES = ["实物牌", "技能牌"]
 
@@ -66,7 +66,7 @@ def sprite_index():
     return idx
 
 
-def make_card(card_state=0, block_kind="", cost=0, count=1, enabled=True):
+def make_card(card_state=0, block_kind="", cost=0, count=1):
     return {
         "id": "",
         "card_state": card_state,
@@ -76,7 +76,6 @@ def make_card(card_state=0, block_kind="", cost=0, count=1, enabled=True):
         "adjudication": "",   # 留空 → 代码回退 BlockLibrary
         "cost": cost,
         "count": count,
-        "enabled": enabled,
         "behaviour": [],
     }
 
@@ -471,8 +470,6 @@ class App:
             bits.append("技能牌")
         if int(c.get("count", 1)) != 1:
             bits.append("×%d" % int(c.get("count", 1)))
-        if not c.get("enabled", True):
-            bits.append("已停用")
         return "  ".join(bits)
 
     def _on_wheel(self, event):
@@ -567,11 +564,6 @@ class App:
                    command=self.sync_card, font=UI_FONT).pack(side="left")
         r += 1
 
-        self.enabled_var = tk.BooleanVar(value=True)
-        ttk.Checkbutton(box, text="启用（关掉后不进牌堆）", variable=self.enabled_var,
-                        command=self.sync_card).grid(row=r, column=1, sticky="w", pady=3)
-        r += 1
-
         ttk.Label(box, text="描述", font=UI_FONT).grid(row=r, column=0, sticky="nw", pady=3, padx=(0, 6))
         dbox = ttk.Frame(box)
         dbox.grid(row=r, column=1, sticky="nsew", pady=3)
@@ -633,7 +625,6 @@ class App:
         c["adjudication"] = self.t_adj.get("1.0", "end-1c")
         c["cost"] = self.to_int(self.cost_var.get(), 0)
         c["count"] = self.to_int(self.count_var.get(), 1)
-        c["enabled"] = bool(self.enabled_var.get())
         c["behaviour"] = list(self.behaviour)
         if json.dumps(c, ensure_ascii=False, sort_keys=True) != old:
             self.dirty = True
@@ -655,7 +646,6 @@ class App:
         self.cname_var.set(c.get("chinese_name", ""))
         self.cost_var.set(str(c.get("cost", 0)))
         self.count_var.set(str(c.get("count", 1)))
-        self.enabled_var.set(bool(c.get("enabled", True)))
         self._set_text(self.t_desc, c.get("describe", ""))
         self._set_text(self.t_adj, c.get("adjudication", ""))
         self.behaviour = list(c.get("behaviour") or [])
