@@ -14,6 +14,7 @@ public class TNTWave : MonoBehaviour
     {
         TryGetComponent(out sp);
         sp.color = _color;
+        transform.localScale = Vector3.one * 0.2f;//从一个小点炸开，别一上来就和方块一样大
         gameObject.layer = _layer;
         radio = _radio;
         speed = _speed;
@@ -24,11 +25,6 @@ public class TNTWave : MonoBehaviour
     }
     void Update()
     {
-        if (GameManager.gameState == GameManager.GameState.Ready)
-        {
-            Destroy(gameObject);
-            return;
-        }
         if (transform.localScale.x > radio)
         {
             Destroy(gameObject);
@@ -37,7 +33,7 @@ public class TNTWave : MonoBehaviour
         {
             transform.localScale += speed * Time.deltaTime * Vector3.one;
             Color gh = (radio - transform.localScale.x) / radio * start_color * 2f;
-            gh.a = Mathf.Min(0.25f, gh.a);
+            gh.a = Mathf.Min(0.9f, gh.a);
             sp.color = gh;
         }
     }

@@ -8,8 +8,10 @@ public class VideoCameraFollow : MonoBehaviour
 {
     [Header("相机地图半宽")]
     public float cameraW = 0;
+
     public static List<Heath> CenterList = new();
     public static VideoCameraFollow vcf;
+    public float Velaffect = 0.75f;
     private void Awake()
     {
         CenterList = new();
@@ -33,16 +35,19 @@ public class VideoCameraFollow : MonoBehaviour
         float R = -110; float B = 110;
         if (RF != null) R = RF.position.x;
         if (BF != null) B = BF.position.x;
+        float VEl = 0;
         if (R > B)
         {
             //交叉
             if (R + B > 0)
             {
                 AimX = R;
+                VEl = RRBV;
             }
             else
             {
                 AimX = B;
+                VEl = BRBV;
             }
         }
         else
@@ -51,7 +56,7 @@ public class VideoCameraFollow : MonoBehaviour
         }
         T = transform.position;
         IX = Mathf.Lerp(IX, AimX, V);
-        T.x = Mathf.Lerp(T.x, IX, V);
+        T.x = Mathf.Lerp(T.x, IX + Mathf.Lerp(0, VEl, Velaffect), V);
 
         transform.position = T;
     }
@@ -107,6 +112,27 @@ public class VideoCameraFollow : MonoBehaviour
 
         if (R != -1) RF = CenterList[RI[R]].transform;
         if (B != -1) BF = CenterList[BI[B]].transform;
+    }
+
+    private Dictionary<Transform, Rigidbody2D> rb_cache = new();
+    public float RRBV
+    {
+        get 
+        {
+            if (RF == null) return 0;
+            if (!rb_cache.ContainsKey(RF)) rb_cache[RF] = RF.GetComponent<Rigidbody2D>();
+            return rb_cache[RF].velocity.x;
+
+        }
+    }
+    public float BRBV
+    {
+        get
+        {
+            if (BF == null) return 0;
+            if (!rb_cache.ContainsKey(BF)) rb_cache[BF] = BF.GetComponent<Rigidbody2D>();
+            return rb_cache[BF].velocity.x;
+        }
     }
     public float RRX
     {

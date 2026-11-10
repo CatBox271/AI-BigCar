@@ -78,7 +78,8 @@ public class BlockManager : MonoBehaviour
         }
         KPB.Clear();
     }
-   
+    private Dictionary<Vector2Int, List<float>> CacheBlockAnimationDelay = new();
+
     public void RefreshLevel(int ocl_index = -1,List<string> send_car_design = null)//加载存档
     {
         List<OwnCar> ocl = FindCar();
@@ -105,6 +106,27 @@ public class BlockManager : MonoBehaviour
             ocl[i].ClearCar();
             int index = -1;
             int inside = 0;
+            List<float> anim_delay = new();
+            Vector2Int area = ocl[i].ColliderArea;
+            if (!CacheBlockAnimationDelay.TryGetValue(area, out anim_delay))
+            {
+                anim_delay = new();
+                if (ocl[i].Camp == 2)
+                {
+                    for (int c = 0; c < area.x * area.y; c++)
+                    {
+                        anim_delay.Add((c % area.x + c / area.y) / (float)(area.x * area.y));
+                    }
+                }
+                else
+                {
+                    for (int c = 0; c < area.x * area.y; c++)
+                    {
+                        anim_delay.Insert(0,(c % area.x - c / area.y) / (float)(area.x * area.y));
+                    }
+                }
+                CacheBlockAnimationDelay[area] = anim_delay;
+            }
             for (int a = 0; count < car_design.Count; a++)
             {
                 if (car_design[count] == "114514")
@@ -140,6 +162,9 @@ public class BlockManager : MonoBehaviour
                         {
                             string n = GameManager.GetBlockCodeName((int)add);
                             last_go = PutBlock(n, index,ocl[i].transform);
+
+                            last_go.GetComponent<Heath>().StartBlockAnimation(anim_delay[index]);
+
                             //对战模式下，要把物体设置为可碰撞
                             if (ocl_index != -1)
                             {

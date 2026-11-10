@@ -23,6 +23,35 @@ public class Heath : MonoBehaviour
     public bool DieWithCollider;
 
     public bool IgnoteCampCollider;
+    private int animak = 0;
+    private float animation_speed = 5f;
+    public void StopBlockAnimation()
+    {
+        StopCoroutine(nameof(BlockAnimation));
+        if(animak == 1) transform.localScale = startScale;
+        animak = -1;
+    }
+    public void StartBlockAnimation(float delay = 0)
+    {
+        StartCoroutine(BlockAnimation(delay));
+    }
+    private Vector3 startScale;
+    IEnumerator BlockAnimation(float delay)
+    {
+        if (animak == -1) yield break;
+        startScale = transform.localScale;
+        animak = 1;
+        transform.localScale = new();
+        yield return new WaitForSeconds(delay);
+        float t = 0;
+        do
+        {
+            t += Time.deltaTime * animation_speed;
+            transform.localScale = startScale * t;
+            yield return null;
+        } while (t < 1f);
+        transform.localScale = startScale;
+    }
 
     private void Awake()
     {

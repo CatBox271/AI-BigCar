@@ -99,6 +99,8 @@ MonoBehaviour:
   sp: {fileID: 196548901127517518}
   VideoSwarmPoint: {fileID: 0}
   Sending: 0
+  carFrameworkIndex: 0
+  cardModeCoolDown: 2
   SpeedUP: 0
   HeathUP: 0
   HitUP: 0
@@ -106,6 +108,7 @@ MonoBehaviour:
   CarNum: 1
   SendCar: 1
   OperationCamera: {fileID: 0}
+  BanOperation: 0
   swarm_interval: 0.5
   MouseOn: 0
   Started: 0

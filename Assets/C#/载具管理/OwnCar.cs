@@ -66,11 +66,9 @@ public class OwnCar : MonoBehaviour
         Sending = true;
         ClearFloatBlock();
 
-
         //循环
         for (int t = 0; t < Times; t++)
         {
-
             //车辆生成
             CarStart($"载具{carFrameworkIndex}-{t}");
 
@@ -80,7 +78,6 @@ public class OwnCar : MonoBehaviour
                 yield return null;
                 yield return null;
             }
-
             if (t + 1 != Times)
             {
                 ReloadCar();
@@ -90,8 +87,10 @@ public class OwnCar : MonoBehaviour
         if (CardMode)
         {
             //循环结束应该清空车辆引用
+            BanOperation = true;
             ClearCar();
             yield return new WaitForSeconds(cardModeCoolDown);
+            BanOperation = false;
         }
         carFrameworkIndex++;
         Sending = false;
@@ -108,6 +107,7 @@ public class OwnCar : MonoBehaviour
             GetCarDesign.blue_choosed = false;
         }
     }
+
     public float SpeedUP = 1f;
     public float HeathUP = 0f;
     public float HitUP = 0f;
@@ -212,6 +212,7 @@ public class OwnCar : MonoBehaviour
 
     }
 
+    public bool BanOperation = false;
     private void LateUpdate()
     {
         if (VideoSwarmPoint != null)
@@ -512,6 +513,7 @@ public class OwnCar : MonoBehaviour
     void Click()
     {
         if (MouseOn == -1) return;
+        if (BanOperation) return;
         if (AllObject[MouseOn].Count != 0)
         {
             if (FindLast(MouseOn, GameManager.layIn, out int Index, out TryConnect tc))//get tc 判断是否要旋转
@@ -544,6 +546,7 @@ public class OwnCar : MonoBehaviour
     {
         int t = AllObject[i].Count - 1;
         if (t == -1) return false;
+        if (BanOperation) return false;
         if (!GetT(AllObject[i][t], out TryConnect tc)) return RemoveFromAllObject(i, t, false);
         if (SetLayIn) tc.layIn = GameManager.layIn;
 
@@ -754,6 +757,7 @@ public class OwnCar : MonoBehaviour
         {
             h.HP += HeathUP * 0.5f;
             h.max += HeathUP * 0.5f;
+            h.StopBlockAnimation();
         }
 
         //连接所有内容

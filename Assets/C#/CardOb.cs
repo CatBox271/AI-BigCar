@@ -29,26 +29,59 @@ public class CardOb : MonoBehaviour, IPointerDownHandler
     private string card_text = "";//拖拽前的卡名文本
     private bool dragging;//正在拖拽生成中
 
+    private CardManager manager;
+    CanvasGroup show;
+
+    public float appearSpeed = 6f;//抽牌出现动画速度
+    float appear;//出现进度0~1，进牌堆归零
+
+    void Awake()
+    {
+        if (!TryGetComponent(out show)) show = gameObject.AddComponent<CanvasGroup>();
+        manager = GetComponentInParent<CardManager>();
+    }
+    void Update()//按自己的 group_kind：手牌露出并滑到自己的槽位，进牌堆隐藏
+    {
+        float alpha = group_kind == 0 ? 1f : 0f;
+        if (show.alpha != alpha)
+        {
+            show.alpha = alpha;
+            show.blocksRaycasts = group_kind == 0;
+        }
+        if (group_kind != 0)
+        {
+            EndDragVisual();
+            appear = 0;
+            transform.localScale = Vector3.zero;
+            return;
+        }
+        RectTransform rt = (RectTransform)transform;
+        rt.anchoredPosition = Vector2.Lerp(rt.anchoredPosition, manager.handPos[group_index], Time.deltaTime * manager.moveSpeed);
+        appear = Mathf.Lerp(appear, 1f, Time.deltaTime * appearSpeed);//抽到手上从0长到1
+        rt.localScale = Vector3.one * appear;
+    }
     public void WriteIn(CardInfo info)
     {
         card_state = info.card_state;
         block_kind = info.block_kind;
         cost = info.cost;
+        print(info.card_name);
         card_name = info.card_name;
         describe = info.describe;
         adjudication = info.adjudication;
         behaviour.Clear();
         behaviour.AddRange(info.behaviour);
+        manager = GetComponentInParent<CardManager>();
         Refresh();
     }
     private void Refresh()
     {
-        Name.text = GameManager.BlockLibrary[block_kind].chinese_name;
-        Cost.text = cost.ToString();
-        Icon.sprite = GameManager.GetBlockSprite(block_kind);
         if (card_state == CardState.实物牌 && card_name == "") card_name = GameManager.GetBlockChineseName(block_kind);
         if (card_state == CardState.实物牌 && describe == "") describe = GameManager.GetBlockDescribe(block_kind);
         if (card_state == CardState.实物牌 && adjudication == "") adjudication = GameManager.GetBlockAdjudication(block_kind);
+        Name.text = card_name;
+        Cost.text = cost.ToString();
+        Icon.sprite = GameManager.GetBlockSprite(block_kind);
     }
     private void OnValidate()
     {
@@ -89,9 +122,10 @@ public class CardOb : MonoBehaviour, IPointerDownHandler
     }
     public void BeActive()//彻底激活：卡片打出后从手中移除
     {
-        dragging = false;
+        EndDragVisual();
         block_item = null;
-        gameObject.SetActive(false);
+        manager.CatchCard(-1, 1, group_kind, group_index);
+        //gameObject.SetActive(false);
     }
 
     public void OnPlaced(FollowMouse fm)//物体成功落位到载具上，卡片消失

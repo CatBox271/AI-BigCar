@@ -30,16 +30,19 @@ public class VideoFollow : MonoBehaviour
     public float V;
     Vector3 T;
 
+    public float Velaffect = 0.75f;
+
     public float BlendRate = 0;
     public float CombinedX = 0;
+    private VideoCameraFollow vcf => VideoCameraFollow.vcf;
     void Move()
     {
-        if (Red) AimX = VideoCameraFollow.vcf.RX;
-        else AimX = VideoCameraFollow.vcf.BX;
+        if (Red) AimX = vcf.RX;
+        else AimX = vcf.BX;
 
         T = transform.position;
         IX = Mathf.Lerp(IX, AimX, V);
-        T.x = Mathf.Lerp(T.x, IX, V);
+        T.x = Mathf.Lerp(T.x, Mathf.Lerp(IX, (Red ? vcf.RRBV : vcf.BRBV) + IX, Velaffect), V);
 
         transform.position = T;
         float X1 = Mathf.Lerp(transform.position.x, _camera.transform.position.x, BlendRate);

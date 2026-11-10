@@ -754,6 +754,7 @@ MonoBehaviour:
   Castle: 1
   DieWithCollider: 0
   IgnoteCampCollider: 1
+  animak: -1
   Bullet: 0
   showHit: {fileID: 3094680651753618184, guid: 4845d86b02a61f44286803d21e4709f5, type: 3}
   DH: 0

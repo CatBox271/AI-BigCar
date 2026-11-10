@@ -8,6 +8,7 @@ public class UICardModeSendCar : MonoBehaviour
 {
     public Button button;
     public Transform OwnCarParent;
+    public CardManager cardManager;//这份手牌属于谁，右边发车不动左边的牌
     private SpriteRenderer loading;
     private 车辆样板加载 model;
     private OwnCar car;
@@ -23,6 +24,7 @@ public class UICardModeSendCar : MonoBehaviour
     {
         if (car.Sending) return;
         car.SendCar = true;
+        if (cardManager != null) cardManager.DiscardHand();
         print("send");
         loading.gameObject.SetActive(true);
         print(loading.gameObject.name);
