@@ -47,6 +47,11 @@ public class CardManager : MonoBehaviour
         }
     }
 
+    public static void ClearCardDefine()//cards.json 重新导入时清空内存表
+    {
+        cardDefine.Clear();
+    }
+
     public const string BlockLibraryPath = "Data/cards";
     [System.Serializable]
     public class CardDefineTable

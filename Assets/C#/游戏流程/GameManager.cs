@@ -51,6 +51,11 @@ public class GameManager : MonoBehaviour
         blockLibrary.AddRange(table.blocks);
     }
 
+    public static void ClearBlockLibrary()//BlockLibrary.json 重新导入时清空内存表
+    {
+        blockLibrary.Clear();
+    }
+
     public static string GetBlockCodeName(int index)
     {
         if (index > -1 && index < BlockLibrary.Count)
