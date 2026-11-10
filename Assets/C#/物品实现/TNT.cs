@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TNT : MonoBehaviour,ION
+public class TNT : MonoBehaviour,ION,IStart
 {
     private Heath heath;
     public GameObject BoomWave;
@@ -26,6 +26,12 @@ public class TNT : MonoBehaviour,ION
 
     public bool OnSet { get; set; }
     public float NumSet { get; set; }
+
+    public bool Started;//被载具 SetStart 激活过；没激活的拖拽预览松手销毁时不炸
+    public void SetStart(float t)
+    {
+        Started = true;
+    }
 
     private void Update()
     {
@@ -93,11 +99,15 @@ public class TNT : MonoBehaviour,ION
         if (quitting) return;                    // 应用退出
         if (!Application.isPlaying) return;      // 退出播放模式
         if (!gameObject.scene.isLoaded) return;  // 场景正在卸载/切换
+        if (!Started) return;                    // 卡片拖拽预览/未激活的块，销毁不炸
         Boom();
     }
 
+    bool boomed;
     public void Boom()
     {
+        if (boomed) return;//Destroy 触发的 OnDestroy 会再进这里，只炸一次
+        boomed = true;
         Color col = Color.white;
         int lay = 0;
         if (heath.camp == 1)

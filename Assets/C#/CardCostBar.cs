@@ -12,12 +12,20 @@ public class CardCostBar : MonoBehaviour
     public Txt costNum;
 
     public float DownWaitTime;
+    public float RefillInterval = 2f;//每隔几秒自动回 1 费，<=0 关闭回费
 
     private float allH;
     private float minH;
     private float startH;
 
     private int lastCost;
+    float refillTime;
+
+    public void AddCost(int num)//费用唯一入口：正数回费、负数扣费，夹在 0~MaxCost
+    {
+        Cost = Mathf.Clamp(Cost + num, 0, MaxCost);
+    }
+
     private void Refresh(bool immdiate = false)
     {
         if (lastCost == Cost) return;
@@ -47,6 +55,11 @@ public class CardCostBar : MonoBehaviour
     private void Update()
     {
         Refresh(false);
+        if (RefillInterval <= 0) return;
+        refillTime += Time.deltaTime;
+        if (refillTime < RefillInterval) return;
+        refillTime -= RefillInterval;//减间隔不归零，帧率波动不丢时间
+        AddCost(1);
     }
     private void Start()
     {

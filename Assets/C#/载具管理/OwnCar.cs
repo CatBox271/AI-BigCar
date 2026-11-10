@@ -50,8 +50,10 @@ public class OwnCar : MonoBehaviour
     public int carFrameworkIndex = 0;
     public float cardModeCoolDown = 2f;
     public Action SendingFinish;
+    public Action BeforeSend;
     IEnumerator SendCarNum(int Times)
     {
+        BeforeSend?.Invoke();
         if (Camp == 2)
         {
             SelectBall.RedSending = true;

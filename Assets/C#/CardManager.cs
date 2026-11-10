@@ -24,6 +24,7 @@ public class CardManager : MonoBehaviour
 {
     public GameObject monocard;
     public Camera currentCamera;
+    public CardCostBar costBar;//本方费用条，扣费和回费都走它
     public int handlimit = 8;
     public static List<CardInfo> CardDefine
     {
@@ -41,7 +42,6 @@ public class CardManager : MonoBehaviour
         {
             var asset = Resources.Load<TextAsset>(BlockLibraryPath);
             var table = JsonUtility.FromJson<CardDefineTable>(asset.text);
-            print(table.cards.Count);
             cardDefine.Clear();
             cardDefine.AddRange(table.cards);
         }

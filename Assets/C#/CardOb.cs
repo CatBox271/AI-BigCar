@@ -65,7 +65,6 @@ public class CardOb : MonoBehaviour, IPointerDownHandler
         card_state = info.card_state;
         block_kind = info.block_kind;
         cost = info.cost;
-        print(info.card_name);
         card_name = info.card_name;
         describe = info.describe;
         adjudication = info.adjudication;
@@ -90,6 +89,7 @@ public class CardOb : MonoBehaviour, IPointerDownHandler
     public void PreSwarm()//被鼠标按下拖动，生成物体，此时卡片变为一个半透明的虚空形态文本描述变为卡片区松开取消释放。
     {
         if (dragging || block_item != null) return;
+        if (manager.costBar != null && manager.costBar.Cost < cost) return;//费不够连虚空物体都不生成
         if (card_state != CardState.实物牌) return;
         string code = GameManager.GetBlockCodeName(block_kind);
         if (string.IsNullOrEmpty(code) || code == "Null") return;
@@ -124,6 +124,7 @@ public class CardOb : MonoBehaviour, IPointerDownHandler
     {
         EndDragVisual();
         block_item = null;
+        if (manager.costBar != null) manager.costBar.AddCost(-cost);//只有真正落位成功才扣费
         manager.CatchCard(-1, 1, group_kind, group_index);
         //gameObject.SetActive(false);
     }
