@@ -3166,7 +3166,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 898490328}
+  - {fileID: 1025474674}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15302,7 +15302,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!21 &898490328
+--- !u!21 &898923722
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
@@ -15314,8 +15314,7 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _MIRROR_ON
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -15364,7 +15363,7 @@ Material:
     - _HueShift: 0.1
     - _LayerSpread: 1
     - _Layers: 0.35
-    - _Mirror: 1
+    - _Mirror: 0
     - _Mode: 5
     - _RadialFreq: 2
     - _Reach: 2.2
@@ -15388,7 +15387,7 @@ Material:
     - _Width: 1
     - _Wobble: 1.6
     m_Colors:
-    - _Color: {r: 1, g: 0, b: 0.07960701, a: 1}
+    - _Color: {r: 0, g: 0.47835827, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _Tiling: {r: 1, g: 1.6, b: 0, a: 0}
@@ -17731,6 +17730,97 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!21 &1025474674
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_CoronaFade
+  m_Shader: {fileID: 4800000, guid: e08bb392559e7764483ad8a694ee672a, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SilkTex:
+        m_Texture: {fileID: 2800000, guid: a1c9fb2830553b44da866e28f2e8dfe9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AngularFreq: 30
+    - _BandSharp: 1
+    - _BandWidth: 0.3
+    - _Bands: 16
+    - _Blocks: 1.4
+    - _Brightness: 1
+    - _Contrast: 0.75
+    - _Core: 1
+    - _CoreAmount: 1
+    - _CorePow: 2.2
+    - _CorePower: 1.4
+    - _CoreWidth: 0.012
+    - _Detail: 1.6
+    - _Dissolve: 0.55
+    - _EdgeSharp: 0.012
+    - _EdgeSoftness: 0.03
+    - _FadeLength: 0.9
+    - _Falloff: 1.6
+    - _Fibers: 22
+    - _Flow: 0.6
+    - _Glow: 1
+    - _GlowPower: 1
+    - _GlowScale: 2.2
+    - _GlowWidth: 0.85
+    - _Haze: 0.45
+    - _HueShift: 0.1
+    - _LayerSpread: 1
+    - _Layers: 0.35
+    - _Mirror: 1
+    - _Mode: 5
+    - _RadialFreq: 2
+    - _Reach: 2.2
+    - _Saturation: 0.75
+    - _ScaleX: 1.4
+    - _ScaleY: 9
+    - _Scroll: 0.35
+    - _Sharpness: 1.3
+    - _Silk: 26
+    - _SilkFreq: 24
+    - _SilkSharp: 0.42
+    - _SourceX: -0.45
+    - _Speed: 0.35
+    - _Spread: 0.3
+    - _Streaks: 5.5
+    - _W1: 0.05
+    - _W2: 0.26
+    - _W3: 0.55
+    - _WaveDepth: 0.85
+    - _Waves: 12
+    - _Width: 1
+    - _Wobble: 1.6
+    m_Colors:
+    - _Color: {r: 1, g: 0, b: 0.07960701, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Tiling: {r: 1, g: 1.6, b: 0, a: 0}
+    - _UVRect: {r: 0, g: 0, b: 1, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1 &1031531094
 GameObject:
   m_ObjectHideFlags: 0
@@ -18200,97 +18290,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!21 &1069022812
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: M_CoronaFade
-  m_Shader: {fileID: 4800000, guid: e08bb392559e7764483ad8a694ee672a, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SilkTex:
-        m_Texture: {fileID: 2800000, guid: a1c9fb2830553b44da866e28f2e8dfe9, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _AngularFreq: 30
-    - _BandSharp: 1
-    - _BandWidth: 0.3
-    - _Bands: 16
-    - _Blocks: 1.4
-    - _Brightness: 1
-    - _Contrast: 0.75
-    - _Core: 1
-    - _CoreAmount: 1
-    - _CorePow: 2.2
-    - _CorePower: 1.4
-    - _CoreWidth: 0.012
-    - _Detail: 1.6
-    - _Dissolve: 0.55
-    - _EdgeSharp: 0.012
-    - _EdgeSoftness: 0.03
-    - _FadeLength: 0.9
-    - _Falloff: 1.6
-    - _Fibers: 22
-    - _Flow: 0.6
-    - _Glow: 1
-    - _GlowPower: 1
-    - _GlowScale: 2.2
-    - _GlowWidth: 0.85
-    - _Haze: 0.45
-    - _HueShift: 0.1
-    - _LayerSpread: 1
-    - _Layers: 0.35
-    - _Mirror: 0
-    - _Mode: 5
-    - _RadialFreq: 2
-    - _Reach: 2.2
-    - _Saturation: 0.75
-    - _ScaleX: 1.4
-    - _ScaleY: 9
-    - _Scroll: 0.35
-    - _Sharpness: 1.3
-    - _Silk: 26
-    - _SilkFreq: 24
-    - _SilkSharp: 0.42
-    - _SourceX: -0.45
-    - _Speed: 0.35
-    - _Spread: 0.3
-    - _Streaks: 5.5
-    - _W1: 0.05
-    - _W2: 0.26
-    - _W3: 0.55
-    - _WaveDepth: 0.85
-    - _Waves: 12
-    - _Width: 1
-    - _Wobble: 1.6
-    m_Colors:
-    - _Color: {r: 0, g: 0.47835827, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Tiling: {r: 1, g: 1.6, b: 0, a: 0}
-    - _UVRect: {r: 0, g: 0, b: 1, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &1072629918
 GameObject:
   m_ObjectHideFlags: 0
@@ -32856,7 +32855,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1069022812}
+  - {fileID: 898923722}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -37386,9 +37385,9 @@ MonoBehaviour:
   con: []
   size: 30
   offset: 0
-  VerticalOffset: 5
+  VerticalOffset: 0.16666667
   color: {r: 1, g: 1, b: 1, a: 1}
-  word_offset: 1.6875
+  word_offset: 0.05625
 --- !u!114 &8472844917955936894
 MonoBehaviour:
   m_ObjectHideFlags: 0

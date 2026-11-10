@@ -15335,8 +15335,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 4714659151232732442}
   BlockName: 
-  NameList: []
-  InformList: []
 --- !u!114 &6573539212643536665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19740,8 +19738,16 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -1860774557053712819, guid: b7e7ace2064820c4c843f7ac026577e7, type: 3}
+      propertyPath: offset
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -1860774557053712819, guid: b7e7ace2064820c4c843f7ac026577e7, type: 3}
       propertyPath: word_offset
-      value: 40
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -1860774557053712819, guid: b7e7ace2064820c4c843f7ac026577e7, type: 3}
+      propertyPath: VerticalOffset
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 1435082894036784122, guid: b7e7ace2064820c4c843f7ac026577e7, type: 3}
       propertyPath: m_SizeDelta.x

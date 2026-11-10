@@ -22,25 +22,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    /// <summary>BlockLibrary.json 的顶层结构。JsonUtility 不支持顶层数组，所以套一层。</summary>
     [System.Serializable]
     public class BlockLibraryTable
     {
-        public int version = 1;
         public List<BlockInfo> blocks = new();
     }
 
-    /// <summary>方块表的 Resources 路径（不带扩展名），实际文件是 Assets/Resources/Data/BlockLibrary.json。</summary>
     public const string BlockLibraryPath = "Data/BlockLibrary";
 
     // 表体内存。对外统一走 BlockLibrary 属性，保证第一次访问时就已从 JSON 载入。
     static readonly List<BlockInfo> blockLibrary = new();
-    static bool blockLibraryLoaded;
 
-    /// <summary>
-    /// 方块表。下标就是 [BlockIndex] 和存档里用的数字索引，顺序不可变。
-    /// 数据在 Assets/Resources/Data/BlockLibrary.json，第一次被访问发现为空时自动读入。
-    /// </summary>
     public static List<BlockInfo> BlockLibrary
     {
         get
@@ -50,36 +42,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    /// <summary>表为空且还没加载过时，从 Resources 读一次。</summary>
     static void EnsureBlockLibrary()
     {
-        if (blockLibraryLoaded || blockLibrary.Count > 0) return;
-        blockLibraryLoaded = true;
-
+        if (blockLibrary.Count > 0) return;
         var asset = Resources.Load<TextAsset>(BlockLibraryPath);
-        if (asset == null)
-        {
-            Debug.LogError("找不到方块表 Resources/" + BlockLibraryPath + ".json，BlockLibrary 当前为空。");
-            return;
-        }
-
         var table = JsonUtility.FromJson<BlockLibraryTable>(asset.text);
-        if (table == null || table.blocks == null || table.blocks.Count == 0)
-        {
-            Debug.LogError("Resources/" + BlockLibraryPath + ".json 解析失败或没有条目。");
-            return;
-        }
-
         blockLibrary.Clear();
         blockLibrary.AddRange(table.blocks);
-    }
-
-    /// <summary>改完 JSON 后可立即重读，不用重启编辑器。</summary>
-    public static void ReloadBlockLibrary()
-    {
-        blockLibraryLoaded = false;
-        blockLibrary.Clear();
-        EnsureBlockLibrary();
     }
 
     public static string GetBlockCodeName(int index)

@@ -793,10 +793,10 @@ MonoBehaviour:
   context: 
   con: []
   size: 45
-  offset: 0.75
-  VerticalOffset: 10
+  offset: 0.016666668
+  VerticalOffset: 0.22222222
   color: {r: 1, g: 1, b: 1, a: 1}
-  word_offset: 2.25
+  word_offset: 0.05
 --- !u!114 &8530711980709406470
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,12 +14,23 @@ public class ShowNum : MonoBehaviour
     void Start()
     {
         im = GetComponent<SpriteRenderer>();
+        FatherObject = transform.parent.GetComponent<Txt>();
+        Refresh();
+    }
+
+    /// <summary>按当前的 size / offset / word_offset 重新缩放并重排。改 Inspector 里的参数时实时调用。</summary>
+    public void Refresh()
+    {
+        if (im == null) im = GetComponent<SpriteRenderer>();
+        if (im == null) return;
         im.color = color;
+        if (transform.parent == null) return;
         Vector3 v3 = transform.parent.lossyScale;
         v3.x = 1f / v3.x;
         v3.y = 1f / v3.y;
         transform.localScale = v3 * size;
-        FatherObject = transform.parent.GetComponent<Txt>();
+        if (FatherObject == null) FatherObject = transform.parent.GetComponent<Txt>();
+        if (FatherObject == null) return;
         CorrectPos();
     }
 

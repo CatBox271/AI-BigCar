@@ -106,6 +106,7 @@ MonoBehaviour:
   CarNum: 1
   SendCar: 1
   OperationCamera: {fileID: 0}
+  swarm_interval: 0.5
   MouseOn: 0
   Started: 0
   origin_save: []

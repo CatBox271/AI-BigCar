@@ -517,9 +517,9 @@ MonoBehaviour:
   con: []
   size: 30
   offset: 0
-  VerticalOffset: 1
+  VerticalOffset: 0.033333335
   color: {r: 1, g: 1, b: 1, a: 1}
-  word_offset: 1.6875
+  word_offset: 0.05625
 --- !u!114 &7181825934746537937
 MonoBehaviour:
   m_ObjectHideFlags: 0

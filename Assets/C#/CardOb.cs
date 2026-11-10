@@ -6,7 +6,7 @@ using UnityEngine.UI;
 /// <summary>
 /// 实体卡，处理点击，动画
 /// </summary>
-public class CardOb : MonoBehaviour,IPointerDownHandler,IPointerExitHandler,IPointerUpHandler
+public class CardOb : MonoBehaviour, IPointerDownHandler
 {
     public Image Icon;
     public Text Name;
@@ -23,28 +23,25 @@ public class CardOb : MonoBehaviour,IPointerDownHandler,IPointerExitHandler,IPoi
     public int group_index;
     public List<string> behaviour;//行动词条，当卡片类型为实物牌时激活优先生成对应的Block再运行这个。
     private FollowMouse block_item;//临时保存激活时生成的物体方便behaviour对它修改。
-    public Camera card_camera;//屏幕→世界换算用的相机，留空自动取 OwnCar.OperationCamera，再退回 Camera.main
-    private Camera auto_camera;//自动找到的相机缓存，不回写 card_camera
+    public Camera currentCamera;
 
     private Color card_color = Color.white;//拖拽前的卡面颜色
     private string card_text = "";//拖拽前的卡名文本
     private bool dragging;//正在拖拽生成中
 
-    public enum CardState
-    { 
-        实物牌,
-        技能牌,
-    }
-
-    public void WriteIn(CardOb info)
+    public void WriteIn(CardInfo info)
     {
-        this.card_state = info.card_state;
-        this.block_kind = info.block_kind;
-        this.cost = info.cost;
-        this.group_kind = info.group_kind;
-        this.group_index = info.group_index;
+        card_state = info.card_state;
+        block_kind = info.block_kind;
+        cost = info.cost;
+        card_name = info.card_name;
+        describe = info.describe;
+        adjudication = info.adjudication;
+        behaviour.Clear();
+        behaviour.AddRange(info.behaviour);
+        Refresh();
     }
-    private void OnValidate()
+    private void Refresh()
     {
         Name.text = GameManager.BlockLibrary[block_kind].chinese_name;
         Cost.text = cost.ToString();
@@ -52,6 +49,10 @@ public class CardOb : MonoBehaviour,IPointerDownHandler,IPointerExitHandler,IPoi
         if (card_state == CardState.实物牌 && card_name == "") card_name = GameManager.GetBlockChineseName(block_kind);
         if (card_state == CardState.实物牌 && describe == "") describe = GameManager.GetBlockDescribe(block_kind);
         if (card_state == CardState.实物牌 && adjudication == "") adjudication = GameManager.GetBlockAdjudication(block_kind);
+    }
+    private void OnValidate()
+    {
+        Refresh();
     }
     public void PreSwarm()//被鼠标按下拖动，生成物体，此时卡片变为一个半透明的虚空形态文本描述变为卡片区松开取消释放。
     {
@@ -70,7 +71,7 @@ public class CardOb : MonoBehaviour,IPointerDownHandler,IPointerExitHandler,IPoi
         go.name = prefab.name;
         go.SetActive(true);
 
-        Camera cam = ResolveCamera();
+        Camera cam = currentCamera;
         if (cam != null)
         {
             Vector3 pos = cam.ScreenToWorldPoint(Input.mousePosition);
@@ -103,23 +104,6 @@ public class CardOb : MonoBehaviour,IPointerDownHandler,IPointerExitHandler,IPoi
         if (ReferenceEquals(block_item, fm)) block_item = null;
         EndDragVisual();
     }
-
-    Camera ResolveCamera()
-    {
-        if (card_camera != null) return card_camera;
-        if (auto_camera != null) return auto_camera;
-        foreach (OwnCar oc in FindObjectsOfType<OwnCar>())
-        {
-            if (oc != null && oc.OperationCamera != null)
-            {
-                auto_camera = oc.OperationCamera;
-                return auto_camera;
-            }
-        }
-        auto_camera = Camera.main;
-        return auto_camera;
-    }
-
     void BeginDragVisual()
     {
         dragging = true;
@@ -143,25 +127,9 @@ public class CardOb : MonoBehaviour,IPointerDownHandler,IPointerExitHandler,IPoi
         if (img != null) img.color = card_color;
         if (Name != null) Name.text = card_text;
     }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        print("鼠标点击");
-    }
-
     public void OnPointerDown(PointerEventData eventData)
     {
         if (eventData.button != PointerEventData.InputButton.Left) return;
         PreSwarm();
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-
     }
 }

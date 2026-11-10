@@ -40,10 +40,8 @@ public class FixShow : MonoBehaviour
     public void Setting(float _fix)
     {
         t.color = new Color(0.75f, 1f, 0.75f,0.75f);
+        // 间距、水平/竖直偏移都随 size 等比缩放，只需缩放字号
         t.size *= Mathf.Clamp(_fix / 15f, 1f, 3f);
-        t.offset *= Mathf.Clamp(_fix / 15f, 1f, 3f);
-        t.word_offset *= Mathf.Clamp(_fix / 15f, 1f, 3f);
-        t.VerticalOffset *= Mathf.Clamp(_fix / 15f, 1f, 3f);
         t.context = ((int)_fix).ToString();
         StartCoroutine("anim");
     }

@@ -250,7 +250,7 @@ public class IC_Code : MonoBehaviour,ION
     private void FixedUpdate()
     {
         if (VideoMode && !setactive) return;
-        if (GameManager.gameState == GameManager.GameState.Start)
+        if (GameManager.gameState == GameManager.GameState.Start || VideoMode)
         {
             if (start > -1)
             {

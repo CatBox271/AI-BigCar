@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3094680651753618184}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.2280254, y: -3.1501882, z: -0.2369746}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3094680651753618187
 MonoBehaviour:
@@ -47,11 +47,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Word: {fileID: 2147102472116852515, guid: ce1670fd2c65c614fa988a4b2dc2b3d3, type: 3}
   context: 
+  con: []
   size: 8
   offset: 0
   VerticalOffset: 0
   color: {r: 1, g: 1, b: 1, a: 1}
-  word_offset: 0.4
+  word_offset: 0.05
 --- !u!114 &1696307058670949079
 MonoBehaviour:
   m_ObjectHideFlags: 0

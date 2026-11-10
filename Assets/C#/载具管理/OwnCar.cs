@@ -47,8 +47,9 @@ public class OwnCar : MonoBehaviour
     }
     public bool Sending;
 
-    private int carFrameworkIndex = 0;
-
+    public int carFrameworkIndex = 0;
+    public float cardModeCoolDown = 2f;
+    public Action SendingFinish;
     IEnumerator SendCarNum(int Times)
     {
         if (Camp == 2)
@@ -73,24 +74,28 @@ public class OwnCar : MonoBehaviour
             //车辆生成
             CarStart($"载具{carFrameworkIndex}-{t}");
 
-            yield return null;
-            yield return null;
-            yield return null;
+            if (!CardMode)
+            {
+                yield return null;
+                yield return null;
+                yield return null;
+            }
 
             if (t + 1 != Times)
             {
                 ReloadCar();
-                yield return new WaitForSeconds(0.5f);
+                if (!CardMode) yield return new WaitForSeconds(swarm_interval);
             }
         }
-        if (SceneProp.Instance.gameMode == SceneProp.GameMode.card)
+        if (CardMode)
         {
             //循环结束应该清空车辆引用
             ClearCar();
+            yield return new WaitForSeconds(cardModeCoolDown);
         }
         carFrameworkIndex++;
-
         Sending = false;
+        SendingFinish?.Invoke();
         CarNum = 1;
         if (Camp == 2)
         {
@@ -733,6 +738,15 @@ public class OwnCar : MonoBehaviour
         return tf;
     }
 
+    IEnumerator FreezeCarFramework(GameObject car,float time)
+    {
+        car.SetActive(false);
+        yield return new WaitForSeconds(time);
+        car.SetActive(true);
+    }
+
+    public float swarm_interval = 0.5f;
+
     public void CarStart(string framework_name = "")
     {
         //添加加成
@@ -741,7 +755,6 @@ public class OwnCar : MonoBehaviour
             h.HP += HeathUP * 0.5f;
             h.max += HeathUP * 0.5f;
         }
-
 
         //连接所有内容
         TryConnect tc;
@@ -840,6 +853,8 @@ public class OwnCar : MonoBehaviour
         {
             //先新建一个空的物体方便管理
             Transform CarFramework = SwarmNewCarFramework(VideoSwarmPoint, framework_name);
+
+            StartCoroutine(FreezeCarFramework(CarFramework.gameObject, swarm_interval));
 
             for (int i = transform.childCount - 1; i > -1; i--)
             {
