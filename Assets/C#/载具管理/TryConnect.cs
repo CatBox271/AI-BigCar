@@ -1,4 +1,4 @@
-
+ï»¿
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +7,7 @@ public class TryConnect : MonoBehaviour
 {
     public bool[] CantConnect = new bool[5];
     public List<Transform> Object = new ();
-    //1ÖÁ5·Ö±ğ´ú±í ÉÏ ÏÂ ×ó ÓÒ ÖĞ
+    //1è‡³5åˆ†åˆ«ä»£è¡¨ ä¸Š ä¸‹ å·¦ å³ ä¸­
 
     public bool Father;
 

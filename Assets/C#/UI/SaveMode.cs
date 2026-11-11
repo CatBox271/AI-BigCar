@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
@@ -77,7 +77,7 @@ public class SaveMode : MonoBehaviour
         int XE = XS + car_width;
         int YE = YS + car_height;
 
-        //¶ÁÈ¡ËùÓĞÁĞ±í
+        //è¯»å–æ‰€æœ‰åˆ—è¡¨
         List<string> get = mv.bm.KeepLevel();
         int carIndex = 0;
 
@@ -97,7 +97,7 @@ public class SaveMode : MonoBehaviour
                 allcars[carIndex].Add(get[i]);
             }
         }
-        //Ìæ»»ÁĞ±í
+        //æ›¿æ¢åˆ—è¡¨
         allcars[Choosed] = new();
         int a = 0;
         for (int i = 0; i < Size.x * Size.y; i++)
@@ -132,7 +132,7 @@ public class SaveMode : MonoBehaviour
                 allcars[Choosed].Add("0");
             }
         }
-        //×îÖÕÕûºÏ
+        //æœ€ç»ˆæ•´åˆ
         List<string> newsave = new();
         for (int i = 0; i < allcars.Count; i++)
         {
@@ -188,13 +188,13 @@ public class SaveMode : MonoBehaviour
         }
         if (ok)
         {
-            //¼Ó¶¯»­È·ÈÏ
-            ShowCarName.text = "ÊÇ·ñ¼ÓÔØ<" + vs.carsave[0] + ">";
+            //åŠ åŠ¨ç”»ç¡®è®¤
+            ShowCarName.text = "æ˜¯å¦åŠ è½½<" + vs.carsave[0] + ">";
             mv.anim.Play("LoadReplaceConfirm");
         }
         else
         { 
-            //¼ÓÔØ¿Õ¼ä²»×ãÌáÊ¾
+            //åŠ è½½ç©ºé—´ä¸è¶³æç¤º
         }
     }
 
@@ -203,7 +203,7 @@ public class SaveMode : MonoBehaviour
         int p = 1;
         if(NameInput.text.Length == 0)
         {
-            NameInput.text = "Éè¼Æ" + p;
+            NameInput.text = "è®¾è®¡" + p;
         }
         string[] files = FileUtils.GetFilesInPersistentFolder("VehicleDesign");
 
@@ -221,7 +221,7 @@ public class SaveMode : MonoBehaviour
                 if (NameInput.text == _name)
                 {
                     p++;
-                    NameInput.text = "Éè¼Æ" + p;
+                    NameInput.text = "è®¾è®¡" + p;
                 }
                 RectTransform go;
                 if (DesignButton.transform.childCount - 1 < i)
@@ -264,7 +264,7 @@ public class SaveMode : MonoBehaviour
 
         if (!Exist) return;
         
-        List<string> Addin = new();//µ±Ç°µÄÉè¼Æ
+        List<string> Addin = new();//å½“å‰çš„è®¾è®¡
         Addin.Add(Name);
         Addin.Add((float.Parse(mv.RDR[Choosed][1]) - float.Parse(mv.RDR[Choosed][0]) + 1).ToString());
         for (int i = 4; i < mv.RDR[Choosed].Count; i++)
@@ -283,7 +283,7 @@ public class SaveMode : MonoBehaviour
 
         File.WriteAllText(path, json);
 
-        NameInput.text = "Éè¼Æ1";
+        NameInput.text = "è®¾è®¡1";
         mv.anim.SetTrigger("Back");
         mv.anim.SetTrigger("Cancel");
         print("ReplaceDesign");
@@ -292,7 +292,7 @@ public class SaveMode : MonoBehaviour
 
     public void ChangeNameSave()
     {
-        NameInput.text = "ĞÂ " + FinalName.text;
+        NameInput.text = "æ–° " + FinalName.text;
         Save();
     }
 
@@ -370,7 +370,7 @@ public class SaveMode : MonoBehaviour
             var path = Path.Combine(Application.persistentDataPath, "VehicleDesign", Name + ".json");
             File.WriteAllText(path, json);
 
-            NameInput.text = "Éè¼Æ1";
+            NameInput.text = "è®¾è®¡1";
             mv.anim.SetTrigger("Back");
             mv.anim.SetTrigger("Cancel");
             print("SaveDesign");
@@ -378,8 +378,8 @@ public class SaveMode : MonoBehaviour
         }
         else
         {
-            //¶¯»­ÊÇ·ñÌæ»»µ±Ç°Éè¼Æ
-            ShowCarName.text = "ÊÇ·ñÌæ»»Í¬ÃûÉè¼Æ";
+            //åŠ¨ç”»æ˜¯å¦æ›¿æ¢å½“å‰è®¾è®¡
+            ShowCarName.text = "æ˜¯å¦æ›¿æ¢åŒåè®¾è®¡";
             mv.anim.Play("ReplaceConfirm");
         }
         AssetDatabase.Refresh();

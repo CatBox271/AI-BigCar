@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -6,11 +6,11 @@ using UnityEngine.EventSystems;
 public class FollowMouse : MonoBehaviour
 {
     public bool NullBlock;
-    public Camera Cam;//ÆÁÄ»¡úÊÀ½ç»»ËãÓÃµÄÏà»ú£»Îª¿ÕÊ±¼Ì³ĞËùÊôÔØ¾ßµÄ OperationCam£¬ÔÙÍË»Ø Camera.main
-    public CardOb FromCard;//¿¨Æ¬Ä£Ê½£º±¾´ÎÍÏ×§ÓÉÄÄÕÅ¿¨·¢Æğ£¬ÂäÎ»³É¹¦»òÈ¡Ïûºó»Øµ÷Ëü
-    public OwnCar FromCar;//±¾´ÎÍÏ×§µÄ²¿¼şÔ­±¾ÔÚÄÄÁ¾³µÀï£¨OwnCar.Move ÍÏÒÑÓĞ²¿¼şÊ±¼ÇÂ¼£©
-    public int FromIndex = -1;//Ô­±¾µÄ¸ñ×ÓË÷Òı£¬·ÅÖÃ³åÍ»Ê±ÍË»ØÕâÀï
-    private Camera autoCam;//×Ô¶¯½âÎöµ½µÄÏà»ú»º´æ
+    public Camera Cam;//å±å¹•â†’ä¸–ç•Œæ¢ç®—ç”¨çš„ç›¸æœºï¼›ä¸ºç©ºæ—¶ç»§æ‰¿æ‰€å±è½½å…·çš„ OperationCamï¼Œå†é€€å› Camera.main
+    public CardOb FromCard;//å¡ç‰‡æ¨¡å¼ï¼šæœ¬æ¬¡æ‹–æ‹½ç”±å“ªå¼ å¡å‘èµ·ï¼Œè½ä½æˆåŠŸæˆ–å–æ¶ˆåå›è°ƒå®ƒ
+    public OwnCar FromCar;//æœ¬æ¬¡æ‹–æ‹½çš„éƒ¨ä»¶åŸæœ¬åœ¨å“ªè¾†è½¦é‡Œï¼ˆOwnCar.Move æ‹–å·²æœ‰éƒ¨ä»¶æ—¶è®°å½•ï¼‰
+    public int FromIndex = -1;//åŸæœ¬çš„æ ¼å­ç´¢å¼•ï¼Œæ”¾ç½®å†²çªæ—¶é€€å›è¿™é‡Œ
+    private Camera autoCam;//è‡ªåŠ¨è§£æåˆ°çš„ç›¸æœºç¼“å­˜
     private Camera FollowCam
     {
         get
@@ -24,13 +24,13 @@ public class FollowMouse : MonoBehaviour
     }
     private void OnEnable()
     {
-        autoCam = null;//¸¸¼¶¿ÉÄÜ±äÁË£¬»º´æÖØËã
+        autoCam = null;//çˆ¶çº§å¯èƒ½å˜äº†ï¼Œç¼“å­˜é‡ç®—
     }
     private readonly float video_speed = 20f;
     private void Start()
     {
         SceneProp sceneProp = SceneProp.Instance;
-        Video = sceneProp != null && (sceneProp.gameMode == SceneProp.GameMode.video);//Õâ¸ö¾ÍÖ»ÈÏvideoÁË
+        Video = sceneProp != null && (sceneProp.gameMode == SceneProp.GameMode.video);//è¿™ä¸ªå°±åªè®¤videoäº†
         if (Video)
         {
             if (!TryGetComponent(out rb))
@@ -46,15 +46,15 @@ public class FollowMouse : MonoBehaviour
         }
     }
     Rigidbody2D rb;
-    public void MoveAway()//·ÅÖÃÊ§°Ü/È¡ÏûµÄÍ³Ò»ÍË»ØÈë¿Ú
+    public void MoveAway()//æ”¾ç½®å¤±è´¥/å–æ¶ˆçš„ç»Ÿä¸€é€€å›å…¥å£
     {
-        if (FromCard != null)//À´×Ô¿¨ÅÆ£ºÍË»Ø¿¨Æ¬£¬²»½øÈë·½¿éÀ¸
+        if (FromCard != null)//æ¥è‡ªå¡ç‰Œï¼šé€€å›å¡ç‰‡ï¼Œä¸è¿›å…¥æ–¹å—æ 
         {
             FromCard.OnPlaceCancel(this);
             Destroy(gameObject);
             return;
         }
-        if (FromCar != null && FromIndex >= 0)//À´×Ô°å×Ó¸ñ×Ó£ºÍË»ØÔ­Î»ÖÃ
+        if (FromCar != null && FromIndex >= 0)//æ¥è‡ªæ¿å­æ ¼å­ï¼šé€€å›åŸä½ç½®
         {
             OwnCar car = FromCar;
             int index = FromIndex;
@@ -68,7 +68,7 @@ public class FollowMouse : MonoBehaviour
         Destroy(gameObject);
     }
 
-    static List<OwnCar> FindCars()//¿¨Æ¬Ä£Ê½ÏÂ BlockManager ¿ÉÄÜ²»¿ÉÓÃ£¬¶µµ×Ö±½ÓÕÒ³¡¾°ÀïµÄ³µ
+    static List<OwnCar> FindCars()//å¡ç‰‡æ¨¡å¼ä¸‹ BlockManager å¯èƒ½ä¸å¯ç”¨ï¼Œå…œåº•ç›´æ¥æ‰¾åœºæ™¯é‡Œçš„è½¦
     {
         if (BlockManager.bm != null) return BlockManager.bm.FindCar();
         return new List<OwnCar>(FindObjectsOfType<OwnCar>());
@@ -87,7 +87,7 @@ public class FollowMouse : MonoBehaviour
         Destroy(this);
     }
 
-    public bool ClickTo(Transform tf)//·µ»ØÊÇ·ñÕæµÄÂäÎ»³É¹¦£»Ê§°ÜÊ±ÎïÌå±£Áô£¬½»¸ø MoveAway ÍË»Ø
+    public bool ClickTo(Transform tf)//è¿”å›æ˜¯å¦çœŸçš„è½ä½æˆåŠŸï¼›å¤±è´¥æ—¶ç‰©ä½“ä¿ç•™ï¼Œäº¤ç»™ MoveAway é€€å›
     {
         transform.parent = tf;
         OwnCar oc = tf.GetComponent<OwnCar>();
@@ -147,7 +147,7 @@ public class FollowMouse : MonoBehaviour
             {
                 if (oc != null && oc.MouseOn > -1 && oc.MouseOn < oc.ColliderArea.x * oc.ColliderArea.y)
                 {
-                    if (ClickTo(oc.transform))//ÂäÎ»³É¹¦²ÅÏûºÄ¿¨Æ¬/¼ÇÂ¼£¬³åÍ»Ôò×ß MoveAway ÍË»Ø
+                    if (ClickTo(oc.transform))//è½ä½æˆåŠŸæ‰æ¶ˆè€—å¡ç‰‡/è®°å½•ï¼Œå†²çªåˆ™èµ° MoveAway é€€å›
                     {
                         if (card != null) card.OnPlaced(this);
                         else MV_Manager.GetRecord();
@@ -167,7 +167,7 @@ public class FollowMouse : MonoBehaviour
             transform.position = v3;
         }
     }
-    //ÏÂÃæÕâ¶ÎÊÇ³­µÄ£¬ÄÜÅÜ
+    //ä¸‹é¢è¿™æ®µæ˜¯æŠ„çš„ï¼Œèƒ½è·‘
     private EventSystem eventSystem;
     private PointerEventData eventData;
     private bool init = false;
@@ -193,12 +193,12 @@ public class FollowMouse : MonoBehaviour
         {
             if (temp.gameObject.layer.Equals(5))
             {
-                return true;//Equal(5)ÖĞµÄ¡°5¡±ÊÇÖ¸Í¼²ãµÚÎå²ãUI²ã
+                return true;//Equal(5)ä¸­çš„â€œ5â€æ˜¯æŒ‡å›¾å±‚ç¬¬äº”å±‚UIå±‚
             }
         }
         return false;
     }
-    //³­µÄµ½ÕâÀï½áÊø
+    //æŠ„çš„åˆ°è¿™é‡Œç»“æŸ
     bool Stop;
 
     TryConnect tc;
@@ -206,24 +206,24 @@ public class FollowMouse : MonoBehaviour
     {
         if (Stop) return;
         if (!Video) return;
-        //ÏÈÅĞ¶ÏÅöµ½µÄÊÇ²»ÊÇ
+        //å…ˆåˆ¤æ–­ç¢°åˆ°çš„æ˜¯ä¸æ˜¯
         if (collision.collider.TryGetComponent(out TryConnect ty) && collision.collider.TryGetComponent(out Rigidbody2D _rb) && _rb.isKinematic)
         {
             if (tc == null) TryGetComponent(out tc);
             bool succuss = false;
             if (!ty.transform.parent.TryGetComponent(out OwnCar oc)) return;
 
-            //°ÚÕı½Ç¶È
+            //æ‘†æ­£è§’åº¦
             transform.localEulerAngles = new();
 
 
-            //ÄÚ²¿µÄÅĞ¶ÏºÍÍâ²¿²»Ò»Ñù
+            //å†…éƒ¨çš„åˆ¤æ–­å’Œå¤–éƒ¨ä¸ä¸€æ ·
             if (tc.Inside)
             {
-                //ÄÚ²¿×é¼şÖ»ÒªÅĞ¶ÏtyÄÜ²»ÄÜÈİÄÉ
+                //å†…éƒ¨ç»„ä»¶åªè¦åˆ¤æ–­tyèƒ½ä¸èƒ½å®¹çº³
                 if (ty.CantConnect[4]) return;
                 
-                //ĞèÒª¼ÆËãÔÚAllObjectµÄµÚ¼¸Ïî
+                //éœ€è¦è®¡ç®—åœ¨AllObjectçš„ç¬¬å‡ é¡¹
                 int _index = oc.GetIndexOfAllObject(ty.transform.position);
                 if (_index == -1) return;
 
@@ -231,38 +231,38 @@ public class FollowMouse : MonoBehaviour
             }
             else
             {
-                //Íâ²¿×é¼şÒªÅĞ¶ÏµÄ¾Í¶àÁË
-                //ÏÈÅĞ¶ÏÏà¶ÔÎ»ÖÃ
+                //å¤–éƒ¨ç»„ä»¶è¦åˆ¤æ–­çš„å°±å¤šäº†
+                //å…ˆåˆ¤æ–­ç›¸å¯¹ä½ç½®
                 Vector2 aim = ty.transform.position;
                 Vector2 now = transform.position;
                 int where = -1;
                 if (Mathf.Abs(now.x - aim.x) > Mathf.Abs(now.y - aim.y))
                 {
-                    //×ó2
+                    //å·¦2
                     if (now.x < aim.x)
                     {
                         where = 2;
                     }
-                    else//ÓÒ3
+                    else//å³3
                     {
                         where = 3;
                     }
                 }
                 else
                 {
-                    //ÏÂ1
+                    //ä¸‹1
                     if (now.y < aim.y)
                     {
                         where = 1;
                     }
-                    else//ÉÏ0
+                    else//ä¸Š0
                     {
                         where = 0;
                     }
                 }
-                //ÓĞÁËÎ»ÖÃÅĞ¶ÏÄÜ²»ÄÜÁ¬ÉÏ
+                //æœ‰äº†ä½ç½®åˆ¤æ–­èƒ½ä¸èƒ½è¿ä¸Š
                 if (ty.CantConnect[where]) return;
-                //ĞèÒª¼ÆËãÔÚAllObjectµÄµÚ¼¸Ïî
+                //éœ€è¦è®¡ç®—åœ¨AllObjectçš„ç¬¬å‡ é¡¹
                 int _index = oc.GetIndexOfAllObject(ty.transform.position);
                 if (_index == -1) return;
                 int final = oc.GetIndexOfAllObject(ty.transform.position + where switch
@@ -273,7 +273,7 @@ public class FollowMouse : MonoBehaviour
                     3 => new(1, 0),
                 });
                 if (final == -1) return;
-                //²»ÔÚÍ¬Ò»ĞĞ
+                //ä¸åœ¨åŒä¸€è¡Œ
                 if (oc.OnOtherSide(_index, final)) return;
 
                 succuss = VideoClickTo(oc.transform, final);
@@ -281,7 +281,7 @@ public class FollowMouse : MonoBehaviour
             if (succuss)
             {
                 transform.parent = oc.transform;
-                //³É¹¦¹Ì¶¨½«rb Éè¶¨ isKimat
+                //æˆåŠŸå›ºå®šå°†rb è®¾å®š isKimat
                 rb.velocity = new();
                 rb.angularVelocity = new();
                 rb.isKinematic = true;

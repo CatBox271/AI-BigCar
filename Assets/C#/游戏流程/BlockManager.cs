@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -58,9 +58,9 @@ public class BlockManager : MonoBehaviour
         LevelNext();
     }
 
-    public List<string> save;//114514ÎªÔØ¾ßÖÕÖ¹·û£¬¸ºÖµ´ú±íÒÀ¸½ÓÚÇ°Ò»¸ö·½¿éÖĞ£¬-1000´ú±í·½Ïò
+    public List<string> save;//114514ä¸ºè½½å…·ç»ˆæ­¢ç¬¦ï¼Œè´Ÿå€¼ä»£è¡¨ä¾é™„äºå‰ä¸€ä¸ªæ–¹å—ä¸­ï¼Œ-1000ä»£è¡¨æ–¹å‘
 
-    public List<float> ItemList; //ÕıÊıÎª±àºÅ£¬ºóÒ»ÏîÎªÊıÁ¿
+    public List<float> ItemList; //æ­£æ•°ä¸ºç¼–å·ï¼Œåä¸€é¡¹ä¸ºæ•°é‡
 
     public List<Vector2Int> KPB = new();
     public void KeepRotateBlock(int kind, int oc, int _index,int _inside)
@@ -78,24 +78,24 @@ public class BlockManager : MonoBehaviour
         }
         KPB.Clear();
     }
-    private Dictionary<Vector2Int, List<float>> CacheBlockAnimationDelay = new();
+    private Dictionary<Vector3Int, List<float>> CacheBlockAnimationDelay = new();
 
-    public void RefreshLevel(int ocl_index = -1,List<string> send_car_design = null)//¼ÓÔØ´æµµ
+    public void RefreshLevel(int ocl_index = -1,List<string> send_car_design = null)//åŠ è½½å­˜æ¡£
     {
         List<OwnCar> ocl = FindCar();
         List<string> car_design = new();
         if (ocl_index != -1)
         {
-            //Ö¸¶¨¼ÓÔØµÄ¶ÔÏó
+            //æŒ‡å®šåŠ è½½çš„å¯¹è±¡
             var k = ocl[ocl_index];
             ocl.Clear();
             ocl.Add(k);
-            //Ö¸¶¨¼ÓÔØµÄÄÚÈİ
+            //æŒ‡å®šåŠ è½½çš„å†…å®¹
             car_design.AddRange(send_car_design);
         }
         else
         {
-            //²»ÊÇ¾Í¼ÓÔØsaveÖĞµÄ
+            //ä¸æ˜¯å°±åŠ è½½saveä¸­çš„
             car_design.AddRange(save);
         }
         int count = 0;
@@ -107,7 +107,7 @@ public class BlockManager : MonoBehaviour
             int index = -1;
             int inside = 0;
             List<float> anim_delay = new();
-            Vector2Int area = ocl[i].ColliderArea;
+            Vector3Int area = new (ocl[i].ColliderArea.x, ocl[i].ColliderArea.y, ocl[i].Camp);
             if (!CacheBlockAnimationDelay.TryGetValue(area, out anim_delay))
             {
                 anim_delay = new();
@@ -122,7 +122,8 @@ public class BlockManager : MonoBehaviour
                 {
                     for (int c = 0; c < area.x * area.y; c++)
                     {
-                        anim_delay.Insert(0,(c % area.x - c / area.y) / (float)(area.x * area.y));
+                        int mirror = c - c % area.x + area.x - 1 - c % area.x;
+                        anim_delay.Add((mirror % area.x + mirror / area.y) / (float)(area.x * area.y));
                     }
                 }
                 CacheBlockAnimationDelay[area] = anim_delay;
@@ -145,12 +146,12 @@ public class BlockManager : MonoBehaviour
                 float BS = float.Parse(car_design[count]);
                 if (Mathf.Abs(BS)<1000f)
                 {
-                    if (BS >= 0)//index¸ñ×ÓµÄµÚ¼¸¸ö
+                    if (BS >= 0)//indexæ ¼å­çš„ç¬¬å‡ ä¸ª
                     {
                         index++;
                         inside = 0;
                     }
-                    else//ÄÚ²¿µÄµÚ¼¸¸ö
+                    else//å†…éƒ¨çš„ç¬¬å‡ ä¸ª
                     {
                         inside++;
                     }
@@ -165,7 +166,7 @@ public class BlockManager : MonoBehaviour
 
                             last_go.GetComponent<Heath>().StartBlockAnimation(anim_delay[index]);
 
-                            //¶ÔÕ½Ä£Ê½ÏÂ£¬Òª°ÑÎïÌåÉèÖÃÎª¿ÉÅö×²
+                            //å¯¹æˆ˜æ¨¡å¼ä¸‹ï¼Œè¦æŠŠç‰©ä½“è®¾ç½®ä¸ºå¯ç¢°æ’
                             if (ocl_index != -1)
                             {
                                 if (last_go.TryGetComponent(out Rigidbody2D rb))
@@ -199,7 +200,7 @@ public class BlockManager : MonoBehaviour
                     if (BS <= -1000f)
                     {
                         KeepRotateBlock(-(int)BS % 1000, (ocl_index == -1)? i: ocl_index, index, inside);
-                        if (OwnCar.GetT(last_go, out TryConnect tc)) tc.layIn = -(int)BS / 1000 - 1;//ÉèÖÃlayer
+                        if (OwnCar.GetT(last_go, out TryConnect tc)) tc.layIn = -(int)BS / 1000 - 1;//è®¾ç½®layer
                     }
                     else
                     {
@@ -212,7 +213,7 @@ public class BlockManager : MonoBehaviour
         StartRotateBlock();
         //block
 
-        //µ±¶ÔÕ½Ä£Ê½Ê±²»ÔËĞĞ
+        //å½“å¯¹æˆ˜æ¨¡å¼æ—¶ä¸è¿è¡Œ
         if (ocl_index == -1)
         {
             for (int i = 0; i < BlockList.transform.childCount; i++)
@@ -247,12 +248,12 @@ public class BlockManager : MonoBehaviour
         fm.ClickTo(tf,to);
         return go;
     }
-    public List<string> KeepLevel(int ocl_index = -1)//ĞòÁĞ»¯
+    public List<string> KeepLevel(int ocl_index = -1)//åºåˆ—åŒ–
     {
         List< OwnCar> ocl = FindCar();
         if (ocl_index != -1)
         {
-            //Ö¸¶¨¼ÓÔØµÄ¶ÔÏó
+            //æŒ‡å®šåŠ è½½çš„å¯¹è±¡
             var k = ocl[ocl_index];
             ocl.Clear();
             ocl.Add(k);
@@ -291,7 +292,7 @@ public class BlockManager : MonoBehaviour
                                 add *= -1;
                             }
                             save.Add(add.ToString());
-                            if (Mathf.Abs(add) == 46)//ICcode×·¼Ó
+                            if (Mathf.Abs(add) == 46)//ICcodeè¿½åŠ 
                             {
                                 IC_Code IC = llg[ii][ia].GetComponent<IC_Code>();
                                 save.Add("StartCode");
@@ -321,7 +322,7 @@ public class BlockManager : MonoBehaviour
             }
             save.Add("114514");
         }
-        //¶ÔÕ½Ä£Ê½²»ÔËĞĞ
+        //å¯¹æˆ˜æ¨¡å¼ä¸è¿è¡Œ
         if (ocl_index == -1)
         {
             for (int i = 0; i < BlockList.transform.childCount; i++)
@@ -357,7 +358,7 @@ public class BlockManager : MonoBehaviour
             {
                 max++;
                 ok = true;
-                for (int i = 0; i < ol.Count - 1; i++)//ÅÅĞò
+                for (int i = 0; i < ol.Count - 1; i++)//æ’åº
                 {
                     if (ol[i].transform.position.x > ol[i + 1].transform.position.x)
                     {
@@ -940,7 +941,7 @@ public class BlockManager : MonoBehaviour
     }
 
 
-    //ÏÂÃæÕâ¶ÎÊÇ³­µÄ£¬ÄÜÅÜ
+    //ä¸‹é¢è¿™æ®µæ˜¯æŠ„çš„ï¼Œèƒ½è·‘
     private EventSystem eventSystem;
     private PointerEventData eventData;
     private bool init = false;
@@ -966,10 +967,10 @@ public class BlockManager : MonoBehaviour
         {
             if (temp.gameObject.layer.Equals(5))
             {
-                return true;//Equal(5)ÖĞµÄ¡°5¡±ÊÇÖ¸Í¼²ãµÚÎå²ãUI²ã
+                return true;//Equal(5)ä¸­çš„â€œ5â€æ˜¯æŒ‡å›¾å±‚ç¬¬äº”å±‚UIå±‚
             }
         }
         return false;
     }
-    //³­µÄµ½ÕâÀï½áÊø
+    //æŠ„çš„åˆ°è¿™é‡Œç»“æŸ
 }

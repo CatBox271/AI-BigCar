@@ -1,11 +1,11 @@
-using UnityEditor;
+ï»¿using UnityEditor;
 using UnityEngine;
 
 /// <summary>
-/// CardIndexAttribute µÄ»æÖÆÆ÷£º°ÑÃ¿¸ö int »­³É¿¨Æ¬ÏÂÀ­¿ò£¨Ñ¡ÏîÀ´×Ô CardManager.CardDefine£©£¬
-/// ĞĞÎ²´ø¡¸¸´ÖÆ / É¾³ı¡¹£¬Ìí¼ÓÓÃÁĞ±í×Ô´øµÄ + °´Å¥¡£
-/// ÔöÉ¾ºóÁ¢¿Ì ApplyModifiedProperties ÔÙ ExitGUI£¬ÖĞÖ¹ÕâÒ»Ö¡Ê£ÏÂµÄÁĞ±í»æÖÆ£¬ÃâµÃÄÃ¾ÉÏÂ±ê¼ÌĞø»­¡£
-/// ·ÅÔÚ Assets/C#/Editor ÏÂ£¬Ëæ Assembly-CSharp-Editor ±àÒë£¬²»»á½ø°üÌå¡£
+/// CardIndexAttribute çš„ç»˜åˆ¶å™¨ï¼šæŠŠæ¯ä¸ª int ç”»æˆå¡ç‰‡ä¸‹æ‹‰æ¡†ï¼ˆé€‰é¡¹æ¥è‡ª CardManager.CardDefineï¼‰ï¼Œ
+/// è¡Œå°¾å¸¦ã€Œå¤åˆ¶ / åˆ é™¤ã€ï¼Œæ·»åŠ ç”¨åˆ—è¡¨è‡ªå¸¦çš„ + æŒ‰é’®ã€‚
+/// å¢åˆ åç«‹åˆ» ApplyModifiedProperties å† ExitGUIï¼Œä¸­æ­¢è¿™ä¸€å¸§å‰©ä¸‹çš„åˆ—è¡¨ç»˜åˆ¶ï¼Œå…å¾—æ‹¿æ—§ä¸‹æ ‡ç»§ç»­ç”»ã€‚
+/// æ”¾åœ¨ Assets/C#/Editor ä¸‹ï¼Œéš Assembly-CSharp-Editor ç¼–è¯‘ï¼Œä¸ä¼šè¿›åŒ…ä½“ã€‚
 /// </summary>
 [CustomPropertyDrawer(typeof(CardIndexAttribute))]
 public class CardIndexDrawer : PropertyDrawer
@@ -13,7 +13,7 @@ public class CardIndexDrawer : PropertyDrawer
     const float Gap = 2f;
     const float BtnW = 40f;
 
-    /// <summary>°´ CardManager.CardDefine Éú³ÉÏÂÀ­ÎÄ±¾£»Ã¿´ÎÖØ»­¶¼ÖØ½¨£¬¿¨Æ¬±í¸ÄÁËÁ¢¿Ì¸úÉÏ¡£</summary>
+    /// <summary>æŒ‰ CardManager.CardDefine ç”Ÿæˆä¸‹æ‹‰æ–‡æœ¬ï¼›æ¯æ¬¡é‡ç”»éƒ½é‡å»ºï¼Œå¡ç‰‡è¡¨æ”¹äº†ç«‹åˆ»è·Ÿä¸Šã€‚</summary>
     static string[] BuildOptions()
     {
         var cards = CardManager.CardDefine;
@@ -23,7 +23,7 @@ public class CardIndexDrawer : PropertyDrawer
             CardInfo c = cards[i];
             string name = string.IsNullOrEmpty(c.card_name) ? GameManager.GetBlockChineseName(c.block_kind) : c.card_name;
             string code = GameManager.GetBlockCodeName(c.block_kind);
-            options[i] = i + "  " + name + (string.IsNullOrEmpty(code) ? "  £¨¼¼ÄÜÅÆ£©" : " (" + code + ")");
+            options[i] = i + "  " + name + (string.IsNullOrEmpty(code) ? "  ï¼ˆæŠ€èƒ½ç‰Œï¼‰" : " (" + code + ")");
         }
         return options;
     }
@@ -33,18 +33,18 @@ public class CardIndexDrawer : PropertyDrawer
         string[] options = BuildOptions();
 
         Rect popupRect = new Rect(position.x, position.y, position.width - (BtnW + Gap) * 2, position.height);
-        // Ô½½çÖµ£¨¿¨Æ¬±íËõÁË£©²»¾²Ä¬¸ÄĞ´£¬ÏÔÊ¾Îª¿ÕµÈÓÃ»§ÖØÑ¡
+        // è¶Šç•Œå€¼ï¼ˆå¡ç‰‡è¡¨ç¼©äº†ï¼‰ä¸é™é»˜æ”¹å†™ï¼Œæ˜¾ç¤ºä¸ºç©ºç­‰ç”¨æˆ·é‡é€‰
         int cur = property.intValue;
         if (cur < 0 || cur >= options.Length) cur = -1;
         property.intValue = EditorGUI.Popup(popupRect, cur, options);
 
         Rect copyRect = new Rect(popupRect.xMax + Gap, position.y, BtnW, position.height);
-        if (GUI.Button(copyRect, "¸´ÖÆ")) Copy(property);
+        if (GUI.Button(copyRect, "å¤åˆ¶")) Copy(property);
         Rect removeRect = new Rect(copyRect.xMax + Gap, position.y, BtnW, position.height);
-        if (GUI.Button(removeRect, "É¾³ı")) Remove(property);
+        if (GUI.Button(removeRect, "åˆ é™¤")) Remove(property);
     }
 
-    /// <summary>ÔªËØÂ·¾¶ĞÎÈç startPile.Array.data[3]£¬È¡³öËüËùÔÚµÄÊı×éÊôĞÔºÍÏÂ±ê¡£</summary>
+    /// <summary>å…ƒç´ è·¯å¾„å½¢å¦‚ startPile.Array.data[3]ï¼Œå–å‡ºå®ƒæ‰€åœ¨çš„æ•°ç»„å±æ€§å’Œä¸‹æ ‡ã€‚</summary>
     static SerializedProperty Array(SerializedProperty element, out int index)
     {
         const string marker = ".Array.data[";

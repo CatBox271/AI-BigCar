@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -11,11 +11,11 @@ public class TimeIntervalRecorder : MonoBehaviour
 
     void Start()
     {
-        // ÉèÖÃÎÄ¼ş±£´æÂ·¾¶£¨ÔÚÏîÄ¿¸ùÄ¿Â¼µÄLogsÎÄ¼ş¼ĞÏÂ£©
+        // è®¾ç½®æ–‡ä»¶ä¿å­˜è·¯å¾„ï¼ˆåœ¨é¡¹ç›®æ ¹ç›®å½•çš„Logsæ–‡ä»¶å¤¹ä¸‹ï¼‰
         string directoryPath = Path.Combine(Application.dataPath, "../Logs");
-        Directory.CreateDirectory(directoryPath); // È·±£Ä¿Â¼´æÔÚ
+        Directory.CreateDirectory(directoryPath); // ç¡®ä¿ç›®å½•å­˜åœ¨
         filePath = Path.Combine(directoryPath, "KeyPressIntervals.txt");
-        Debug.Log("ÈÕÖ¾ÎÄ¼ş½«±£´æÖÁ: " + filePath);
+        Debug.Log("æ—¥å¿—æ–‡ä»¶å°†ä¿å­˜è‡³: " + filePath);
     }
 
     void Update()
@@ -30,47 +30,47 @@ public class TimeIntervalRecorder : MonoBehaviour
     {
         float currentTime = Time.time;
         
-        // Èç¹û²»ÊÇµÚÒ»´Î°´¼ü
+        // å¦‚æœä¸æ˜¯ç¬¬ä¸€æ¬¡æŒ‰é”®
         if (lastPressTime > 0)
         {
             float interval = currentTime - lastPressTime;
             timeIntervals.Add(interval);
-            Debug.Log($"°´¼ü¼ä¸ô: {interval:F3}Ãë");
+            Debug.Log($"æŒ‰é”®é—´éš”: {interval:F3}ç§’");
         }
         else
         {
-            Debug.Log("¿ªÊ¼¼ÇÂ¼Ê±¼ä¼ä¸ô...");
+            Debug.Log("å¼€å§‹è®°å½•æ—¶é—´é—´éš”...");
         }
         
         lastPressTime = currentTime;
     }
 
-    // Éú³ÉÈÕÖ¾ÎÄ¼ş
+    // ç”Ÿæˆæ—¥å¿—æ–‡ä»¶
     void GenerateLogFile()
     {
         if (timeIntervals.Count == 0)
         {
-            Debug.LogWarning("Ã»ÓĞ¼ÇÂ¼ÈÎºÎÊ±¼ä¼ä¸ô£¡");
+            Debug.LogWarning("æ²¡æœ‰è®°å½•ä»»ä½•æ—¶é—´é—´éš”ï¼");
             return;
         }
 
         using (StreamWriter writer = new StreamWriter(filePath))
         {
-            writer.WriteLine($"°´¼üÊ±¼ä¼ä¸ôÈÕÖ¾ - Éú³ÉÊ±¼ä: {System.DateTime.Now}");
+            writer.WriteLine($"æŒ‰é”®æ—¶é—´é—´éš”æ—¥å¿— - ç”Ÿæˆæ—¶é—´: {System.DateTime.Now}");
             writer.WriteLine("=================================");
             
             for (int i = 0; i < timeIntervals.Count; i++)
             {
-                writer.WriteLine($"¼ä¸ô #{i + 1}: {timeIntervals[i]:F3}Ãë");
+                writer.WriteLine($"é—´éš” #{i + 1}: {timeIntervals[i]:F3}ç§’");
             }
             
             writer.WriteLine("=================================");
-            writer.WriteLine($"×Ü°´¼ü´ÎÊı: {timeIntervals.Count + 1}");
-            writer.WriteLine($"×Ü¼ÇÂ¼Ê±¼ä: {Time.time:F1}Ãë");
-            writer.WriteLine($"Æ½¾ù¼ä¸ô: {CalculateAverage():F3}Ãë");
+            writer.WriteLine($"æ€»æŒ‰é”®æ¬¡æ•°: {timeIntervals.Count + 1}");
+            writer.WriteLine($"æ€»è®°å½•æ—¶é—´: {Time.time:F1}ç§’");
+            writer.WriteLine($"å¹³å‡é—´éš”: {CalculateAverage():F3}ç§’");
         }
         
-        Debug.Log($"ÒÑÉú³ÉÈÕÖ¾ÎÄ¼ş: {filePath}");
+        Debug.Log($"å·²ç”Ÿæˆæ—¥å¿—æ–‡ä»¶: {filePath}");
         #if UNITY_EDITOR
         UnityEditor.EditorUtility.RevealInFinder(filePath);
         #endif
@@ -86,20 +86,20 @@ public class TimeIntervalRecorder : MonoBehaviour
         return total / timeIntervals.Count;
     }
 
-    // ÍË³öÊ±×Ô¶¯±£´æ£¨¿ÉÑ¡£©
+    // é€€å‡ºæ—¶è‡ªåŠ¨ä¿å­˜ï¼ˆå¯é€‰ï¼‰
     void OnApplicationQuit()
     {
         GenerateLogFile();
     }
 
-    // Ìí¼ÓUIÌáÊ¾£¨°´ĞèÊ¹ÓÃ£©
+    // æ·»åŠ UIæç¤ºï¼ˆæŒ‰éœ€ä½¿ç”¨ï¼‰
     void OnGUI()
     {
-        GUI.Label(new Rect(10, 10, 400, 30), "°´ÏÂ K ¼ü¼ÇÂ¼Ê±¼ä¼ä¸ô");
-        GUI.Label(new Rect(10, 40, 400, 30), $"ÒÑ¼ÇÂ¼¼ä¸ô: {timeIntervals.Count}´Î");
+        GUI.Label(new Rect(10, 10, 400, 30), "æŒ‰ä¸‹ K é”®è®°å½•æ—¶é—´é—´éš”");
+        GUI.Label(new Rect(10, 40, 400, 30), $"å·²è®°å½•é—´éš”: {timeIntervals.Count}æ¬¡");
         if (timeIntervals.Count > 0)
         {
-            GUI.Label(new Rect(10, 70, 400, 30), $"×îºóÒ»´Î¼ä¸ô: {timeIntervals[^1]:F3}Ãë");
+            GUI.Label(new Rect(10, 70, 400, 30), $"æœ€åä¸€æ¬¡é—´éš”: {timeIntervals[^1]:F3}ç§’");
         }
     }
 }

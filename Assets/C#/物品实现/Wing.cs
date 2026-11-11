@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -41,9 +41,9 @@ public class Wing : MonoBehaviour,IFlip
     private void FixedUpdate()
     {
         float Right = Vector3.Dot(flip ? -transform.right : transform.right, rb.velocity);
-        //ÉıÁ¦
+        //å‡åŠ›
         rb.AddForce(transform.up * Right * UpTimes);
-        //×èÁ¦
+        //é˜»åŠ›
         rb.AddForce(-transform.right * Right * RestitenceTimes * (flip ? -1 : 1));
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections;
+锘縰sing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,14 +18,14 @@ public class VehicleSide : MonoBehaviour
         StartWork = true;
         if (t == 10)
         {
-            //重置
+            //閲嶇疆
             all = new();
         }
         if (t == 11)
         {
             StartWork = false;
             t = 0;
-            //分析数据
+            //鍒嗘瀽鏁版嵁
             float Closest = 1000f;
             for (int i = 0; i < all.Count; i++)
             {

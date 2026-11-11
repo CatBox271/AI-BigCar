@@ -50,12 +50,15 @@ MonoBehaviour:
   camp: 0
   HP: 20
   max: 0
+  _color_start: {r: 0, g: 0, b: 0, a: 0}
   die: 0
   HitLight: 1
+  flash: {fileID: 0}
   OrignalColor: 1
   Castle: 0
   DieWithCollider: 0
   IgnoteCampCollider: 0
+  effects: 0
   Bullet: 0
   showHit: {fileID: 3094680651753618184, guid: 4845d86b02a61f44286803d21e4709f5, type: 3}
   DH: 0
@@ -291,7 +294,9 @@ MonoBehaviour:
   MaxSpeed: 22.5
   OriginalPower: 0.01
   heath: {fileID: 3725810135331360624}
+  ownRb: {fileID: 1901554616377785579}
   rb: {fileID: 8418142661583051183}
+  water_trans: {x: 0.5, y: 0.01}
   add_power: 0
   "\u53D1\u52A8\u673A\u4E58\u6570": 0
 --- !u!114 &5327748740263856399
@@ -309,12 +314,15 @@ MonoBehaviour:
   camp: 0
   HP: 50
   max: 0
+  _color_start: {r: 0, g: 0, b: 0, a: 0}
   die: 0
   HitLight: 0
+  flash: {fileID: 0}
   OrignalColor: 0
   Castle: 0
   DieWithCollider: 0
   IgnoteCampCollider: 0
+  effects: 0
   Bullet: 0
   showHit: {fileID: 3094680651753618184, guid: 4845d86b02a61f44286803d21e4709f5, type: 3}
   DH: 0
@@ -348,9 +356,11 @@ MonoBehaviour:
   Center: 0
   Inside: 0
   Rotable: 1
+  LayerCross: 0
   addPercent: 1.2
   ConnectStrongth: 3000
   forward: 0
+  layIn: 0
 --- !u!114 &3937293617149577864
 MonoBehaviour:
   m_ObjectHideFlags: 0

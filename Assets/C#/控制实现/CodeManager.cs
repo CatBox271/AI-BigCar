@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
@@ -18,14 +18,14 @@ public class CodeManager : MonoBehaviour
     {
         int y = -1;
         int x = UpList.FindIndex(s => UpFind(s, sc, out y));
-        if (x != -1) UpList[x].RemoveAt(y);//ÒÆ³ıÔ­ÏÈÎ»ÖÃ
+        if (x != -1) UpList[x].RemoveAt(y);//ç§»é™¤åŸå…ˆä½ç½®
 
         UpList[towards].Add(sc);
     }
     public bool SetCode(int towards, SwarmCode sc)
     {
         int from = CodeList.FindIndex(s => s == sc);
-        bool Veritical = false;//´¹Ö±false
+        bool Veritical = false;//å‚ç›´false
         if (CodeList[towards] == null)
         {
             if (from != -1) CodeList[from] = null;
@@ -62,21 +62,21 @@ public class CodeManager : MonoBehaviour
                     }
                 }
             }
-            else//Ã»ÓĞÕÒµ½,Ö±½ÓÌæ»»
+            else//æ²¡æœ‰æ‰¾åˆ°,ç›´æ¥æ›¿æ¢
             {
                 Destroy(CodeList[towards].gameObject);
                 CodeList[towards] = sc;
                 return true;
             }
-            if (block < 0)//²¢·ÇÒÆ¶¯Ò»ĞĞ,½øĞĞÌæ»»
+            if (block < 0)//å¹¶éç§»åŠ¨ä¸€è¡Œ,è¿›è¡Œæ›¿æ¢
             {
                 Destroy(CodeList[towards].gameObject);
                 CodeList[towards] = CodeList[from];
                 CodeList[from] = null;
             }
-            else//ÒÆ¶¯
+            else//ç§»åŠ¨
             {
-                if (Veritical)//1ÁĞ
+                if (Veritical)//1åˆ—
                 {
                     List<int> IL = new();
                     int add = (block - from) > 0 ? width : -width;
@@ -91,7 +91,7 @@ public class CodeManager : MonoBehaviour
                     CodeList[from] = null;
                     MoveBlock(IL);
                 }
-                else//1ĞĞ
+                else//1è¡Œ
                 {
                     CodeList.RemoveAt(block);
                     CodeList.Insert(from, null);
@@ -131,13 +131,13 @@ public class CodeManager : MonoBehaviour
             {
                 sc = UpList[i][t];
                 if (sc == null) continue;
-                if (sc.kind == "{")//Ö»±£´æ×óÀ©ÄÚÈİ
+                if (sc.kind == "{")//åªä¿å­˜å·¦æ‰©å†…å®¹
                 {
                     str.Append(sc.kind);
                     v2 = sc.GetComponent<DieWith>().dieWith.GetComponent<SwarmCode>().IntPos;
-                    v2.x += v2.y * 10;//°Ñx±ä³É0-100Î»Êı
+                    v2.x += v2.y * 10;//æŠŠxå˜æˆ0-100ä½æ•°
                     if (v2.x < 10) str.Append(0);
-                    str.Append(v2.x);//×îÖÕ±£´æµÄÑùÊ½  {09
+                    str.Append(v2.x);//æœ€ç»ˆä¿å­˜çš„æ ·å¼  {09
                 }
             }
             if (CodeList[i] != null) str.Append(CodeList[i].kind);
@@ -154,15 +154,15 @@ public class CodeManager : MonoBehaviour
         IC = ic;
         Transform tf = transform.parent.GetChild(0);
         SetCodeList();
-        for (int i = transform.childCount - 1; i > -1; i--)//Çå¿ÕÖØÖÃ
+        for (int i = transform.childCount - 1; i > -1; i--)//æ¸…ç©ºé‡ç½®
         {
             Destroy(transform.GetChild(i).gameObject);
         }
-        for (int i = tf.childCount - 1; i > KeepLeft; i--)//Òª±£ÁôÒ»²¿·Ö
+        for (int i = tf.childCount - 1; i > KeepLeft; i--)//è¦ä¿ç•™ä¸€éƒ¨åˆ†
         {
             DestroyImmediate(tf.GetChild(i).gameObject);
         }
-        for (int i = 0; i < block.Count; i++)//Éú³ÉOutPut
+        for (int i = 0; i < block.Count; i++)//ç”ŸæˆOutPut
         {
             Instantiate(OutPut, tf).GetComponent<PicGet>().SetPic(block[i]);
         }
@@ -192,7 +192,7 @@ public class CodeManager : MonoBehaviour
                 SetUp(i, get[0]);
                 SetUp(to, get[1]);
 
-                if (str.Length > 3)//¼ÌĞø¿´À¨»¡ÀïµÄÄÚÈİ
+                if (str.Length > 3)//ç»§ç»­çœ‹æ‹¬å¼§é‡Œçš„å†…å®¹
                 {
                     SetCodeButton(i, codeList, str[3..]);
                 }
@@ -301,7 +301,7 @@ public class CodeManager : MonoBehaviour
         return true;
     }
 
-    public void ±£´æĞ¾Æ¬Ô¤Éè()
+    public void ä¿å­˜èŠ¯ç‰‡é¢„è®¾()
     { 
     
     }

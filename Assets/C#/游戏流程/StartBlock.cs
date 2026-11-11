@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -34,13 +34,13 @@ public class StartBlock : MonoBehaviour
     {
         switch (Choosed.name)
         {
-            case "×°¼×Á÷":
+            case "è£…ç”²æµ":
                 ItemList.AddRange(new float[] { 4, 1, 2, 4, 12, 4, 1, 1, 10, 4, 6, 1 });
                 break;
-            case "ËÙ¶ÈÁ÷":
+            case "é€Ÿåº¦æµ":
                 ItemList.AddRange(new float[] { 4, 1, 2, 6, 12, 4, 6, 3, 5, 2 });
                 break;
-            case "¶Ä¹·Á÷":
+            case "èµŒç‹—æµ":
                 ItemList.AddRange(new float[] { 4, 1, 2, 4, 12, 2,1,1});
                 for (int i = 0; i < 6; i++)
                 {

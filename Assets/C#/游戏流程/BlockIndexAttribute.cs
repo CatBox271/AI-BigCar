@@ -1,10 +1,10 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 /// <summary>
-/// ±êÔÚ int ×Ö¶ÎÉÏ£¬¼ì²éÆ÷Àï»á»­³ÉµÀ¾ßÏÂÀ­¿ò¡£
-/// ´æµÄ¾ÍÊÇ GameManager.BlockLibrary µÄÏÂ±ê£¨Óë¾É BlockIndex¡¢´æµµÀïµÄÊı×ÖË÷ÒıÍ¬Ğò£©¡£
-/// Ö»Ó°Ïì±à¼­Æ÷»æÖÆ£¬²»²ÎÓëĞòÁĞ»¯£ºJsonUtility ÀïÈÔÈ»Ö»ÊÇÒ»¸ö int¡£
-/// ÓÃ·¨£º[BlockIndex] public int block_kind;
+/// æ ‡åœ¨ int å­—æ®µä¸Šï¼Œæ£€æŸ¥å™¨é‡Œä¼šç”»æˆé“å…·ä¸‹æ‹‰æ¡†ã€‚
+/// å­˜çš„å°±æ˜¯ GameManager.BlockLibrary çš„ä¸‹æ ‡ï¼ˆä¸æ—§ BlockIndexã€å­˜æ¡£é‡Œçš„æ•°å­—ç´¢å¼•åŒåºï¼‰ã€‚
+/// åªå½±å“ç¼–è¾‘å™¨ç»˜åˆ¶ï¼Œä¸å‚ä¸åºåˆ—åŒ–ï¼šJsonUtility é‡Œä»ç„¶åªæ˜¯ä¸€ä¸ª intã€‚
+/// ç”¨æ³•ï¼š[BlockIndex] public int block_kind;
 /// </summary>
 public class BlockIndexAttribute : PropertyAttribute
 {

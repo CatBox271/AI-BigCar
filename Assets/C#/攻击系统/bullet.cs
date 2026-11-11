@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -243,7 +243,7 @@ public class bullet : MonoBehaviour
                 if (h.name.Contains("drill") || h.name.Contains("panzer"))
                 {
                     h.Hit((1.5f - order[i].distance / maxDistance) * 8f * hit_value, _camp);
-                    if (Fire)//×Å»ğ
+                    if (Fire)//ç€ç«
                     {
                         if (h.TryGetComponent(out OnFire F))
                         {
@@ -262,7 +262,7 @@ public class bullet : MonoBehaviour
                 else
                 {
                     h.Hit((1.5f - order[i].distance / maxDistance) * 2f * hit_value, _camp);
-                    if (Fire)//×Å»ğ
+                    if (Fire)//ç€ç«
                     {
                         if (h.TryGetComponent(out OnFire F))
                         {

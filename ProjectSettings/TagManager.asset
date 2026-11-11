@@ -15,6 +15,7 @@ TagManager:
   - Flag
   - WTF
   - Site
+  - LegalArea
   layers:
   - Default
   - TransparentFX

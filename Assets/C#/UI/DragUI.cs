@@ -1,11 +1,11 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class DragUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    public bool Vertical;//��ֱ
+    public bool Vertical;//垂直
     public UIMoveBar UI_MoveBar;
     Vector3 mousePos = new(-1, -1, -1);
 

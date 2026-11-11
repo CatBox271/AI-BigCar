@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,7 +28,7 @@ public class Groscope : MonoBehaviour
     }
     private void SetValue(bool value)
     {
-        //¸ü¸ÄÄ¿±êÖµ
+        //æ›´æ”¹ç›®æ ‡å€¼
         for (int i = 0; i < AllBlock.Count; i++)
         {
             Transform a = AllBlock[i];

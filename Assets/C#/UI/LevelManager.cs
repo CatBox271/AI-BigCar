@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,11 +26,11 @@ public class LevelManager : MonoBehaviour
 
                 LK.transform.GetChild(0).GetComponent<Text>().text = all[i + 1][a] switch
                 {
-                    "Start 1" => "³õÓö",
-                    "Speed" => "Ð¡É½Çð",
-                    "Speed 1" => "¡°µÇÉ½¡±",
-                    "Fight 1" => "ÄàÍ·³µ",
-                    "Fight" => "´óÐÍÄàÍ·³µ",
+                    "Start 1" => "åˆé‡",
+                    "Speed" => "å°å±±ä¸˜",
+                    "Speed 1" => "â€œç™»å±±â€",
+                    "Fight 1" => "æ³¥å¤´è½¦",
+                    "Fight" => "å¤§åž‹æ³¥å¤´è½¦",
                     _ => all[i + 1][a],
                 };
                 LK.GetComponent<Image>().color = all[i + 1][a] switch

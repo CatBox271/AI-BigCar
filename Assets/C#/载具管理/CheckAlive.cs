@@ -1,11 +1,11 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public class CheckAlive : MonoBehaviour
 {
     public List<FixedJoint2D> allConnect = new();
     public List<CheckAlive> CAList = new();
-    public List<int> BlockOffset = new();//0ÉÏ1ÏÂ2×ó3ÓÒ4ÖÐ
+    public List<int> BlockOffset = new();//0ä¸Š1ä¸‹2å·¦3å³4ä¸­
 
     public int VID = -1;
 
@@ -43,14 +43,14 @@ public class CheckAlive : MonoBehaviour
                 continue;
             }
             if (L.Contains(keep[i])) continue;
-            //°Ñ¶Ï¿ªÁ¬½ÓµÄ¶¼·ÖÀëÁË
+            //æŠŠæ–­å¼€è¿žæŽ¥çš„éƒ½åˆ†ç¦»äº†
             keep[i].VehicleSet(Time.time);
         }
         keep.ForEach(s =>
         {
             if (s.TryGetComponent(out CheckAlive reconnect)) reconnect.SetStart(Time.time);
         });
-        //ÌáÐÑGameManager¶ÔÐÅºÅÏµÍ³¸üÐÂ
+        //æé†’GameManagerå¯¹ä¿¡å·ç³»ç»Ÿæ›´æ–°
         GameManager.Check();
         keep.ForEach(s =>
         {
@@ -67,25 +67,25 @@ public class CheckAlive : MonoBehaviour
 
         if (!L.Exists(s => s.CompareTag("Center")))
         {
-            //¸øËùÓÐ²»´æÔÚµÄ»ºËÀ
+            //ç»™æ‰€æœ‰ä¸å­˜åœ¨çš„ç¼“æ­»
             L.ForEach(s => Destroy(s.gameObject, 0.5f));
         }
 
-        //½«×Ô¼ºÌí¼ÓÖÁÐÅÏ¢
+        //å°†è‡ªå·±æ·»åŠ è‡³ä¿¡æ¯
         int NID = GameManager.allvehicle.FindIndex(s => s == null || s.TrueForAll(ss => ss == null));
 
-        if (NID != -1)//ÀûÓÃ¾ÃÁÐ±í
+        if (NID != -1)//åˆ©ç”¨ä¹…åˆ—è¡¨
         {
             GameManager.allvehicle[NID].Clear();
             VID = NID;
             GameManager.allvehicle[VID].AddRange(L);
         }
-        else//Ôö¼ÓÐÂÁÐ±í
+        else//å¢žåŠ æ–°åˆ—è¡¨
         {
             GameManager.allvehicle.Add(L);
             VID = GameManager.allvehicle.Count - 1;
         }
-        L.ForEach(s =>//Ìø¹ýÁ¬½ÓµÄ
+        L.ForEach(s =>//è·³è¿‡è¿žæŽ¥çš„
         {
             s.T = T;
             s.VID = VID;
@@ -103,7 +103,7 @@ public class CheckAlive : MonoBehaviour
     }
     void Combined(int VID, List<CheckAlive> A)
     {
-        for (int i = 0; i < A.Count; i++)//Ôö¼ÓÐÅÏ¢,²¢È·±£Ã»ÓÐÖØ¸´
+        for (int i = 0; i < A.Count; i++)//å¢žåŠ ä¿¡æ¯,å¹¶ç¡®ä¿æ²¡æœ‰é‡å¤
         {
             if (A[i] == null) continue;
             if (!GameManager.allvehicle[VID].Contains(A[i])) GameManager.allvehicle[VID].Add(A[i]);
@@ -143,7 +143,7 @@ public class CheckAlive : MonoBehaviour
     }
 
     static List<CheckAlive> SP = new();
-    public List<CheckAlive> Search(bool start = true)//È«²¿²éÕÒ
+    public List<CheckAlive> Search(bool start = true)//å…¨éƒ¨æŸ¥æ‰¾
     {
         if (start) SP.Clear();
         SP.Add(this);

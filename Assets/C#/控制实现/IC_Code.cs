@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,19 +18,19 @@ public class IC_Code : MonoBehaviour,ION
     public bool OnSet { get ; set; }
     public float NumSet { get; set; }
 
-    List<sbyte> MemeryS = new();//ÕıÎŞÇîtrueÄÚ´æµØÖ·
-    List<float> Memery = new();//¸ºÎŞÇîfalseÄÚ´æÄÚÈİ
+    List<sbyte> MemeryS = new();//æ­£æ— ç©·trueå†…å­˜åœ°å€
+    List<float> Memery = new();//è´Ÿæ— ç©·falseå†…å­˜å†…å®¹
     List<(string, float)> NumList = new();
     List<(string, float)> BoolList = new();
 
-    List<sbyte> StringS = new();//Î»ÖÃ
+    List<sbyte> StringS = new();//ä½ç½®
     List<string> StringN = new();//String
 
-    List<sbyte> BracketStart = new();//{}À¨»¡±í//Ë÷Òı
-    List<List<sbyte>> BracketContext = new();//{}À¨»¡±í//Ö´ĞĞÏî
+    List<sbyte> BracketStart = new();//{}æ‹¬å¼§è¡¨//ç´¢å¼•
+    List<List<sbyte>> BracketContext = new();//{}æ‹¬å¼§è¡¨//æ‰§è¡Œé¡¹
 
-    List<sbyte> GotoS = new();//Ìø×ª±í
-    List<sbyte> GotoT = new();//Ìø×ªµ½
+    List<sbyte> GotoS = new();//è·³è½¬è¡¨
+    List<sbyte> GotoT = new();//è·³è½¬åˆ°
 
     public PrintSystem printSystem;
 
@@ -163,15 +163,15 @@ public class IC_Code : MonoBehaviour,ION
             AllItem.Add(t.gameObject);
         }
         List<(string, int)> CodeButton = new();
-        List<(string, int)> SIL = new();//ÏîÄ¿Ãû³Æ£¬Ğı×ª·½Ïò
-        for (int i = 0; i < AllItem.Count; i++)//¼ìË÷Á¬½Ó
+        List<(string, int)> SIL = new();//é¡¹ç›®åç§°ï¼Œæ—‹è½¬æ–¹å‘
+        for (int i = 0; i < AllItem.Count; i++)//æ£€ç´¢è¿æ¥
         {
-            //Ö±½ÓÕÒ¸¸¼¶Òª
+            //ç›´æ¥æ‰¾çˆ¶çº§è¦
             if (transform.parent.TryGetComponent(out OwnCar oc))
             {
-                //²»¹Ü½Ó²»½ÓµÄÉÏÖ±½Ó°ÑËùÓĞµÄ¶¼·ÖÎöÒ»±é
+                //ä¸ç®¡æ¥ä¸æ¥çš„ä¸Šç›´æ¥æŠŠæ‰€æœ‰çš„éƒ½åˆ†æä¸€é
                 var all_object = oc.AllObject;
-                //Ñ°ÕÒbuttonInform
+                //å¯»æ‰¾buttonInform
                 for (int b = 0; b < all_object.Count; b++)
                 {
                     var ob = all_object[b];
@@ -189,7 +189,7 @@ public class IC_Code : MonoBehaviour,ION
                 }
             }
         }
-        //Ôö¼Ó
+        //å¢åŠ 
         string s;
         for (int i = 0; i < 100; i++)
         {
@@ -202,7 +202,7 @@ public class IC_Code : MonoBehaviour,ION
         }
         for (int i = 0; i < SIL.Count; i++)
         {
-            //ÖØ¸´¼ì²é
+            //é‡å¤æ£€æŸ¥
             if (!CodeButton.Exists(s => s == SIL[i]))
             {
                 CodeButton.Add(SIL[i]);
@@ -212,7 +212,7 @@ public class IC_Code : MonoBehaviour,ION
         BlockManager.bm.CM.GetCode(OutCode, CodeButton, this);
         OwnCar.StopTouch = true;
     }
-    //ÏÂÃæÕâ¶ÎÊÇ³­µÄ£¬ÄÜÅÜ
+    //ä¸‹é¢è¿™æ®µæ˜¯æŠ„çš„ï¼Œèƒ½è·‘
     private EventSystem eventSystem;
     private PointerEventData eventData;
     private bool init = false;
@@ -238,12 +238,12 @@ public class IC_Code : MonoBehaviour,ION
         {
             if (temp.gameObject.layer.Equals(5))
             {
-                return true;//Equal(5)ÖĞµÄ¡°5¡±ÊÇÖ¸Í¼²ãµÚÎå²ãUI²ã
+                return true;//Equal(5)ä¸­çš„â€œ5â€æ˜¯æŒ‡å›¾å±‚ç¬¬äº”å±‚UIå±‚
             }
         }
         return false;
     }
-    //³­µÄµ½ÕâÀï½áÊø
+    //æŠ„çš„åˆ°è¿™é‡Œç»“æŸ
     int start = 5;
 
     public bool setactive;
@@ -325,7 +325,7 @@ public class IC_Code : MonoBehaviour,ION
 
     public void CodeWarning(bool avoid_repeat = true)
     {
-        string WarningContext = "<color=red>¾¯¸æ:µ±Ç°ÎŞ´úÂë!</color>";
+        string WarningContext = "<color=red>è­¦å‘Š:å½“å‰æ— ä»£ç !</color>";
         List<string> check = new();
         check.AddRange(OutCode);
         if (check.TrueForAll(s => string.IsNullOrEmpty(s)))
@@ -334,7 +334,7 @@ public class IC_Code : MonoBehaviour,ION
         }
         else
         {
-            printSystem.printStr("----ÔØÈë´úÂë³É¹¦----");
+            printSystem.printStr("----è½½å…¥ä»£ç æˆåŠŸ----");
         }
     }
     void NewActual()
@@ -359,12 +359,12 @@ public class IC_Code : MonoBehaviour,ION
         }
         if (first)
         {
-            //µÚÒ»´ÎStringÂë±àÒë³ÉÊı×ÖÂë
+            //ç¬¬ä¸€æ¬¡Stringç ç¼–è¯‘æˆæ•°å­—ç 
 
             dnum = Dnum;
             Actual.Clear();
             OftenPass.Clear();
-            for (sbyte i = 0; i < 100; i++)//¾ßÌå±àÒë
+            for (sbyte i = 0; i < 100; i++)//å…·ä½“ç¼–è¯‘
             {
                 Compile(i);
             }
@@ -372,7 +372,7 @@ public class IC_Code : MonoBehaviour,ION
             for (sbyte i = 0; i < Actual.Count; i++)
             {
                 a = Actual[i];
-                if (Code[a] > 35 && Code[a] < 44)//ÎïÀí×é¼ş¼¤»î
+                if (Code[a] > 35 && Code[a] < 44)//ç‰©ç†ç»„ä»¶æ¿€æ´»
                 {
                     k = Code[a] switch
                     {
@@ -410,7 +410,7 @@ public class IC_Code : MonoBehaviour,ION
                 a = Actual[i];
                 if (Pass.Contains(a) || OftenPass.Contains(a)) continue;
 
-                //ÔËĞĞrunAt´¦µÄ´úÂë
+                //è¿è¡ŒrunAtå¤„çš„ä»£ç 
                 runAt = a;
 
                 Run();
@@ -476,7 +476,7 @@ public class IC_Code : MonoBehaviour,ION
                     XE = to % 10;
                     YS = i / 10;
                     YE = to / 10;
-                    if (XE >= XS && YE >= YS)//ÏÈÅĞ¶ÏÊÇ·ñÓĞĞ§
+                    if (XE >= XS && YE >= YS)//å…ˆåˆ¤æ–­æ˜¯å¦æœ‰æ•ˆ
                     {
                         BracketStart.Add(i);
                         List<sbyte> con = new();
@@ -486,12 +486,12 @@ public class IC_Code : MonoBehaviour,ION
                             for (int x = XS; x <= XE; x++)
                             {
                                 s = (sbyte)(x + y * 10);
-                                OftenPass.Add(s);//ÕâÊÇÈÃÀ¨»¡Ã»¼¤»îÊ±ÔËĞĞÊ±Ìø¹ı
-                                con.Add(s);//À¨»¡±í
+                                OftenPass.Add(s);//è¿™æ˜¯è®©æ‹¬å¼§æ²¡æ¿€æ´»æ—¶è¿è¡Œæ—¶è·³è¿‡
+                                con.Add(s);//æ‹¬å¼§è¡¨
                             }
                         }
-                        OftenPass.Remove(i);//À¨»¡Ê×Ïî²»ÄÜban
-                        BracketContext.Add(con);//Íê³ÉÌí¼Ó±í
+                        OftenPass.Remove(i);//æ‹¬å¼§é¦–é¡¹ä¸èƒ½ban
+                        BracketContext.Add(con);//å®Œæˆæ·»åŠ è¡¨
                     }
                     if (str.Length > 3)
                     {
@@ -525,7 +525,7 @@ public class IC_Code : MonoBehaviour,ION
         "goto:",//-10:8
         "wait:"
     };
-    //×ª»»
+    //è½¬æ¢
     public readonly List<string> accurate = new() {
         "true",//0
         "false",
@@ -727,24 +727,24 @@ public class IC_Code : MonoBehaviour,ION
         if (float.IsNaN(b)) b = float.NegativeInfinity;
         if (float.IsNaN(b1)) b1 = float.NegativeInfinity;
 
-        b = (float.IsPositiveInfinity(b) || float.IsPositiveInfinity(b1)) ? float.PositiveInfinity : float.NegativeInfinity;//Á½¸öÊäÈë¶¼ÓĞÊ±Ä¬ÈÏ||
+        b = (float.IsPositiveInfinity(b) || float.IsPositiveInfinity(b1)) ? float.PositiveInfinity : float.NegativeInfinity;//ä¸¤ä¸ªè¾“å…¥éƒ½æœ‰æ—¶é»˜è®¤||
         Write(runAt, b);
-        if (float.IsNegativeInfinity(b)) Ban(null, null, new() { 3, 4 });//ban,µ«ºöÂÔ 3 else £¬4 elif
+        if (float.IsNegativeInfinity(b)) Ban(null, null, new() { 3, 4 });//ban,ä½†å¿½ç•¥ 3 else ï¼Œ4 elif
     }
    
     private void A3()
     {
         float b = -IfFinder(runAt);//else
         Write(runAt, b);
-        if (!float.IsPositiveInfinity(b)) Ban();//Ë­¶¼ban
+        if (!float.IsPositiveInfinity(b)) Ban();//è°éƒ½ban
     }
 
     private void A4()
     {
         float b = -IfFinder(runAt);//elif
         print(b);
-        if (!float.IsPositiveInfinity(b)) Ban(null, null, new() { 3, 4 });//Èç¹ûfalse »ò NaN²»¼ÌĞøÖ´ĞĞ
-        A2();//Ö´ĞĞif
+        if (!float.IsPositiveInfinity(b)) Ban(null, null, new() { 3, 4 });//å¦‚æœfalse æˆ– NaNä¸ç»§ç»­æ‰§è¡Œ
+        A2();//æ‰§è¡Œif
     }
 
     private void A5()//+
@@ -768,7 +768,7 @@ public class IC_Code : MonoBehaviour,ION
         float all = 0;
         for (sbyte i = 0; i < 4; i++)
         {
-            if (i % 2 == 1) JustActive(runAt, i);//ÓÒºÍÏÂ
+            if (i % 2 == 1) JustActive(runAt, i);//å³å’Œä¸‹
             float num1 = GetNum(runAt, i);
             if (!IsNum(num1)) num1 = 0;
             all += num1;
@@ -797,7 +797,7 @@ public class IC_Code : MonoBehaviour,ION
         if (!IsNum(all)) all = 0;
         for (sbyte i = 0; i < 4; i++)
         {
-            if (i % 2 == 1) JustActive(runAt, i);//ÓÒºÍÏÂ
+            if (i % 2 == 1) JustActive(runAt, i);//å³å’Œä¸‹
             if (Index(runAt, i) == ID[0]) continue;
             float num1 = GetNum(runAt, i);
             if (!IsNum(num1)) num1 = 0;
@@ -827,7 +827,7 @@ public class IC_Code : MonoBehaviour,ION
 
         for (sbyte i = 0; i < 4; i++)
         {
-            if (i % 2 == 1) JustActive(runAt, i);//ÓÒºÍÏÂ
+            if (i % 2 == 1) JustActive(runAt, i);//å³å’Œä¸‹
             float num1 = GetNum(runAt, i);
             if (!IsNum(num1)) num1 = 1;
             all *= num1;
@@ -857,7 +857,7 @@ public class IC_Code : MonoBehaviour,ION
         if (!IsNum(all)) all = 0;
         for (sbyte i = 0; i < 4; i++)
         {
-            if (i % 2 == 1) JustActive(runAt, i);//ÓÒºÍÏÂ
+            if (i % 2 == 1) JustActive(runAt, i);//å³å’Œä¸‹
             if (Index(runAt, i) == ID[0]) continue;
             float num1 = GetNum(runAt, i);
             if (!IsNum(num1)) num1 = 1;
@@ -1268,7 +1268,7 @@ public class IC_Code : MonoBehaviour,ION
         Write(runAt, s);
         Assignment(runAt, s);
     }
-    List<int> ContinueOn = new();//¸÷²ã½ø¶È Ã¿´Î×î¶àÔËĞĞ 100´Î¡£
+    List<int> ContinueOn = new();//å„å±‚è¿›åº¦ æ¯æ¬¡æœ€å¤šè¿è¡Œ 100æ¬¡ã€‚
     int layCount = 0;
     int forCount;
     private void A45()//for
@@ -1316,7 +1316,7 @@ public class IC_Code : MonoBehaviour,ION
             ContinueOn[lay] = i_start;
             NextFrame = true;
         }
-        else//½áÊø
+        else//ç»“æŸ
         {
             Ban();
             ContinueOn[lay] = 0;
@@ -1510,12 +1510,12 @@ public class IC_Code : MonoBehaviour,ION
 
     #endregion
 
-    #region ·½·¨
+    #region æ–¹æ³•
 
     /// <summary>
-    /// Ö¸Áî¼¯
+    /// æŒ‡ä»¤é›†
     /// </summary>
-    /// <param name="i">ÔËĞĞµÄÎ»ÖÃ</param>
+    /// <param name="i">è¿è¡Œçš„ä½ç½®</param>
     void Run(sbyte Bracket = -1)
     {
         if (!NotGet && Bracket != runAt)
@@ -1548,7 +1548,7 @@ public class IC_Code : MonoBehaviour,ION
                 SameLine = !OnOtherSide(from, to);
                 if (!SameLine) break;
                 if (Code[to] == 3) break;
-                if (Code[to] == 2 || Code[to] == 4)//if »ò elif
+                if (Code[to] == 2 || Code[to] == 4)//if æˆ– elif
                 {
                     Out = Read(to);
                     if (float.IsPositiveInfinity(Out)) return Out;
@@ -1691,7 +1691,7 @@ public class IC_Code : MonoBehaviour,ION
         sbyte aim = _index;
         switch (kind)
         {
-            case 0://ÉÏ
+            case 0://ä¸Š
                 aim -= 10;
                 break;
             case 1:
@@ -1712,7 +1712,7 @@ public class IC_Code : MonoBehaviour,ION
         sbyte aim = _index;
         switch (kind)
         {
-            case 0://ÉÏ
+            case 0://ä¸Š
                 aim -= 10;
                 break;
             case 1:
@@ -1798,14 +1798,14 @@ public class IC_Code : MonoBehaviour,ION
     }
 
     /// <summary>
-    /// ÈÃ±»ÊäÈëµÄµØÖ·Ê§Ğ§Ò»»Ø
+    /// è®©è¢«è¾“å…¥çš„åœ°å€å¤±æ•ˆä¸€å›
     /// </summary>
-    /// <param name="where">µØÖ·</param>
-    /// <param name="Positve">µ±Ëü²»Îª¿ÕÊ±£¬°üº¬´úÂë²ÅÖ´ĞĞ</param>
-    /// <param name="Negitve">µ±Ëü°üº¬´úÂëÔò²»Ö´ĞĞ</param>
+    /// <param name="where">åœ°å€</param>
+    /// <param name="Positve">å½“å®ƒä¸ä¸ºç©ºæ—¶ï¼ŒåŒ…å«ä»£ç æ‰æ‰§è¡Œ</param>
+    /// <param name="Negitve">å½“å®ƒåŒ…å«ä»£ç åˆ™ä¸æ‰§è¡Œ</param>
     void Ban(List<sbyte> where = null, List<sbyte> Positve = null, List<sbyte> Negitve = null)
     {
-        if (where == null) where = new() { Index(runAt, 1), Index(runAt, 3) };//Ä¬ÈÏbanÓÒºÍÏÂ
+        if (where == null) where = new() { Index(runAt, 1), Index(runAt, 3) };//é»˜è®¤banå³å’Œä¸‹
         if (Positve == null) Positve = new();
         if (Negitve == null) Negitve = new();
         sbyte k;
@@ -1818,7 +1818,7 @@ public class IC_Code : MonoBehaviour,ION
                 if (Positve.Count == 0 || Positve.Contains(k))
                 {
                     Pass.Add(where[i]);
-                    //ÏÖÔÚÒªÅĞ¶ÏbanÏîÊÇ·ñ»ábanÆäËûÄÚÈİ
+                    //ç°åœ¨è¦åˆ¤æ–­bané¡¹æ˜¯å¦ä¼šbanå…¶ä»–å†…å®¹
                     if ((1 < k && k < 5) || (44 < k && k < 48))
                     {
                         Ban(new() { Index(where[i], 1), Index(where[i], 3) });
@@ -1829,7 +1829,7 @@ public class IC_Code : MonoBehaviour,ION
     }
     void BanOften(List<sbyte> where = null, List<sbyte> Positve = null, List<sbyte> Negitve = null)
     {
-        if (where == null) where = new() { Index(runAt, 1), Index(runAt, 3) };//Ä¬ÈÏbanÓÒºÍÏÂ
+        if (where == null) where = new() { Index(runAt, 1), Index(runAt, 3) };//é»˜è®¤banå³å’Œä¸‹
         if (Positve == null) Positve = new();
         if (Negitve == null) Negitve = new();
         sbyte k;
@@ -1842,7 +1842,7 @@ public class IC_Code : MonoBehaviour,ION
                 if (Positve.Count == 0 || Positve.Contains(k))
                 {
                     OftenPass.Add(where[i]);
-                    //ÏÖÔÚÒªÅĞ¶ÏbanÏîÊÇ·ñ»ábanÆäËûÄÚÈİ
+                    //ç°åœ¨è¦åˆ¤æ–­bané¡¹æ˜¯å¦ä¼šbanå…¶ä»–å†…å®¹
                     if ((1 < k && k < 5) || (44 < k && k < 48))
                     {
                         BanOften(new() { Index(where[i], 1), Index(where[i], 3) });

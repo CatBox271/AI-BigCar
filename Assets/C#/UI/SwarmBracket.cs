@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,13 +29,13 @@ public class SwarmBracket : MonoBehaviour
 
     public SwarmCode[] Swarm(int to = -1)
     {
-        GameObject go = Instantiate(Left, transform.parent);//Éú³É×óÀ¨»¡
+        GameObject go = Instantiate(Left, transform.parent);//ç”Ÿæˆå·¦æ‹¬å¼§
         SwarmCode gsc = go.GetComponent<SwarmCode>();
         go.transform.position = transform.position;
         gsc.TryFixOn();
 
         
-        GameObject go1 = Instantiate(Right, transform.parent);//Éú³ÉÓÒÀ¨»¡
+        GameObject go1 = Instantiate(Right, transform.parent);//ç”Ÿæˆå³æ‹¬å¼§
         SwarmCode gsc1 = go1.GetComponent<SwarmCode>();
         if (to != -1)
         {

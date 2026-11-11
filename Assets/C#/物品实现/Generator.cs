@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -137,7 +137,7 @@ public class Generator : MonoBehaviour
             Transform a = AllBlock[i].transform;
             if (a != null)
             {
-                //ÂÖ×Ó
+                //è½®å­
                 if (a.name.Contains("Wheel"))
                 {
                     if (a.parent.childCount >= 2)
@@ -161,7 +161,7 @@ public class Generator : MonoBehaviour
                         }
                     }
                 }
-                //ÆäËû
+                //å…¶ä»–
                 if (a.name.Contains("Propeller"))
                 {
                     if (a.TryGetComponent(out Propellers p))
@@ -207,13 +207,13 @@ public class Generator : MonoBehaviour
     {
         lastGive = value;
         List<Engine> SameEngine = new();
-        //¸ü¸ÄÄ¿±êÖµ
+        //æ›´æ”¹ç›®æ ‡å€¼
         for (int i = 0; i < AllBlock.Count; i++)
         {
             Transform a = AllBlock[i].transform;
             if (a != null)
             {
-                //ÂÖ×Ó
+                //è½®å­
                 if (a.name.Contains("Wheel"))
                 {
                     if (a.parent.childCount >= 2)
@@ -234,7 +234,7 @@ public class Generator : MonoBehaviour
                         u.Speed += value / 27f * 1.5f;
                     }
                 }
-                //ÆäËû
+                //å…¶ä»–
                 if (a.name.Contains("Propeller"))
                 {
                     if (a.name.Contains("Water"))

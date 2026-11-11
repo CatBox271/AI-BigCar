@@ -1,4 +1,4 @@
-using System;
+锘縰sing System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,15 +8,15 @@ public class UICardModeSendCar : MonoBehaviour
 {
     public Button button;
     public Transform OwnCarParent;
-    public CardManager cardManager;//这份手牌属于谁，右边发车不动左边的牌
+    public CardManager cardManager;//杩欎唤鎵嬬墝灞炰簬璋侊紝鍙宠竟鍙戣溅涓嶅姩宸﹁竟鐨勭墝
     private SpriteRenderer loading;
-    private 车辆样板加载 model;
+    private 杞﹁締鏍锋澘鍔犺浇 model;
     private OwnCar car;
     private void Awake()
     {
         car = OwnCarParent.GetComponentInChildren<OwnCar>();
         loading = OwnCarParent.GetChild(1).GetComponent<SpriteRenderer>();
-        model = OwnCarParent.GetComponentInChildren<车辆样板加载>();
+        model = OwnCarParent.GetComponentInChildren<杞﹁締鏍锋澘鍔犺浇>();
         button.onClick.AddListener(OnButtonDown);
         car.SendingFinish += OnSendingFinish;
     }
@@ -32,6 +32,6 @@ public class UICardModeSendCar : MonoBehaviour
     private void OnSendingFinish()
     {
         loading.gameObject.SetActive(false);
-        model.SetCarState(2);
+        model.SetCarState(3);
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,8 +17,8 @@ public class BlockInform : MonoBehaviour
         }
         else
         {
-            // Ãû×ÖÍ³Ò»×ß GameManager.BlockLibrary£ºSwarmBlock ´«½øÀ´µÄÊÇÔ¤ÖÆÌå¸ùÎïÌåÃû£¬
-            // Ò²¾ÍÊÇ BlockInfo.code_name
+            // åå­—ç»Ÿä¸€èµ° GameManager.BlockLibraryï¼šSwarmBlock ä¼ è¿›æ¥çš„æ˜¯é¢„åˆ¶ä½“æ ¹ç‰©ä½“åï¼Œ
+            // ä¹Ÿå°±æ˜¯ BlockInfo.code_name
             int i = GameManager.GetBlockIndexByCode(BlockName);
             if (i != -1) text.text = GameManager.BlockLibrary[i].describe;
             State = true;

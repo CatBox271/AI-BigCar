@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -54,13 +54,13 @@ public class MV_Manager : MonoBehaviour
             _ => 0,
         };
         transform.GetChild(9).GetComponent<Image>().color = GameManager.layIn == 1 ? Color.yellow : Color.green;
-        transform.GetChild(9).GetChild(0).GetComponent<Text>().text = GameManager.layIn == 1 ? "·ÅÖÃÓÚÉÏ²ã": "·ÅÖÃÓÚÏÂ²ã";
+        transform.GetChild(9).GetChild(0).GetComponent<Text>().text = GameManager.layIn == 1 ? "æ”¾ç½®äºä¸Šå±‚": "æ”¾ç½®äºä¸‹å±‚";
     }
     public void DeleteMode()
     {
         GameManager.DeleteMode = !GameManager.DeleteMode;
         transform.GetChild(8).GetComponent<Image>().color = GameManager.DeleteMode ? Color.red : Color.green;
-        transform.GetChild(8).GetChild(0).GetComponent<Text>().text = GameManager.DeleteMode ? "¹Ø±ÕÉ¾³ıÄ£Ê½" : "¿ªÆôÉ¾³ıÄ£Ê½";
+        transform.GetChild(8).GetChild(0).GetComponent<Text>().text = GameManager.DeleteMode ? "å…³é—­åˆ é™¤æ¨¡å¼" : "å¼€å¯åˆ é™¤æ¨¡å¼";
     }
 
     public void SaveDesign()
@@ -118,11 +118,11 @@ public class MV_Manager : MonoBehaviour
             int t = 0;
             for (int ii = a + c * width; ii <= b + d * width; ii++)
             {
-                //»»Îª¾«¼ò±£´æ·½Ê½
+                //æ¢ä¸ºç²¾ç®€ä¿å­˜æ–¹å¼
 
                 if (RealDesign.Count <= i)
                 {
-                    RealDesign.Add(new List<string>() {a.ToString(),b.ToString(),c.ToString(),d.ToString()});//Ç°Ò»ÏîÊÇ³¤
+                    RealDesign.Add(new List<string>() {a.ToString(),b.ToString(),c.ToString(),d.ToString()});//å‰ä¸€é¡¹æ˜¯é•¿
                 }
 
                 do
@@ -159,13 +159,13 @@ public class MV_Manager : MonoBehaviour
                     ii += width - (b - a) - 1;
                 }
             }
-        }//ËùÓĞµÄÔØ¾ßÒÑ¾­¼ò»¯´æÓÚRealDesignÖĞ
+        }//æ‰€æœ‰çš„è½½å…·å·²ç»ç®€åŒ–å­˜äºRealDesignä¸­
         RDR .Clear();
         RDR.AddRange(RealDesign);
-        //ÏÔÊ¾¶¯»­
+        //æ˜¾ç¤ºåŠ¨ç”»
         anim.Play("SaveDesign");
     }
-    public List<List<string>> RDR = new(); //RealDesign µÄ ¼ÇÂ¼
+    public List<List<string>> RDR = new(); //RealDesign çš„ è®°å½•
 
 
 
@@ -336,7 +336,7 @@ public class MV_Manager : MonoBehaviour
             }
             int width = oc[o].ColliderArea[0];
             int Height = oc[o].ColliderArea[1];
-            //Í¨¹ıĞŞ¸Äall_carsµÄË³Ğò£¬ÔÙ±£´æÖØĞÂ¼ÓÔØ
+            //é€šè¿‡ä¿®æ”¹all_carsçš„é¡ºåºï¼Œå†ä¿å­˜é‡æ–°åŠ è½½
             List<List<GameObject>> NeedCheck = new();
             switch (towards)
             {

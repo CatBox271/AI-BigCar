@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -80,7 +80,7 @@ public class RougeChoose : MonoBehaviour
         float AllGoldCoins = g * 100 + g * (g - 1) * 50f;
         bool Pass = false;
         if (YS.RightNum == 8 || PassLevel)
-        { //¹ı¹Ø
+        { //è¿‡å…³
             AllGoldCoins += 500;
             Pass = true;
         }
@@ -109,10 +109,10 @@ public class RougeChoose : MonoBehaviour
 
 
 
-    /// 1 - 2 ; 2 - 3; 2 - 4; 3 - 2 ; 3 - 4; 4 - 3 ;4 - 2 ;×îºóºÏ²¢Îª1
-    /// ²íÂ·¿ÚÁ´½ÓÉÏÏÂÉÏÏÂ
-    /// ĞİÏ¢¹ØÔÚÅ¼Êı¹ØË¢ĞÂ£»ÉÌµê¹ØÔÚ3µÄ±¶Êı¹ØË¢ĞÂ
-    /// ´æµµ¿ªÍ·µÚÒ»NextÇ°¼ÇÂ¼ÁË ÉÏÒ»¹Ø£¬ÊÇ·ñÍ¨¹Ø£¬µÈĞÅÏ¢
+    /// 1 - 2 ; 2 - 3; 2 - 4; 3 - 2 ; 3 - 4; 4 - 3 ;4 - 2 ;æœ€ååˆå¹¶ä¸º1
+    /// å²”è·¯å£é“¾æ¥ä¸Šä¸‹ä¸Šä¸‹
+    /// ä¼‘æ¯å…³åœ¨å¶æ•°å…³åˆ·æ–°ï¼›å•†åº—å…³åœ¨3çš„å€æ•°å…³åˆ·æ–°
+    /// å­˜æ¡£å¼€å¤´ç¬¬ä¸€Nextå‰è®°å½•äº† ä¸Šä¸€å…³ï¼Œæ˜¯å¦é€šå…³ï¼Œç­‰ä¿¡æ¯
     public List<List<string>> allScene;
     private void SummonMap()
     {
@@ -121,10 +121,10 @@ public class RougeChoose : MonoBehaviour
 
         allScene[0].Add("-1");
         allScene[0].Add("0");
-        allScene[0].Add("");//Èç¹û¹ı¹ØÔò¡°Pass¡±
-        allScene[0].Add("0");//Òø±ÒÊı
-        allScene[0].Add("5");//Ê£ÓàÖØ¿ªÊı
-        allScene[0].Add(PlayerPrefs.GetString("animPath","BadPig"));//½ÇÉ«example BadPig BoxCat
+        allScene[0].Add("");//å¦‚æœè¿‡å…³åˆ™â€œPassâ€
+        allScene[0].Add("0");//é“¶å¸æ•°
+        allScene[0].Add("5");//å‰©ä½™é‡å¼€æ•°
+        allScene[0].Add(PlayerPrefs.GetString("animPath","BadPig"));//è§’è‰²example BadPig BoxCat
         for (int i = 0; i < allScene[0].Count; i++)
         {
             line.Add(allScene[0][i]);

@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -22,10 +22,10 @@ public class LevelCamera : MonoBehaviour
     public float scalingSize;
 
     public Vector2 CameraViewLimit = new(50, 70);
-    //ÊÇ·ñÊÇÒÆ¶¯¶Ë
+    //æ˜¯å¦æ˜¯ç§»åŠ¨ç«¯
     public static bool IsMobilePlatform;
     public bool SetMobile;
-    //ÊÓ½ÇĞı×ª×é¼ş
+    //è§†è§’æ—‹è½¬ç»„ä»¶
     public bool RotateCamera;
     public bool ReallyMode;
 
@@ -347,7 +347,7 @@ public class LevelCamera : MonoBehaviour
     private float oldDisBetweenTouch;
     private float lastScale;
 
-    //ÏÂÃæÕâ¶ÎÊÇ³­µÄ£¬ÄÜÅÜ
+    //ä¸‹é¢è¿™æ®µæ˜¯æŠ„çš„ï¼Œèƒ½è·‘
     private EventSystem eventSystem;
     private PointerEventData eventData;
     private bool init = false;
@@ -373,12 +373,12 @@ public class LevelCamera : MonoBehaviour
         {
             if (temp.gameObject.layer.Equals(5))
             {
-                return true;//Equal(5)ÖĞµÄ¡°5¡±ÊÇÖ¸Í¼²ãµÚÎå²ãUI²ã
+                return true;//Equal(5)ä¸­çš„â€œ5â€æ˜¯æŒ‡å›¾å±‚ç¬¬äº”å±‚UIå±‚
             }
         }
         return false;
     }
-    //³­µÄµ½ÕâÀï½áÊø
+    //æŠ„çš„åˆ°è¿™é‡Œç»“æŸ
 
 
     Vector3 rv;

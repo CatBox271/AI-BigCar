@@ -1,11 +1,11 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BlockChoose : MonoBehaviour
 {
-    //µÚÒ»ÏîÎª±Ø¶¨Ë¢ĞÂ£¬ºó¼¸ÏîËæ»úÑ¡Á½Ïî
+    //ç¬¬ä¸€é¡¹ä¸ºå¿…å®šåˆ·æ–°ï¼Œåå‡ é¡¹éšæœºé€‰ä¸¤é¡¹
     public List<string> Kind = new();
     public List<int> Num = new();
 

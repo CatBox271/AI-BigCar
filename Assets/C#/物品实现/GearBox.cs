@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -143,13 +143,13 @@ public class GearBox : MonoBehaviour
 
     private void SetValue(int value)
     {
-        //¸ü¸ÄÄ¿±êÖµ
+        //æ›´æ”¹ç›®æ ‡å€¼
         for (int i = 0; i < AllBlock.Count; i++)
         {
             Transform a = AllBlock[i];
             if (a != null)
             {
-                //ÂÖ×Ó
+                //è½®å­
                 if (a.parent.childCount >= 2)
                 {
                     if (a.parent.GetChild(1).TryGetComponent(out PowerWheel w))

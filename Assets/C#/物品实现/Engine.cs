@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -24,12 +24,12 @@ public class Engine : MonoBehaviour,IStart
 
     int lastOn = -1;
     float lastGive;
-    float CF;//µÚÒ»¸ö¼ì²é
+    float CF;//ç¬¬ä¸€ä¸ªæ£€æŸ¥
     void FixedUpdate()
     {
         if (ready == -1) return;
         if (CF == Time.time) return;
-        //Ê±¿Ì¼ì²éPower½Ó¿Ú
+        //æ—¶åˆ»æ£€æŸ¥Poweræ¥å£
         int On = 0;
 
         for (int i = 0; i < AllPower.Count; i++)
@@ -40,7 +40,7 @@ public class Engine : MonoBehaviour,IStart
         if (On == lastOn) return;
         lastOn = On;
         Engine eng;
-        for (int i = 0; i < SameEngine.Count; i++)//Í¬²½Í¬ÔØÒıÇæ
+        for (int i = 0; i < SameEngine.Count; i++)//åŒæ­¥åŒè½½å¼•æ“
         {
             eng = SameEngine[i];
             eng.CF = CF;
@@ -62,7 +62,7 @@ public class Engine : MonoBehaviour,IStart
     public CheckAlive ca;
     private void SetValue(float value)
     {
-        //¸ü¸ÄÄ¿±êÖµ
+        //æ›´æ”¹ç›®æ ‡å€¼
         for (int i = 0; i < AllPower.Count; i++)
         {
             if (AllPower[i] == null) continue;
@@ -71,31 +71,31 @@ public class Engine : MonoBehaviour,IStart
     }
 
     float ready = -1;
-    public void SetStart(float t)//³¢ÊÔÁ¬½ÓIPower
+    public void SetStart(float t)//å°è¯•è¿æ¥IPower
     {
         if (ready == t) return;
         ready = t;
         CutPower();
         AllPower.Clear();
         List<CheckAlive> allItem = new();
-        allItem.AddRange(GameManager.allvehicle[ca.VID]);//¶ÔËùÓĞÍ¨Ò»ÔØ¾ßÄÚÈİ½øĞĞ·ÖÎö
+        allItem.AddRange(GameManager.allvehicle[ca.VID]);//å¯¹æ‰€æœ‰é€šä¸€è½½å…·å†…å®¹è¿›è¡Œåˆ†æ
         print(GameManager.allvehicle[ca.VID].Count + "," + ca.VID);
         SameEngine.Clear();
         Engine eng;
         for (int i = 0; i < allItem.Count; i++)
         {
             if (allItem[i] == null) continue;
-            if (allItem[i].TryGetComponent(out IPower power)) AllPower.Add(power);//»ñµÃËùÓĞ½Ó¿Ú
+            if (allItem[i].TryGetComponent(out IPower power)) AllPower.Add(power);//è·å¾—æ‰€æœ‰æ¥å£
             if (allItem[i].TryGetComponent(out eng)) SameEngine.Add(eng);
         }
 
-        for (int i = 0; i < SameEngine.Count; i++)//Í¬²½Í¬ÔØÒıÇæ
+        for (int i = 0; i < SameEngine.Count; i++)//åŒæ­¥åŒè½½å¼•æ“
         {
             eng = SameEngine[i];
             if (eng == this) continue;
             eng.SameEngine.Clear();
             eng.SameEngine.AddRange(SameEngine);
-            eng.CutPower();//Í£Ö¹ËùÓĞÒıÇæµÄ¶¯Á¦
+            eng.CutPower();//åœæ­¢æ‰€æœ‰å¼•æ“çš„åŠ¨åŠ›
             eng.ready = t;
             eng.AllPower.Clear();
             eng.AllPower.AddRange(AllPower);
@@ -104,7 +104,7 @@ public class Engine : MonoBehaviour,IStart
 
     void CutPower()
     {
-        SetValue(-lastGive);//Í£Ö¹ËùÓĞÒıÇæµÄ¶¯Á¦
+        SetValue(-lastGive);//åœæ­¢æ‰€æœ‰å¼•æ“çš„åŠ¨åŠ›
         lastOn = -1;
         lastGive = 0;
     }

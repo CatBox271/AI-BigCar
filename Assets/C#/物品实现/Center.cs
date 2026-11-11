@@ -1,4 +1,4 @@
-using System.Collections;
+锘縰sing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,7 +17,7 @@ public class Center : MonoBehaviour,IStart
         {
             start = true;
 
-            bm = GameObject.Find("Canvas").transform.Find("ButtonManager").GetComponent<ButtonManager>();//准备生成button
+            bm = GameObject.Find("Canvas").transform.Find("ButtonManager").GetComponent<ButtonManager>();//鍑嗗鐢熸垚button
             if (ca.BlockOffset.Contains(-4)) SwarmButton();
         }
         catch

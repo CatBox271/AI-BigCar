@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -100,14 +100,14 @@ public class Propellers : MonoBehaviour,IPower,ION
     {
         if (Force > 0)
         {
-            Force += set * ·¢¶¯»ú³ËÊı;
+            Force += set * å‘åŠ¨æœºä¹˜æ•°;
         }
         else
         {
-            Force -= set * ·¢¶¯»ú³ËÊı;
+            Force -= set * å‘åŠ¨æœºä¹˜æ•°;
         }
     }
-    public float ·¢¶¯»ú³ËÊı = 100f;
+    public float å‘åŠ¨æœºä¹˜æ•° = 100f;
 
     public bool OnSet { get; set; }
     public float NumSet { get; set; }

@@ -1,17 +1,17 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    #region ·½¿é¹ÜÀí
+    #region æ–¹å—ç®¡ç†
     [System.Serializable]
     public class BlockInfo
     {
-        public string code_name;//´úºÅ
-        public string chinese_name;//ÖĞÎÄÃû³Æ
-        public string describe;//ÏêÏ¸ÃèÊö
-        public string adjudication;//ÅĞ´Ê£¬ÓÄÄ¬µÄ¼òµ¥Ó¡Ïó
+        public string code_name;//ä»£å·
+        public string chinese_name;//ä¸­æ–‡åç§°
+        public string describe;//è¯¦ç»†æè¿°
+        public string adjudication;//åˆ¤è¯ï¼Œå¹½é»˜çš„ç®€å•å°è±¡
         public BlockInfo() { }
         public BlockInfo(string _code_name, string _chinese_name, string _describe,string _adjudication)
         {
@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
 
     public const string BlockLibraryPath = "Data/BlockLibrary";
 
-    // ±íÌåÄÚ´æ¡£¶ÔÍâÍ³Ò»×ß BlockLibrary ÊôĞÔ£¬±£Ö¤µÚÒ»´Î·ÃÎÊÊ±¾ÍÒÑ´Ó JSON ÔØÈë¡£
+    // è¡¨ä½“å†…å­˜ã€‚å¯¹å¤–ç»Ÿä¸€èµ° BlockLibrary å±æ€§ï¼Œä¿è¯ç¬¬ä¸€æ¬¡è®¿é—®æ—¶å°±å·²ä» JSON è½½å…¥ã€‚
     static readonly List<BlockInfo> blockLibrary = new();
 
     public static List<BlockInfo> BlockLibrary
@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         blockLibrary.AddRange(table.blocks);
     }
 
-    public static void ClearBlockLibrary()//BlockLibrary.json ÖØĞÂµ¼ÈëÊ±Çå¿ÕÄÚ´æ±í
+    public static void ClearBlockLibrary()//BlockLibrary.json é‡æ–°å¯¼å…¥æ—¶æ¸…ç©ºå†…å­˜è¡¨
     {
         blockLibrary.Clear();
     }
@@ -165,13 +165,13 @@ public class GameManager : MonoBehaviour
 
     #endregion;
 
-    #region ÌùÍ¼¹ÜÀí
+    #region è´´å›¾ç®¡ç†
     static readonly Dictionary<string, Sprite> spriteCache = new Dictionary<string, Sprite>();
     static readonly Dictionary<string, Sprite> blockSpriteCache = new Dictionary<string, Sprite>(System.StringComparer.OrdinalIgnoreCase);
     static Dictionary<string, string> spriteIndex;
 
-    /// <summary>Í¨ÓÃ»ñÈ¡·½·¨£º°´ÍêÕû Resources Â·¾¶È¡ Sprite¡£´ø»º´æ£¬²é²»µ½Ò²»á»º´æ null¡£</summary>
-    public static Sprite GetResourcesSprite(string path)//Í¨ÓÃ»ñÈ¡·½·¨
+    /// <summary>é€šç”¨è·å–æ–¹æ³•ï¼šæŒ‰å®Œæ•´ Resources è·¯å¾„å– Spriteã€‚å¸¦ç¼“å­˜ï¼ŒæŸ¥ä¸åˆ°ä¹Ÿä¼šç¼“å­˜ nullã€‚</summary>
+    public static Sprite GetResourcesSprite(string path)//é€šç”¨è·å–æ–¹æ³•
     {
         if (string.IsNullOrEmpty(path)) return null;
         Sprite sp;
@@ -181,14 +181,14 @@ public class GameManager : MonoBehaviour
         return sp;
     }
 
-    /// <summary>°´ÏÂ±êÈ¡µÀ¾ßÍ¼±ê£¬ÏÂ±êÓë BlockLibrary / ´æµµÀïµÄÊı×ÖË÷ÒıÒ»ÖÂ¡£</summary>
+    /// <summary>æŒ‰ä¸‹æ ‡å–é“å…·å›¾æ ‡ï¼Œä¸‹æ ‡ä¸ BlockLibrary / å­˜æ¡£é‡Œçš„æ•°å­—ç´¢å¼•ä¸€è‡´ã€‚</summary>
     public static Sprite GetBlockSprite(int index)
     {
         return GetBlockSprite(GetBlockCodeName(index));
     }
 
-    /// <summary>°´ code_name È¡µÀ¾ßÍ¼±ê¡£×Ô¶¯È¥µô "(Clone)" Ö®Ààºó×º£¬²¢¼æÈİÀúÊ·ÃüÃûµÄ´óĞ¡Ğ´²îÒì¡£</summary>
-    public static Sprite GetBlockSprite(string code_name)//ÓÃcode_nameµÄÃû×Ö
+    /// <summary>æŒ‰ code_name å–é“å…·å›¾æ ‡ã€‚è‡ªåŠ¨å»æ‰ "(Clone)" ä¹‹ç±»åç¼€ï¼Œå¹¶å…¼å®¹å†å²å‘½åçš„å¤§å°å†™å·®å¼‚ã€‚</summary>
+    public static Sprite GetBlockSprite(string code_name)//ç”¨code_nameçš„åå­—
     {
         if (string.IsNullOrEmpty(code_name)) return null;
         int cut = code_name.IndexOf('(');
@@ -207,7 +207,7 @@ public class GameManager : MonoBehaviour
         return sp;
     }
 
-    /// <summary>Í¼±êÀúÊ·ÃüÃû´óĞ¡Ğ´²»Í³Ò»£¨engine / Panzer / H-BLock / Shield£©£¬ÕâÀïÖ»²éÕæÊµÎÄ¼şÃû£¬¼ÓÔØÈÔ½»¸ø GetResourcesSprite¡£</summary>
+    /// <summary>å›¾æ ‡å†å²å‘½åå¤§å°å†™ä¸ç»Ÿä¸€ï¼ˆengine / Panzer / H-BLock / Shieldï¼‰ï¼Œè¿™é‡ŒåªæŸ¥çœŸå®æ–‡ä»¶åï¼ŒåŠ è½½ä»äº¤ç»™ GetResourcesSpriteã€‚</summary>
     static string FindSpriteNameIgnoreCase(string code_name)
     {
         if (spriteIndex == null)
@@ -223,7 +223,7 @@ public class GameManager : MonoBehaviour
         return spriteIndex.TryGetValue(code_name, out hit) ? hit : null;
     }
 
-    /// <summary>Çå¿ÕÍ¼±ê»º´æ¡£±à¼­Æ÷ÀïÖØĞÂÉú³ÉÍ¼±êºóµ÷ÓÃÒ»´Î¼´¿É¡£</summary>
+    /// <summary>æ¸…ç©ºå›¾æ ‡ç¼“å­˜ã€‚ç¼–è¾‘å™¨é‡Œé‡æ–°ç”Ÿæˆå›¾æ ‡åè°ƒç”¨ä¸€æ¬¡å³å¯ã€‚</summary>
     public static void ClearSpriteCache()
     {
         spriteCache.Clear();
@@ -248,11 +248,11 @@ public class GameManager : MonoBehaviour
 
     public static bool DeleteMode = false;
 
-    public static List<List<CheckAlive>> allvehicle = new();//ËùÓĞÔØ¾ß
+    public static List<List<CheckAlive>> allvehicle = new();//æ‰€æœ‰è½½å…·
 
     public static void Check(int VID = -114514)
     {
-        if (VID == -114514)//¼ì²éËùÓĞ
+        if (VID == -114514)//æ£€æŸ¥æ‰€æœ‰
         {
             for (int i = 0; i < allvehicle.Count; i++)
             {
@@ -266,25 +266,25 @@ public class GameManager : MonoBehaviour
     }
     public static List<List<ButtonInfo>> allInfo = new();
 
-    static void SingleCheck(int id)//buttonÏûÏ¢ÏµÍ³
+    static void SingleCheck(int id)//buttonæ¶ˆæ¯ç³»ç»Ÿ
     {
         KeepSameCount();
 
-        allInfo[id].Clear();//Çå¿Õ¾ÉÊı¾İ
+        allInfo[id].Clear();//æ¸…ç©ºæ—§æ•°æ®
 
         List<CheckAlive> allItem = new();
-        allItem.AddRange(allvehicle[id]);//¶ÔËùÓĞÍ¨Ò»ÔØ¾ßÄÚÈİ½øĞĞ·ÖÎö
+        allItem.AddRange(allvehicle[id]);//å¯¹æ‰€æœ‰é€šä¸€è½½å…·å†…å®¹è¿›è¡Œåˆ†æ
         for (int i = 0; i < allItem.Count; i++)
         {
             if (allItem[i] == null) continue;
-            var GBI = allItem[i].GetComponent<ButtonInform>();//ÒªÉú³ÉµÄButtonĞÅÏ¢
+            var GBI = allItem[i].GetComponent<ButtonInform>();//è¦ç”Ÿæˆçš„Buttonä¿¡æ¯
             if (GBI == null) continue;
             for (int ii = 0; ii < GBI.ButtonName.Count; ii++)
             {
                 TryConnect tc = GBI.GetComponent<TryConnect>();
                 if (tc == null) continue;
 
-                if (ButtonFind(id, GBI.ButtonName[ii], tc.forward, out int AddTo))//ÒÑ¾­ÓĞ¹ıÁË
+                if (ButtonFind(id, GBI.ButtonName[ii], tc.forward, out int AddTo))//å·²ç»æœ‰è¿‡äº†
                 {
                     allInfo[id][AddTo]._all_on.Add(GBI.GetComponent<ION>());
                 }
@@ -297,9 +297,9 @@ public class GameManager : MonoBehaviour
                     float StartNum = Ion.NumSet;
                     if (GBI.TryGetComponent(out IC_Code ic))
                     {
-                        BI.Set(GBI.ButtonName[ii], -1, GBI.ButtonState[ii], GBI.CD[ii], GBI.NumLimite[ii], new() { Ion }, StartOn, StartNum, ic);//Ğ´ÈëÈ«²¿ĞÅÏ¢
+                        BI.Set(GBI.ButtonName[ii], -1, GBI.ButtonState[ii], GBI.CD[ii], GBI.NumLimite[ii], new() { Ion }, StartOn, StartNum, ic);//å†™å…¥å…¨éƒ¨ä¿¡æ¯
                     }
-                    else BI.Set(GBI.ButtonName[ii], tc.forward, GBI.ButtonState[ii], GBI.CD[ii], GBI.NumLimite[ii], new() { Ion }, StartOn, StartNum);//Ğ´ÈëÈ«²¿ĞÅÏ¢
+                    else BI.Set(GBI.ButtonName[ii], tc.forward, GBI.ButtonState[ii], GBI.CD[ii], GBI.NumLimite[ii], new() { Ion }, StartOn, StartNum);//å†™å…¥å…¨éƒ¨ä¿¡æ¯
                     allInfo[id].Add(BI);
                 }
             }
@@ -320,7 +320,7 @@ public class GameManager : MonoBehaviour
         public List<ION> _all_on;
         public bool _set_on;
         public float _set_num;
-        public float LockTime;//CDÒªÀäÈ´µ½
+        public float LockTime;//CDè¦å†·å´åˆ°
         public List<IC_Code> IC;
         public void Set(string I_name,int forward,int I_state,float I_cd,Vector3Int I_limit,List<ION> I_all_on,bool I_set_on,float I_set_num,IC_Code IIC = null)
         {

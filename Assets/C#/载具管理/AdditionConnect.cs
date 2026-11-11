@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -52,13 +52,13 @@ public class AdditionConnect : MonoBehaviour
         {
             if (DX > 0)
             {
-                //×ó
+                //å·¦
                 if (ty.forward == 3) return;
                 Swarm(3);
             }
             else
             {
-                //ÓÒ
+                //å³
                 if (ty.forward == 2) return;
                 Swarm(2);
             }
@@ -67,13 +67,13 @@ public class AdditionConnect : MonoBehaviour
         {
             if (DY > 0)
             {
-                //ÏÂ
+                //ä¸‹
                 if (ty.forward == 0) return;
                 Swarm(0);
             }
             else
             {
-                //ÉÏ
+                //ä¸Š
                 if (ty.forward == 1) return;
                 Swarm(1);
             }

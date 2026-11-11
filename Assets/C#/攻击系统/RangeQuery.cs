@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// 全局范围查询工具：按阵营生成 layer 掩码 + 无分配的圆形重叠查询。

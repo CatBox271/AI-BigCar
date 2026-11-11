@@ -1,4 +1,4 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -48,7 +48,7 @@ public class Chest : MonoBehaviour
                     PlayerPrefs.SetString("Chest", PlayerPrefs.GetString("Chest", "") + _index + "#");
                     PlayerPrefs.Save();
                     am.Play("ChestOpen");
-                    text.text = "Ω±“+" + Money;
+                    text.text = "ÈáëÂ∏Å+" + Money;
                     t = 100;
                 }
             }
@@ -71,7 +71,7 @@ public class Chest : MonoBehaviour
                     PlayerPrefs.SetString("Chest", PlayerPrefs.GetString("Chest", "") + _index + "#");
                     PlayerPrefs.Save();
                     am.Play("ChestOpen");
-                    text.text = "”≤±“ +" + Money;
+                    text.text = "Á°¨Â∏Å +" + Money;
                     t = 100;
                 }
             }

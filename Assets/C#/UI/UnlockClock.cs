@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,23 +34,23 @@ public class UnlockClock : MonoBehaviour
         {
             case 0:
                 t.text =
-                    "Ôö¼Ó£ºÒıÇæ¡¢×°¼×\n" +
-                    "µ¹¼ÆÊ±:" + ((int)(90 - (Time.time - record_time)/2f)).ToString() + "Ãë";
+                    "å¢åŠ ï¼šå¼•æ“ã€è£…ç”²\n" +
+                    "å€’è®¡æ—¶:" + ((int)(90 - (Time.time - record_time)/2f)).ToString() + "ç§’";
                 break;
             case 1:
                 t.text =
-                    "Ôö¼Ó£º¡Á8¡¢¼¤¹â¡¢ÂİĞı½°£»+1¿ò¼ÜÊı\n" +
-                    "µ¹¼ÆÊ±:" + ((int)(90 - (Time.time - record_time) / 2f)).ToString() + "Ãë";
+                    "å¢åŠ ï¼šÃ—8ã€æ¿€å…‰ã€èºæ—‹æ¡¨ï¼›+1æ¡†æ¶æ•°\n" +
+                    "å€’è®¡æ—¶:" + ((int)(90 - (Time.time - record_time) / 2f)).ToString() + "ç§’";
                 break;
             case 2:
                 t.text =
-                    "Ôö¼Ó£º¡Á16¡¢ĞŞÀíÆ÷£»+1µÀ¾ßÊı\n" +
-                    "µ¹¼ÆÊ±:" + ((int)(90 - (Time.time - record_time) / 2f)).ToString() + "Ãë";
+                    "å¢åŠ ï¼šÃ—16ã€ä¿®ç†å™¨ï¼›+1é“å…·æ•°\n" +
+                    "å€’è®¡æ—¶:" + ((int)(90 - (Time.time - record_time) / 2f)).ToString() + "ç§’";
                 break;
             case 3:
                 t.text =
-                    "Ôö¼Ó£º+1¿ò¼ÜÊı¡¢+1ÎäÆ÷Êı\n" +
-                    "µ¹¼ÆÊ±:" + ((int)(90 - (Time.time - record_time) / 2f)).ToString() + "Ãë";
+                    "å¢åŠ ï¼š+1æ¡†æ¶æ•°ã€+1æ­¦å™¨æ•°\n" +
+                    "å€’è®¡æ—¶:" + ((int)(90 - (Time.time - record_time) / 2f)).ToString() + "ç§’";
                 break;
             default:
                 t.text = "";

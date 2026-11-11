@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -53,9 +53,9 @@ public class PowerUmbrella : MonoBehaviour,IPower
     {
         return On;
     }
-    public float ·¢¶¯»ú³ËÊı = 5;
+    public float å‘åŠ¨æœºä¹˜æ•° = 5;
     public void AddPower(float set)
     {
-        Speed += set * ·¢¶¯»ú³ËÊı;
+        Speed += set * å‘åŠ¨æœºä¹˜æ•°;
     }
 }

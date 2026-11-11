@@ -1,11 +1,11 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public enum CardState
 {
-    ÊµÎïÅÆ,
-    ¼¼ÄÜÅÆ,
+    å®ç‰©ç‰Œ,
+    æŠ€èƒ½ç‰Œ,
 }
 
 [System.Serializable]
@@ -24,7 +24,7 @@ public class CardManager : MonoBehaviour
 {
     public GameObject monocard;
     public Camera currentCamera;
-    public CardCostBar costBar;//±¾·½·ÑÓÃÌõ£¬¿Û·ÑºÍ»Ø·Ñ¶¼×ßËü
+    public CardCostBar costBar;//æœ¬æ–¹è´¹ç”¨æ¡ï¼Œæ‰£è´¹å’Œå›è´¹éƒ½èµ°å®ƒ
     public int handlimit = 8;
     public static List<CardInfo> CardDefine
     {
@@ -35,7 +35,7 @@ public class CardManager : MonoBehaviour
         }
     }
 
-    #region ¶ÁÈ¡¿¨Æ¬¶¨Òå
+    #region è¯»å–å¡ç‰‡å®šä¹‰
     static void EnsureCardDefine()
     {
         if (cardDefine == null || cardDefine.Count == 0)
@@ -47,7 +47,7 @@ public class CardManager : MonoBehaviour
         }
     }
 
-    public static void ClearCardDefine()//cards.json ÖØĞÂµ¼ÈëÊ±Çå¿ÕÄÚ´æ±í
+    public static void ClearCardDefine()//cards.json é‡æ–°å¯¼å…¥æ—¶æ¸…ç©ºå†…å­˜è¡¨
     {
         cardDefine.Clear();
     }
@@ -64,17 +64,17 @@ public class CardManager : MonoBehaviour
     #endregion
 
     [CardIndex]
-    public List<int> startPile = new();//³õÊ¼·ÅÈë³éÅÆ¶ÑµÄÅÆ;
+    public List<int> startPile = new();//åˆå§‹æ”¾å…¥æŠ½ç‰Œå †çš„ç‰Œ;
 
-    public List<CardOb> DrawPile = new();//³éÅÆ¶Ñ
-    public List<CardOb> Hand = new();//ÊÖÅÆ
-    public List<CardOb> DiscardPile = new();//ÆúÅÆ¶Ñ
+    public List<CardOb> DrawPile = new();//æŠ½ç‰Œå †
+    public List<CardOb> Hand = new();//æ‰‹ç‰Œ
+    public List<CardOb> DiscardPile = new();//å¼ƒç‰Œå †
 
-    public float moveSpeed = 8f;//Æ½»¬ËÙ¶È
+    public float moveSpeed = 8f;//å¹³æ»‘é€Ÿåº¦
     public float catchInteval = 0.2f;
     private float _catch_interval;
 
-    public List<Vector2> handPos = new();//Ã¿¸öÊÖÅÆ²ÛµÄÎ»ÖÃ£¬ÏÂ±êÓë Hand ¶ÔÆë
+    public List<Vector2> handPos = new();//æ¯ä¸ªæ‰‹ç‰Œæ§½çš„ä½ç½®ï¼Œä¸‹æ ‡ä¸ Hand å¯¹é½
 
     // Start is called before the first frame update
     void Awake()
@@ -97,13 +97,13 @@ public class CardManager : MonoBehaviour
             }
         }
     }
-    void BuildHandPos()//ÇøÓò¿í¸ßµÈ·Ö£ºÃ¿ĞĞ¾ÓÖĞ£¬¿¨¶à×Ô¶¯ÖØµş£¬²»³¬³öÇøÓò
+    void BuildHandPos()//åŒºåŸŸå®½é«˜ç­‰åˆ†ï¼šæ¯è¡Œå±…ä¸­ï¼Œå¡å¤šè‡ªåŠ¨é‡å ï¼Œä¸è¶…å‡ºåŒºåŸŸ
     {
         handPos.Clear();
         RectTransform area = (RectTransform)transform;
         float width = area.rect.width;
         float height = area.rect.height;
-        float rowStep = handlimit > 1 ? height / 2 : 0;//Á½ĞĞÖĞĞÄ¾à
+        float rowStep = handlimit > 1 ? height / 2 : 0;//ä¸¤è¡Œä¸­å¿ƒè·
 
         int top = (handlimit + 1) / 2;
         for (int i = 0; i < handlimit; i++)
@@ -143,7 +143,7 @@ public class CardManager : MonoBehaviour
         switch (fromPile)
         {
             case -1:
-                //Ï´ÅÆ
+                //æ´—ç‰Œ
                 if (DrawPile.Count == 0) Shuffle();
                 if (DrawPile.Count == 0) break;
                 card = DrawPile[fromIndex];
@@ -195,7 +195,7 @@ public class CardManager : MonoBehaviour
         SortHand();
         return card;
     }
-    public void DiscardHand()//·¢³µÊ±ÊÖÅÆÈ«²¿½øÆúÅÆ¶Ñ
+    public void DiscardHand()//å‘è½¦æ—¶æ‰‹ç‰Œå…¨éƒ¨è¿›å¼ƒç‰Œå †
     {
         for (int i = 0; i < Hand.Count; i++)
         {
@@ -206,7 +206,7 @@ public class CardManager : MonoBehaviour
         }
         SortHand();
     }
-    void SortHand()//°´²ÛÎ»ÖØÅÅ£¬ÈÃÖØµş´¦µÄÑ¹¸ÇË³Ğò¹Ì¶¨
+    void SortHand()//æŒ‰æ§½ä½é‡æ’ï¼Œè®©é‡å å¤„çš„å‹ç›–é¡ºåºå›ºå®š
     {
         for (int i = 0; i < Hand.Count; i++)
         {
@@ -214,7 +214,7 @@ public class CardManager : MonoBehaviour
             Hand[i].transform.SetSiblingIndex(i);
         }
     }
-    public void Shuffle()//ÆúÅÆ¶ÑÈ«²¿Ï´»Ø³éÅÆ¶Ñ
+    public void Shuffle()//å¼ƒç‰Œå †å…¨éƒ¨æ´—å›æŠ½ç‰Œå †
     {        DrawPile.AddRange(DiscardPile);        DiscardPile.Clear();        for (int i = DrawPile.Count - 1; i > 0; i--)        {            int r = Random.Range(0, i + 1);            (DrawPile[i], DrawPile[r]) = (DrawPile[r], DrawPile[i]);        }        DrawPile.ForEach(s => s.group_kind = -1);    }
 
     public void AddCard(int cardmodel, int whichPile = 1)

@@ -1,4 +1,4 @@
-using System.Collections;
+锘縰sing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -129,7 +129,7 @@ public class SwarmCode : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
         transform.SetAsLastSibling();
         GetCM();
         int Index = IntPos.x + IntPos.y * 10;
-        if (CM.CodeList[Index] == this)//在Code中为最上层
+        if (CM.CodeList[Index] == this)//鍦–ode涓负鏈�涓婂眰
         {
             float k = 1;
             CM.UpList[Index].ForEach(s =>

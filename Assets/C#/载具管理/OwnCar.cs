@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,7 +23,7 @@ public class OwnCar : MonoBehaviour
         OwnCar.StopTouch = false;
     }
 
-    public void Swarm()//°´Å¥°´ÏÂÊ±µÄ½Ó¿Ú
+    public void Swarm()//æŒ‰é’®æŒ‰ä¸‹æ—¶çš„æ¥å£
     {
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -68,11 +68,11 @@ public class OwnCar : MonoBehaviour
         Sending = true;
         ClearFloatBlock();
 
-        //Ñ­»·
+        //å¾ªç¯
         for (int t = 0; t < Times; t++)
         {
-            //³µÁ¾Éú³É
-            CarStart($"ÔØ¾ß{carFrameworkIndex}-{t}");
+            //è½¦è¾†ç”Ÿæˆ
+            CarStart($"è½½å…·{carFrameworkIndex}-{t}");
 
             if (!CardMode)
             {
@@ -88,7 +88,7 @@ public class OwnCar : MonoBehaviour
         }
         if (CardMode)
         {
-            //Ñ­»·½áÊøÓ¦¸ÃÇå¿Õ³µÁ¾ÒıÓÃ
+            //å¾ªç¯ç»“æŸåº”è¯¥æ¸…ç©ºè½¦è¾†å¼•ç”¨
             BanOperation = true;
             ClearCar();
             yield return new WaitForSeconds(cardModeCoolDown);
@@ -201,7 +201,7 @@ public class OwnCar : MonoBehaviour
     public bool SendCar;
 
     public Camera OperationCamera;
-    public Camera OperationCam//¶ÔÍâµÄ²Ù×÷Ïà»ú£¬¿ÕÔò»ØÌî Camera.main
+    public Camera OperationCam//å¯¹å¤–çš„æ“ä½œç›¸æœºï¼Œç©ºåˆ™å›å¡« Camera.main
     {
         get
         {
@@ -294,15 +294,15 @@ public class OwnCar : MonoBehaviour
                 {
                     MouseOn = -1;
                 }
-                if (StopTouch)//´úÂë±à¼­ÖĞ¶Ï
+                if (StopTouch)//ä»£ç ç¼–è¾‘ä¸­æ–­
                 {
                     Down = false;
                     return;
                 }
-                //µã»÷ÒÆ¶¯Âß¼­
+                //ç‚¹å‡»ç§»åŠ¨é€»è¾‘
                 if (Input.touchCount != 2)
                 {
-                    if (PutModeChange.Line && !CardMode)//¿¨ÅÆÄ£Ê½½ûÖ¹³¤°´Á¬Ğø·ÅÖÃ
+                    if (PutModeChange.Line && !CardMode)//å¡ç‰Œæ¨¡å¼ç¦æ­¢é•¿æŒ‰è¿ç»­æ”¾ç½®
                     {
                         if (Input.GetMouseButton(0) && !GameManager.DeleteMode)
                         {
@@ -315,7 +315,7 @@ public class OwnCar : MonoBehaviour
                     }
                     else
                     {
-                        if (lineMode)//¼ÇÂ¼³·Ïú
+                        if (lineMode)//è®°å½•æ’¤é”€
                         {
                             MV_Manager.GetRecord();
                             lineMode = false;
@@ -354,7 +354,7 @@ public class OwnCar : MonoBehaviour
                             }
                         }
                         if (MouseOn == -1) return;
-                        if (!CardMode && (Input.GetMouseButton(1) || (Input.GetMouseButton(0) && GameManager.DeleteMode)) && !BlockManager.bm.IsOnUIElement(Input.mousePosition))//ÓÒ¼üÉ¾³ı£¨¿¨ÅÆÄ£Ê½½ûÖ¹£©
+                        if (!CardMode && (Input.GetMouseButton(1) || (Input.GetMouseButton(0) && GameManager.DeleteMode)) && !BlockManager.bm.IsOnUIElement(Input.mousePosition))//å³é”®åˆ é™¤ï¼ˆå¡ç‰Œæ¨¡å¼ç¦æ­¢ï¼‰
                         {
                             if (Time.time - lastRight < 0.25f)
                             {
@@ -398,7 +398,7 @@ public class OwnCar : MonoBehaviour
     bool DeleteCD;
     bool lineMode;
     float CM;//cameraMove
-    #region ÕâÊÇÒ»»áÒªÓÃµ½µÄÃîÃîĞ¡º¯Êı
+    #region è¿™æ˜¯ä¸€ä¼šè¦ç”¨åˆ°çš„å¦™å¦™å°å‡½æ•°
 
     FixedJoint2D OwnRJset(TryConnect tc, TryConnect ty, bool collision, int f = 0, Transform AddOn = null)
     {
@@ -418,14 +418,14 @@ public class OwnCar : MonoBehaviour
         rj.breakForce = strongenth;
         rj.breakTorque = strongenth;
 
-        //ÄÚ²¿ÎïÌåÅö×²µôÂäÎŞÊÓ
+        //å†…éƒ¨ç‰©ä½“ç¢°æ’æ‰è½æ— è§†
         if (f == 4) Physics2D.IgnoreCollision(tc.GetComponent<Collider2D>(), ty.GetComponent<Collider2D>());
         return rj;
     }
 
     public int GetIndexOfAllObject(Vector2 pos)
     {
-        //µÃµ½Ïà¶Ô×ø±ê
+        //å¾—åˆ°ç›¸å¯¹åæ ‡
         pos -= (Vector2)transform.position;
         int _index;
         Vector2 Size = ColliderArea;
@@ -445,7 +445,7 @@ public class OwnCar : MonoBehaviour
 
     void CheckConnect(TryConnect tc, TryConnect ty, FixedJoint2D rj,int f)
     {
-        //CAÁ¬½Ó
+        //CAè¿æ¥
         tc.TryGetComponent(out CheckAlive CCA);
         ty.TryGetComponent(out CheckAlive YCA);
         if (CCA == null || YCA == null) return;
@@ -462,12 +462,12 @@ public class OwnCar : MonoBehaviour
         if (!FindLast(where, GameManager.layIn, out int Index, out TryConnect _)) return;
         SwarmBlock.BlockChoose = AllObject[where][Index];
         FollowMouse fm = AllObject[where][Index].AddComponent<FollowMouse>();
-        fm.Cam = OperationCam;//ÍÏ¶¯ÒÑ·ÅÖÃµÄ²¿¼şÒ²ÒªÓÃÔØ¾ßµÄ²Ù×÷Ïà»ú£¬·ñÔò»áÌøµ½ Camera.main µÄÊÀ½ç×ø±ê
-        fm.FromCar = this;//¼Ç×¡À´Ô´£¬·ÅÖÃ³åÍ»Ê±ÍË»ØÔ­¸ñ×Ó
+        fm.Cam = OperationCam;//æ‹–åŠ¨å·²æ”¾ç½®çš„éƒ¨ä»¶ä¹Ÿè¦ç”¨è½½å…·çš„æ“ä½œç›¸æœºï¼Œå¦åˆ™ä¼šè·³åˆ° Camera.main çš„ä¸–ç•Œåæ ‡
+        fm.FromCar = this;//è®°ä½æ¥æºï¼Œæ”¾ç½®å†²çªæ—¶é€€å›åŸæ ¼å­
         fm.FromIndex = where;
         AllObject[where].RemoveAt(Index);
     }
-    public void ReturnBlock(GameObject go, int where)//·ÅÖÃ³åÍ»£º°ÑÍÏ³öÈ¥µÄ²¿¼şÍË»ØÔ­¸ñ×Ó
+    public void ReturnBlock(GameObject go, int where)//æ”¾ç½®å†²çªï¼šæŠŠæ‹–å‡ºå»çš„éƒ¨ä»¶é€€å›åŸæ ¼å­
     {
         if (go == null) return;
         go.transform.parent = transform;
@@ -478,7 +478,7 @@ public class OwnCar : MonoBehaviour
         }
         go.transform.localPosition = IndexToPos(where);
         if (!AllObject[where].Contains(go)) AllObject[where].Add(go);
-        FixedOn(where, false, false, true);//ÖØĞÂÎü¸½»ØÔ­¸ñ£¬KeepOnFail ±ÜÃâÔÙ´ÎÏú»Ù
+        FixedOn(where, false, false, true);//é‡æ–°å¸é™„å›åŸæ ¼ï¼ŒKeepOnFail é¿å…å†æ¬¡é”€æ¯
     }
     bool FindLast(int where,int layIn,out int Index,out TryConnect tc)
     {
@@ -518,7 +518,7 @@ public class OwnCar : MonoBehaviour
         if (BanOperation) return;
         if (AllObject[MouseOn].Count != 0)
         {
-            if (FindLast(MouseOn, GameManager.layIn, out int Index, out TryConnect tc))//get tc ÅĞ¶ÏÊÇ·ñÒªĞı×ª
+            if (FindLast(MouseOn, GameManager.layIn, out int Index, out TryConnect tc))//get tc åˆ¤æ–­æ˜¯å¦è¦æ—‹è½¬
             {
                 if (tc.Rotable)
                 {
@@ -526,7 +526,7 @@ public class OwnCar : MonoBehaviour
                 }
             }
         }
-        SwarmBlock.BlockChoose = gameObject;//²»¹ÜÔõÃ´ÑùÏÈ¼ÓÈë£¬Ö®ºó¼Ó²»½øÔÙÍË³ö
+        SwarmBlock.BlockChoose = gameObject;//ä¸ç®¡æ€ä¹ˆæ ·å…ˆåŠ å…¥ï¼Œä¹‹ååŠ ä¸è¿›å†é€€å‡º
     }
     public static float StrongthCalculate(float A,float B)
     {
@@ -552,14 +552,14 @@ public class OwnCar : MonoBehaviour
         if (!GetT(AllObject[i][t], out TryConnect tc)) return RemoveFromAllObject(i, t, false);
         if (SetLayIn) tc.layIn = GameManager.layIn;
 
-        //ÏÈ°´layInÅÅĞò
+        //å…ˆæŒ‰layInæ’åº
         bool layOut;
         do
         {
             layOut = false;
             if(t == 0) break;
             if (!GetT(AllObject[i][t - 1], out TryConnect ty)) break;
-            if (ty.layIn < tc.layIn)//½»»»
+            if (ty.layIn < tc.layIn)//äº¤æ¢
             {
                 GameObject go = AllObject[i][t];
                 AllObject[i].RemoveAt(t);
@@ -571,15 +571,15 @@ public class OwnCar : MonoBehaviour
 
         bool back = false;
 
-        if (t != 0)//Èç¹ûµÈÓÚ0 Ö±½Ó½øÈëĞı×ª
+        if (t != 0)//å¦‚æœç­‰äº0 ç›´æ¥è¿›å…¥æ—‹è½¬
         {
             if (!GetT(AllObject[i][t - 1], out TryConnect ty)) return RemoveFromAllObject(i, t, false);
             if (ty.layIn == tc.layIn)
             {
                 if (tc.Inside)
                 {
-                    if (ty.CantConnect[4]) back = true;//insideÕ¼Î»ÅĞ¶Ï
-                    if (tc.TryGetComponent(out Balloon _) && ty.TryGetComponent(out Balloon _))//ÆøÇòÈİÄÉÅĞ¶Ï
+                    if (ty.CantConnect[4]) back = true;//insideå ä½åˆ¤æ–­
+                    if (tc.TryGetComponent(out Balloon _) && ty.TryGetComponent(out Balloon _))//æ°”çƒå®¹çº³åˆ¤æ–­
                     {
                         back = false;
                         int count = 0;
@@ -587,16 +587,16 @@ public class OwnCar : MonoBehaviour
                         {
                             if (AllObject[i][p].TryGetComponent(out Balloon _)) count++;
                         }
-                        if (count > 2) back = true;//×î¶àÈı¸ö
+                        if (count > 2) back = true;//æœ€å¤šä¸‰ä¸ª
                     }
                 }
-                else//³¢ÊÔÉÏÎ»
+                else//å°è¯•ä¸Šä½
                 {
                     back = true;
                     if (!FindFirst(i, tc.layIn, out int Index, out ty)) return RemoveFromAllObject(i, t, false);
-                    if (!CardMode && !tc.Rotable && tc.CantConnect[4] == ty.CantConnect[4] && !ty.Inside)//Ö±½ÓÈ¡´ú£¨¿¨ÅÆÄ£Ê½½ûÖ¹Íâ¿òÍ¬Àà¸²¸Ç£©
+                    if (!CardMode && !tc.Rotable && tc.CantConnect[4] == ty.CantConnect[4] && !ty.Inside)//ç›´æ¥å–ä»£ï¼ˆå¡ç‰Œæ¨¡å¼ç¦æ­¢å¤–æ¡†åŒç±»è¦†ç›–ï¼‰
                     {
-                        //VideoÄ£Ê½²»ÒªÈ¡´ú
+                        //Videoæ¨¡å¼ä¸è¦å–ä»£
                         if (DontDestroy) return RemoveFromAllObject(i, t, false);
                         if (tc != ty)
                         {
@@ -611,7 +611,7 @@ public class OwnCar : MonoBehaviour
                 }
                 if (back)
                 {
-                    if (!DontDestroy && !KeepOnFail)//KeepOnFail Ê±±£ÁôÎïÌå£¬½»¸øµ÷ÓÃ·½ÍË»Ø
+                    if (!DontDestroy && !KeepOnFail)//KeepOnFail æ—¶ä¿ç•™ç‰©ä½“ï¼Œäº¤ç»™è°ƒç”¨æ–¹é€€å›
                     {
                         BlockManager.bm.GetBlock(AllObject[i][t], 1);
                         Destroy(AllObject[i][t]);
@@ -620,13 +620,13 @@ public class OwnCar : MonoBehaviour
                     return false;
                 }
             }
-            //½ÓÏÂÀ´³¢ÊÔĞı×ªÁ¬½Ó
+            //æ¥ä¸‹æ¥å°è¯•æ—‹è½¬è¿æ¥
         }
         if (tc.Rotable)
         {
             RotateItem(new(i, t),false);
         }
-        //Ğı×ªÍê³ÉºóË¢ĞÂÁÙ½üµÄĞı×ª
+        //æ—‹è½¬å®Œæˆååˆ·æ–°ä¸´è¿‘çš„æ—‹è½¬
         for (int a = 0; a < 4; a++)
         {
             if (!FT(i, a, out int p)) continue;
@@ -679,7 +679,7 @@ public class OwnCar : MonoBehaviour
         {
             List<int> Connectable = new();
             bool[] after = CantAfterRotate(tc.CantConnect, tc.forward);
-            for (int i = 0; i < 4; i++)//µÃµ½Á¬½Ó·½Ïò
+            for (int i = 0; i < 4; i++)//å¾—åˆ°è¿æ¥æ–¹å‘
             {
                 if (!after[i])
                 {
@@ -696,13 +696,13 @@ public class OwnCar : MonoBehaviour
         }
         return false;
     }
-    private void RotateItem(Vector2Int where,bool RotateFirst = true)//Ğı×ª·½ÏòÄæÊ±Õë¡¢Ö±µ½Á¬½Ó¡¢»òÕßÃ»ÓĞÁ¬½Ó
+    private void RotateItem(Vector2Int where,bool RotateFirst = true)//æ—‹è½¬æ–¹å‘é€†æ—¶é’ˆã€ç›´åˆ°è¿æ¥ã€æˆ–è€…æ²¡æœ‰è¿æ¥
     {
         if (AllObject[where.x].Count == 0) return; 
         GameObject go = AllObject[where.x][where.y];
         if (!GetT(go, out TryConnect tc)) return;
         if (!tc.Rotable) return;
-        if (RotateFirst) RotateTo(where, NSZ(tc.forward));//µÚÒ»²½ÏÈ×ª
+        if (RotateFirst) RotateTo(where, NSZ(tc.forward));//ç¬¬ä¸€æ­¥å…ˆè½¬
         else RotateTo(where, tc.forward);
         bool connect = false;
         int limite = 0;
@@ -713,7 +713,7 @@ public class OwnCar : MonoBehaviour
         {
             after = CantAfterRotate(tc.CantConnect, tc.forward);
             Connectable.Clear();
-            for (int i = 0; i < 4; i++)//µÃµ½Á¬½Ó·½Ïò
+            for (int i = 0; i < 4; i++)//å¾—åˆ°è¿æ¥æ–¹å‘
             {
                 if (!after[i])
                 {
@@ -729,7 +729,7 @@ public class OwnCar : MonoBehaviour
                 connect = true;
             }
             limite++;
-            if (!connect) RotateTo(where, NSZ(tc.forward));//ÔÙ×ª
+            if (!connect) RotateTo(where, NSZ(tc.forward));//å†è½¬
         } while (limite < 4 && !connect);
     }
 
@@ -754,7 +754,7 @@ public class OwnCar : MonoBehaviour
 
     public void CarStart(string framework_name = "")
     {
-        //Ìí¼Ó¼Ó³É
+        //æ·»åŠ åŠ æˆ
         foreach (Heath h in FindHeath(transform))
         {
             h.HP += HeathUP * 0.5f;
@@ -762,7 +762,7 @@ public class OwnCar : MonoBehaviour
             h.StopBlockAnimation();
         }
 
-        //Á¬½ÓËùÓĞÄÚÈİ
+        //è¿æ¥æ‰€æœ‰å†…å®¹
         TryConnect tc;
         TryConnect ty;
         for (int i = 0; i < AllObject.Count; i++)
@@ -773,13 +773,13 @@ public class OwnCar : MonoBehaviour
             for (int lay = 0; lay < 2; lay++)
             {
                 if (!FindFirst(i, lay, out int Index, out tc)) continue;
-                //¹Ì¶¨ÄÚ²¿ÎïÌå
+                //å›ºå®šå†…éƒ¨ç‰©ä½“
                 for (int ii = Index + 1; ii < AllObject[i].Count; ii++)
                 {
-                    if (!GetT(AllObject[i][ii], out ty)) continue;//¸ù¾İÇ¿¶ÈÖ®ºÍÌí¼ÓÁ´½Ó
+                    if (!GetT(AllObject[i][ii], out ty)) continue;//æ ¹æ®å¼ºåº¦ä¹‹å’Œæ·»åŠ é“¾æ¥
                     if (ty.layIn == lay) OwnRJset(tc, ty, false, 4);
                 }
-                //Èç¹ûÊÇÖá³ĞÔòÁ¬½ÓÆäËû²ãµÄÏàÁÚ²¿·Ö
+                //å¦‚æœæ˜¯è½´æ‰¿åˆ™è¿æ¥å…¶ä»–å±‚çš„ç›¸é‚»éƒ¨åˆ†
                 var CAR = CantAfterRotate(tc.CantConnect, tc.forward);
                 if (tc.LayerCross)
                 {
@@ -797,9 +797,9 @@ public class OwnCar : MonoBehaviour
                         rj.breakTorque = float.PositiveInfinity;
                     }
                 }
-                //Á¬½ÓÏàÁÚ
+                //è¿æ¥ç›¸é‚»
 
-                for (int p = 0; p < 4; p += 3)//Ö»Á¬½ÓÉÏÓÒ
+                for (int p = 0; p < 4; p += 3)//åªè¿æ¥ä¸Šå³
                 {
                     if (CAR[p]) continue;
                     if (!FT(i, p, out int to)) continue;
@@ -815,11 +815,11 @@ public class OwnCar : MonoBehaviour
 
         List<IStart> reconnects = new();
         IStart[] reconnect;
-        //¶ÔÃ¿¸ö²¿¼ş¶¼Ö´ĞĞ
+        //å¯¹æ¯ä¸ªéƒ¨ä»¶éƒ½æ‰§è¡Œ
         for (int i = 0; i < transform.childCount; i++)
         {
             Transform ttf = transform.GetChild(i);
-            if (ttf.CompareTag("Center"))//ºËĞÄÏà»ú°ó¶¨
+            if (ttf.CompareTag("Center"))//æ ¸å¿ƒç›¸æœºç»‘å®š
             {
                 if (VideoSwarmPoint == null)
                 {
@@ -830,11 +830,11 @@ public class OwnCar : MonoBehaviour
                     VideoCameraFollow.CenterList.Add(ttf.GetComponent<Heath>());
                 }
             }
-            if (GetT(ttf.gameObject, out tc))//²ã¼¶É«²ÊÖØÖÃ
+            if (GetT(ttf.gameObject, out tc))//å±‚çº§è‰²å½©é‡ç½®
             {
                 tc.BackColor();
             }
-            ttf.GetComponent<CheckAlive>().SetStart(Time.time);//ÏÈÌáÇ°Æô¶¯CA
+            ttf.GetComponent<CheckAlive>().SetStart(Time.time);//å…ˆæå‰å¯åŠ¨CA
             reconnect = ttf.GetComponents<IStart>();
             if (reconnect != null) reconnects.AddRange(reconnect);
 
@@ -846,18 +846,18 @@ public class OwnCar : MonoBehaviour
             tfl.Add(ttf);
         }
 
-        GameManager.Check();//¼ì²éËùÓĞ
-        reconnects.ForEach(s => s.SetStart(Time.time));//ÒıÇæ¡¢µÈ×é¼ş¼ìË÷Æô¶¯
+        GameManager.Check();//æ£€æŸ¥æ‰€æœ‰
+        reconnects.ForEach(s => s.SetStart(Time.time));//å¼•æ“ã€ç­‰ç»„ä»¶æ£€ç´¢å¯åŠ¨
         foreach (TryConnect rb in FindTryConnect(transform))
         {
             rb.SetStart(Camp);
         }
 
 
-        //ÒÆ¶¯ËùÓĞ
+        //ç§»åŠ¨æ‰€æœ‰
         if (VideoSwarmPoint != null)
         {
-            //ÏÈĞÂ½¨Ò»¸ö¿ÕµÄÎïÌå·½±ã¹ÜÀí
+            //å…ˆæ–°å»ºä¸€ä¸ªç©ºçš„ç‰©ä½“æ–¹ä¾¿ç®¡ç†
             Transform CarFramework = SwarmNewCarFramework(VideoSwarmPoint, framework_name);
 
             StartCoroutine(FreezeCarFramework(CarFramework.gameObject, swarm_interval));
@@ -865,17 +865,17 @@ public class OwnCar : MonoBehaviour
             for (int i = transform.childCount - 1; i > -1; i--)
             {
                 Transform ttf = transform.GetChild(i);
-                // ÒÆ¶¯µ½Î»ÖÃ
+                // ç§»åŠ¨åˆ°ä½ç½®
                 ttf.parent = CarFramework;
                 Vector3 Offset = CarFramework.position - transform.position;
                 ttf.position += Offset;
-                //Ò²Ğí²»ĞèÒªÕâ¸öÁËÂğ
+                //ä¹Ÿè®¸ä¸éœ€è¦è¿™ä¸ªäº†å—
                 EnablePower(ttf);
             }
         }
     }
 
-    int OP(int f)//¶ÔÃæ
+    int OP(int f)//å¯¹é¢
     {
         return f switch
         {
@@ -885,7 +885,7 @@ public class OwnCar : MonoBehaviour
             3=>2,
         };
     }
-    bool FT(int i, int f, out int p)//ÃæÏòµÄÎ»ÖÃ
+    bool FT(int i, int f, out int p)//é¢å‘çš„ä½ç½®
     {
         p = i;
         switch (f)
@@ -905,7 +905,7 @@ public class OwnCar : MonoBehaviour
         }
         return !OnOtherSide(i, p);
     }
-    public static bool[] CantAfterRotate(bool[] last, int f)//µÃµ½Ğı×ªºóµÄÁ¬½ÓCant
+    public static bool[] CantAfterRotate(bool[] last, int f)//å¾—åˆ°æ—‹è½¬åçš„è¿æ¥Cant
     {
         bool[] final = new bool[5];
         for (int i = 0; i < 5; i++)
@@ -925,7 +925,7 @@ public class OwnCar : MonoBehaviour
     }
     public static float AngleF(int forward)
     {
-        return forward switch//Ğı×ªÁË¶àÉÙ¶È
+        return forward switch//æ—‹è½¬äº†å¤šå°‘åº¦
         {
             0 => 0,
             2 => 90,
@@ -934,9 +934,9 @@ public class OwnCar : MonoBehaviour
         };
     }
 
-    public static int NSZ(int a)//ÄæÊ±ÕëÓ³Éä
+    public static int NSZ(int a)//é€†æ—¶é’ˆæ˜ å°„
     { 
-        return a switch//ÄæÊ±ÕëĞı×ª90¶È
+        return a switch//é€†æ—¶é’ˆæ—‹è½¬90åº¦
         {
             0 => 2,
             2 => 1,
@@ -945,9 +945,9 @@ public class OwnCar : MonoBehaviour
             4 => 4,
         };
     }
-    public static int SSZ(int a)//Ë³Ê±ÕëÓ³Éä
+    public static int SSZ(int a)//é¡ºæ—¶é’ˆæ˜ å°„
     {
-        return a switch//Ë³Ê±ÕëĞı×ª90¶È
+        return a switch//é¡ºæ—¶é’ˆæ—‹è½¬90åº¦
         {
             0 => 3,
             2 => 0,
@@ -1050,19 +1050,19 @@ public class OwnCar : MonoBehaviour
     public List<string> load_save = new();
 
 
-    public void ReloadCar()//¸´ÖÆ
+    public void ReloadCar()//å¤åˆ¶
     {
         var carlist = BlockManager.bm.FindCar();
 
-        //½ÓÏÂÀ´µ÷ÓÃBMÖĞµÄÉú³É
+        //æ¥ä¸‹æ¥è°ƒç”¨BMä¸­çš„ç”Ÿæˆ
         BlockManager.bm.RefreshLevel(carlist.IndexOf(this), load_save);
     }
 
-    public void RefreshCar()//³õÊ¼»¯³µÁ¾
+    public void RefreshCar()//åˆå§‹åŒ–è½¦è¾†
     {
         var carlist = BlockManager.bm.FindCar();
 
-        //½ÓÏÂÀ´µ÷ÓÃBMÖĞµÄÉú³É
+        //æ¥ä¸‹æ¥è°ƒç”¨BMä¸­çš„ç”Ÿæˆ
         BlockManager.bm.RefreshLevel(carlist.IndexOf(this), origin_save);
     }
 

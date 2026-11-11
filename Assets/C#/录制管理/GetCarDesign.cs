@@ -1,11 +1,11 @@
-using System.Collections;
+锘縰sing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GetCarDesign : MonoBehaviour
 {
-    public 车辆样板加载 red;
-    public 车辆样板加载 blue;
+    public 杞﹁締鏍锋澘鍔犺浇 red;
+    public 杞﹁締鏍锋澘鍔犺浇 blue;
     public int state;
     public static bool red_choosed;
     public static bool blue_choosed;

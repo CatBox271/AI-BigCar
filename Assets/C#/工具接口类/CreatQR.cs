@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -16,11 +16,11 @@ public class VehicleSave
 public class CreatQR : MonoBehaviour,IPointerClickHandler
 {
 
-    //ĞèÒªÉú²ú¶şÎ¬ÂëµÄ×Ö·û´®Êı×é
+    //éœ€è¦ç”Ÿäº§äºŒç»´ç çš„å­—ç¬¦ä¸²æ•°ç»„
     public string QrCodeStr;
-    //ÔÚÆÁÄ»ÉÏÏÔÊ¾¶şÎ¬Âë
+    //åœ¨å±å¹•ä¸Šæ˜¾ç¤ºäºŒç»´ç 
     public RawImage image;
-    //´æ·Å¶şÎ¬Âë
+    //å­˜æ”¾äºŒç»´ç 
     Texture2D encoded;
     int Nmuber = 0;
     // Use this for initialization
@@ -47,10 +47,10 @@ public class CreatQR : MonoBehaviour,IPointerClickHandler
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
-            byte[] j =  Encoding.UTF8.GetBytes(QrCodeStr);//ÖĞÎÄ±àÂë
-            string g = Convert.ToBase64String(j);//±àÂë×ªBase
-            byte[] a = Convert.FromBase64String(g);//Base×ªbyte
-            string d = Encoding.UTF8.GetString(a);//byte×ªstring
+            byte[] j =  Encoding.UTF8.GetBytes(QrCodeStr);//ä¸­æ–‡ç¼–ç 
+            string g = Convert.ToBase64String(j);//ç¼–ç è½¬Base
+            byte[] a = Convert.FromBase64String(g);//Baseè½¬byte
+            string d = Encoding.UTF8.GetString(a);//byteè½¬string
             print(BitConverter.ToString(j));
             print(g);
             print(d);
@@ -65,35 +65,35 @@ public class CreatQR : MonoBehaviour,IPointerClickHandler
     }
 #endif
 
-    //ÉãÏñÍ·ÊµÊ±ÏÔÊ¾µÄ»­Ãæ
+    //æ‘„åƒå¤´å®æ—¶æ˜¾ç¤ºçš„ç”»é¢
     private WebCamTexture m_webCameraTexture;
-    //ÉêÇëÒ»¸ö¶ÁÈ¡¶şÎ¬ÂëµÄ±äÁ¿
+    //ç”³è¯·ä¸€ä¸ªè¯»å–äºŒç»´ç çš„å˜é‡
     private BarcodeReader m_barcodeRender = new BarcodeReader();
 
-    //¶à¾Ã¼ìË÷Ò»´Î¶şÎ¬Âë
+    //å¤šä¹…æ£€ç´¢ä¸€æ¬¡äºŒç»´ç 
     private float m_delayTime = 0.5f;
 
 
     public void Camera()
     {
-        //µ÷ÓÃÉãÏñÍ·²¢½«»­ÃæÏÔÊ¾ÔÚÆÁÄ»RawImageÉÏ
-        WebCamDevice[] tDevices = WebCamTexture.devices; //»ñÈ¡ËùÓĞÉãÏñÍ·
-        string tDeviceName = tDevices[0].name; //»ñÈ¡µÚÒ»¸öÉãÏñÍ·£¬ÓÃµÚÒ»¸öÉãÏñÍ·µÄ»­ÃæÉú³ÉÍ¼Æ¬ĞÅÏ¢
-        m_webCameraTexture = new WebCamTexture(tDeviceName,512,512); //Ãû×Ö
-        image.texture = m_webCameraTexture; //¸³ÖµÍ¼Æ¬ĞÅÏ¢
-        m_webCameraTexture.Play(); //¿ªÊ¼ÊµÊ±ÏÔÊ¾
+        //è°ƒç”¨æ‘„åƒå¤´å¹¶å°†ç”»é¢æ˜¾ç¤ºåœ¨å±å¹•RawImageä¸Š
+        WebCamDevice[] tDevices = WebCamTexture.devices; //è·å–æ‰€æœ‰æ‘„åƒå¤´
+        string tDeviceName = tDevices[0].name; //è·å–ç¬¬ä¸€ä¸ªæ‘„åƒå¤´ï¼Œç”¨ç¬¬ä¸€ä¸ªæ‘„åƒå¤´çš„ç”»é¢ç”Ÿæˆå›¾ç‰‡ä¿¡æ¯
+        m_webCameraTexture = new WebCamTexture(tDeviceName,512,512); //åå­—
+        image.texture = m_webCameraTexture; //èµ‹å€¼å›¾ç‰‡ä¿¡æ¯
+        m_webCameraTexture.Play(); //å¼€å§‹å®æ—¶æ˜¾ç¤º
         InvokeRepeating("CheckQRCode", 0, m_delayTime);
     }
 
     /// <summary>
-    /// ¼ìË÷¶şÎ¬Âë·½·¨
+    /// æ£€ç´¢äºŒç»´ç æ–¹æ³•
     /// </summary>
     void CheckQRCode()
     {
-        //´æ´¢ÉãÏñÍ·»­ÃæĞÅÏ¢ÌùÍ¼×ª»»µÄÑÕÉ«Êı×é
+        //å­˜å‚¨æ‘„åƒå¤´ç”»é¢ä¿¡æ¯è´´å›¾è½¬æ¢çš„é¢œè‰²æ•°ç»„
         Color32[] m_colorData = m_webCameraTexture.GetPixels32();
 
-        //½«»­ÃæÖĞµÄ¶şÎ¬ÂëĞÅÏ¢¼ìË÷³öÀ´
+        //å°†ç”»é¢ä¸­çš„äºŒç»´ç ä¿¡æ¯æ£€ç´¢å‡ºæ¥
         var tResult = m_barcodeRender.Decode(m_colorData, m_webCameraTexture.width, m_webCameraTexture.height);
 
         if (tResult != null)
@@ -156,11 +156,11 @@ public class CreatQR : MonoBehaviour,IPointerClickHandler
     }
 
     /// <summary>
-    /// ¶¨Òå·½·¨Éú³É¶şÎ¬Âë
+    /// å®šä¹‰æ–¹æ³•ç”ŸæˆäºŒç»´ç 
     /// </summary>
-    /// <param name="textForEncoding">ĞèÒªÉú²ú¶şÎ¬ÂëµÄ×Ö·û´®</param>
-    /// <param name="width">¿í</param>
-    /// <param name="height">¸ß</param>
+    /// <param name="textForEncoding">éœ€è¦ç”Ÿäº§äºŒç»´ç çš„å­—ç¬¦ä¸²</param>
+    /// <param name="width">å®½</param>
+    /// <param name="height">é«˜</param>
     /// <returns></returns>
     private static Color32[] Encode(string textForEncoding, int width, int height)
     {
@@ -178,25 +178,25 @@ public class CreatQR : MonoBehaviour,IPointerClickHandler
 
 
     /// <summary>
-    /// Éú³É¶şÎ¬Âë
+    /// ç”ŸæˆäºŒç»´ç 
     /// </summary>
     public Texture2D Btn_CreatQr()
     {
-        //¶şÎ¬ÂëĞ´ÈëÍ¼Æ¬
+        //äºŒç»´ç å†™å…¥å›¾ç‰‡
         var color32 = Encode(QrCodeStr, encoded.width, encoded.height);
         encoded.SetPixels32(color32);
         encoded.Apply();
-        //Éú³ÉµÄ¶şÎ¬ÂëÍ¼Æ¬¸½¸øRawImage
+        //ç”Ÿæˆçš„äºŒç»´ç å›¾ç‰‡é™„ç»™RawImage
         image.texture = encoded;
         return encoded;
     }
 
-    #region  Ñ¹ËõºÍ½âÑ¹×Ö·û´®
+    #region  å‹ç¼©å’Œè§£å‹å­—ç¬¦ä¸²
         /// <summary>
-        /// ½«´«Èë×Ö·û´®ÒÔGZipËã·¨Ñ¹Ëõºó£¬·µ»ØBase64±àÂë×Ö·û
+        /// å°†ä¼ å…¥å­—ç¬¦ä¸²ä»¥GZipç®—æ³•å‹ç¼©åï¼Œè¿”å›Base64ç¼–ç å­—ç¬¦
         /// </summary>
-        /// <param name="rawString">ĞèÒªÑ¹ËõµÄ×Ö·û´®</param>
-        /// <returns>Ñ¹ËõºóµÄBase64±àÂëµÄ×Ö·û´®</returns>
+        /// <param name="rawString">éœ€è¦å‹ç¼©çš„å­—ç¬¦ä¸²</param>
+        /// <returns>å‹ç¼©åçš„Base64ç¼–ç çš„å­—ç¬¦ä¸²</returns>
         public string GZipCompressString(string rawString)
         {
             if (string.IsNullOrEmpty(rawString) || rawString.Length == 0)
@@ -211,7 +211,7 @@ public class CreatQR : MonoBehaviour,IPointerClickHandler
             }
         }
         /// <summary>
-        /// GZipÑ¹Ëõ
+        /// GZipå‹ç¼©
         /// </summary>
         /// <param name="rawData"></param>
         /// <returns></returns>
@@ -225,7 +225,7 @@ public class CreatQR : MonoBehaviour,IPointerClickHandler
         }
 
         /// <summary>
-        /// ½âÑ¹Sring 
+        /// è§£å‹Sring 
         /// </summary>
         /// <param name="Value"></param>
         /// <returns></returns>
@@ -239,10 +239,10 @@ public class CreatQR : MonoBehaviour,IPointerClickHandler
         }
 
         /// <summary>
-        /// ½«´«ÈëµÄ¶ş½øÖÆ×Ö·û´®×ÊÁÏÒÔGZipËã·¨½âÑ¹Ëõ
+        /// å°†ä¼ å…¥çš„äºŒè¿›åˆ¶å­—ç¬¦ä¸²èµ„æ–™ä»¥GZipç®—æ³•è§£å‹ç¼©
         /// </summary>
-        /// <param name="zippedString">¾­GZipÑ¹ËõºóµÄ¶ş½øÖÆ×Ö·û´®</param>
-        /// <returns>Ô­Ê¼Î´Ñ¹Ëõ×Ö·û´®</returns>
+        /// <param name="zippedString">ç»GZipå‹ç¼©åçš„äºŒè¿›åˆ¶å­—ç¬¦ä¸²</param>
+        /// <returns>åŸå§‹æœªå‹ç¼©å­—ç¬¦ä¸²</returns>
         public string GZipDecompressString(string zippedString)
         {
             if (string.IsNullOrEmpty(zippedString) || zippedString.Length == 0)
@@ -257,7 +257,7 @@ public class CreatQR : MonoBehaviour,IPointerClickHandler
         }
 
         /// <summary>
-        /// ZIP½âÑ¹
+        /// ZIPè§£å‹
         /// </summary>
         /// <param name="zippedData"></param>
         /// <returns></returns>
@@ -302,29 +302,29 @@ public class CreatQR : MonoBehaviour,IPointerClickHandler
     }
 #endif
     /// <summary>
-    /// Í¼Æ¬´æ´¢ÖÁ±¾µØÏà²á
+    /// å›¾ç‰‡å­˜å‚¨è‡³æœ¬åœ°ç›¸å†Œ
     /// </summary>
-    /// <param name="target">ĞèÒª´æ´¢µÄÖ¸¶¨Í¼Æ¬</param>
+    /// <param name="target">éœ€è¦å­˜å‚¨çš„æŒ‡å®šå›¾ç‰‡</param>
     private void GetTexture2d(string Name)
     {
-        // ±àÂëÎÆÀíÎªPNG¸ñÊ½
+        // ç¼–ç çº¹ç†ä¸ºPNGæ ¼å¼
         byte[] bytes = encoded.EncodeToPNG();
-        //´æ´¢Â·¾¶
+        //å­˜å‚¨è·¯å¾„
         string path = "";
-        //Ó¦ÓÃÆ½Ì¨ÅĞ¶Ï£¬Â·¾¶Ñ¡Ôñ
+        //åº”ç”¨å¹³å°åˆ¤æ–­ï¼Œè·¯å¾„é€‰æ‹©
         if (Application.platform == RuntimePlatform.Android)
         {
-            //ÊÖ»úÎÄ¼ş¹ÜÀíÖĞµÄ´æ´¢Î»ÖÃ£ºÎÒµÄÊÖ»ú/Android/data/come.XX.XX(PackageName)/files/XXX.png
+            //æ‰‹æœºæ–‡ä»¶ç®¡ç†ä¸­çš„å­˜å‚¨ä½ç½®ï¼šæˆ‘çš„æ‰‹æœº/Android/data/come.XX.XX(PackageName)/files/XXX.png
             path = Application.persistentDataPath + "/" + Name + ".png";
         }
-        //±£´æÎÄ¼ş
+        //ä¿å­˜æ–‡ä»¶
         File.WriteAllBytes(path, bytes);
-        //µ÷ÓÃ°²×¿·½·¨£¬Ë¢ĞÂÏà²á
+        //è°ƒç”¨å®‰å“æ–¹æ³•ï¼Œåˆ·æ–°ç›¸å†Œ
         using (AndroidJavaClass jc = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
         {
             using (AndroidJavaObject jo = jc.GetStatic<AndroidJavaObject>("currentActivity"))
             {
-                //Îª°²×¿·½·¨Ìá¹©Í¼Æ¬´æ´¢µÄÂ·¾¶²ÎÊı£¬·½±ãË¢ĞÂÖÁÏà²á
+                //ä¸ºå®‰å“æ–¹æ³•æä¾›å›¾ç‰‡å­˜å‚¨çš„è·¯å¾„å‚æ•°ï¼Œæ–¹ä¾¿åˆ·æ–°è‡³ç›¸å†Œ
                 jo.Call("file", path);
             }
         }

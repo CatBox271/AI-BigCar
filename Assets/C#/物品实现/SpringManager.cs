@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,19 +22,19 @@ public class SpringManager : MonoBehaviour,IStart
         start = true;
         for (int i = 0; i < ca.allConnect.Count; i++)
         {
-            ca.allConnect[i].enabled = false;//È¡ÏûÖ®Ç°Á´½Ó µÄ Ğ§¹ûµ«²»ÊÇÉ¾³ı
-            RelativeJoint2D rj = gameObject.AddComponent<RelativeJoint2D>();//µ¯ĞÔÁ¬½Ó
+            ca.allConnect[i].enabled = false;//å–æ¶ˆä¹‹å‰é“¾æ¥ çš„ æ•ˆæœä½†ä¸æ˜¯åˆ é™¤
+            RelativeJoint2D rj = gameObject.AddComponent<RelativeJoint2D>();//å¼¹æ€§è¿æ¥
             rj.connectedBody = ca.CAList[i].GetComponent<Rigidbody2D>();
             rj.maxForce = Force;
             rj.maxTorque = Force * 1f;
             rj.correctionScale = 0.075f;
-            //¼ÇÂ¼Ò»ÏÂ
-            if (OwnCar.SCT(1, tc.forward) == ca.BlockOffset[i])//±£´æÖÁA
+            //è®°å½•ä¸€ä¸‹
+            if (OwnCar.SCT(1, tc.forward) == ca.BlockOffset[i])//ä¿å­˜è‡³A
             {
                 A = rj;
                 A_f = Vector3.Distance(transform.position, A.connectedBody.transform.position) - 0.5f;
             }
-            if (OwnCar.SCT(0, tc.forward) == ca.BlockOffset[i])//±£´æÖÁB
+            if (OwnCar.SCT(0, tc.forward) == ca.BlockOffset[i])//ä¿å­˜è‡³B
             {
                 B = rj;
                 B_f = Vector3.Distance(transform.position, B.connectedBody.transform.position) - 0.5f;

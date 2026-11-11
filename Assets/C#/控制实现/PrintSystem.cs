@@ -1,4 +1,4 @@
-using System.Collections;
+锘縰sing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,13 +17,13 @@ public class PrintSystem : MonoBehaviour,IStart
         switch (Random.Range(0, 120))
         {
             default:
-                printStr("[纸箱]控制系统");
-                printStr("------准备完毕------");
+                printStr("[绾哥]鎺у埗绯荤粺");
+                printStr("------鍑嗗瀹屾瘯------");
                 IC.CodeWarning();
                 break;
             case 0:
-                printStr("[衹葙]啌淛係統");
-                printStr("______痽備綄哔______");
+                printStr("[琛硅憴]鍟屾窙淇傜当");
+                printStr("______鐥藉倷缍勫摂______");
                 IC.CodeWarning();
                 break;
             case 1:
@@ -56,7 +56,7 @@ public class PrintSystem : MonoBehaviour,IStart
         if (i != -1)
         {
             CountTable[i]++;
-            GetText(i).text = s + " ×" + CountTable[i];
+            GetText(i).text = s + " 脳" + CountTable[i];
         }
         else
         {
@@ -92,7 +92,7 @@ public class PrintSystem : MonoBehaviour,IStart
     }
     void GetFirst()
     {
-        if (AllText.Count < maxCount)//增加新的
+        if (AllText.Count < maxCount)//澧炲姞鏂扮殑
         {
             GameObject go = Instantiate(SingleText, SingleText.transform.parent, true);
             go.SetActive(true);
@@ -134,7 +134,7 @@ public class PrintSystem : MonoBehaviour,IStart
     void AllMove()
     {
         var Node = AllText.First;
-        for (int i = 0; i < AllText.Count; i++)//遍历更改位置
+        for (int i = 0; i < AllText.Count; i++)//閬嶅巻鏇存敼浣嶇疆
         {
             Transform tf = Node.Value.transform;
             float s = 0.01f;

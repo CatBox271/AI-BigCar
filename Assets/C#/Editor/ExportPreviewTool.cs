@@ -1,33 +1,33 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
 
 /// <summary>
-/// µÀ¾ßËõÂÔÍ¼Éú³ÉÆ÷£º°Ñ Resources/GameObject ÏÂµÄÔ¤ÖÆÌåÀëÆÁäÖÈ¾³ÉÇåÎú PNG£¬Ğ´Èë Resources/Sprite¡£
-/// ²»ÓÃ AssetPreview£ºËüÖ»ÓĞ 128px ÇÒÊÇÒì²½µÄ£¬³£³£µÚÒ»´Î·µ»Ø null¡£
+/// é“å…·ç¼©ç•¥å›¾ç”Ÿæˆå™¨ï¼šæŠŠ Resources/GameObject ä¸‹çš„é¢„åˆ¶ä½“ç¦»å±æ¸²æŸ“æˆæ¸…æ™° PNGï¼Œå†™å…¥ Resources/Spriteã€‚
+/// ä¸ç”¨ AssetPreviewï¼šå®ƒåªæœ‰ 128px ä¸”æ˜¯å¼‚æ­¥çš„ï¼Œå¸¸å¸¸ç¬¬ä¸€æ¬¡è¿”å› nullã€‚
 /// </summary>
 public static class ExportPreviewTool
 {
-    const string Menu = "Tools/µÀ¾ßËõÂÔÍ¼/";
+    const string Menu = "Tools/é“å…·ç¼©ç•¥å›¾/";
 
-    [MenuItem(Menu + "Éú³ÉÆ÷...")]
+    [MenuItem(Menu + "ç”Ÿæˆå™¨...")]
     static void Open()
     {
         BlockThumbnailWindow.Open();
     }
 
-    [MenuItem(Menu + "Ò»¼ü¸üĞÂÈ«²¿Í¼±ê")]
+    [MenuItem(Menu + "ä¸€é”®æ›´æ–°å…¨éƒ¨å›¾æ ‡")]
     static void OneKey()
     {
         BlockThumbnailWindow.RunBatch(new BlockThumbnailWindow.Settings());
     }
 }
 
-/// <summary>ËõÂÔÍ¼Éú³É²ÎÊı¡£¸ÄÕâÀï¾ÍÄÜ¶¨ÖÆ£¬²»ÓÃ¶¯äÖÈ¾´úÂë¡£</summary>
+/// <summary>ç¼©ç•¥å›¾ç”Ÿæˆå‚æ•°ã€‚æ”¹è¿™é‡Œå°±èƒ½å®šåˆ¶ï¼Œä¸ç”¨åŠ¨æ¸²æŸ“ä»£ç ã€‚</summary>
 public class BlockThumbnailWindow : EditorWindow
 {
-    /// <summary>Ô¤ÀÀ×¨ÓÃ²ã£ºäÖÈ¾Ê±°Ñ´ıÅÄ¶ÔÏóÅ²µ½Õâ²ã£¬Ïà»úÖ»äÖÕâ²ã£¬±ÜÃâ°ÑÒÑ´ò¿ª³¡¾°Ò»ÆğÅÄ½øÈ¥¡£</summary>
+    /// <summary>é¢„è§ˆä¸“ç”¨å±‚ï¼šæ¸²æŸ“æ—¶æŠŠå¾…æ‹å¯¹è±¡æŒªåˆ°è¿™å±‚ï¼Œç›¸æœºåªæ¸²è¿™å±‚ï¼Œé¿å…æŠŠå·²æ‰“å¼€åœºæ™¯ä¸€èµ·æ‹è¿›å»ã€‚</summary>
     const int PreviewLayer = 30;
 
     public class Settings
@@ -37,14 +37,14 @@ public class BlockThumbnailWindow : EditorWindow
         public int resolution = 512;     // 128 / 256 / 512 / 1024
         public int superSample = 2;      // 1 / 2 / 4
         public int msaa = 4;             // 0 / 2 / 4 / 8
-        public float padding = 0.05f;    // ËÄÖÜÁô°×Õ¼±È
+        public float padding = 0.05f;    // å››å‘¨ç•™ç™½å æ¯”
         public bool transparentBackground = true;
         public Color backgroundColor = new Color(0f, 0f, 0f, 0f);
-        public int scope = 0;            // 0 È«²¿ 1 Ö»´¦ÀíÑ¡ÖĞ 2 Ö»²¹È±Ê§
+        public int scope = 0;            // 0 å…¨éƒ¨ 1 åªå¤„ç†é€‰ä¸­ 2 åªè¡¥ç¼ºå¤±
         public bool overwrite = true;
-        public bool onlyLibrary = true;   // Ö»´¦Àí BlockLibrary ÀïµÇ¼Ç¹ıµÄµÀ¾ß
+        public bool onlyLibrary = true;   // åªå¤„ç† BlockLibrary é‡Œç™»è®°è¿‡çš„é“å…·
         public bool writeSpriteImportSettings = true;
-        public float pixelsPerUnit = 256f; // ¸úÏÖÓĞÍ¼±êÒ»ÖÂ£¬¸ÄÁË UI Àï SetNativeSize µÄ³ß´ç»á±ä
+        public float pixelsPerUnit = 256f; // è·Ÿç°æœ‰å›¾æ ‡ä¸€è‡´ï¼Œæ”¹äº† UI é‡Œ SetNativeSize çš„å°ºå¯¸ä¼šå˜
     }
 
     Settings settings = new Settings();
@@ -53,7 +53,7 @@ public class BlockThumbnailWindow : EditorWindow
 
     public static void Open()
     {
-        var w = GetWindow<BlockThumbnailWindow>("µÀ¾ßËõÂÔÍ¼");
+        var w = GetWindow<BlockThumbnailWindow>("é“å…·ç¼©ç•¥å›¾");
         w.minSize = new Vector2(480f, 460f);
         w.Show();
     }
@@ -62,46 +62,46 @@ public class BlockThumbnailWindow : EditorWindow
     {
         scroll = EditorGUILayout.BeginScrollView(scroll);
 
-        EditorGUILayout.LabelField("Ä¿Â¼", EditorStyles.boldLabel);
-        settings.sourceFolder = EditorGUILayout.TextField("Ô¤ÖÆÌåÄ¿Â¼", settings.sourceFolder);
-        settings.outputFolder = EditorGUILayout.TextField("Í¼±êÄ¿Â¼", settings.outputFolder);
+        EditorGUILayout.LabelField("ç›®å½•", EditorStyles.boldLabel);
+        settings.sourceFolder = EditorGUILayout.TextField("é¢„åˆ¶ä½“ç›®å½•", settings.sourceFolder);
+        settings.outputFolder = EditorGUILayout.TextField("å›¾æ ‡ç›®å½•", settings.outputFolder);
 
         EditorGUILayout.Space();
-        EditorGUILayout.LabelField("»­ÖÊ", EditorStyles.boldLabel);
-        settings.resolution = EditorGUILayout.IntPopup("·Ö±æÂÊ", settings.resolution,
+        EditorGUILayout.LabelField("ç”»è´¨", EditorStyles.boldLabel);
+        settings.resolution = EditorGUILayout.IntPopup("åˆ†è¾¨ç‡", settings.resolution,
             new[] { "128", "256", "512", "1024" }, new[] { 128, 256, 512, 1024 });
-        settings.superSample = EditorGUILayout.IntPopup("³¬²ÉÑù", settings.superSample,
+        settings.superSample = EditorGUILayout.IntPopup("è¶…é‡‡æ ·", settings.superSample,
             new[] { "1x", "2x", "4x" }, new[] { 1, 2, 4 });
         settings.msaa = EditorGUILayout.IntPopup("MSAA", settings.msaa,
-            new[] { "¹Ø", "2x", "4x", "8x" }, new[] { 0, 2, 4, 8 });
-        settings.padding = EditorGUILayout.Slider("±ß¾à", settings.padding, 0f, 0.4f);
-        settings.transparentBackground = EditorGUILayout.Toggle("Í¸Ã÷±³¾°", settings.transparentBackground);
+            new[] { "å…³", "2x", "4x", "8x" }, new[] { 0, 2, 4, 8 });
+        settings.padding = EditorGUILayout.Slider("è¾¹è·", settings.padding, 0f, 0.4f);
+        settings.transparentBackground = EditorGUILayout.Toggle("é€æ˜èƒŒæ™¯", settings.transparentBackground);
         if (!settings.transparentBackground)
-            settings.backgroundColor = EditorGUILayout.ColorField("±³¾°ÑÕÉ«", settings.backgroundColor);
+            settings.backgroundColor = EditorGUILayout.ColorField("èƒŒæ™¯é¢œè‰²", settings.backgroundColor);
         settings.pixelsPerUnit = EditorGUILayout.FloatField("Sprite PPU", settings.pixelsPerUnit);
 
         EditorGUILayout.Space();
-        EditorGUILayout.LabelField("·¶Î§", EditorStyles.boldLabel);
-        settings.scope = EditorGUILayout.Popup("´¦Àí·¶Î§", settings.scope,
-            new[] { "È«²¿Ô¤ÖÆÌå", "Ö»´¦ÀíÑ¡ÖĞµÄÔ¤ÖÆÌå", "Ö»²¹È±Ê§µÄÍ¼±ê" });
-        settings.overwrite = EditorGUILayout.Toggle("¸²¸ÇÒÑÓĞÍ¼±ê", settings.overwrite);
+        EditorGUILayout.LabelField("èŒƒå›´", EditorStyles.boldLabel);
+        settings.scope = EditorGUILayout.Popup("å¤„ç†èŒƒå›´", settings.scope,
+            new[] { "å…¨éƒ¨é¢„åˆ¶ä½“", "åªå¤„ç†é€‰ä¸­çš„é¢„åˆ¶ä½“", "åªè¡¥ç¼ºå¤±çš„å›¾æ ‡" });
+        settings.overwrite = EditorGUILayout.Toggle("è¦†ç›–å·²æœ‰å›¾æ ‡", settings.overwrite);
         settings.onlyLibrary = EditorGUILayout.Toggle(
-            new GUIContent("Ö»´¦Àí±íÄÚµÀ¾ß", "Ö»´¦Àí GameManager.BlockLibrary ÀïµÇ¼Ç¹ıµÄµÀ¾ß£¬Ìø¹ı Hinge ÕâÀà±íÍâÔ¤ÖÆÌå"),
+            new GUIContent("åªå¤„ç†è¡¨å†…é“å…·", "åªå¤„ç† GameManager.BlockLibrary é‡Œç™»è®°è¿‡çš„é“å…·ï¼Œè·³è¿‡ Hinge è¿™ç±»è¡¨å¤–é¢„åˆ¶ä½“"),
             settings.onlyLibrary);
-        settings.writeSpriteImportSettings = EditorGUILayout.Toggle("Ğ´Èë Sprite µ¼ÈëÉèÖÃ", settings.writeSpriteImportSettings);
+        settings.writeSpriteImportSettings = EditorGUILayout.Toggle("å†™å…¥ Sprite å¯¼å…¥è®¾ç½®", settings.writeSpriteImportSettings);
 
         EditorGUILayout.Space();
-        if (GUILayout.Button("É¨Ãè", GUILayout.Height(24f)))
+        if (GUILayout.Button("æ‰«æ", GUILayout.Height(24f)))
         {
             prefabs = CollectPrefabs(settings);
-            Debug.Log("[ËõÂÔÍ¼] É¨Ãèµ½ " + prefabs.Count + " ¸öÔ¤ÖÆÌå£º" + settings.sourceFolder);
+            Debug.Log("[ç¼©ç•¥å›¾] æ‰«æåˆ° " + prefabs.Count + " ä¸ªé¢„åˆ¶ä½“ï¼š" + settings.sourceFolder);
         }
-        EditorGUILayout.LabelField("´ı´¦Àí£º" + prefabs.Count + " ¸ö" + (prefabs.Count == 0 ? "£¨ÏÈµãÉ¨Ãè£©" : ""));
+        EditorGUILayout.LabelField("å¾…å¤„ç†ï¼š" + prefabs.Count + " ä¸ª" + (prefabs.Count == 0 ? "ï¼ˆå…ˆç‚¹æ‰«æï¼‰" : ""));
 
         if (prefabs.Count > 0)
         {
             int miss = 0;
-            EditorGUILayout.LabelField("»¹Ã»ÓĞÍ¼±êµÄ£º", EditorStyles.miniBoldLabel);
+            EditorGUILayout.LabelField("è¿˜æ²¡æœ‰å›¾æ ‡çš„ï¼š", EditorStyles.miniBoldLabel);
             foreach (var p in prefabs)
             {
                 string n = Path.GetFileNameWithoutExtension(p);
@@ -111,29 +111,29 @@ public class BlockThumbnailWindow : EditorWindow
                     EditorGUILayout.LabelField("    " + n);
                 }
             }
-            if (miss == 0) EditorGUILayout.LabelField("    £¨ÎŞ£¬È«²¿ÒÑÓĞÍ¼±ê£©");
+            if (miss == 0) EditorGUILayout.LabelField("    ï¼ˆæ— ï¼Œå…¨éƒ¨å·²æœ‰å›¾æ ‡ï¼‰");
         }
 
         EditorGUILayout.Space();
-        if (GUILayout.Button("Éú³É / ¸²¸Ç", GUILayout.Height(30f)))
+        if (GUILayout.Button("ç”Ÿæˆ / è¦†ç›–", GUILayout.Height(30f)))
         {
             RunBatch(settings);
             prefabs = CollectPrefabs(settings);
         }
 
-        EditorGUILayout.HelpBox("½¨Òé£º·Ö±æÂÊ 512¡¢³¬²ÉÑù 2x¡¢MSAA 4¡£PPU ¹Ì¶¨ 256 ÓëÏÖÓĞÍ¼±êÒ»ÖÂ£¬" +
-            "·ñÔò BlockChoose.SetNativeSize() µÄÍ¼±ê³ß´ç»á±ä¡£Overlay Canvas µÄ UI£¨Èç IC£©²»»áäÖÈ¾½øËõÂÔÍ¼¡£",
+        EditorGUILayout.HelpBox("å»ºè®®ï¼šåˆ†è¾¨ç‡ 512ã€è¶…é‡‡æ · 2xã€MSAA 4ã€‚PPU å›ºå®š 256 ä¸ç°æœ‰å›¾æ ‡ä¸€è‡´ï¼Œ" +
+            "å¦åˆ™ BlockChoose.SetNativeSize() çš„å›¾æ ‡å°ºå¯¸ä¼šå˜ã€‚Overlay Canvas çš„ UIï¼ˆå¦‚ ICï¼‰ä¸ä¼šæ¸²æŸ“è¿›ç¼©ç•¥å›¾ã€‚",
             MessageType.Info);
         EditorGUILayout.EndScrollView();
     }
 
-    /// <summary>ÅúÁ¿Éú³É¡£²Ëµ¥¡¸Ò»¼ü¸üĞÂÈ«²¿Í¼±ê¡¹×ßµÄÒ²ÊÇÕâÀï¡£</summary>
+    /// <summary>æ‰¹é‡ç”Ÿæˆã€‚èœå•ã€Œä¸€é”®æ›´æ–°å…¨éƒ¨å›¾æ ‡ã€èµ°çš„ä¹Ÿæ˜¯è¿™é‡Œã€‚</summary>
     public static void RunBatch(Settings s, System.Action<string> onItem = null)
     {
         var list = CollectPrefabs(s);
         if (list.Count == 0)
         {
-            Debug.LogWarning("[ËõÂÔÍ¼] Ã»ÓĞĞèÒª´¦ÀíµÄÔ¤ÖÆÌå£º" + s.sourceFolder);
+            Debug.LogWarning("[ç¼©ç•¥å›¾] æ²¡æœ‰éœ€è¦å¤„ç†çš„é¢„åˆ¶ä½“ï¼š" + s.sourceFolder);
             return;
         }
 
@@ -141,13 +141,13 @@ public class BlockThumbnailWindow : EditorWindow
         var fails = new List<string>();
         var written = new List<string>();
 
-        // ¹Ø¼ü£ºÅú´¦ÀíÆÚ¼ä¹Øµô×Ô¶¯´òÍ¼¼¯¡£·ñÔòÃ¿ÕÅÍ¼µ¼Èë¶¼»áÖØ´òÒ»´Î Sprite Atlas£¬
-        // Êµ²â 56 ÕÅÒª 366s£¬ÆäÖĞäÖÈ¾Ö»Õ¼¼¸Ê®ºÁÃë¡£
+        // å…³é”®ï¼šæ‰¹å¤„ç†æœŸé—´å…³æ‰è‡ªåŠ¨æ‰“å›¾é›†ã€‚å¦åˆ™æ¯å¼ å›¾å¯¼å…¥éƒ½ä¼šé‡æ‰“ä¸€æ¬¡ Sprite Atlasï¼Œ
+        // å®æµ‹ 56 å¼ è¦ 366sï¼Œå…¶ä¸­æ¸²æŸ“åªå å‡ åæ¯«ç§’ã€‚
         SpritePackerMode prevPackMode = EditorSettings.spritePackerMode;
         EditorSettings.spritePackerMode = SpritePackerMode.Disabled;
         try
         {
-            // µÚÒ»¶Î£ºÖ»Ğ´ PNG ×Ö½Ú£¬µ¼Èë±» StartAssetEditing ÍÆ³Ù
+            // ç¬¬ä¸€æ®µï¼šåªå†™ PNG å­—èŠ‚ï¼Œå¯¼å…¥è¢« StartAssetEditing æ¨è¿Ÿ
             AssetDatabase.StartAssetEditing();
             try
             {
@@ -158,10 +158,10 @@ public class BlockThumbnailWindow : EditorWindow
                     string outPath = ResolveOutput(s.outputFolder, name);
 
                     if (!s.overwrite && File.Exists(outPath)) { skipped++; continue; }
-                    if (EditorUtility.DisplayCancelableProgressBar("Éú³ÉµÀ¾ßËõÂÔÍ¼",
+                    if (EditorUtility.DisplayCancelableProgressBar("ç”Ÿæˆé“å…·ç¼©ç•¥å›¾",
                             name + "  (" + (i + 1) + "/" + list.Count + ")", (float)i / list.Count))
                     {
-                        Debug.LogWarning("[ËõÂÔÍ¼] ÒÑÈ¡Ïû£¬ÒÑÍê³É " + done + " ÕÅ");
+                        Debug.LogWarning("[ç¼©ç•¥å›¾] å·²å–æ¶ˆï¼Œå·²å®Œæˆ " + done + " å¼ ");
                         break;
                     }
 
@@ -169,7 +169,7 @@ public class BlockThumbnailWindow : EditorWindow
 
                     string error;
                     Texture2D tex = RenderPrefab(path, s, out error);
-                    if (tex == null) { skipped++; fails.Add(name + "  ¡û  " + error); continue; }
+                    if (tex == null) { skipped++; fails.Add(name + "  â†  " + error); continue; }
 
                     try { SavePng(tex, outPath); }
                     finally { Object.DestroyImmediate(tex); }
@@ -182,7 +182,7 @@ public class BlockThumbnailWindow : EditorWindow
                 AssetDatabase.StopAssetEditing();
             }
 
-            // µÚ¶ş¶Î£ºµ¼ÈëÍê³ÉºóÔÙÍ³Ò»Ì×µ¼ÈëÉèÖÃ£¨ĞÂÎÄ¼şµÄ importer ´ËÊ±²Å´æÔÚ£©
+            // ç¬¬äºŒæ®µï¼šå¯¼å…¥å®Œæˆåå†ç»Ÿä¸€å¥—å¯¼å…¥è®¾ç½®ï¼ˆæ–°æ–‡ä»¶çš„ importer æ­¤æ—¶æ‰å­˜åœ¨ï¼‰
             if (s.writeSpriteImportSettings && written.Count > 0)
             {
                 AssetDatabase.StartAssetEditing();
@@ -202,13 +202,13 @@ public class BlockThumbnailWindow : EditorWindow
             EditorUtility.ClearProgressBar();
         }
 
-        // ²»ÔÙµ÷ÓÃ SaveAssets£ºÄÇ»á°Ñ Battery / NuclearBattery ÕâÀà±» OnValidate ÅªÔàµÄÔ¤ÖÆÌåÒ»²¢´æÅÌ
+        // ä¸å†è°ƒç”¨ SaveAssetsï¼šé‚£ä¼šæŠŠ Battery / NuclearBattery è¿™ç±»è¢« OnValidate å¼„è„çš„é¢„åˆ¶ä½“ä¸€å¹¶å­˜ç›˜
         AssetDatabase.Refresh();
-        Debug.Log("[ËõÂÔÍ¼] Éú³É " + done + " ÕÅ£¬Ìø¹ı " + skipped + " ÕÅ ¡ú " + s.outputFolder
-            + (fails.Count > 0 ? "\nÌø¹ıµÄÔ­Òò£º\n  " + string.Join("\n  ", fails) : ""));
+        Debug.Log("[ç¼©ç•¥å›¾] ç”Ÿæˆ " + done + " å¼ ï¼Œè·³è¿‡ " + skipped + " å¼  â†’ " + s.outputFolder
+            + (fails.Count > 0 ? "\nè·³è¿‡çš„åŸå› ï¼š\n  " + string.Join("\n  ", fails) : ""));
     }
 
-    /// <summary>ÊÕ¼¯Òª´¦ÀíµÄÔ¤ÖÆÌåÂ·¾¶¡£</summary>
+    /// <summary>æ”¶é›†è¦å¤„ç†çš„é¢„åˆ¶ä½“è·¯å¾„ã€‚</summary>
     public static List<string> CollectPrefabs(Settings s)
     {
         var result = new List<string>();
@@ -238,7 +238,7 @@ public class BlockThumbnailWindow : EditorWindow
         return result;
     }
 
-    /// <summary>Êä³öÂ·¾¶£ºÓÅÏÈ¸´ÓÃÄ¿Â¼Àï´óĞ¡Ğ´²»Í¬µ«Í¬ÃûµÄ¾ÉÍ¼±ê£¨engine / Panzer / H-BLock / Shield£©¡£</summary>
+    /// <summary>è¾“å‡ºè·¯å¾„ï¼šä¼˜å…ˆå¤ç”¨ç›®å½•é‡Œå¤§å°å†™ä¸åŒä½†åŒåçš„æ—§å›¾æ ‡ï¼ˆengine / Panzer / H-BLock / Shieldï¼‰ã€‚</summary>
     public static string ResolveOutput(string outFolder, string prefabName)
     {
         string exact = outFolder + "/" + prefabName + ".png";
@@ -254,17 +254,17 @@ public class BlockThumbnailWindow : EditorWindow
         return exact;
     }
 
-    /// <summary>ÀëÆÁäÖÈ¾Ò»¸öÔ¤ÖÆÌå£¬·µ»ØÄ¿±ê·Ö±æÂÊµÄ Texture2D£»Ê§°Ü·µ»Ø null ²¢¸ø³öÔ­Òò¡£</summary>
+    /// <summary>ç¦»å±æ¸²æŸ“ä¸€ä¸ªé¢„åˆ¶ä½“ï¼Œè¿”å›ç›®æ ‡åˆ†è¾¨ç‡çš„ Texture2Dï¼›å¤±è´¥è¿”å› null å¹¶ç»™å‡ºåŸå› ã€‚</summary>
     static Texture2D RenderPrefab(string prefabPath, Settings s, out string error)
     {
         error = null;
-        // Ô¤ÀÀ³¡¾° / LoadPrefabContents ÀïµÄ¶ÔÏóÆÕÍ¨Ïà»úäÖ²»µ½£¨Êµ²â 0 ÏñËØ£©£¬
-        // ËùÒÔÔÚ»î¶¯³¡¾°ÁÙÊ±ÊµÀı»¯£¬ÓÃ HideAndDontSave + ¶ÀÁ¢²ã¸ôÀë£¬äÖÍêÁ¢¿ÌÏú»Ù¡£
+        // é¢„è§ˆåœºæ™¯ / LoadPrefabContents é‡Œçš„å¯¹è±¡æ™®é€šç›¸æœºæ¸²ä¸åˆ°ï¼ˆå®æµ‹ 0 åƒç´ ï¼‰ï¼Œ
+        // æ‰€ä»¥åœ¨æ´»åŠ¨åœºæ™¯ä¸´æ—¶å®ä¾‹åŒ–ï¼Œç”¨ HideAndDontSave + ç‹¬ç«‹å±‚éš”ç¦»ï¼Œæ¸²å®Œç«‹åˆ»é”€æ¯ã€‚
         var asset = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
-        if (asset == null) { error = "Ô¤ÖÆÌå¼ÓÔØÊ§°Ü"; return null; }
+        if (asset == null) { error = "é¢„åˆ¶ä½“åŠ è½½å¤±è´¥"; return null; }
         var targetScene = UnityEditor.SceneManagement.EditorSceneManager.GetActiveScene();
         GameObject root = (GameObject)PrefabUtility.InstantiatePrefab(asset, targetScene);
-        if (root == null) { error = "Ô¤ÖÆÌåÊµÀı»¯Ê§°Ü"; return null; }
+        if (root == null) { error = "é¢„åˆ¶ä½“å®ä¾‹åŒ–å¤±è´¥"; return null; }
 
         GameObject camGo = null;
         RenderTexture big = null, rtFinal = null;
@@ -285,7 +285,7 @@ public class BlockThumbnailWindow : EditorWindow
             }
 
             Bounds bounds;
-            if (!TryGetBounds(root, out bounds)) { error = "Ã»ÓĞ¿ÉäÖÈ¾µÄ Renderer"; return null; }
+            if (!TryGetBounds(root, out bounds)) { error = "æ²¡æœ‰å¯æ¸²æŸ“çš„ Renderer"; return null; }
 
             int res = Mathf.Clamp(s.resolution, 16, 2048);
             int ss = Mathf.Clamp(s.superSample, 1, 4);
@@ -304,7 +304,7 @@ public class BlockThumbnailWindow : EditorWindow
             cam.aspect = 1f;
             cam.nearClipPlane = 0.01f;
 
-            // ÏÈ·Å¿íÈ¡¾°£¬ºóÃæ°´ÕæÊµ²»Í¸Ã÷ÏñËØ×Ô¶¯²Ã±ß£¬±ÜÃâ±»Òş²ØµÄ¸¨Öú¾«Áé´øÆ«
+            // å…ˆæ”¾å®½å–æ™¯ï¼Œåé¢æŒ‰çœŸå®ä¸é€æ˜åƒç´ è‡ªåŠ¨è£è¾¹ï¼Œé¿å…è¢«éšè—çš„è¾…åŠ©ç²¾çµå¸¦å
             float halfH = Mathf.Max(bounds.extents.y, bounds.extents.x);
             cam.orthographicSize = Mathf.Max(halfH, 0.0001f) * 1.4f;
             float dist = Mathf.Max(10f, bounds.size.magnitude * 2f);
@@ -326,7 +326,7 @@ public class BlockThumbnailWindow : EditorWindow
             int bx, by, side;
             if (!AlphaSquare(bigTex, s.padding, out bx, out by, out side))
             {
-                error = "äÖÈ¾½á¹ûÈ«Í¸Ã÷£¨¿ÉÄÜÖ»ÓĞÒş²ØÎïÌå£©";
+                error = "æ¸²æŸ“ç»“æœå…¨é€æ˜ï¼ˆå¯èƒ½åªæœ‰éšè—ç‰©ä½“ï¼‰";
                 return null;
             }
 
@@ -361,7 +361,7 @@ public class BlockThumbnailWindow : EditorWindow
         }
     }
 
-    /// <summary>²»Í¸Ã÷ÇøÓòµÄ·½ĞÎ°üÎ§ºĞ£¨º¬Áô°×£©£¬×ø±êÏµÓë Texture2D Ò»ÖÂ¡£</summary>
+    /// <summary>ä¸é€æ˜åŒºåŸŸçš„æ–¹å½¢åŒ…å›´ç›’ï¼ˆå«ç•™ç™½ï¼‰ï¼Œåæ ‡ç³»ä¸ Texture2D ä¸€è‡´ã€‚</summary>
     static bool AlphaSquare(Texture2D tex, float padding, out int x, out int y, out int side)
     {
         x = y = side = 0;
@@ -391,7 +391,7 @@ public class BlockThumbnailWindow : EditorWindow
         return true;
     }
 
-    /// <summary>ÓÅÏÈÓÃ SpriteRenderer µÄ°üÎ§ºĞ£»Ã»ÓĞ¾ÍÍË»ØËùÓĞ Renderer£¬Ìø¹ıÁã³ß´çµÄ¡£</summary>
+    /// <summary>ä¼˜å…ˆç”¨ SpriteRenderer çš„åŒ…å›´ç›’ï¼›æ²¡æœ‰å°±é€€å›æ‰€æœ‰ Rendererï¼Œè·³è¿‡é›¶å°ºå¯¸çš„ã€‚</summary>
     static bool TryGetBounds(GameObject root, out Bounds bounds)
     {
         bounds = new Bounds(root.transform.position, Vector3.zero);
@@ -426,7 +426,7 @@ public class BlockThumbnailWindow : EditorWindow
         AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceUpdate);
     }
 
-    /// <summary>°ÑÍ¼±êµ¼ÈëÉèÖÃ³ÉºÍÏÖÓĞÍ¼±êÒ»ÖÂ£ºSprite¡¢PPU 256¡¢¹Ø mipmap¡¢²»Ñ¹Ëõ¡£</summary>
+    /// <summary>æŠŠå›¾æ ‡å¯¼å…¥è®¾ç½®æˆå’Œç°æœ‰å›¾æ ‡ä¸€è‡´ï¼šSpriteã€PPU 256ã€å…³ mipmapã€ä¸å‹ç¼©ã€‚</summary>
     static void ApplyImportSettings(string path, Settings s)
     {
         var ti = AssetImporter.GetAtPath(path) as TextureImporter;

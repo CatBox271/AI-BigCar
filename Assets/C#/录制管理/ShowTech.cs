@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,17 +18,17 @@ public class ShowTech : MonoBehaviour
         CarNum.text = oc.CarNum + "";
         if (Red)
         {
-            CarHP.text = "ÉúÃü¼Ó³É£º" + oc.HeathUP;
-            CarSpeed.text = "ËÙ¶È¼Ó³É£º" + oc.SpeedUP;
-            CarHit.text = "¹¥»÷¼Ó³É£º" + oc.HitUP;
-            CarRadius.text = "Éä³Ì¼Ó³É£º" + oc.RangeUP;
+            CarHP.text = "ç”Ÿå‘½åŠ æˆï¼š" + oc.HeathUP;
+            CarSpeed.text = "é€Ÿåº¦åŠ æˆï¼š" + oc.SpeedUP;
+            CarHit.text = "æ”»å‡»åŠ æˆï¼š" + oc.HitUP;
+            CarRadius.text = "å°„ç¨‹åŠ æˆï¼š" + oc.RangeUP;
         }
         else
         {
-            CarHP.text = oc.HeathUP + "£ºÉúÃü¼Ó³É";
-            CarSpeed.text = oc.SpeedUP + "£ºËÙ¶È¼Ó³É";
-            CarHit.text = oc.HitUP + "£º¹¥»÷¼Ó³É";
-            CarRadius.text = oc.RangeUP+ "£ºÉä³Ì¼Ó³É";
+            CarHP.text = oc.HeathUP + "ï¼šç”Ÿå‘½åŠ æˆ";
+            CarSpeed.text = oc.SpeedUP + "ï¼šé€Ÿåº¦åŠ æˆ";
+            CarHit.text = oc.HitUP + "ï¼šæ”»å‡»åŠ æˆ";
+            CarRadius.text = oc.RangeUP+ "ï¼šå°„ç¨‹åŠ æˆ";
         }
     }
 }

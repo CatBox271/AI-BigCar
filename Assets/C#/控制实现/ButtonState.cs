@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -117,7 +117,7 @@ public class ButtonState : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
     {
         return k.ToString("0.#");
     }
-    public void Get()//button½Ó¿Ú
+    public void Get()//buttonæ¥å£
     {
         WhenTouch();
     }
@@ -170,9 +170,9 @@ public class ButtonState : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
     }
     float Limit(float k)
     {
-        if (Mathf.Abs(limit.z) >= 2)//ÓĞÏŞÖÆ
+        if (Mathf.Abs(limit.z) >= 2)//æœ‰é™åˆ¶
         {
-            if (Mathf.Abs(limit.z) == 3)//ÓĞÏŞÖÆÇĞÑ­»·
+            if (Mathf.Abs(limit.z) == 3)//æœ‰é™åˆ¶åˆ‡å¾ªç¯
             {
                 bool A = limit.x <= k && k <= limit.y;
                 do

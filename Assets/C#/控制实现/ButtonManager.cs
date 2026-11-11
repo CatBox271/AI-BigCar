@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +7,7 @@ public class ButtonManager : MonoBehaviour
     public GameObject Button;
     public  List<Transform> all_button = new() { };
     bool show;
-    public void ClearButton()//Çå¿Õbutton
+    public void ClearButton()//æ¸…ç©ºbutton
     {
         all_button.Clear();
         for (int i = transform.childCount - 1; i > -1; i--)
@@ -15,7 +15,7 @@ public class ButtonManager : MonoBehaviour
             Destroy(transform.GetChild(i).gameObject);
         }
     }
-    public void AddButton(GameManager.ButtonInfo BI,CheckAlive ca)//Ìí¼Óbutton
+    public void AddButton(GameManager.ButtonInfo BI,CheckAlive ca)//æ·»åŠ button
     {
         GameObject go = Instantiate(Button, transform);
         all_button.Add(go.transform);

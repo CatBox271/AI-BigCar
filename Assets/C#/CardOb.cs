@@ -1,10 +1,10 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 /// <summary>
-/// ÊµÌå¿¨£¬´¦Àíµã»÷£¬¶¯»­
+/// å®ä½“å¡ï¼Œå¤„ç†ç‚¹å‡»ï¼ŒåŠ¨ç”»
 /// </summary>
 public class CardOb : MonoBehaviour, IPointerDownHandler
 {
@@ -14,33 +14,33 @@ public class CardOb : MonoBehaviour, IPointerDownHandler
 
     public CardState card_state;
     [BlockIndex]
-    public int block_kind;//×öÔÚÕâÀïÈÃBlockkindÄÜ±»ÎÒ·½±ãµÄÓÃcoding_nameÑ¡Ôñ
-    public string card_name;//µ±Îª""³¢ÊÔÄ¬ÈÏÓÃBlockLibraryÀïµÄÖĞÎÄÃû
-    public string describe;//µ±Îª¿Õ³¢ÊÔÄ¬ÈÏÓÃBlockLibraryÀïµÄ**ÅĞ´Ê**¡£
-    public string adjudication;//µ±Îª¿Õ³¢ÊÔÄ¬ÈÏÓÃBlockLibraryÀïµÄ**ÅĞ´Ê**¡£
+    public int block_kind;//åšåœ¨è¿™é‡Œè®©Blockkindèƒ½è¢«æˆ‘æ–¹ä¾¿çš„ç”¨coding_nameé€‰æ‹©
+    public string card_name;//å½“ä¸º""å°è¯•é»˜è®¤ç”¨BlockLibraryé‡Œçš„ä¸­æ–‡å
+    public string describe;//å½“ä¸ºç©ºå°è¯•é»˜è®¤ç”¨BlockLibraryé‡Œçš„**åˆ¤è¯**ã€‚
+    public string adjudication;//å½“ä¸ºç©ºå°è¯•é»˜è®¤ç”¨BlockLibraryé‡Œçš„**åˆ¤è¯**ã€‚
     public int cost;
-    public int group_kind;//-1³éÅÆ¶Ñ0ÊÖÅÆ1ÆúÅÆ¶Ñ
+    public int group_kind;//-1æŠ½ç‰Œå †0æ‰‹ç‰Œ1å¼ƒç‰Œå †
     public int group_index;
-    public List<string> behaviour;//ĞĞ¶¯´ÊÌõ£¬µ±¿¨Æ¬ÀàĞÍÎªÊµÎïÅÆÊ±¼¤»îÓÅÏÈÉú³É¶ÔÓ¦µÄBlockÔÙÔËĞĞÕâ¸ö¡£
-    private FollowMouse block_item;//ÁÙÊ±±£´æ¼¤»îÊ±Éú³ÉµÄÎïÌå·½±ãbehaviour¶ÔËüĞŞ¸Ä¡£
+    public List<string> behaviour;//è¡ŒåŠ¨è¯æ¡ï¼Œå½“å¡ç‰‡ç±»å‹ä¸ºå®ç‰©ç‰Œæ—¶æ¿€æ´»ä¼˜å…ˆç”Ÿæˆå¯¹åº”çš„Blockå†è¿è¡Œè¿™ä¸ªã€‚
+    private FollowMouse block_item;//ä¸´æ—¶ä¿å­˜æ¿€æ´»æ—¶ç”Ÿæˆçš„ç‰©ä½“æ–¹ä¾¿behaviourå¯¹å®ƒä¿®æ”¹ã€‚
     public Camera currentCamera;
 
-    private Color card_color = Color.white;//ÍÏ×§Ç°µÄ¿¨ÃæÑÕÉ«
-    private string card_text = "";//ÍÏ×§Ç°µÄ¿¨ÃûÎÄ±¾
-    private bool dragging;//ÕıÔÚÍÏ×§Éú³ÉÖĞ
+    private Color card_color = Color.white;//æ‹–æ‹½å‰çš„å¡é¢é¢œè‰²
+    private string card_text = "";//æ‹–æ‹½å‰çš„å¡åæ–‡æœ¬
+    private bool dragging;//æ­£åœ¨æ‹–æ‹½ç”Ÿæˆä¸­
 
     private CardManager manager;
     CanvasGroup show;
 
-    public float appearSpeed = 6f;//³éÅÆ³öÏÖ¶¯»­ËÙ¶È
-    float appear;//³öÏÖ½ø¶È0~1£¬½øÅÆ¶Ñ¹éÁã
+    public float appearSpeed = 6f;//æŠ½ç‰Œå‡ºç°åŠ¨ç”»é€Ÿåº¦
+    float appear;//å‡ºç°è¿›åº¦0~1ï¼Œè¿›ç‰Œå †å½’é›¶
 
     void Awake()
     {
         if (!TryGetComponent(out show)) show = gameObject.AddComponent<CanvasGroup>();
         manager = GetComponentInParent<CardManager>();
     }
-    void Update()//°´×Ô¼ºµÄ group_kind£ºÊÖÅÆÂ¶³ö²¢»¬µ½×Ô¼ºµÄ²ÛÎ»£¬½øÅÆ¶ÑÒş²Ø
+    void Update()//æŒ‰è‡ªå·±çš„ group_kindï¼šæ‰‹ç‰Œéœ²å‡ºå¹¶æ»‘åˆ°è‡ªå·±çš„æ§½ä½ï¼Œè¿›ç‰Œå †éšè—
     {
         float alpha = group_kind == 0 ? 1f : 0f;
         if (show.alpha != alpha)
@@ -57,7 +57,7 @@ public class CardOb : MonoBehaviour, IPointerDownHandler
         }
         RectTransform rt = (RectTransform)transform;
         rt.anchoredPosition = Vector2.Lerp(rt.anchoredPosition, manager.handPos[group_index], Time.deltaTime * manager.moveSpeed);
-        appear = Mathf.Lerp(appear, 1f, Time.deltaTime * appearSpeed);//³éµ½ÊÖÉÏ´Ó0³¤µ½1
+        appear = Mathf.Lerp(appear, 1f, Time.deltaTime * appearSpeed);//æŠ½åˆ°æ‰‹ä¸Šä»0é•¿åˆ°1
         rt.localScale = Vector3.one * appear;
     }
     public void WriteIn(CardInfo info)
@@ -75,9 +75,9 @@ public class CardOb : MonoBehaviour, IPointerDownHandler
     }
     private void Refresh()
     {
-        if (card_state == CardState.ÊµÎïÅÆ && card_name == "") card_name = GameManager.GetBlockChineseName(block_kind);
-        if (card_state == CardState.ÊµÎïÅÆ && describe == "") describe = GameManager.GetBlockDescribe(block_kind);
-        if (card_state == CardState.ÊµÎïÅÆ && adjudication == "") adjudication = GameManager.GetBlockAdjudication(block_kind);
+        if (card_state == CardState.å®ç‰©ç‰Œ && card_name == "") card_name = GameManager.GetBlockChineseName(block_kind);
+        if (card_state == CardState.å®ç‰©ç‰Œ && describe == "") describe = GameManager.GetBlockDescribe(block_kind);
+        if (card_state == CardState.å®ç‰©ç‰Œ && adjudication == "") adjudication = GameManager.GetBlockAdjudication(block_kind);
         Name.text = card_name;
         Cost.text = cost.ToString();
         Icon.sprite = GameManager.GetBlockSprite(block_kind);
@@ -86,17 +86,17 @@ public class CardOb : MonoBehaviour, IPointerDownHandler
     {
         Refresh();
     }
-    public void PreSwarm()//±»Êó±ê°´ÏÂÍÏ¶¯£¬Éú³ÉÎïÌå£¬´ËÊ±¿¨Æ¬±äÎªÒ»¸ö°ëÍ¸Ã÷µÄĞé¿ÕĞÎÌ¬ÎÄ±¾ÃèÊö±äÎª¿¨Æ¬ÇøËÉ¿ªÈ¡ÏûÊÍ·Å¡£
+    public void PreSwarm()//è¢«é¼ æ ‡æŒ‰ä¸‹æ‹–åŠ¨ï¼Œç”Ÿæˆç‰©ä½“ï¼Œæ­¤æ—¶å¡ç‰‡å˜ä¸ºä¸€ä¸ªåŠé€æ˜çš„è™šç©ºå½¢æ€æ–‡æœ¬æè¿°å˜ä¸ºå¡ç‰‡åŒºæ¾å¼€å–æ¶ˆé‡Šæ”¾ã€‚
     {
         if (dragging || block_item != null) return;
-        if (manager.costBar != null && manager.costBar.Cost < cost) return;//·Ñ²»¹»Á¬Ğé¿ÕÎïÌå¶¼²»Éú³É
-        if (card_state != CardState.ÊµÎïÅÆ) return;
+        if (manager.costBar != null && manager.costBar.Cost < cost) return;//è´¹ä¸å¤Ÿè¿è™šç©ºç‰©ä½“éƒ½ä¸ç”Ÿæˆ
+        if (card_state != CardState.å®ç‰©ç‰Œ) return;
         string code = GameManager.GetBlockCodeName(block_kind);
         if (string.IsNullOrEmpty(code) || code == "Null") return;
         GameObject prefab = Resources.Load<GameObject>("GameObject/" + code);
         if (prefab == null)
         {
-            Debug.LogWarning("CardOb£ºÕÒ²»µ½Ô¤ÖÆÌå Resources/GameObject/" + code);
+            Debug.LogWarning("CardObï¼šæ‰¾ä¸åˆ°é¢„åˆ¶ä½“ Resources/GameObject/" + code);
             return;
         }
 
@@ -120,21 +120,21 @@ public class CardOb : MonoBehaviour, IPointerDownHandler
         block_item = fm;
         BeginDragVisual();
     }
-    public void BeActive()//³¹µ×¼¤»î£º¿¨Æ¬´ò³öºó´ÓÊÖÖĞÒÆ³ı
+    public void BeActive()//å½»åº•æ¿€æ´»ï¼šå¡ç‰‡æ‰“å‡ºåä»æ‰‹ä¸­ç§»é™¤
     {
         EndDragVisual();
         block_item = null;
-        if (manager.costBar != null) manager.costBar.AddCost(-cost);//Ö»ÓĞÕæÕıÂäÎ»³É¹¦²Å¿Û·Ñ
+        if (manager.costBar != null) manager.costBar.AddCost(-cost);//åªæœ‰çœŸæ­£è½ä½æˆåŠŸæ‰æ‰£è´¹
         manager.CatchCard(-1, 1, group_kind, group_index);
         //gameObject.SetActive(false);
     }
 
-    public void OnPlaced(FollowMouse fm)//ÎïÌå³É¹¦ÂäÎ»µ½ÔØ¾ßÉÏ£¬¿¨Æ¬ÏûÊ§
+    public void OnPlaced(FollowMouse fm)//ç‰©ä½“æˆåŠŸè½ä½åˆ°è½½å…·ä¸Šï¼Œå¡ç‰‡æ¶ˆå¤±
     {
-        if (!ReferenceEquals(block_item, fm)) return;//ÓÃÒıÓÃÅĞµÈ£¬±Ü¿ª Unity Ïú»ÙºóµÄÎ± null
+        if (!ReferenceEquals(block_item, fm)) return;//ç”¨å¼•ç”¨åˆ¤ç­‰ï¼Œé¿å¼€ Unity é”€æ¯åçš„ä¼ª null
         BeActive();
     }
-    public void OnPlaceCancel(FollowMouse fm)//ËÉÊÖÎ»ÖÃ²»ÔÚÔØ¾ßÉÏ£¬ÎïÌåÏú»Ù£¬¿¨Æ¬»¹Ô­
+    public void OnPlaceCancel(FollowMouse fm)//æ¾æ‰‹ä½ç½®ä¸åœ¨è½½å…·ä¸Šï¼Œç‰©ä½“é”€æ¯ï¼Œå¡ç‰‡è¿˜åŸ
     {
         if (ReferenceEquals(block_item, fm)) block_item = null;
         EndDragVisual();
@@ -151,7 +151,7 @@ public class CardOb : MonoBehaviour, IPointerDownHandler
         if (Name != null)
         {
             card_text = Name.text;
-            Name.text = "ËÉ¿ªÈ¡Ïû";
+            Name.text = "æ¾å¼€å–æ¶ˆ";
         }
     }
     void EndDragVisual()

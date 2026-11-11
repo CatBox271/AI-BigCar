@@ -1,4 +1,4 @@
-using System;
+锘縰sing System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class VideoCameraFollow : MonoBehaviour
 {
-    [Header("相机地图半宽")]
+    [Header("鐩告満鍦板浘鍗婂")]
     public float cameraW = 0;
 
     public static List<Heath> CenterList = new();
@@ -38,7 +38,7 @@ public class VideoCameraFollow : MonoBehaviour
         float VEl = 0;
         if (R > B)
         {
-            //交叉
+            //浜ゅ弶
             if (R + B > 0)
             {
                 AimX = R;

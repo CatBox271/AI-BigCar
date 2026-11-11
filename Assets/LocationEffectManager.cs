@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,11 +7,11 @@ public class LocationEffect
 {
     public enum Needed
     {
-        block_code_name,//±ÈÈç=block ¾ÍÊÇblock²ÅÄÜ¼Æ»î£¬±ØĞëÄÜÁ¬µ½ºËĞÄ
-        fullfill,//±»ÍêÈ«ÌîÂú£¬±ÈÈç¿ò+ÒıÇæ£¬»òÕßÒ»¸öÖıÌú×°¼×£¬±ØĞëÄÜÁ¬µ½ºËĞÄ
-        both,//±ÈÈçboth µÄÒ»¸ö15£¬¾ÍÊÇÔÚowncarÀïÔØ¾ßµÄµÚ15¸ñºÍÕâ¸ö¸ñ×ÓÍ¬Ê±Âú×ã²ÅĞĞ£¬±ØĞëÄÜÁ¬µ½ºËĞÄ
-        nonefill,//Ã»ÓĞÈÎºÎÎïÌå
-        nor,//¶¼Ã»ÓĞ²Å¼¤»î
+        block_code_name,//æ¯”å¦‚=block å°±æ˜¯blockæ‰èƒ½è®¡æ´»ï¼Œå¿…é¡»èƒ½è¿åˆ°æ ¸å¿ƒ
+        fullfill,//è¢«å®Œå…¨å¡«æ»¡ï¼Œæ¯”å¦‚æ¡†+å¼•æ“ï¼Œæˆ–è€…ä¸€ä¸ªé“¸é“è£…ç”²ï¼Œå¿…é¡»èƒ½è¿åˆ°æ ¸å¿ƒ
+        both,//æ¯”å¦‚both çš„ä¸€ä¸ª15ï¼Œå°±æ˜¯åœ¨owncaré‡Œè½½å…·çš„ç¬¬15æ ¼å’Œè¿™ä¸ªæ ¼å­åŒæ—¶æ»¡è¶³æ‰è¡Œï¼Œå¿…é¡»èƒ½è¿åˆ°æ ¸å¿ƒ
+        nonefill,//æ²¡æœ‰ä»»ä½•ç‰©ä½“
+        nor,//éƒ½æ²¡æœ‰æ‰æ¿€æ´»
     }
     public enum EffectKind
     {
@@ -28,7 +28,7 @@ public class LocationEffect
     {
         public Needed need;
         public float needpara;
-        public bool met()//±»Âú×ã
+        public bool Met(OwnCar car)//è¢«æ»¡è¶³
         {
             switch (need)
             {
@@ -38,7 +38,7 @@ public class LocationEffect
         }
     }
     [System.Serializable]
-    public class CarEffect//ÉÏ²ãÏÈÅÅºÃĞò£¬ÏÈforeverºó£¡forever£¬È»ºóÔÚĞ¡×éÀï°´EffectKindµÄË³ĞòÅÅĞòÖ´ĞĞ£¬¶ÔÍâËµÊÇÏÈ¼ÓÔÙ³Ë£¬percent³ËËã
+    public class CarEffect//ä¸Šå±‚å…ˆæ’å¥½åºï¼Œå…ˆforeveråï¼foreverï¼Œç„¶ååœ¨å°ç»„é‡ŒæŒ‰EffectKindçš„é¡ºåºæ’åºæ‰§è¡Œï¼Œå¯¹å¤–è¯´æ˜¯å…ˆåŠ å†ä¹˜ï¼Œpercentä¹˜ç®—
     {
         public EffectKind effectKind;
         public float effectNum;
@@ -59,10 +59,10 @@ public class LocationEffect
         }
     }
     public string pic_name;
-    public float rarity;//Ï¡ÓĞÈ¨ÖØ·´±È£¬±ÈÈç1ÊÇ1,2ÊÇ1/2¡£°ÑËùÓĞ¿¨³ØÏëÏóÎªÒ»¸öÓÉÏ¡ÓĞÈ¨ÖØÏß¶ÎÆ´³ÉµÄÏß£¬1µÄÏ¡ÓĞ¶È¾ÍÕ¼¾İ1µÄ³¤¶È£¬2¾ÍÕ¼¾İ1/2¡£Éú³ÉÊ±´ÓÏß¶ÎÉÏÈÎÈ¡Ò»µã£¬Õâ¸öµãÊôÓÚÄÄ¸ö¾ÍÊÇÈ¡ÄÇ¸ö¡£
-    public float circle;//Î»ÖÃÉú³ÉµÄ¡°È¦¡±¼¶¿ÉÄÜĞÔ£¬±ÈÈç0ÊÇ¸ß¸ÅÂÊÔÚÖĞ¼äÈı¸ö,1ÊÇ3¸öÏòÏàÁÚ¶Ô½ÇÀ©É¢²¢ÅÅ³ıÄÄ3¸öµÄÒ»¸ö¿ÕĞÄ³¤·½ĞÎ£¬2ÊÇ×îÍâÈ¦¡£
+    public float rarity;//ç¨€æœ‰æƒé‡åæ¯”ï¼Œæ¯”å¦‚1æ˜¯1,2æ˜¯1/2ã€‚æŠŠæ‰€æœ‰å¡æ± æƒ³è±¡ä¸ºä¸€ä¸ªç”±ç¨€æœ‰æƒé‡çº¿æ®µæ‹¼æˆçš„çº¿ï¼Œ1çš„ç¨€æœ‰åº¦å°±å æ®1çš„é•¿åº¦ï¼Œ2å°±å æ®1/2ã€‚ç”Ÿæˆæ—¶ä»çº¿æ®µä¸Šä»»å–ä¸€ç‚¹ï¼Œè¿™ä¸ªç‚¹å±äºå“ªä¸ªå°±æ˜¯å–é‚£ä¸ªã€‚
+    public float circle;//ä½ç½®ç”Ÿæˆçš„â€œåœˆâ€çº§å¯èƒ½æ€§ï¼Œæ¯”å¦‚0æ˜¯é«˜æ¦‚ç‡åœ¨ä¸­é—´ä¸‰ä¸ª,1æ˜¯3ä¸ªå‘ç›¸é‚»å¯¹è§’æ‰©æ•£å¹¶æ’é™¤å“ª3ä¸ªçš„ä¸€ä¸ªç©ºå¿ƒé•¿æ–¹å½¢ï¼Œ2æ˜¯æœ€å¤–åœˆã€‚
     public string describe;
-    public List<ActNeeded> needs;//ËùÓĞneed±»Âú×ã²Å¼¤»îËùÓĞĞ§¹û
+    public List<ActNeeded> needs;//æ‰€æœ‰needè¢«æ»¡è¶³æ‰æ¿€æ´»æ‰€æœ‰æ•ˆæœ
     public List<CarEffect> effects;
 
 }
@@ -75,10 +75,10 @@ public class LocationEffectManager : MonoBehaviour
 {
     public const string LocationEffectPath = "Data/LocationEffect";
 
-    // ±íÌåÄÚ´æ¡£¶ÔÍâÍ³Ò»×ß EffectModels ÊôĞÔ£¬±£Ö¤µÚÒ»´Î·ÃÎÊÊ±¾ÍÒÑ´Ó JSON ÔØÈë¡£
+    // è¡¨ä½“å†…å­˜ã€‚å¯¹å¤–ç»Ÿä¸€èµ° EffectModels å±æ€§ï¼Œä¿è¯ç¬¬ä¸€æ¬¡è®¿é—®æ—¶å°±å·²ä» JSON è½½å…¥ã€‚
     static readonly List<LocationEffect> effectModels = new();
 
-    public static List<LocationEffect> EffectModels//¿ÉÒÔ³éµ½µÄ¿ÉÄÜÄ£°æÈ«¼¯
+    public static List<LocationEffect> EffectModels//å¯ä»¥æŠ½åˆ°çš„å¯èƒ½æ¨¡ç‰ˆå…¨é›†
     {
         get
         {
@@ -96,7 +96,7 @@ public class LocationEffectManager : MonoBehaviour
         effectModels.AddRange(table.effects);
     }
 
-    public static void ClearEffectModels()//LocationEffect.json ÖØĞÂµ¼ÈëÊ±Çå¿ÕÄÚ´æ±í
+    public static void ClearEffectModels()//LocationEffect.json é‡æ–°å¯¼å…¥æ—¶æ¸…ç©ºå†…å­˜è¡¨
     {
         effectModels.Clear();
     }
@@ -107,21 +107,21 @@ public class LocationEffectManager : MonoBehaviour
     {
         car.BeforeSend += OnSend;
         car.SendingFinish += OnRestart;
-        //±í²»ÔÚÕâÀïÔØÈë£ºEffectModels ÊôĞÔµÚÒ»´Î·ÃÎÊÊ±×Ô¼º¶Á JSON£»
-        //±à¼­Æ÷Àï¸ÄÍê±íÓÉ LocationEffectReloader Çå»º´æ£¬ÏÂÒ»Ö¡·ÃÎÊ¾ÍÊÇĞÂµÄ¡£
+        //è¡¨ä¸åœ¨è¿™é‡Œè½½å…¥ï¼šEffectModels å±æ€§ç¬¬ä¸€æ¬¡è®¿é—®æ—¶è‡ªå·±è¯» JSONï¼›
+        //ç¼–è¾‘å™¨é‡Œæ”¹å®Œè¡¨ç”± LocationEffectReloader æ¸…ç¼“å­˜ï¼Œä¸‹ä¸€å¸§è®¿é—®å°±æ˜¯æ–°çš„ã€‚
     }
     private void OnSend()
     {
-        //Ó¦ÓÃĞ§¹û¸øcar
+        //åº”ç”¨æ•ˆæœç»™car
     }
     private void OnRestart()
     { 
-        //Ëæ»úÉú³ÉµÄĞ§¹û
+        //éšæœºç”Ÿæˆçš„æ•ˆæœ
     }
 }
 
 #if UNITY_EDITOR
-public class DataTableReloader : UnityEditor.AssetPostprocessor//±íÒ»±»µ¼Èë¾ÍÇå¶ÔÓ¦ÄÚ´æ±í£¬Ê¡µÃ¶Áµ½¾ÉÊı¾İ
+public class DataTableReloader : UnityEditor.AssetPostprocessor//è¡¨ä¸€è¢«å¯¼å…¥å°±æ¸…å¯¹åº”å†…å­˜è¡¨ï¼Œçœå¾—è¯»åˆ°æ—§æ•°æ®
 {
     static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths)
     {

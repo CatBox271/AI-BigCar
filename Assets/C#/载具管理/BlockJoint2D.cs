@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,11 +18,11 @@ public class BlockJoint2D : MonoBehaviour,IStart
     public float AngleOffset = new();
     CheckAlive ca;
 
-    public List<BlockJoint2D> allJoint = new();//Ö»ÄÜÁ¬ÉÏÄÜÁ¬ÉÏµÄ£¬µ«ÎªÁËÏßÑéÖ¤Ğ§¹ûÕ¹Ê¾²»×ö
-    public List<Rigidbody2D> allBody = new();//ËùÓĞºÍBJÓĞÁ´½ÓµÄRB
-    public List<Vector2> OS = new(); //ÓëallBodyÒ»¶ş¶ÔÓ¦,AimShapeµÄ×ø±êÊÇËùÓĞBJµÄÆ½¾ùÖĞĞÄ
-    public float AA;//Ä¿±êĞı×ª
-    public List<Vector2> AS = new();//Ä¿±êĞÎ×´
+    public List<BlockJoint2D> allJoint = new();//åªèƒ½è¿ä¸Šèƒ½è¿ä¸Šçš„ï¼Œä½†ä¸ºäº†çº¿éªŒè¯æ•ˆæœå±•ç¤ºä¸åš
+    public List<Rigidbody2D> allBody = new();//æ‰€æœ‰å’ŒBJæœ‰é“¾æ¥çš„RB
+    public List<Vector2> OS = new(); //ä¸allBodyä¸€äºŒå¯¹åº”,AimShapeçš„åæ ‡æ˜¯æ‰€æœ‰BJçš„å¹³å‡ä¸­å¿ƒ
+    public float AA;//ç›®æ ‡æ—‹è½¬
+    public List<Vector2> AS = new();//ç›®æ ‡å½¢çŠ¶
 
     float ready;
     public void SetStart(float t)
@@ -32,27 +32,27 @@ public class BlockJoint2D : MonoBehaviour,IStart
         allJoint.Clear();
         allBody.Clear();
         List<CheckAlive> allItem = new();
-        allItem.AddRange(GameManager.allvehicle[ca.VID]);//¶ÔËùÓĞÍ¨Ò»ÔØ¾ßÄÚÈİ½øĞĞ·ÖÎö
+        allItem.AddRange(GameManager.allvehicle[ca.VID]);//å¯¹æ‰€æœ‰é€šä¸€è½½å…·å†…å®¹è¿›è¡Œåˆ†æ
         BlockJoint2D bj;
         for (int i = 0; i < allItem.Count; i++)
         {
             if (allItem[i] == null) continue;
-            allJoint.AddRange(allItem[i].GetComponents<BlockJoint2D>());//»ñµÃËùÓĞBlockJoint2D
+            allJoint.AddRange(allItem[i].GetComponents<BlockJoint2D>());//è·å¾—æ‰€æœ‰BlockJoint2D
         }
-        //È»ºó¶ÔËùÓĞbj·ÖÎö
+        //ç„¶åå¯¹æ‰€æœ‰bjåˆ†æ
         Vector2 v2;
-        //ÏÈËãShapeAngle
+        //å…ˆç®—ShapeAngle
       
         for (int i = 0; i < allJoint.Count; i++)
         {
             bj = allJoint[i];
             Transform tf = bj.transform;
-            //Í¬Ê±±éÀú»ñÈ¡ËùÓĞRigidbody
+            //åŒæ—¶éå†è·å–æ‰€æœ‰Rigidbody
             TryAddBody(bj.ownRB);
             TryAddBody(bj.connectedBody);
         }
-        //ÔÙËãÃ¿¸öBodyµÄRigidbody
-        v2 = new();//ÖØÖÃ
+        //å†ç®—æ¯ä¸ªBodyçš„Rigidbody
+        v2 = new();//é‡ç½®
         float MassAll = 0;
         for (int i = 0; i < allBody.Count; i++)
         {
@@ -60,16 +60,16 @@ public class BlockJoint2D : MonoBehaviour,IStart
             v2 += rb.position * rb.mass;
             MassAll += rb.mass;
         }
-        v2 /= MassAll;//ÇóÆ½¾ù
+        v2 /= MassAll;//æ±‚å¹³å‡
         OS.Clear();
-        //ÏÖÔÚµÃµ½ÁËÖĞĞÄÎ»ÖÃ,½ÓÏÂÀ´ÔÙ±éÀúÒ»´Î£¬µÃµ½ºÍÖĞĞÄµÄÏà¶Ô×ø±ê
+        //ç°åœ¨å¾—åˆ°äº†ä¸­å¿ƒä½ç½®,æ¥ä¸‹æ¥å†éå†ä¸€æ¬¡ï¼Œå¾—åˆ°å’Œä¸­å¿ƒçš„ç›¸å¯¹åæ ‡
         for (int i = 0; i < allBody.Count; i++)
         {
             Vector2 r = allBody[i].position - v2;
             OS.Add(r);
         }
-        //¼ÇµÃ²¹ÉÏĞéÄâÁ´½Ó·Ö×éµÄÇé¿ö
-        for (int i = 0; i < allJoint.Count; i++)//Í¬²½Í¬ÔØÁ¬½Ó
+        //è®°å¾—è¡¥ä¸Šè™šæ‹Ÿé“¾æ¥åˆ†ç»„çš„æƒ…å†µ
+        for (int i = 0; i < allJoint.Count; i++)//åŒæ­¥åŒè½½è¿æ¥
         {
             SetSame(allJoint[i],Time.time);
         }
@@ -94,9 +94,9 @@ public class BlockJoint2D : MonoBehaviour,IStart
         bj.ready = t;
     }
     /// <summary>
-     /// ½«½Ç¶ÈÏŞÖÆÔÚ+-360
+     /// å°†è§’åº¦é™åˆ¶åœ¨+-360
      /// </summary>
-     /// <param name="current">ÊäÈë</param>
+     /// <param name="current">è¾“å…¥</param>
      /// <returns></returns>
     float ToSignedAngle(float current)
     {
@@ -114,12 +114,12 @@ public class BlockJoint2D : MonoBehaviour,IStart
     }
     private void FixedUpdate()
     {
-        if (ready != Time.time)//¼ÆËãÕûÌå¿ò¼ÜÄ¿±êÖµ
+        if (ready != Time.time)//è®¡ç®—æ•´ä½“æ¡†æ¶ç›®æ ‡å€¼
         {
             BlockJoint2D bj;
             Vector2 v2;
             Vector2 all_v2 = new();
-            //ÏÈËãShapeAngle
+            //å…ˆç®—ShapeAngle
 
             for (int i = 0; i < allJoint.Count; i++)
             {
@@ -128,13 +128,13 @@ public class BlockJoint2D : MonoBehaviour,IStart
 
             }
 
-            AA = 0;//ÖØÖÃ
+            AA = 0;//é‡ç½®
             float totalAngle = 0;
-            //ÔÙËãÃ¿¸öBodyµÄRigidbody
-            v2 = new();//ÖØÖÃ
+            //å†ç®—æ¯ä¸ªBodyçš„Rigidbody
+            v2 = new();//é‡ç½®
             List<Vector2> EachMV = new();
-            Vector2 motion = new();//¶¯Á¿
-            float angle_motion = new(); //½Ç¶¯Á¿
+            Vector2 motion = new();//åŠ¨é‡
+            float angle_motion = new(); //è§’åŠ¨é‡
             float totalInertia = 0;
             float MassAll = 0;
             for (int i = 0; i < allBody.Count; i++)
@@ -144,7 +144,7 @@ public class BlockJoint2D : MonoBehaviour,IStart
                 MassAll += rb.mass;
                 EachMV.Add(rb.velocity * rb.mass);
             }
-            v2 /= MassAll;//ÇóÆ½¾ù
+            v2 /= MassAll;//æ±‚å¹³å‡
             float vl = 0;
             for (int i = 0; i < EachMV.Count; i++)
             {
@@ -164,10 +164,10 @@ public class BlockJoint2D : MonoBehaviour,IStart
             float dt = Time.fixedDeltaTime;
             for (int i = 0; i < OS.Count; i++)
             {
-                AS.Add((Vector2)(Quaternion.AngleAxis(-totalAngle - angle_motion * dt, -Vector3.forward) * OS[i]) + v2 + motion * dt);//ÊÀ½ç×ø±êÎ»ÖÃ
+                AS.Add((Vector2)(Quaternion.AngleAxis(-totalAngle - angle_motion * dt, -Vector3.forward) * OS[i]) + v2 + motion * dt);//ä¸–ç•Œåæ ‡ä½ç½®
             }
 
-            //×îºó½«½øĞĞÎïÀí¼ÆËã
+            //æœ€åå°†è¿›è¡Œç‰©ç†è®¡ç®—
 
             for (int i = 0; i < allBody.Count; i++)
             {
@@ -201,7 +201,7 @@ public class BlockJoint2D : MonoBehaviour,IStart
 
         if (!EnableCollison || true) Physics2D.IgnoreCollision(ownRB.GetComponent<Collider2D>(), connectedBody.GetComponent<Collider2D>());
 
-        Offset = transform.InverseTransformPoint(connectedBody.position);//»ùÓÚ±¾µØ×ø±êÏµ//ÊÜËõ·ÅÓ°Ïì
+        Offset = transform.InverseTransformPoint(connectedBody.position);//åŸºäºæœ¬åœ°åæ ‡ç³»//å—ç¼©æ”¾å½±å“
         AngleOffset = connectedBody.transform.localEulerAngles.z - transform.localEulerAngles.z;
     }
 }

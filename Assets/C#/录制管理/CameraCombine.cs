@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +7,7 @@ public class CameraCombine : MonoBehaviour
     public Transform aim;
     public float blendTime = 3f;
     public float predistance = 10f;
-    public AnimationCurve »ºÈë»º³ö;
+    public AnimationCurve ç¼“å…¥ç¼“å‡º;
     private float _blendTime = 0;
     public List<SpriteRenderer> sps;
     public List<CameraSplitColorControll> splits;
@@ -23,13 +23,13 @@ public class CameraCombine : MonoBehaviour
             _blendTime -= Time.fixedDeltaTime;
             _blendTime = Mathf.Max(0, _blendTime);
         }
-        //Àë¿ª»º³å
-        float rate = »ºÈë»º³ö.Evaluate(_blendTime / blendTime);
+        //ç¦»å¼€ç¼“å†²
+        float rate = ç¼“å…¥ç¼“å‡º.Evaluate(_blendTime / blendTime);
         OwnF.BlendRate = AimF.BlendRate = rate;
 
         OwnF.CombinedX = VideoCameraFollow.vcf.MX - VideoCameraFollow.vcf.cameraW;
         AimF.CombinedX = VideoCameraFollow.vcf.MX + VideoCameraFollow.vcf.cameraW;
-        //È¡¾°¿ò
+        //å–æ™¯æ¡†
         float a = rate;
         foreach (var sp in sps)
         {

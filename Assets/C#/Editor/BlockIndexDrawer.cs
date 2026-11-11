@@ -1,10 +1,10 @@
-using UnityEditor;
+ï»¿using UnityEditor;
 using UnityEngine;
 
 /// <summary>
-/// BlockIndexAttribute µÄ»æÖÆÆ÷£º°Ñ int »­³ÉµÀ¾ßÏÂÀ­¿ò£¬Ñ¡ÏîÀ´×Ô GameManager.BlockLibrary¡£
-/// ÏÂÀ­ÏÔÊ¾¡¸ÏÂ±ê + ÖĞÎÄÃû + ´úºÅ¡¹£¬µ«Ğ´»Ø×Ö¶ÎµÄÖ»ÓĞÏÂ±ê¡£
-/// ·ÅÔÚ Assets/C#/Editor ÏÂ£¬Ëæ Assembly-CSharp-Editor ±àÒë£¬²»»á½ø°üÌå¡£
+/// BlockIndexAttribute çš„ç»˜åˆ¶å™¨ï¼šæŠŠ int ç”»æˆé“å…·ä¸‹æ‹‰æ¡†ï¼Œé€‰é¡¹æ¥è‡ª GameManager.BlockLibraryã€‚
+/// ä¸‹æ‹‰æ˜¾ç¤ºã€Œä¸‹æ ‡ + ä¸­æ–‡å + ä»£å·ã€ï¼Œä½†å†™å›å­—æ®µçš„åªæœ‰ä¸‹æ ‡ã€‚
+/// æ”¾åœ¨ Assets/C#/Editor ä¸‹ï¼Œéš Assembly-CSharp-Editor ç¼–è¯‘ï¼Œä¸ä¼šè¿›åŒ…ä½“ã€‚
 /// </summary>
 [CustomPropertyDrawer(typeof(BlockIndexAttribute))]
 public class BlockIndexDrawer : PropertyDrawer
@@ -13,7 +13,7 @@ public class BlockIndexDrawer : PropertyDrawer
     static int cachedCount = -1;
     static string cachedLast = "";
 
-    /// <summary>°´ BlockLibrary Éú³ÉÏÂÀ­ÎÄ±¾£»±í±äÁË×Ô¶¯ÖØ½¨¡£</summary>
+    /// <summary>æŒ‰ BlockLibrary ç”Ÿæˆä¸‹æ‹‰æ–‡æœ¬ï¼›è¡¨å˜äº†è‡ªåŠ¨é‡å»ºã€‚</summary>
     public static string[] BuildOptions()
     {
         var lib = GameManager.BlockLibrary;
@@ -27,12 +27,12 @@ public class BlockIndexDrawer : PropertyDrawer
         {
             var b = lib[i];
             string extra = "";
-            // 0 ºÅÊÇÕ¼Î»µÄ¡°¿ÕÆø¡±£¬Ã»Ô¤ÖÆÌåÊÇÕı³£µÄ
-            // ÓÃ File.Exists ¶ø²»ÊÇ AssetDatabase.LoadAssetAtPath£ººóÕß»á°ÑÔ¤ÖÆÌåÕæÕı¼ÓÔØÒ»±é£¬
-            // ´¥·¢ Battery / OwnCar µÄ OnValidate ¾¯¸æ£¬¶øÇÒÃ¿´ÎÖØ±àÑ¡Ïî¶¼ÒªÅÜ 57 ´Î
+            // 0 å·æ˜¯å ä½çš„â€œç©ºæ°”â€ï¼Œæ²¡é¢„åˆ¶ä½“æ˜¯æ­£å¸¸çš„
+            // ç”¨ File.Exists è€Œä¸æ˜¯ AssetDatabase.LoadAssetAtPathï¼šåè€…ä¼šæŠŠé¢„åˆ¶ä½“çœŸæ­£åŠ è½½ä¸€éï¼Œ
+            // è§¦å‘ Battery / OwnCar çš„ OnValidate è­¦å‘Šï¼Œè€Œä¸”æ¯æ¬¡é‡ç¼–é€‰é¡¹éƒ½è¦è·‘ 57 æ¬¡
             if (i > 0 && !System.IO.File.Exists("Assets/Resources/GameObject/" + b.code_name + ".prefab"))
             {
-                extra = "  £¨ÎŞÔ¤ÖÆÌå£©";
+                extra = "  ï¼ˆæ— é¢„åˆ¶ä½“ï¼‰";
             }
             options[i] = i + "  " + b.chinese_name + " (" + b.code_name + ")" + extra;
         }
@@ -43,20 +43,20 @@ public class BlockIndexDrawer : PropertyDrawer
     {
         if (property.propertyType != SerializedPropertyType.Integer)
         {
-            EditorGUI.HelpBox(position, "BlockIndex Ö»ÄÜ±êÔÚ int ×Ö¶ÎÉÏ£¬µ±Ç°ÊÇ " + property.propertyType, MessageType.Error);
+            EditorGUI.HelpBox(position, "BlockIndex åªèƒ½æ ‡åœ¨ int å­—æ®µä¸Šï¼Œå½“å‰æ˜¯ " + property.propertyType, MessageType.Error);
             return;
         }
 
         string[] list = BuildOptions();
 
-        // Ô½½çÖµ£¨ÀıÈç½«À´´Ó Json ¶Áµ½¾ÉÊı¾İ£©²»¾²Ä¬¸ÄĞ´£¬ÏÔÊ¾Îª¿ÕµÈÓÃ»§ÖØÑ¡
+        // è¶Šç•Œå€¼ï¼ˆä¾‹å¦‚å°†æ¥ä» Json è¯»åˆ°æ—§æ•°æ®ï¼‰ä¸é™é»˜æ”¹å†™ï¼Œæ˜¾ç¤ºä¸ºç©ºç­‰ç”¨æˆ·é‡é€‰
         int cur = property.intValue;
         if (cur < 0 || cur >= list.Length) cur = -1;
 
         EditorGUI.BeginProperty(position, label, property);
         bool mixed = EditorGUI.showMixedValue;
         EditorGUI.showMixedValue = property.hasMultipleDifferentValues;
-        // Õâ¸ö°æ±¾µÄ EditorGUI.Popup Ã»ÓĞ GUIContent ÖØÔØ£¬ÏÈ»­±êÇ©ÔÙ»­ÏÂÀ­
+        // è¿™ä¸ªç‰ˆæœ¬çš„ EditorGUI.Popup æ²¡æœ‰ GUIContent é‡è½½ï¼Œå…ˆç”»æ ‡ç­¾å†ç”»ä¸‹æ‹‰
         Rect fieldRect = EditorGUI.PrefixLabel(position, label);
         EditorGUI.BeginChangeCheck();
         int picked = EditorGUI.Popup(fieldRect, cur, list);

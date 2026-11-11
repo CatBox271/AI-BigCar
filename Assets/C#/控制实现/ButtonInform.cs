@@ -1,15 +1,15 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ButtonInform : MonoBehaviour
 {
-    [Tooltip("Éú³ÉµÄButtonÖÖÀà")]
+    [Tooltip("ç”Ÿæˆçš„Buttonç§ç±»")]
     public List<string> ButtonName;
-    [Tooltip(" 0 ¿ª¹Ø£¬1Êı×Ö£¬2Èı½øÖÆ")]
+    [Tooltip(" 0 å¼€å…³ï¼Œ1æ•°å­—ï¼Œ2ä¸‰è¿›åˆ¶")]
     public List<int> ButtonState;
-    [Tooltip("ÀäÈ´Ê±¼ä")]
+    [Tooltip("å†·å´æ—¶é—´")]
     public List<float> CD;
-    [Tooltip("x ×îĞ¡Öµ£¬y×î´óÖµ£¬ z 1ÎŞÏŞÖÆ 2 ÎªÓĞÏŞÖÆ£¬3ÎªÑ­»·,¸ºÊıÊÇÕûÊı")]
+    [Tooltip("x æœ€å°å€¼ï¼Œyæœ€å¤§å€¼ï¼Œ z 1æ— é™åˆ¶ 2 ä¸ºæœ‰é™åˆ¶ï¼Œ3ä¸ºå¾ªç¯,è´Ÿæ•°æ˜¯æ•´æ•°")]
     public List<Vector3Int> NumLimite;
 }

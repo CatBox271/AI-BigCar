@@ -1,10 +1,10 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 /// <summary>
-/// ±êÔÚ List&lt;int&gt; ÉÏ£¬¼ì²éÆ÷Àï°ÑÃ¿¸öÔªËØ»­³É¿¨Æ¬ÏÂÀ­¿ò£ºÑ¡ÏîÀ´×Ô CardManager.CardDefine£¨cards.json£©£¬
-/// ´æµÄÊÇ¿¨Æ¬ÏÂ±ê£¬ĞĞÎ²´ø¡¸¸´ÖÆ / É¾³ı¡¹¡£
-/// Ö»Ó°Ïì±à¼­Æ÷»æÖÆ£¬²»²ÎÓëĞòÁĞ»¯£ºJsonUtility Óë´æµµÀïÈÔÈ»Ö»ÊÇÊı×Ö¡£
-/// ÓÃ·¨£º[CardIndex] public List<int> startPile;
+/// æ ‡åœ¨ List&lt;int&gt; ä¸Šï¼Œæ£€æŸ¥å™¨é‡ŒæŠŠæ¯ä¸ªå…ƒç´ ç”»æˆå¡ç‰‡ä¸‹æ‹‰æ¡†ï¼šé€‰é¡¹æ¥è‡ª CardManager.CardDefineï¼ˆcards.jsonï¼‰ï¼Œ
+/// å­˜çš„æ˜¯å¡ç‰‡ä¸‹æ ‡ï¼Œè¡Œå°¾å¸¦ã€Œå¤åˆ¶ / åˆ é™¤ã€ã€‚
+/// åªå½±å“ç¼–è¾‘å™¨ç»˜åˆ¶ï¼Œä¸å‚ä¸åºåˆ—åŒ–ï¼šJsonUtility ä¸å­˜æ¡£é‡Œä»ç„¶åªæ˜¯æ•°å­—ã€‚
+/// ç”¨æ³•ï¼š[CardIndex] public List<int> startPile;
 /// </summary>
 public class CardIndexAttribute : PropertyAttribute
 {

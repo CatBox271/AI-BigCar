@@ -1,4 +1,4 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,7 +14,7 @@ public class LockTime : MonoBehaviour
     }
     private void OnValidate()
     {
-        txt.text = (int)T + "√Î";
+        txt.text = (int)T + "Áßí";
     }
 
     private void Update()
@@ -25,7 +25,7 @@ public class LockTime : MonoBehaviour
         }
         else
         {
-            txt.text = (int)T + "√Î";
+            txt.text = (int)T + "Áßí";
         }
         T -= Time.deltaTime;
     }
