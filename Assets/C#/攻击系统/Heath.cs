@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,6 +25,25 @@ public class Heath : MonoBehaviour
     public bool IgnoteCampCollider;
     private int animak = 0;
     private float animation_speed = 5f;
+
+    [System.Flags]
+    public enum Effect
+    {
+        Water = 1,
+    }
+    public Effect effects;
+    public void AddEffect(Effect effect)
+    {
+        effects |= effect;
+    }
+    public void DisEffect(Effect effect)
+    {
+        effects &= ~effect;
+    }
+    public bool WithEffect(Effect effect)
+    {
+        return (effects & effect) != 0;
+    }
     public void StopBlockAnimation()
     {
         StopCoroutine(nameof(BlockAnimation));
@@ -58,6 +77,7 @@ public class Heath : MonoBehaviour
         max = HP;
         TryGetComponent(out sp);
         HeathRegistry.Add(this);
+        gameObject.AddComponent<StuckBoom>();
         if (HitLight)
         {
             flash = GetComponent<FlashEffect>();

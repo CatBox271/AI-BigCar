@@ -1,4 +1,4 @@
-using System.Collections;
+锘縰sing System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -25,6 +25,17 @@ public class WaterWave : MonoBehaviour
         Visible = true;
     }
     public bool Visible = false;
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.attachedRigidbody == null) return;
+        if (collision.attachedRigidbody.TryGetComponent(out Heath h)) h.AddEffect(Heath.Effect.Water);
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.attachedRigidbody == null) return;
+        if (collision.attachedRigidbody.TryGetComponent(out Heath h)) h.DisEffect(Heath.Effect.Water);
+    }
 
     public void AddNewPoint(Vector3 pos,float Strength)
     {
@@ -68,8 +79,8 @@ public class WaterWave : MonoBehaviour
         }
     }
     public float LoseSpeed = 0;
-    public float 波动频率 = 20;
-    public float 传播速度 = 35;
+    public float 娉㈠姩棰戠巼 = 20;
+    public float 浼犳挱閫熷害 = 35;
     float ABlength;
     public int maxPointers;
     List<Vector3> OriginCurve = new();
@@ -196,20 +207,20 @@ public class WaterWave : MonoBehaviour
             float XX = X * (i + 1) - (Center - Pos.x - PointA.x);
             if (XX < 0)
             {
-                float GX = (XX + time * 传播速度) / -波动频率 + 1;
+                float GX = (XX + time * 浼犳挱閫熷害) / -娉㈠姩棰戠巼 + 1;
                 GX = GX < 0 || GX > 1 ? 0 : GX;
                 GX -= LoseSpeed * time;
                 GX = GX < 0 || GX > 1 ? 0 : GX;
-                Vector3 add = new Vector3(X * (i + 1), Height * GX * Mathf.Cos(XX + time * 传播速度 - 3.14f * 2.4f), 0);
+                Vector3 add = new Vector3(X * (i + 1), Height * GX * Mathf.Cos(XX + time * 浼犳挱閫熷害 - 3.14f * 2.4f), 0);
                 Curve[PointNum - i - 1] += new Vector3(0, add.y, 0);
             }
             else
             {
-                float GX = (XX - time * 传播速度) / 波动频率 + 1;
+                float GX = (XX - time * 浼犳挱閫熷害) / 娉㈠姩棰戠巼 + 1;
                 GX = GX < 0 || GX > 1 ? 0 : GX;
                 GX -= LoseSpeed * time;
                 GX = GX < 0 || GX > 1 ? 0 : GX;
-                Vector3 add = new Vector3(X * (i + 1), Height * GX * Mathf.Cos(XX - time * 传播速度 + 3.14f * 2.4f), 0);
+                Vector3 add = new Vector3(X * (i + 1), Height * GX * Mathf.Cos(XX - time * 浼犳挱閫熷害 + 3.14f * 2.4f), 0);
                 Curve[PointNum - i - 1] += new Vector3(0, add.y, 0);
             }
         }
