@@ -61,6 +61,10 @@ PrefabInstance:
       value: 16875
       objectReference: {fileID: 0}
     - target: {fileID: 3887864997433917945, guid: 0743e3970f2e7e94784c551cb5c31e49, type: 3}
+      propertyPath: water_trans.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3887864997433917945, guid: 0743e3970f2e7e94784c551cb5c31e49, type: 3}
       propertyPath: "\u53D1\u52A8\u673A\u4E58\u6570"
       value: 1
       objectReference: {fileID: 0}

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class VideoCameraFollow : MonoBehaviour
@@ -62,66 +61,50 @@ public class VideoCameraFollow : MonoBehaviour
     }
     void Calculate()
     {
-        List<Vector2> RL = new();
-        List<int> RI = new();
-        List<Vector2> BL = new();
-        List<int> BI = new();
-        for (int i = 0 ; i < CenterList .Count; i++)
+        Transform red = null;
+        Transform blue = null;
+        for (int i = CenterList.Count - 1; i > -1; i--)//倒序遍历，RemoveAt 不会漏掉后一个
         {
-            if (CenterList[i] == null)
+            Heath h = CenterList[i];
+            if (h == null)
             {
                 CenterList.RemoveAt(i);
                 continue;
-            }                
-            if (CenterList[i].camp == 0) continue;
-            if (CenterList[i].camp == 1)//right_blue
-            {
-                BL.Add(CenterList[i].transform.position);
-                BI.Add(i);
             }
-            else//left_red
+            if (h.camp == 0) continue;
+            Transform t = h.transform;
+            if (h.camp == 1)//right_blue，取最靠左的
             {
-                RL.Add(CenterList[i].transform.position);
-                RI.Add(i);
+                if (t.position.x <= -121f) continue;
+                if (blue == null || t.position.x < blue.position.x) blue = t;
+            }
+            else//left_red，取最靠右的
+            {
+                if (t.position.x >= 121f) continue;
+                if (red == null || t.position.x > red.position.x) red = t;
             }
         }
-        int R = -1;
-        Parallel.For(0, RL.Count, x =>
-         {
-             if (RL[x].x < 121)
-             {
-                 if (R == -1) R = (int)x;
-                 else
-                 {
-                     if (RL[R].x < RL[x].x) R = (int)x;
-                 }
-             }
-         });
-        int B = -1;
-        Parallel.For(0, BL.Count, x =>
+        if (red != null && red != RF)
         {
-            if (BL[x].x > -121)
-            {
-                if (B == -1) B = (int)x;
-                else
-                {
-                    if (BL[B].x > BL[x].x) B = (int)x;
-                }
-            }
-        });
-
-        if (R != -1) RF = CenterList[RI[R]].transform;
-        if (B != -1) BF = CenterList[BI[B]].transform;
+            RF = red;
+            rrb = null;
+        }
+        if (blue != null && blue != BF)
+        {
+            BF = blue;
+            brb = null;
+        }
     }
 
-    private Dictionary<Transform, Rigidbody2D> rb_cache = new();
+    Rigidbody2D rrb;
+    Rigidbody2D brb;
     public float RRBV
     {
         get 
         {
             if (RF == null) return 0;
-            if (!rb_cache.ContainsKey(RF)) rb_cache[RF] = RF.GetComponent<Rigidbody2D>();
-            return rb_cache[RF].velocity.x;
+            if (rrb == null) rrb = RF.GetComponent<Rigidbody2D>();
+            return rrb.velocity.x;
 
         }
     }
@@ -130,8 +113,8 @@ public class VideoCameraFollow : MonoBehaviour
         get
         {
             if (BF == null) return 0;
-            if (!rb_cache.ContainsKey(BF)) rb_cache[BF] = BF.GetComponent<Rigidbody2D>();
-            return rb_cache[BF].velocity.x;
+            if (brb == null) brb = BF.GetComponent<Rigidbody2D>();
+            return brb.velocity.x;
         }
     }
     public float RRX

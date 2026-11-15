@@ -22,6 +22,7 @@ public class bullet : MonoBehaviour
     public bool Cannon;
 
     public bool NotDie;
+    Collider2D[] cols;
     public void SetInform(int Icamp, float Ispeed,float Ihit_value,Color Icolor)
     {
         _camp = Icamp;
@@ -163,9 +164,10 @@ public class bullet : MonoBehaviour
             }
             else
             {
-                foreach (Collider2D cd in GetComponents<Collider2D>())
+                if (cols == null)//每帧 GetComponents 会一直分配数组，只在第一次取
                 {
-                    cd.isTrigger = false;
+                    cols = GetComponents<Collider2D>();
+                    for (int i = 0; i < cols.Length; i++) cols[i].isTrigger = false;
                 }
                 rb.velocity = new();
                 sp.color -= new Color(0, 0, 0, 4f) * Time.deltaTime;

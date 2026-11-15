@@ -2,41 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EffectKind
+{
+    non,//default
+    vn,//vecihle num add
+    hp,//HP percent add
+    vel,//velocity percent add
+    hit,//hit percent add
+    size,//size percent add
+    adv,// advent effect rate percent add
+}
+
 [System.Serializable]
 public class LocationEffect
 {
-    public enum Needed
-    {
-        block_code_name,//比如=block 就是block才能计活，必须能连到核心
-        fullfill,//被完全填满，比如框+引擎，或者一个铸铁装甲，必须能连到核心
-        both,//比如both 的一个15，就是在owncar里载具的第15格和这个格子同时满足才行，必须能连到核心
-        nonefill,//没有任何物体
-        nor,//都没有才激活
-    }
-    public enum EffectKind
-    {
-        vn_a,//vecihle num add
-        vn_m,//vecihle num multiply
-        hp_p,//HP percent add
-        vel_p,//velocity percent add
-        hit_p,//hit percent add
-        size_p,//size percent add
-        adv_p,// advent effect rate percent add
-    }
-    [System.Serializable]
-    public class ActNeeded
-    {
-        public Needed need;
-        public float needpara;
-        public bool Met(OwnCar car)//被满足
-        {
-            switch (need)
-            {
-                
-            }
-            return false;
-        }
-    }
+
     [System.Serializable]
     public class CarEffect//上层先排好序，先forever后！forever，然后在小组里按EffectKind的顺序排序执行，对外说是先加再乘，percent乘算
     {
@@ -62,7 +42,6 @@ public class LocationEffect
     public float rarity;//稀有权重反比，比如1是1,2是1/2。把所有卡池想象为一个由稀有权重线段拼成的线，1的稀有度就占据1的长度，2就占据1/2。生成时从线段上任取一点，这个点属于哪个就是取那个。
     public float circle;//位置生成的“圈”级可能性，比如0是高概率在中间三个,1是3个向相邻对角扩散并排除哪3个的一个空心长方形，2是最外圈。
     public string describe;
-    public List<ActNeeded> needs;//所有need被满足才激活所有效果
     public List<CarEffect> effects;
 
 }

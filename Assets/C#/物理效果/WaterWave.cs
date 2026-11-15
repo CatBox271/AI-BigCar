@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+
 using UnityEngine;
 using UnityEngine.U2D;
 public class WaterWave : MonoBehaviour
@@ -102,10 +102,10 @@ public class WaterWave : MonoBehaviour
     {
         if (!Visible) return;
         if(allPoints.Count > maxPointers * 10) allPoints.RemoveRange(0, allPoints.Count - maxPointers * 10);
-        Parallel.For(0, Curve.Count, x =>
-         {
-             Curve[x] = OriginCurve[x];
-         });
+        for (int x = 0; x < Curve.Count; x++)
+        {
+            Curve[x] = OriginCurve[x];
+        }
         List<float> DTL = new();
         for (int a = allPoints.Count -1; a > -1; a--)
         {
@@ -119,10 +119,10 @@ public class WaterWave : MonoBehaviour
                 DTL.Insert(0, DT);
             }
         }
-        Parallel.For(0, allPoints.Count, i =>
-          {
-              DrawCurve(allPoints[i][0], DTL[i], allPoints[i][1]);
-          });
+        for (int i = 0; i < allPoints.Count; i++)
+        {
+            DrawCurve(allPoints[i][0], DTL[i], allPoints[i][1]);
+        }
         //CutCurve();
 
         Show();
@@ -239,6 +239,15 @@ public class WaterWave : MonoBehaviour
             {
                 B = i;
             }
+        }
+        if (B - A - 1 == Curve.Count)//点已经铺好，原地改位置，不再增删
+        {
+            for (int i = 0; i < Curve.Count; i++)
+            {
+                ssc.spline.SetPosition(A + 1 + i, Curve[Curve.Count - 1 - i] + new Vector3(PointA.x, PointA.y));//原来每次插到 A+1，插完顺序是反的
+            }
+            ssc.RefreshSpriteShape();//SetPosition 不会自己重建网格，原来靠 Insert/RemovePointAt 顺带刷新
+            return;
         }
         for (int i = 0; i < B - A -1; i++)
         {

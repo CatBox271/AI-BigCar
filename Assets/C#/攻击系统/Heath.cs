@@ -77,7 +77,6 @@ public class Heath : MonoBehaviour
         max = HP;
         TryGetComponent(out sp);
         HeathRegistry.Add(this);
-        gameObject.AddComponent<StuckBoom>();
         if (HitLight)
         {
             flash = GetComponent<FlashEffect>();
@@ -213,7 +212,7 @@ public class Heath : MonoBehaviour
         {
             if (showHit != null)
             {
-                Instantiate(showHit, transform.position, new Quaternion()).GetComponent<ShowHit>().Setting(camp, num);
+                ShowHit.Spawn(showHit, transform.position, camp, num);
             }
         }
         if (sp == null)

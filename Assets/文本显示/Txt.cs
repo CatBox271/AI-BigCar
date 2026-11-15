@@ -9,7 +9,6 @@ public class Txt : MonoBehaviour
     public string context;
     string last;
     public List<string> con;
-    private int length;
     [Tooltip("字号。字间距、水平偏移、竖直偏移都按它等比缩放")]
     public float size = 15f;
     [Tooltip("水平偏移 = offset × size")]
@@ -53,23 +52,22 @@ public class Txt : MonoBehaviour
 
     void Update()
     {
-        if (context.Length > length)
+        //按实际子物体数量补字符：context 变短时 ShowNum 会自毁，拿字段记数量会和子物体对不上
+        for (int i = transform.childCount; i < context.Length; i++)
         {
-            for (int i = length; i < context.Length; i++)
+            GameObject swarm = Instantiate(Word, transform);
+            if (swarm.TryGetComponent(out ShowNum sn))
             {
-                GameObject swarm = Instantiate(Word, transform);
-                if (swarm.TryGetComponent(out ShowNum sn))
-                {
-                    sn.Set(i, size, OffsetX, color, Spacing, OffsetY);
-                }
-                if (swarm.TryGetComponent(out CanvasShowNum sn1))
-                {
-                    sn1.Set(i, size, OffsetX, color, Spacing, OffsetY);
-                }
-                swarm.gameObject.layer = gameObject.layer;
+                sn.Set(i, size, OffsetX, color, Spacing, OffsetY);
+                sn.Refresh();
             }
+            if (swarm.TryGetComponent(out CanvasShowNum sn1))
+            {
+                sn1.Set(i, size, OffsetX, color, Spacing, OffsetY);
+                sn1.Refresh();
+            }
+            swarm.gameObject.layer = gameObject.layer;
         }
-        length = context.Length;
         if (last != context)
         {
             last = context;

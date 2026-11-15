@@ -23,13 +23,11 @@ public class Artillery : MonoBehaviour
 
     void FixedUpdate()
     {
-        
         CD -= Time.fixedDeltaTime;
         if (Barrel != null)
         {
             Barrel.light_value = (Mathf.Clamp((coolTime - CD) / coolTime, 0, 1) * 1.25f - 0.9f);
         }
-
         if (CD <= 0)
         {
             InsideClock -= Time.fixedDeltaTime;

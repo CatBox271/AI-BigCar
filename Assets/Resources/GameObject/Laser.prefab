@@ -227,7 +227,6 @@ MonoBehaviour:
   Barrel: {fileID: 6827262113741704246}
   count: 0
   rb: {fileID: 8776386315825442668}
-  CalculateTimes: 5
   ac:
   - {fileID: 8300000, guid: 7368c03dee113954395b5e771e444e4d, type: 3}
   volume: 0.2
@@ -303,10 +302,12 @@ MonoBehaviour:
   _color_start: {r: 0, g: 0, b: 0, a: 0}
   die: 0
   HitLight: 0
+  flash: {fileID: 0}
   OrignalColor: 0
   Castle: 0
   DieWithCollider: 0
   IgnoteCampCollider: 0
+  effects: 0
   Bullet: 0
   showHit: {fileID: 3094680651753618184, guid: 4845d86b02a61f44286803d21e4709f5, type: 3}
   DH: 0
@@ -436,7 +437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a544831da18ba41b16983ca5a85f26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Times: 2
+  Times: 15
 --- !u!58 &4254343605445901590
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -54,6 +54,7 @@ public class TryConnect : MonoBehaviour
             h.IgnoteCampCollider = layIn != 0;
             h.Set(camp);
             rb_1.gameObject.AddComponent<AirResistance>().rb = rb_1;
+            if (!rb_1.TryGetComponent(out StuckBoom _)) rb_1.gameObject.AddComponent<StuckBoom>();//发车后才参与卡住自爆和出界销毁
         }
         if (rb_2 != null)
         {

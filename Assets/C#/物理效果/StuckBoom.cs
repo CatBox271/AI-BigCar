@@ -37,7 +37,7 @@ public class StuckBoom : MonoBehaviour
     void FixedUpdate()
     {
         if (rb == null || heath == null) return;
-        if (HasLimit && !Limit.Contains(transform.position))
+        if (heath.camp != 0 && HasLimit && !Limit.Contains(transform.position))//camp 为 0 说明还没发车（在设计区拼装），不参与出界判定
         {
             heath.Die();
             return;
