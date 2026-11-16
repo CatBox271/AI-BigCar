@@ -72,9 +72,21 @@ public class BlockManager : MonoBehaviour
     void StartRotateBlock()
     {
         List<OwnCar> ocl = FindCar();
+        print(KPB.Count);
         for (int i = 0; i < KPB.Count; i += 2)
         {
-            ocl[KPB[i].y].RotateTo(new(KPB[i + 1].x, KPB[i + 1].y), KPB[i].x);
+            try
+            {
+                print(i);
+                print(KPB[i].y);
+                print(ocl.Count);
+
+                ocl[KPB[i].y].RotateTo(new(KPB[i + 1].x, KPB[i + 1].y), KPB[i].x);
+            }
+            catch
+            {
+                continue;
+            }
         }
         KPB.Clear();
     }

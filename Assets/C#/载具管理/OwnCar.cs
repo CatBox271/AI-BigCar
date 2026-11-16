@@ -456,6 +456,18 @@ public class OwnCar : MonoBehaviour
         CCA.BlockOffset.Add(f);
         if (f == 4) YCA.BlockOffset.Add(-4);
         else YCA.BlockOffset.Add(OP(f));
+        //对偶面：这条连接两侧的面，断开时判环用（4 号中连接不分割平面）
+        int f1 = DualCut.NoFace, f2 = DualCut.NoFace;
+        int w = ColliderArea.x, h = ColliderArea.y;
+        if (f >= 0 && f <= 3)
+        {
+            int ia = GetIndexOfAllObject(tc.transform.position);
+            int ib = GetIndexOfAllObject(ty.transform.position);
+            if (ia >= 0 && ib >= 0) DualCut.FacesOfEdge(ia, ib, f, w, h, out f1, out f2);
+        }
+        CCA.gridW = w; CCA.gridH = h; YCA.gridW = w; YCA.gridH = h;
+        CCA.FacePair.Add(new Vector2Int(f1, f2));
+        YCA.FacePair.Add(new Vector2Int(f2, f1));
     }
     void Move(int where)
     {
@@ -958,8 +970,6 @@ public class OwnCar : MonoBehaviour
     }
     public void RotateTo(Vector2Int where, int f)
     {
-
-
         GameObject go = AllObject[where.x][where.y];
         if (!GetT(go, out TryConnect tc)) return;
 
@@ -972,7 +982,6 @@ public class OwnCar : MonoBehaviour
                 Flip.flip = true;
             }
         }
-
 
         tc.forward = f;
         Transform tf = go.transform;
