@@ -249,49 +249,52 @@ public class GameManager : MonoBehaviour
 
     public static List<List<CheckAlive>> allvehicle = new();//所有载具
 
-    public static void Check(int VID = -114514)
+    public static void Check(List<int> vids = null)
     {
-        if (VID == -114514)//检查所有
+        if (vids == null)//检查所有
         {
             for (int i = 0; i < allvehicle.Count; i++)
             {
                 SingleCheck(i);
             }
         }
-        else
+        else foreach(int id in vids)
         {
-            SingleCheck(VID);
+            SingleCheck(id);
         }
     }
     public static List<List<ButtonInfo>> allInfo = new();
 
+    static readonly Dictionary<(string, int), int> buttonIndex = new();//本车里已有按钮的位置，替掉反复 FindIndex 的字符串扫描
     static void SingleCheck(int id)//button消息系统
     {
         KeepSameCount();
 
-        allInfo[id].Clear();//清空旧数据
+        List<ButtonInfo> info = allInfo[id];
+        info.Clear();//清空旧数据
+        buttonIndex.Clear();
 
-        List<CheckAlive> allItem = new();
-        allItem.AddRange(allvehicle[id]);//对所有通一载具内容进行分析
+        List<CheckAlive> allItem = allvehicle[id];//直接遍历，不再每次复制一份
         for (int i = 0; i < allItem.Count; i++)
         {
-            if (allItem[i] == null) continue;
-            var GBI = allItem[i].GetComponent<ButtonInform>();//要生成的Button信息
-            if (GBI == null) continue;
+            CheckAlive ca = allItem[i];
+            if (ca == null) continue;
+            if (ca.VID != id) continue;//槽里残留的、已经属于别的载具的引用，跳过
+            //TryGetComponent：方块大多没有 ButtonInform，走 GetComponent 每次拿 null 都要 Unity 生成异常消息字符串（压力测试里单帧 59ms）
+            if (!ca.TryGetComponent(out ButtonInform GBI)) continue;//要生成的Button信息
             for (int ii = 0; ii < GBI.ButtonName.Count; ii++)
             {
-                TryConnect tc = GBI.GetComponent<TryConnect>();
-                if (tc == null) continue;
+                if (!GBI.TryGetComponent(out TryConnect tc)) continue;
 
-                if (ButtonFind(id, GBI.ButtonName[ii], tc.forward, out int AddTo))//已经有过了
+                var key = (GBI.ButtonName[ii], tc.forward);
+                if (buttonIndex.TryGetValue(key, out int AddTo))//已经有过了
                 {
-                    allInfo[id][AddTo]._all_on.Add(GBI.GetComponent<ION>());
+                    if (GBI.TryGetComponent(out ION ionAdd)) info[AddTo]._all_on.Add(ionAdd);
                 }
                 else
                 {
+                    if (!GBI.TryGetComponent(out ION Ion)) continue;
                     ButtonInfo BI = new();
-                    ION Ion = GBI.GetComponent<ION>();
-                    if (Ion == null) continue;
                     bool StartOn = Ion.OnSet;
                     float StartNum = Ion.NumSet;
                     if (GBI.TryGetComponent(out IC_Code ic))
@@ -299,7 +302,8 @@ public class GameManager : MonoBehaviour
                         BI.Set(GBI.ButtonName[ii], -1, GBI.ButtonState[ii], GBI.CD[ii], GBI.NumLimite[ii], new() { Ion }, StartOn, StartNum, ic);//写入全部信息
                     }
                     else BI.Set(GBI.ButtonName[ii], tc.forward, GBI.ButtonState[ii], GBI.CD[ii], GBI.NumLimite[ii], new() { Ion }, StartOn, StartNum);//写入全部信息
-                    allInfo[id].Add(BI);
+                    buttonIndex[key] = info.Count;
+                    info.Add(BI);
                 }
             }
         }
