@@ -40,8 +40,7 @@ public class CardManager : MonoBehaviour
     {
         if (cardDefine == null || cardDefine.Count == 0)
         {
-            var asset = Resources.Load<TextAsset>(BlockLibraryPath);
-            var table = JsonUtility.FromJson<CardDefineTable>(asset.text);
+            var table = SLManager.ImportFromResources<CardDefineTable>(BlockLibraryPath);
             cardDefine.Clear();
             cardDefine.AddRange(table.cards);
         }

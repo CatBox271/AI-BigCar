@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,11 +19,7 @@ public class RougeChoose : MonoBehaviour
     public FinishCharacter fc;
     private void Start()
     {
-        var path = Path.Combine(Application.persistentDataPath, "LevelSave", "Rouge.json");
-        if (File.Exists(path))
-        {
-            LoadMap();
-        }
+        if (SLManager.Exists("LevelSave", "Rouge")) LoadMap();
     }
     private void OnValidate()
     {
@@ -36,10 +31,7 @@ public class RougeChoose : MonoBehaviour
     }
     public void LoadMap()
     {
-        var path = Path.Combine(Application.persistentDataPath, "LevelSave", "Rouge.json");
-        string json = File.ReadAllText(path);
-        var test = JsonUtility.FromJson<YourSave>(json);
-        YS = test;
+        YS = SLManager.ImportFromJson<YourSave>("LevelSave", "Rouge");
 
         allScene = new();
         bool next = true;
@@ -91,8 +83,7 @@ public class RougeChoose : MonoBehaviour
 
     public void Delete()
     {
-        var path = Path.Combine(Application.persistentDataPath, "LevelSave", "Rouge.json");
-        File.Delete(path);
+        SLManager.Delete("LevelSave", "Rouge");
         print("Delete");
     }
     public void GetSave(YourSave ys)
@@ -182,8 +173,6 @@ public class RougeChoose : MonoBehaviour
 
     public void SaveMap()
     {
-        var json = JsonUtility.ToJson(YS, true);
-        var path = Path.Combine(Application.persistentDataPath, "LevelSave", "Rouge.json");
-        File.WriteAllText(path, json);
+        SLManager.ExportToJson(YS, "LevelSave", "Rouge");
     }
 }

@@ -57,7 +57,7 @@ public class CreatQR : MonoBehaviour,IPointerClickHandler
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            var vs = JsonUtility.FromJson<VehicleSave>(File.ReadAllText(FileUtils.GetFilesInPersistentFolder("VehicleDesign")[1]));
+            var vs = SLManager.ImportFromJson<VehicleSave>("VehicleDesign", Path.GetFileName(FileUtils.GetFilesInPersistentFolder("VehicleDesign")[1]));
             List<string> sl = new();
             sl.AddRange(vs.carsave);
             QrCodeStr = CompressSave(sl);

@@ -45,8 +45,7 @@ public class GameManager : MonoBehaviour
     static void EnsureBlockLibrary()
     {
         if (blockLibrary.Count > 0) return;
-        var asset = Resources.Load<TextAsset>(BlockLibraryPath);
-        var table = JsonUtility.FromJson<BlockLibraryTable>(asset.text);
+        var table = SLManager.ImportFromResources<BlockLibraryTable>(BlockLibraryPath);
         blockLibrary.Clear();
         blockLibrary.AddRange(table.blocks);
     }

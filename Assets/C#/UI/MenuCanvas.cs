@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -17,9 +16,9 @@ public class MenuCanvas : MonoBehaviour
 
     public void CanRouge()
     {
-        var path = Path.Combine(Application.persistentDataPath, "LevelSave", "Rouge.json");
-        print(File.Exists(path));
-        if (File.Exists(path))
+        bool exist = SLManager.Exists("LevelSave", "Rouge");
+        print(exist);
+        if (exist)
         {
             State = "ReNew";
         }
@@ -30,8 +29,7 @@ public class MenuCanvas : MonoBehaviour
     }
     public void Delete()
     {
-        var path = Path.Combine(Application.persistentDataPath, "LevelSave", "Rouge.json");
-        File.Delete(path);
+        SLManager.Delete("LevelSave", "Rouge");
         print("Delete");
     }
     public void Rouge()

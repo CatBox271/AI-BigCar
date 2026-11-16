@@ -148,9 +148,7 @@ public class SaveMode : MonoBehaviour
         int _index = button.GetSiblingIndex();
         string[] files = FileUtils.GetFilesInPersistentFolder("VehicleDesign");
 
-        string json = File.ReadAllText(files[_index]);
-
-        var vs = JsonUtility.FromJson<VehicleSave>(json);
+        var vs = SLManager.ImportFromJson<VehicleSave>("VehicleDesign", Path.GetFileName(files[_index]));
 
         car_width = (int)float.Parse(vs.carsave[1]);
 
@@ -278,10 +276,7 @@ public class SaveMode : MonoBehaviour
             vs.carsave[i] = Addin[i];
         }
 
-        var json = JsonUtility.ToJson(vs, true);
-        var path = Path.Combine(Application.persistentDataPath, "VehicleDesign", Name + ".json");
-
-        File.WriteAllText(path, json);
+        SLManager.ExportToJson(vs, "VehicleDesign", Name);
 
         NameInput.text = "设计1";
         mv.anim.SetTrigger("Back");
@@ -314,14 +309,11 @@ public class SaveMode : MonoBehaviour
         }
         if (!Exist) return;
 
-        var path = Path.Combine(Application.persistentDataPath, "VehicleDesign", Name + ".json");
-        var vs = JsonUtility.FromJson<VehicleSave>(File.ReadAllText(path));
+        var vs = SLManager.ImportFromJson<VehicleSave>("VehicleDesign", Name);
         vs.carsave[0] = rename;
 
-        File.Delete(path);
-        path = Path.Combine(Application.persistentDataPath, "VehicleDesign", rename + ".json");
-        var json = JsonUtility.ToJson(vs, true);
-        File.WriteAllText(path, json);
+        SLManager.Delete("VehicleDesign", Name);
+        SLManager.ExportToJson(vs, "VehicleDesign", rename);
         AssetDatabase.Refresh();
     }
     public void Save()
@@ -365,10 +357,7 @@ public class SaveMode : MonoBehaviour
                 vs.carsave[i] = New[i];
             }
 
-            var json = JsonUtility.ToJson(vs, true);
-
-            var path = Path.Combine(Application.persistentDataPath, "VehicleDesign", Name + ".json");
-            File.WriteAllText(path, json);
+            SLManager.ExportToJson(vs, "VehicleDesign", Name);
 
             NameInput.text = "设计1";
             mv.anim.SetTrigger("Back");

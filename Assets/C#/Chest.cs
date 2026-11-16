@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -117,24 +116,15 @@ public class Chest : MonoBehaviour
 
     public void AddCoin()
     {
-        var path = Path.Combine(Application.persistentDataPath, "LevelSave", "Rouge.json");
-        string json;
-        if (File.Exists(path))
-        {
-            json = File.ReadAllText(path);
-        }
-        else
+        var test = SLManager.ImportFromJson<YourSave>("LevelSave", "Rouge");
+        if (test == null)
         {
             Debug.Log("Can't find Map");
             return;
         }
-        var test = JsonUtility.FromJson<YourSave>(json);
         test.SceneList[3] = (float.Parse(test.SceneList[3]) + Money).ToString();
 
-
-        json = JsonUtility.ToJson(test, true);
-        path = Path.Combine(Application.persistentDataPath, "LevelSave", "Rouge.json");
+        SLManager.ExportToJson(test, "LevelSave", "Rouge");
         Debug.Log("SaveNew");
-        File.WriteAllText(path, json);
     }
 }

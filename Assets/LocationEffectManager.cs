@@ -69,8 +69,7 @@ public class LocationEffectManager : MonoBehaviour
     static void EnsureEffectModels()
     {
         if (effectModels.Count > 0) return;
-        var asset = Resources.Load<TextAsset>(LocationEffectPath);
-        var table = JsonUtility.FromJson<LocationEffectTable>(asset.text);
+        var table = SLManager.ImportFromResources<LocationEffectTable>(LocationEffectPath);
         effectModels.Clear();
         effectModels.AddRange(table.effects);
     }

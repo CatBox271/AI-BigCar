@@ -1,0 +1,256 @@
+﻿{
+  "lets": {
+    "non": {
+      "TEXT": {
+        "local_position": {
+          "x": 7.7,
+          "y": -22.5,
+          "z": 0.0
+        },
+        "local_euler_angles": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "local_scale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        }
+      },
+      "SP": {
+        "local_position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "local_euler_angles": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "local_scale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        }
+      }
+    },
+    "vn": {
+      "TEXT": {
+        "local_position": {
+          "x": -29.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "local_euler_angles": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "local_scale": {
+          "x": 1.5,
+          "y": 1.5,
+          "z": 1.0
+        }
+      },
+      "SP": {
+        "local_position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "local_euler_angles": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "local_scale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        }
+      }
+    },
+    "size": {
+      "TEXT": {
+        "local_position": {
+          "x": -29.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "local_euler_angles": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "local_scale": {
+          "x": 1.5,
+          "y": 1.5,
+          "z": 1.0
+        }
+      },
+      "SP": {
+        "local_position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "local_euler_angles": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "local_scale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        }
+      }
+    },
+    "hit": {
+      "TEXT": {
+        "local_position": {
+          "x": 7.7,
+          "y": -22.5,
+          "z": 0.0
+        },
+        "local_euler_angles": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "local_scale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        }
+      },
+      "SP": {
+        "local_position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "local_euler_angles": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "local_scale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        }
+      }
+    },
+    "hp": {
+      "TEXT": {
+        "local_position": {
+          "x": -19.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "local_euler_angles": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "local_scale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        }
+      },
+      "SP": {
+        "local_position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "local_euler_angles": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "local_scale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        }
+      }
+    },
+    "vel": {
+      "TEXT": {
+        "local_position": {
+          "x": -29.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "local_euler_angles": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "local_scale": {
+          "x": 1.5,
+          "y": 1.5,
+          "z": 1.0
+        }
+      },
+      "SP": {
+        "local_position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "local_euler_angles": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "local_scale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        }
+      }
+    },
+    "adv": {
+      "TEXT": {
+        "local_position": {
+          "x": -29.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "local_euler_angles": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "local_scale": {
+          "x": 1.5,
+          "y": 1.5,
+          "z": 1.0
+        }
+      },
+      "SP": {
+        "local_position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "local_euler_angles": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "local_scale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        }
+      }
+    }
+  }
+}

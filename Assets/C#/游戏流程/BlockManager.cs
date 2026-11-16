@@ -812,9 +812,7 @@ public class BlockManager : MonoBehaviour
         print(GameManager.gameState);
         if (GameManager.gameState == GameManager.GameState.Win)
         {
-            var path = Path.Combine(Application.persistentDataPath, "LevelSave", "Rouge.json");
-            string json = File.ReadAllText(path);
-            var test = JsonUtility.FromJson<YourSave>(json);
+            var test = SLManager.ImportFromJson<YourSave>("LevelSave", "Rouge");
 
 
             //change Item And Save
@@ -832,74 +830,39 @@ public class BlockManager : MonoBehaviour
             test.SceneList[0] = test.RightNum.ToString();
             test.SceneList[1] = test.DownNum.ToString();
             test.SceneList[2] = "Pass";
-            json = JsonUtility.ToJson(test, true);
-            path = Path.Combine(Application.persistentDataPath, "LevelSave", "Rouge.json");
+            SLManager.ExportToJson(test, "LevelSave", "Rouge");
             Debug.Log("SaveNew");
-            File.WriteAllText(path, json);
         }
     }
 
     public void SaveMapS()
     {
-        var path = Path.Combine(Application.persistentDataPath, "LevelSave", SceneManager.GetActiveScene().name + ".json");
-        if (File.Exists(path))
+        var test = SLManager.ImportFromJson<YourSave>("LevelSave", SceneManager.GetActiveScene().name);
+        if (test == null) test = new();
+
+        //change Item And Save
+        test.car_save = new string[save.Count];
+        for (int i = 0; i < save.Count; i++)
         {
-            string json = File.ReadAllText(path);
-            var test = JsonUtility.FromJson<YourSave>(json);
-
-
-            //change Item And Save
-            test.car_save = new string[save.Count];
-            for (int i = 0; i < save.Count; i++)
-            {
-                test.car_save[i] = save[i].ToString();
-            }
-            test.block_save = new string[ItemList.Count];
-            for (int i = 0; i < ItemList.Count; i++)
-            {
-                test.block_save[i] = ItemList[i].ToString();
-            }
-            json = JsonUtility.ToJson(test, true);
-            path = Path.Combine(Application.persistentDataPath, "LevelSave", SceneManager.GetActiveScene().name + ".json");
-            File.WriteAllText(path, json);
+            test.car_save[i] = save[i].ToString();
         }
-        else
+        test.block_save = new string[ItemList.Count];
+        for (int i = 0; i < ItemList.Count; i++)
         {
-            YourSave test = new();
-
-            //change Item And Save
-            test.car_save = new string[save.Count];
-            for (int i = 0; i < save.Count; i++)
-            {
-                test.car_save[i] = save[i].ToString();
-            }
-            test.block_save = new string[ItemList.Count];
-            for (int i = 0; i < ItemList.Count; i++)
-            {
-                test.block_save[i] = ItemList[i].ToString();
-            }
-            var json = JsonUtility.ToJson(test, true);
-            path = Path.Combine(Application.persistentDataPath, "LevelSave", SceneManager.GetActiveScene().name + ".json");
-            Debug.Log("SaveNew");
-
-            File.WriteAllText(path, json);
+            test.block_save[i] = ItemList[i].ToString();
         }
+        SLManager.ExportToJson(test, "LevelSave", SceneManager.GetActiveScene().name);
+        Debug.Log("SaveNew");
     }
 
     public bool LoadMap()
     {
-        var path = Path.Combine(Application.persistentDataPath, "LevelSave", "Rouge.json");
-        string json;
-        if (File.Exists(path))
-        {
-            json = File.ReadAllText(path);
-        }
-        else
+        var test = SLManager.ImportFromJson<YourSave>("LevelSave", "Rouge");
+        if (test == null)
         {
             Debug.Log("Can't find Map");
             return false;
         }
-        var test = JsonUtility.FromJson<YourSave>(json);
         animPath = "anim/"+test.SceneList[5];
         save .Clear();
         for (int i = 0; i < test.car_save.Length; i++)
@@ -915,18 +878,12 @@ public class BlockManager : MonoBehaviour
     }
     public bool LoadMapS()
     {
-        var path = Path.Combine(Application.persistentDataPath,"LevelSave", SceneManager.GetActiveScene().name + ".json");
-        string json;
-        if (File.Exists(path))
-        {
-            json = File.ReadAllText(path);
-        }
-        else
+        var test = SLManager.ImportFromJson<YourSave>("LevelSave", SceneManager.GetActiveScene().name);
+        if (test == null)
         {
             Debug.Log("Can't find Map");
             return false;
         }
-        var test = JsonUtility.FromJson<YourSave>(json);
         save .Clear();
         for (int i = 0; i < test.car_save.Length; i++)
         {
