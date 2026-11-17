@@ -5,25 +5,16 @@ using UnityEngine;
 public class Center : MonoBehaviour,IStart
 {
     public CheckAlive ca;
+    public bool out_die;
 
     private ButtonManager bm;
 
-    bool start;
-
-    public bool out_die;
+    public static ClockBucket step = Clock.Bucket(1.7f);
     public void SetStart(float t)
     {
-        try
-        {
-            start = true;
-
-            bm = GameObject.Find("Canvas").transform.Find("ButtonManager").GetComponent<ButtonManager>();//准备生成button
-            if (ca.BlockOffset.Contains(-4)) SwarmButton();
-        }
-        catch
-        { 
-        
-        }
+        out_die = SceneProp.Instance?.center_out_die ?? false;
+        if ((bm = ButtonManager.Instance) != null && ca.BlockOffset.Contains(-4)) SwarmButton();
+        step.OnDue += WhenStart;
     }
 
     public void SwarmButton()
@@ -36,9 +27,8 @@ public class Center : MonoBehaviour,IStart
         }
     }
 
-    private void FixedUpdate()
+    void WhenStart(float a)
     {
-        if (!start) return;
         if (out_die)
         {
             if (ca.allConnect.Count == 0 || ca.allConnect[0] == null)
@@ -46,5 +36,9 @@ public class Center : MonoBehaviour,IStart
                 Destroy(gameObject);
             }
         }
+    }
+    private void OnDestroy()
+    {
+        step.OnDue -= WhenStart;
     }
 }

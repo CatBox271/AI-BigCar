@@ -148,7 +148,6 @@ public class CodeManager : MonoBehaviour
     }
     IC_Code IC;
     public GameObject OutPut;
-    public int KeepLeft = 12;
     public void GetCode(string[] codeList, List<(string, int)> block,IC_Code ic)
     {
         IC = ic;
@@ -158,14 +157,16 @@ public class CodeManager : MonoBehaviour
         {
             Destroy(transform.GetChild(i).gameObject);
         }
-        for (int i = tf.childCount - 1; i > KeepLeft; i--)//要保留一部分
+        for (int i = tf.childCount - 1; i >= 0; i--)//只清上次生成的输出块，常驻的指令块留着
         {
+            if (!tf.GetChild(i).TryGetComponent(out PicGet _)) continue;
             DestroyImmediate(tf.GetChild(i).gameObject);
         }
         for (int i = 0; i < block.Count; i++)//生成OutPut
         {
             Instantiate(OutPut, tf).GetComponent<PicGet>().SetPic(block[i]);
         }
+        if (tf.TryGetComponent(out OutPutManager outPutManager)) outPutManager.Sort();//输出块从动态起点开始排
 
         for (int i = 0; i < codeList.Length; i++)
         {
@@ -229,12 +230,12 @@ public class CodeManager : MonoBehaviour
     bool TryGetButton(string _kind ,out SwarmCode swarmCode)
     {
         swarmCode = null;
-        for (int n = 0; n < 3; n += 2)
+        foreach (Transform tf in transform.parent)//左列和右列才挂拖拽条，不靠子物体序号
         {
-            Transform tf = transform.parent.GetChild(n);
+            if (!tf.TryGetComponent(out UIMoveBar _)) continue;
             for (int i = 0; i < tf.childCount; i++)
             {
-                SwarmCode sc = tf.GetChild(i).GetComponent<SwarmCode>();
+                if (!tf.GetChild(i).TryGetComponent(out SwarmCode sc)) continue;//动态起点这类标记物没有 SwarmCode，跳过
                 if (sc.kind == _kind)
                 {
                     swarmCode = sc;

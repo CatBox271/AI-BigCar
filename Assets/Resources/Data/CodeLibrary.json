@@ -1,0 +1,264 @@
+{
+  "codes": [
+    {
+      "kind": "true",
+      "describe": "<color=#FFFF80FF>真</color>：输出布尔真（+∞），同时写到下方、右侧的变量块"
+    },
+    {
+      "kind": "false",
+      "describe": "<color=#FFFF80FF>假</color>：输出布尔假（−∞），同时写到下方、右侧的变量块"
+    },
+    {
+      "kind": "if",
+      "describe": "<color=#FFFF80FF>如果</color>：左或上为真时执行右边和下边的内容，并把真写进下方、右侧的变量块；为假时禁掉后面的否则、再如果"
+    },
+    {
+      "kind": "else",
+      "describe": "<color=#FFFF80FF>否则</color>：上一个如果/再如果都没成立时才执行，生效时把真写进下方、右侧的变量块，否则禁掉自己的内容"
+    },
+    {
+      "kind": "elif",
+      "describe": "<color=#FFFF80FF>再如果</color>：上一支都没成立时才判断自己，成立时按如果的规则执行和传值"
+    },
+    {
+      "kind": "+",
+      "describe": "<color=#FFFF80FF>加法</color>：上 + 左"
+    },
+    {
+      "kind": "+=",
+      "describe": "<color=#FFFF80FF>累加</color>：把上、下、左、右的值加进命中的数字变量"
+    },
+    {
+      "kind": "-",
+      "describe": "<color=#FFFF80FF>减法</color>：上 − 左"
+    },
+    {
+      "kind": "-=",
+      "describe": "<color=#FFFF80FF>累减</color>：从命中的数字变量里减去其它方向的值"
+    },
+    {
+      "kind": "*",
+      "describe": "<color=#FFFF80FF>乘法</color>：上 × 左"
+    },
+    {
+      "kind": "*=",
+      "describe": "<color=#FFFF80FF>累乘</color>：把其它方向的值乘进命中的数字变量"
+    },
+    {
+      "kind": "/",
+      "describe": "<color=#FFFF80FF>除法</color>：上 ÷ 左，左为 0 时直接跳过"
+    },
+    {
+      "kind": "/=",
+      "describe": "<color=#FFFF80FF>累除</color>：用其它方向的值依次除命中的数字变量"
+    },
+    {
+      "kind": "more",
+      "describe": "<color=#FFFF80FF>大于</color>：上 > 左 时输出真（只比较数字）"
+    },
+    {
+      "kind": "less",
+      "describe": "<color=#FFFF80FF>小于</color>：上 < 左 时输出真（只比较数字）"
+    },
+    {
+      "kind": "equal",
+      "describe": "<color=#FFFF80FF>等于</color>：上 = 左 时输出真（只比较数字）"
+    },
+    {
+      "kind": "!",
+      "describe": "<color=#FFFF80FF>非</color>：布尔取反，读左（缺省读上）"
+    },
+    {
+      "kind": "&",
+      "describe": "<color=#FFFF80FF>与</color>：上和左都为真才为真"
+    },
+    {
+      "kind": "|",
+      "describe": "<color=#FFFF80FF>或</color>：上或左有一个为真就为真"
+    },
+    {
+      "kind": "^",
+      "describe": "<color=#FFFF80FF>异或</color>：上和左不同才为真"
+    },
+    {
+      "kind": "lerp",
+      "describe": "<color=#FFFF80FF>插值</color>：按 上 的进度在 左 → 右 之间取值"
+    },
+    {
+      "kind": "pow",
+      "describe": "<color=#FFFF80FF>乘方</color>：上 的 左 次方"
+    },
+    {
+      "kind": "log",
+      "describe": "<color=#FFFF80FF>对数</color>：以左为底求上的对数，两个都必须大于 0"
+    },
+    {
+      "kind": "max",
+      "describe": "<color=#FFFF80FF>取大</color>：上、左里取大的那个"
+    },
+    {
+      "kind": "min",
+      "describe": "<color=#FFFF80FF>取小</color>：上、左里取小的那个"
+    },
+    {
+      "kind": "clamp",
+      "describe": "<color=#FFFF80FF>夹取</color>：把上夹到 左 到 右 之间"
+    },
+    {
+      "kind": "sin",
+      "describe": "<color=#FFFF80FF>正弦</color>：读左（缺省读上），按角度计算"
+    },
+    {
+      "kind": "cos",
+      "describe": "<color=#FFFF80FF>余弦</color>：读左（缺省读上），按角度计算"
+    },
+    {
+      "kind": "tan",
+      "describe": "<color=#FFFF80FF>正切</color>：读左（缺省读上），按角度计算"
+    },
+    {
+      "kind": "asin",
+      "describe": "<color=#FFFF80FF>反正弦</color>：读左（缺省读上），结果换算成角度"
+    },
+    {
+      "kind": "acos",
+      "describe": "<color=#FFFF80FF>反余弦</color>：读左（缺省读上），结果换算成角度"
+    },
+    {
+      "kind": "atan",
+      "describe": "<color=#FFFF80FF>反正切</color>：读左（缺省读上），结果换算成角度"
+    },
+    {
+      "kind": "abs",
+      "describe": "<color=#FFFF80FF>绝对值</color>：读左（缺省读上）"
+    },
+    {
+      "kind": "floor",
+      "describe": "<color=#FFFF80FF>向下取整</color>：读左（缺省读上）"
+    },
+    {
+      "kind": "round",
+      "describe": "<color=#FFFF80FF>四舍五入</color>：读左（缺省读上）"
+    },
+    {
+      "kind": "ceil",
+      "describe": "<color=#FFFF80FF>向上取整</color>：读左（缺省读上）"
+    },
+    {
+      "kind": "g_s",
+      "describe": "<color=#FFFF80FF>速度</color>：刚体速度大小 × Times"
+    },
+    {
+      "kind": "g_sa",
+      "describe": "<color=#FFFF80FF>加速度</color>：速度的变化率"
+    },
+    {
+      "kind": "g_vx",
+      "describe": "<color=#FFFF80FF>横向速度</color>：线速度的 x 分量"
+    },
+    {
+      "kind": "g_vy",
+      "describe": "<color=#FFFF80FF>纵向速度</color>：线速度的 y 分量"
+    },
+    {
+      "kind": "g_a",
+      "describe": "<color=#FFFF80FF>角速度</color>：刚体的旋转速度"
+    },
+    {
+      "kind": "g_vxa",
+      "describe": "<color=#FFFF80FF>横向加速度</color>：线速度 x 的变化率"
+    },
+    {
+      "kind": "g_vya",
+      "describe": "<color=#FFFF80FF>纵向加速度</color>：线速度 y 的变化率"
+    },
+    {
+      "kind": "g_aa",
+      "describe": "<color=#FFFF80FF>角加速度</color>：角速度的变化率"
+    },
+    {
+      "kind": "v_a",
+      "describe": "<color=#FFFF80FF>垂直夹角</color>：车身与竖直方向的夹角，左倾为负、右倾为正"
+    },
+    {
+      "kind": "for",
+      "describe": "<color=#FFFF80FF>循环</color>：右边和下边各执行 b 次，次数读左（缺省读上）"
+    },
+    {
+      "kind": "while_do",
+      "describe": "<color=#FFFF80FF>当型循环</color>：指令预留，尚未实现"
+    },
+    {
+      "kind": "do_while",
+      "describe": "<color=#FFFF80FF>直到型循环</color>：指令预留，尚未实现"
+    },
+    {
+      "kind": "print",
+      "describe": "<color=#FFFF80FF>打印</color>：把上、左的值打到芯片终端"
+    },
+    {
+      "kind": "p_x",
+      "describe": "<color=#FFFF80FF>X 坐标</color>：本格的世界坐标 x"
+    },
+    {
+      "kind": "p_y",
+      "describe": "<color=#FFFF80FF>Y 坐标</color>：本格的世界坐标 y"
+    },
+    {
+      "kind": "start",
+      "describe": "<color=#FFFF80FF>启动</color>：第一次先跑一遍下方，之后每帧跑右边"
+    },
+    {
+      "kind": "time",
+      "describe": "<color=#FFFF80FF>计时</color>：指令预留，尚未实现"
+    },
+    {
+      "kind": "delta_time",
+      "describe": "<color=#FFFF80FF>时间增量</color>：本帧的时间间隔"
+    },
+    {
+      "kind": "if_not",
+      "describe": "<color=#FFFF80FF>如果不是</color>：左、上都为假时才执行右边和下边的内容，其余和如果一样"
+    },
+    {
+      "kind": "Item:",
+      "describe": "<color=#FFFF80FF>输出</color>：把左边（缺省读上）的值写到同名按钮上，数字进数值、布尔进开关"
+    },
+    {
+      "kind": "Input:Bool:",
+      "describe": "<color=#FFFF80FF>输入真伪</color>：读同名开关按钮的真假"
+    },
+    {
+      "kind": "Input:Num:",
+      "describe": "<color=#FFFF80FF>输入数字</color>：读同名数字按钮的数值"
+    },
+    {
+      "kind": "List:",
+      "describe": "<color=#FFFF80FF>列表</color>：指令预留，尚未实现"
+    },
+    {
+      "kind": "Value:",
+      "describe": "<color=#FFFF80FF>常量</color>：填在格子里的固定数字"
+    },
+    {
+      "kind": "Num:",
+      "describe": "<color=#FFFF80FF>数字变量</color>：读出变量值，并把它传给下方、右侧的同类变量块"
+    },
+    {
+      "kind": "Bool:",
+      "describe": "<color=#FFFF80FF>布尔变量</color>：读出变量值，并把它传给下方、右侧的同类变量块"
+    },
+    {
+      "kind": "{",
+      "describe": "<color=#FFFF80FF>括弧</color>：把一块区域圈起来，只有被触发时才整块执行"
+    },
+    {
+      "kind": "goto:",
+      "describe": "<color=#FFFF80FF>跳转</color>：跳到格子里写的编号位置继续执行"
+    },
+    {
+      "kind": "wait:",
+      "describe": "<color=#FFFF80FF>等待</color>：指令预留，尚未实现"
+    }
+  ]
+}

@@ -134,7 +134,7 @@ public class RPG : MonoBehaviour
         {
             col = new Color(0.5f, 0.5f, 1f);
         }
-        Instantiate(TNT, transform.position, transform.rotation).GetComponent<TNTWave>().Setting(col, lay, Radius, 6f, Hit, h.camp);
+        TNTWave.Spawn(TNT, transform.position, transform.rotation).Setting(col, lay, Radius, 6f, Hit, h.camp);
         Destroy(gameObject);
     }
     IEnumerator Copy()

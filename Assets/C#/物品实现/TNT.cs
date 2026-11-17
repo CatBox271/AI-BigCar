@@ -118,7 +118,7 @@ public class TNT : MonoBehaviour,ION,IStart
         {
             col = new Color(1f, 0.75f, 0.75f);
         }
-        Instantiate(BoomWave, transform.position, transform.rotation).GetComponent<TNTWave>().Setting(col, lay, Radius, 10f, Hit, heath.camp);
+        TNTWave.Spawn(BoomWave, transform.position, transform.rotation).Setting(col, lay, Radius, 10f, Hit, heath.camp);
         Destroy(gameObject);
     }
 }

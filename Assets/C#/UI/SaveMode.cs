@@ -72,6 +72,11 @@ public class SaveMode : MonoBehaviour
     {
         List<OwnCar> ocl = mv.bm.FindCar();
         Vector2Int Size = ocl[Choosed].ColliderArea;
+        if (Size.x < car_width || Size.y < car_height)//空间不足，不替换
+        {
+            mv.anim.SetTrigger("Cancel");
+            return;
+        }
         int XS = Size.x / 2 - car_width / 2;
         int YS = Size.y / 2 - car_height / 2;
         int XE = XS + car_width;
@@ -152,7 +157,7 @@ public class SaveMode : MonoBehaviour
 
         car_width = (int)float.Parse(vs.carsave[1]);
 
-        int BlockCount = 0;
+        int CellCount = 0;
         ConfirmCarSave = new();
         for (int i = 2; i < vs.carsave.Length; i++)
         {
@@ -165,13 +170,10 @@ public class SaveMode : MonoBehaviour
                 i += 100;
                 continue;
             }
-            if (float.Parse(vs.carsave[i]) >= 0)
-            {
-                BlockCount++;
-            }
+            CellCount++;
             ConfirmCarSave.Add(vs.carsave[i]);
         }
-        car_height = BlockCount / car_width;
+        car_height = car_width == 0 ? 0 : CellCount / car_width;//按格子行数算真实高度
         //Closet
         bool ok = false;
         List<OwnCar> ocl = mv.bm.FindCar();
@@ -179,7 +181,7 @@ public class SaveMode : MonoBehaviour
         {
 
             Vector2Int Size = ocl[Choosed].ColliderArea;
-            if (Size.x > car_width && Size.y > car_height)
+            if (Size.x >= car_width && Size.y >= car_height)
             {
                 ok = true;
             }
@@ -191,8 +193,10 @@ public class SaveMode : MonoBehaviour
             mv.anim.Play("LoadReplaceConfirm");
         }
         else
-        { 
+        {
             //加载空间不足提示
+            ShowCarName.text = "空间不足，放不下<" + vs.carsave[0] + ">";
+            mv.anim.Play("LoadReplaceConfirm");
         }
     }
 

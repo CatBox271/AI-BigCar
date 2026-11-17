@@ -45,6 +45,7 @@ public class LEShow : MonoBehaviour
 
     public EffectKind kind;
     private EffectKind last_kind = EffectKind.non;
+    public string text_content;
     public TextMeshProUGUI text;
     public SpriteRenderer pic;
 
@@ -68,6 +69,8 @@ public class LEShow : MonoBehaviour
         if (pic != null) picTransformEditor.ApplyAim();
         //save
         RequestSave();
+        //content
+        text.text = text_content;
     }
     private string path = "Data/LET";
     private float save_delay = 0.3f;//连续拖动时，最后一次改动后隔这么久才写一次 json
@@ -139,11 +142,5 @@ public class LEShow : MonoBehaviour
     void Awake()
     {
         Load();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

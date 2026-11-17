@@ -1,4 +1,5 @@
-﻿using System;
+﻿//两个输入一律为上参数 被 左参数 以当前算法处理（即 上 op 左）
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -580,13 +581,15 @@ public class IC_Code : MonoBehaviour,ION
         "p_y",
         "start",//51
         "time",
+        "delta_time",
+        "if_not",//54
     };
 
     #region Obaction
     Action[] Obactions;
 
     public CheckAlive ca;
-    private void B0()
+    private void B0()//Item: 把左（缺省取上）的值写到同名输出按钮：数字进 NumSet，布尔进 OnSet
     {
         string v = RSN(runAt);
         if (v == null) return;
@@ -597,7 +600,7 @@ public class IC_Code : MonoBehaviour,ION
         if (!IsBool(gn)) gn = GetBool(runAt, 0);
         if (IsBool(gn)) GameManager.ButtonSet(ca.VID, v[0..^2], (int)float.Parse(v[^1..]), float.IsPositiveInfinity(gn), float.NaN);
     }
-    private void B1()
+    private void B1()//Input:Bool: 读同名开关输入，写本格并赋给右、下
     {
         string v = RSN(runAt);
         if (v == null) return;
@@ -605,7 +608,7 @@ public class IC_Code : MonoBehaviour,ION
         Write(runAt, bb ? float.PositiveInfinity : float.NegativeInfinity);
         Assignment(runAt, bb ? float.PositiveInfinity : float.NegativeInfinity);
     }
-    private void B2()
+    private void B2()//Input:Num: 读同名数字输入，写本格并赋给右、下
     {
         string n = RSN(runAt);
         if (n == null) return;
@@ -613,11 +616,11 @@ public class IC_Code : MonoBehaviour,ION
         Write(runAt, v);
         Assignment(runAt, v); 
     }
-    private void B3()
+    private void B3()//List: 预留，空实现
     {
 
     }
-    private void B4()
+    private void B4()//Value: 常量数字，写本格并赋给右、下
     {
         string n = RSN(runAt);
         if (n == null) return;
@@ -627,7 +630,7 @@ public class IC_Code : MonoBehaviour,ION
             Assignment(runAt, v);
         }
     }
-    private void B5()
+    private void B5()//Num: 数字变量：读本格或同名变量的值（缺省 0），写回变量并赋给右、下
     {
         float ram = Read(runAt);
         if (!IsNum(ram)) ram = NumRead(runAt);
@@ -635,7 +638,7 @@ public class IC_Code : MonoBehaviour,ION
         NumWrite(runAt, ram);
         Assignment(runAt, ram);
     }
-    private void B6()
+    private void B6()//Bool: 布尔变量：读本格或同名变量的值（缺省 false），写回变量并赋给右、下
     {
         float ram = Read(runAt);
         if (!IsBool(ram)) ram = BoolRead(runAt);
@@ -643,11 +646,11 @@ public class IC_Code : MonoBehaviour,ION
         BoolWrite(runAt, ram);
         Assignment(runAt, ram);
     }
-    private void B7()
+    private void B7()//{ 括弧块起点，块内格子交给 B7_0 执行
     {
 
     }
-    void B7_0(int t = -1)
+    void B7_0(int t = -1)//执行括弧块里的所有格子（B7 调它）
     {
         if (t == -1) t = BracketStart.IndexOf(runAt);
         if (t == -1) return;
@@ -673,7 +676,7 @@ public class IC_Code : MonoBehaviour,ION
         }
         ForceGet = false;
     }
-    private void B8()//goto:
+    private void B8()//goto: 跳到编号指定的格子（0~99）
     {
         string n = RSN(runAt);
         if (n == null) return;
@@ -684,22 +687,22 @@ public class IC_Code : MonoBehaviour,ION
         }
     }
 
-    private void B9()
+    private void B9()//wait: 预留，空实现（Obactions 只注册到 B8，跑到这里数组越界）
     {
 
     }
 
-    private void B10()
+    private void B10()//未注册的预留项
     {
 
     }
 
-    private void B11()
+    private void B11()//未注册的预留项
     {
 
     }
 
-    private void B12()
+    private void B12()//未注册的预留项
     {
 
     }
@@ -708,46 +711,58 @@ public class IC_Code : MonoBehaviour,ION
     #region Action
 
     Action[] actions;
-    private void A0()
+    private void A0()//写 true（+∞）到本格，并赋给右、下
     {
         Write(runAt, float.PositiveInfinity);
         Assignment(runAt, float.PositiveInfinity);
     }
 
-    private void A1()
+    private void A1()//写 false（−∞）到本格，并赋给右、下
     {
         Write(runAt, float.NegativeInfinity);
         Assignment(runAt, float.NegativeInfinity);
     }
 
-    private void A2()
+    void RunIf(bool not = false)//if 和 if_not 共用：not 时输入全假才执行
     {
         float b = GetBool(runAt, 2);
         float b1 = GetBool(runAt, 0);
         if (float.IsNaN(b)) b = float.NegativeInfinity;
         if (float.IsNaN(b1)) b1 = float.NegativeInfinity;
 
-        b = (float.IsPositiveInfinity(b) || float.IsPositiveInfinity(b1)) ? float.PositiveInfinity : float.NegativeInfinity;//两个输入都有时默认||
+        bool hit = float.IsPositiveInfinity(b) || float.IsPositiveInfinity(b1);//两个输入都有时默认||
+        b = (hit ^ not) ? float.PositiveInfinity : float.NegativeInfinity;
         Write(runAt, b);
-        if (float.IsNegativeInfinity(b)) Ban(null, null, new() { 3, 4 });//ban,但忽略 3 else ，4 elif
+        if (float.IsPositiveInfinity(b)) Assignment(runAt, b);//只在成立时传 true 给右、下的变量块
+        else Ban(null, null, new() { 3, 4 });//ban,但忽略 3 else ，4 elif
+    }
+
+    private void A2()//if：左 或 上 为真则执行
+    {
+        RunIf(false);
     }
    
-    private void A3()
+    private void A3()//else：上一个 if 为假才继续，否则禁掉右、下
     {
         float b = -IfFinder(runAt);//else
         Write(runAt, b);
-        if (!float.IsPositiveInfinity(b)) Ban();//谁都ban
+        if (float.IsPositiveInfinity(b)) Assignment(runAt, b);//只在生效时传 true 给右、下的变量块
+        else Ban();//谁都ban
     }
 
-    private void A4()
+    private void A4()//elif：上一个 if 为假才继续判断
     {
         float b = -IfFinder(runAt);//elif
         print(b);
-        if (!float.IsPositiveInfinity(b)) Ban(null, null, new() { 3, 4 });//如果false 或 NaN不继续执行
-        A2();//执行if
+        if (!float.IsPositiveInfinity(b))//上一支成立，本支整个跳过，也不传值
+        {
+            Ban(null, null, new() { 3, 4 });
+            return;
+        }
+        RunIf(false);//上一支不成立才判断本支，成立时由 RunIf 传 true
     }
 
-    private void A5()//+
+    private void A5()//加法：上 + 左
     {
         float num1 = GetNum(runAt, 0);
         if (!IsNum(num1)) num1 = 0;
@@ -759,7 +774,7 @@ public class IC_Code : MonoBehaviour,ION
     }
 
    
-    private void A6()//+=
+    private void A6()//+=：把上、下、左、右的值加总后写进命中的 Num 变量
     {
         AroundHave(new() { -7 }, runAt, out List<sbyte> ID);
 
@@ -776,7 +791,7 @@ public class IC_Code : MonoBehaviour,ION
         NumWrite(ID[0], all);
     }
 
-    private void A7()//-
+    private void A7()//减法：上 − 左
     {
         float num1 = GetNum(runAt, 0);
         if (!IsNum(num1)) num1 = 0;
@@ -787,14 +802,14 @@ public class IC_Code : MonoBehaviour,ION
         Assignment(runAt, f);
     }
 
-    private void A8()//-=
+    private void A8()//-=：从命中的 Num 变量里减去其它方向的值
     {
         AroundHave(new() { -7 }, runAt, out List<sbyte> ID);
 
         if (ID.Count == 0) return;
 
         float all = NumRead(ID[0]);
-        if (!IsNum(all)) all = 0;
+        if (!IsNum(all)) all = 0;//现在芯片还没有NAN的处理
         for (sbyte i = 0; i < 4; i++)
         {
             if (i % 2 == 1) JustActive(runAt, i);//右和下
@@ -806,7 +821,7 @@ public class IC_Code : MonoBehaviour,ION
         NumWrite(ID[0], all);
     }
 
-    private void A9()//*
+    private void A9()//乘法：上 × 左
     {
         float num1 = GetNum(runAt, 0);
         if (!IsNum(num1)) num1 = 1;
@@ -817,17 +832,18 @@ public class IC_Code : MonoBehaviour,ION
         Assignment(runAt, f);
     }
 
-    private void A10()//*=
+    private void A10()//*=：把其它方向的值乘进命中的 Num 变量
     {
         AroundHave(new() { -7 }, runAt, out List<sbyte> ID);
 
         if (ID.Count == 0) return;
 
-        float all = 0;
-
+        float all = NumRead(ID[0]);//因为以前这里忘记写取输入了
+        if (!IsNum(all)) all = 1;//现在芯片还没有NAN的处理
         for (sbyte i = 0; i < 4; i++)
         {
             if (i % 2 == 1) JustActive(runAt, i);//右和下
+            if (Index(runAt, i) == ID[0]) continue;
             float num1 = GetNum(runAt, i);
             if (!IsNum(num1)) num1 = 1;
             all *= num1;
@@ -835,7 +851,7 @@ public class IC_Code : MonoBehaviour,ION
         NumWrite(ID[0], all);
     }
 
-    private void A11()// /
+    private void A11()//除法：上 ÷ 左，除数为 0 直接返回
     {
         float num1 = GetNum(runAt, 0);
         if (!IsNum(num1)) num1 = 1;
@@ -847,7 +863,7 @@ public class IC_Code : MonoBehaviour,ION
         Assignment(runAt, f);
     }
 
-    private void A12()// /=
+    private void A12()///=：用其它方向的值依次除命中的 Num 变量
     {
         AroundHave(new() { -7 }, runAt, out List<sbyte> ID);
 
@@ -883,7 +899,7 @@ public class IC_Code : MonoBehaviour,ION
         }
     }
 
-    private void A13()
+    private void A13()//more：上 > 左 且 上 > 右 为 true（上为空时比左、右）
     {
         List<float> all = new();
         bool RC = true;
@@ -917,7 +933,7 @@ public class IC_Code : MonoBehaviour,ION
         if (RC) Assignment(runAt, new sbyte[] { 3 }, final);
     }
 
-    private void A14()
+    private void A14()//less：上 < 左 且 上 < 右 为 true（上为空时比左、右）
     {
         List<float> all = new();
         bool RC = true;
@@ -950,7 +966,7 @@ public class IC_Code : MonoBehaviour,ION
         if (RC) Assignment(runAt, new sbyte[] { 3 }, final);
     }
 
-    private void A15()
+    private void A15()//equal：上 等于 左（和右）为 true
     {
         List<float> all = new();
         bool RC = true;
@@ -984,7 +1000,7 @@ public class IC_Code : MonoBehaviour,ION
         if (RC) Assignment(runAt, new sbyte[] { 3 }, final);
     }
 
-    private void A16()
+    private void A16()//! 取反：±∞ 翻转，读左（缺省取上）
     {
         float b = GetBool(runAt, 2);
         if (!IsBool(b)) b = GetBool(runAt, 0);
@@ -994,7 +1010,7 @@ public class IC_Code : MonoBehaviour,ION
         Assignment(runAt, b);
     }
 
-    private void A17()
+    private void A17()//& 与：上和左都真才真
     {
         float num1 = GetBool(runAt, 0);
         if (!IsBool(num1)) num1 = float.NegativeInfinity;
@@ -1005,7 +1021,7 @@ public class IC_Code : MonoBehaviour,ION
         Assignment(runAt, f);
     }
 
-    private void A18()
+    private void A18()//| 或：上或左为真即真
     {
         float num1 = GetBool(runAt, 0);
         if (!IsBool(num1)) num1 = float.NegativeInfinity;
@@ -1016,7 +1032,7 @@ public class IC_Code : MonoBehaviour,ION
         Assignment(runAt, f);
     }
 
-    private void A19()
+    private void A19()//^ 异或：上和左不同为真
     {
         float num1 = GetBool(runAt, 0);
         if (!IsBool(num1)) num1 = float.NegativeInfinity;
@@ -1027,7 +1043,7 @@ public class IC_Code : MonoBehaviour,ION
         Assignment(runAt, f);
     }
 
-    private void A20()
+    private void A20()//lerp：上 为进度，在 左→右 之间插值
     {
         float num1 = GetNum(runAt, 0);
         if (!IsNum(num1)) num1 = 0.5f;
@@ -1042,33 +1058,33 @@ public class IC_Code : MonoBehaviour,ION
         NumWrite(Index(runAt, 1), num1);
     }
 
-    private void A21()
+    private void A21()//pow：上 ^ 左
     {
         float num1 = GetNum(runAt, 0);
         if (!IsNum(num1)) num1 = 2;
         float num2 = GetNum(runAt, 2);
         if (!IsNum(num2)) num2 = 2;
-        num1 = Mathf.Pow(num2, num1);
+        num1 = Mathf.Pow(num1, num2);
 
         Write(runAt, num1);
         Assignment(runAt, num1);
     }
 
-    private void A22()
+    private void A22()//log：以左为底求上的对数，两个都要 > 0
     {
         float num1 = GetNum(runAt, 0);
         if (!IsNum(num1)) return;
         else if (num1 <= 0) return;
-        float num2 = GetNum(runAt, 0);
+        float num2 = GetNum(runAt, 2);
         if (!IsNum(num2)) return;
         else if (num2 <= 0) return;
 
-        num1 = Mathf.Log(num2, num1);
+        num1 = Mathf.Log(num1, num2);
         Write(runAt, num1);
         Assignment(runAt, num1);
     }
 
-    private void A23()
+    private void A23()//max：上、左取大
     {
         float num1 = GetNum(runAt, 0);
         if (!IsNum(num1)) return;
@@ -1079,7 +1095,7 @@ public class IC_Code : MonoBehaviour,ION
         Assignment(runAt, num1);
     }
 
-    private void A24()
+    private void A24()//min：上、左取小
     {
         float num1 = GetNum(runAt, 0);
         if (!IsNum(num1)) return;
@@ -1090,7 +1106,7 @@ public class IC_Code : MonoBehaviour,ION
         Assignment(runAt, num1);
     }
 
-    private void A25()
+    private void A25()//clamp：把上夹到 左..右 之间
     {
         float num1 = GetNum(runAt, 0);
         if (!IsNum(num1)) return;
@@ -1106,7 +1122,7 @@ public class IC_Code : MonoBehaviour,ION
         Assignment(runAt, new sbyte[] { 1 }, num1);
     }
 
-    private void A26()
+    private void A26()//sin：正弦，读左（缺省取上），角度制
     {
         float  b = GetNum(runAt, 2);
         if (!IsNum(b)) b = GetNum(runAt, 0);
@@ -1116,7 +1132,7 @@ public class IC_Code : MonoBehaviour,ION
         Assignment(runAt, b);
     }
 
-    private void A27()
+    private void A27()//cos：余弦，读左（缺省取上），角度制
     {
         float b = GetNum(runAt, 2);
         if (!IsNum(b)) b = GetNum(runAt, 0);
@@ -1126,7 +1142,7 @@ public class IC_Code : MonoBehaviour,ION
         Assignment(runAt, b);
     }
 
-    private void A28()
+    private void A28()//tan：正切，读左（缺省取上），角度制
     {
         float b = GetNum(runAt, 2);
         if (!IsNum(b)) b = GetNum(runAt, 0);
@@ -1136,7 +1152,7 @@ public class IC_Code : MonoBehaviour,ION
         Assignment(runAt, b);
     }
 
-    private void A29()
+    private void A29()//asin：反正弦，结果转角度，读左（缺省取上）
     {
         float b = GetNum(runAt, 2);
         if (!IsNum(b)) b = GetNum(runAt, 0);
@@ -1146,7 +1162,7 @@ public class IC_Code : MonoBehaviour,ION
         Assignment(runAt, b);
     }
 
-    private void A30()
+    private void A30()//acos：反余弦，结果转角度，读左（缺省取上）
     {
         float b = GetNum(runAt, 2);
         if (!IsNum(b)) b = GetNum(runAt, 0);
@@ -1156,7 +1172,7 @@ public class IC_Code : MonoBehaviour,ION
         Assignment(runAt, b);
     }
 
-    private void A31()
+    private void A31()//atan：反正切，结果转角度，读左（缺省取上）
     {
         float b = GetNum(runAt, 2);
         if (!IsNum(b)) b = GetNum(runAt, 0);
@@ -1166,7 +1182,7 @@ public class IC_Code : MonoBehaviour,ION
         Assignment(runAt, b);
     }
 
-    private void A32()
+    private void A32()//abs：绝对值，读左（缺省取上）
     {
         float b = GetNum(runAt, 2);
         if (!IsNum(b)) b = GetNum(runAt, 0);
@@ -1176,7 +1192,7 @@ public class IC_Code : MonoBehaviour,ION
         Assignment(runAt, b);
     }
 
-    private void A33()
+    private void A33()//floor：向下取整，读左（缺省取上）
     {
         float b = GetNum(runAt, 2);
         if (!IsNum(b)) b = GetNum(runAt, 0);
@@ -1186,7 +1202,7 @@ public class IC_Code : MonoBehaviour,ION
         Assignment(runAt, b);
     }
 
-    private void A34()
+    private void A34()//round：四舍五入，读左（缺省取上）
     {
         float b = GetNum(runAt, 2);
         if (!IsNum(b)) b = GetNum(runAt, 0);
@@ -1196,7 +1212,7 @@ public class IC_Code : MonoBehaviour,ION
         Assignment(runAt, b);
     }
 
-    private void A35()
+    private void A35()//ceil：向上取整，读左（缺省取上）
     {
         float b = GetNum(runAt, 2);
         if (!IsNum(b)) b = GetNum(runAt, 0);
@@ -1206,63 +1222,63 @@ public class IC_Code : MonoBehaviour,ION
         Assignment(runAt, b);
     }
 
-    private void A36()
+    private void A36()//g_s：车速（刚体速度大小 × Times）
     {
         float s = GP.speed;
         Write(runAt, s);
         Assignment(runAt, s);
     }
 
-    private void A37()
+    private void A37()//g_sa：车速变化率
     {
         float s = GP.speedA;
         Write(runAt, s);
         Assignment(runAt, s);
     }
 
-    private void A38()
+    private void A38()//g_vx：线速度 x
     {
         float s = GP.vel.x;
         Write(runAt, s);
         Assignment(runAt, s);
     }
 
-    private void A39()
+    private void A39()//g_vy：线速度 y
     {
         float s = GP.vel.y;
         Write(runAt, s);
         Assignment(runAt, s);
     }
 
-    private void A40()
+    private void A40()//g_a：角速度
     {
         float s = GP.ang;
         Write(runAt, s);
         Assignment(runAt, s);
     }
 
-    private void A41()
+    private void A41()//g_vxa：加速度 x
     {
         float s = GP.velA.x;
         Write(runAt, s);
         Assignment(runAt, s);
     }
 
-    private void A42()
+    private void A42()//g_vya：加速度 y
     {
         float s = GP.velA.y;
         Write(runAt, s);
         Assignment(runAt, s);
     }
 
-    private void A43()
+    private void A43()//g_aa：角加速度
     {
         float s = GP.angA;
         Write(runAt, s);
         Assignment(runAt, s);
     }
 
-    private void A44()
+    private void A44()//v_a：车身倾角，带左右符号
     {
         float s = Vector3.Angle(Vector3.up, transform.up) * (transform.up.x > 0 ? 1 : -1);
         Write(runAt, s);
@@ -1271,7 +1287,7 @@ public class IC_Code : MonoBehaviour,ION
     List<int> ContinueOn = new();//各层进度 每次最多运行 100次。
     int layCount = 0;
     int forCount;
-    private void A45()//for
+    private void A45()//for：右、下各循环 b 次，b 读左（缺省取上）
     {
         int lay = layCount;
         layCount++;
@@ -1324,17 +1340,17 @@ public class IC_Code : MonoBehaviour,ION
         layCount--;
     }
 
-    private void A46()//while_do
+    private void A46()//while_do：预留，空实现
     {
 
     }
 
-    private void A47()//do_while
+    private void A47()//do_while：预留，空实现
     {
 
     }
 
-    private void A48()//print
+    private void A48()//print：把上、左的值打到芯片终端
     {
         float b = GetNum(runAt, 0);
         if (IsNum(b)) printSystem.PrintInfo(b);
@@ -1346,21 +1362,21 @@ public class IC_Code : MonoBehaviour,ION
         if (IsBool(b)) printSystem.PrintInfo(b);
     }
 
-    private void A49()//x
+    private void A49()//p_x：本格世界坐标 x
     {
         float t = transform.position.x;
         Write(runAt, t);
         Assignment(runAt, t);
     }
 
-    private void A50()
+    private void A50()//p_y：本格世界坐标 y
     {
         float t = transform.position.y;
         Write(runAt, t);
         Assignment(runAt, t);
     }
     bool start_pass;
-    private void A51()
+    private void A51()//start：首次先跑一次下方，之后每帧跑右方，然后禁掉自己
     {
         if (first) return;
 
@@ -1388,122 +1404,124 @@ public class IC_Code : MonoBehaviour,ION
         }
     }
 
-    private void A52()
+    private void A52()//预留，空实现
     {
 
     }
 
-    private void A53()
+    private void A53()//delta_time：本帧的时间间隔
+    {
+        float t = Time.deltaTime;
+        Write(runAt, t);
+        Assignment(runAt, t);
+    }
+
+    private void A54()//if_not：左、上都为假才执行
+    {
+        RunIf(true);
+    }
+
+    private void A55()//预留，空实现
     {
 
     }
 
-    private void A54()
+    private void A56()//预留，空实现
     {
 
     }
 
-    private void A55()
+    private void A57()//预留，空实现
     {
 
     }
 
-    private void A56()
+    private void A58()//预留，空实现
     {
 
     }
 
-    private void A57()
+    private void A59()//预留，空实现
     {
 
     }
 
-    private void A58()
+    private void A60()//预留，空实现
     {
 
     }
 
-    private void A59()
+    private void A61()//预留，空实现
     {
 
     }
 
-    private void A60()
+    private void A62()//预留，空实现
     {
 
     }
 
-    private void A61()
+    private void A63()//预留，空实现
     {
 
     }
 
-    private void A62()
+    private void A64()//预留，空实现
     {
 
     }
 
-    private void A63()
+    private void A65()//预留，空实现
     {
 
     }
 
-    private void A64()
+    private void A66()//预留，空实现
     {
 
     }
 
-    private void A65()
+    private void A67()//预留，空实现
     {
 
     }
 
-    private void A66()
+    private void A68()//预留，空实现
     {
 
     }
 
-    private void A67()
+    private void A69()//预留，空实现
     {
 
     }
 
-    private void A68()
+    private void A70()//预留，空实现
     {
 
     }
 
-    private void A69()
+    private void A71()//预留，空实现
     {
 
     }
 
-    private void A70()
+    private void A72()//预留，空实现
     {
 
     }
 
-    private void A71()
+    private void A73()//预留，空实现
     {
 
     }
 
-    private void A72()
+    private void A74()//预留，空实现
     {
 
     }
 
-    private void A73()
-    {
-
-    }
-
-    private void A74()
-    {
-
-    }
-
-    private void A75()
+    private void A75()//预留，空实现
     {
 
     }
@@ -1548,7 +1566,7 @@ public class IC_Code : MonoBehaviour,ION
                 SameLine = !OnOtherSide(from, to);
                 if (!SameLine) break;
                 if (Code[to] == 3) break;
-                if (Code[to] == 2 || Code[to] == 4)//if 或 elif
+                if (Code[to] == 2 || Code[to] == 4 || Code[to] == 54)//if、elif 或 if_not
                 {
                     Out = Read(to);
                     if (float.IsPositiveInfinity(Out)) return Out;
@@ -1819,7 +1837,7 @@ public class IC_Code : MonoBehaviour,ION
                 {
                     Pass.Add(where[i]);
                     //现在要判断ban项是否会ban其他内容
-                    if ((1 < k && k < 5) || (44 < k && k < 48))
+                    if ((1 < k && k < 5) || (44 < k && k < 48) || k == 54)
                     {
                         Ban(new() { Index(where[i], 1), Index(where[i], 3) });
                     }
@@ -1843,7 +1861,7 @@ public class IC_Code : MonoBehaviour,ION
                 {
                     OftenPass.Add(where[i]);
                     //现在要判断ban项是否会ban其他内容
-                    if ((1 < k && k < 5) || (44 < k && k < 48))
+                    if ((1 < k && k < 5) || (44 < k && k < 48) || k == 54)
                     {
                         BanOften(new() { Index(where[i], 1), Index(where[i], 3) });
                     }

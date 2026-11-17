@@ -1,4 +1,4 @@
-// Native broker bridge. The command channel that Locus uses to talk to this
+﻿// Native broker bridge. The command channel that Locus uses to talk to this
 // editor normally lives on a managed named pipe (see LocusBridge.cs), which
 // dies on every domain reload. When the native broker DLL (`locus_unity_native`) is
 // present and enabled, that long-lived pipe instead lives in native code that

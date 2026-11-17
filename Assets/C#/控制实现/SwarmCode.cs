@@ -26,6 +26,7 @@ public class SwarmCode : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
     {
         Down = true;
         MX = Input.mousePosition.x;
+        FindObjectOfType<CodeInform>(true)?.Show(kind);//点哪个块就在代码百科里显示它的说明
     }
     float MX;
     public void OnPointerExit(PointerEventData eventData)

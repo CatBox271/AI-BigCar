@@ -164,6 +164,63 @@ public class GameManager : MonoBehaviour
 
     #endregion;
 
+    #region 代码百科
+    [System.Serializable]
+    public class CodeInfo
+    {
+        public string kind;//指令字符串，和 IC_Code.accurate / obscure 里的写法一致
+        public string describe;//详细描述
+    }
+
+    [System.Serializable]
+    public class CodeLibraryTable
+    {
+        public List<CodeInfo> codes = new();
+    }
+
+    public const string CodeLibraryPath = "Data/CodeLibrary";
+
+    // 表体内存。对外统一走 CodeLibrary 属性，保证第一次访问时就已从 JSON 载入。
+    static readonly List<CodeInfo> codeLibrary = new();
+
+    public static List<CodeInfo> CodeLibrary
+    {
+        get
+        {
+            EnsureCodeLibrary();
+            return codeLibrary;
+        }
+    }
+
+    static void EnsureCodeLibrary()
+    {
+        if (codeLibrary.Count > 0) return;
+        var table = SLManager.ImportFromResources<CodeLibraryTable>(CodeLibraryPath);
+        codeLibrary.Clear();
+        codeLibrary.AddRange(table.codes);
+    }
+
+    public static void ClearCodeLibrary()//CodeLibrary.json 重新导入时清空内存表
+    {
+        codeLibrary.Clear();
+    }
+
+    public static string GetCodeDescribe(string kind)
+    {
+        if (string.IsNullOrEmpty(kind)) return "";
+        for (int i = 0; i < CodeLibrary.Count; i++)
+        {
+            if (CodeLibrary[i].kind == kind) return CodeLibrary[i].describe;
+        }
+        //带名字的指令（Item:xx / Input:Bool:xx / Num:xx 之类）退回前缀那一条
+        for (int i = 0; i < CodeLibrary.Count; i++)
+        {
+            if (kind.StartsWith(CodeLibrary[i].kind)) return CodeLibrary[i].describe;
+        }
+        return "";
+    }
+    #endregion
+
     #region 贴图管理
     static readonly Dictionary<string, Sprite> spriteCache = new Dictionary<string, Sprite>();
     static readonly Dictionary<string, Sprite> blockSpriteCache = new Dictionary<string, Sprite>(System.StringComparer.OrdinalIgnoreCase);
@@ -290,6 +347,13 @@ public class GameManager : MonoBehaviour
                 if (buttonIndex.TryGetValue(key, out int AddTo))//已经有过了
                 {
                     if (GBI.TryGetComponent(out ION ionAdd)) info[AddTo]._all_on.Add(ionAdd);
+                    if (GBI.TryGetComponent(out IC_Code icAdd))//同名按钮被多个芯片声明时，每个芯片都要收到输入
+                    {
+                        ButtonInfo share = info[AddTo];
+                        if (share.IC == null) share.IC = new();
+                        if (!share.IC.Contains(icAdd)) share.IC.Add(icAdd);
+                        info[AddTo] = share;
+                    }
                 }
                 else
                 {
@@ -375,6 +439,9 @@ public class GameManager : MonoBehaviour
         if (!ButtonFind(VID, button_name,f, out int aim)) return;
         ButtonInfo BI = allInfo[VID][aim];
         if (BI.LockTime > Time.time) return;
+        bool isNumWrite = !float.IsNaN(NTO);//开关写一律传 NaN，数字写传实数
+        if (BI._state == 0 && isNumWrite) return;//数字写进开关组件时不做处理，别把它当成关掉
+        if (BI._state == 1 && !isNumWrite) return;//开关写进数字组件同理，不会写成 NaN
         var L_ON = BI._all_on;
         switch (BI._state)
         {

@@ -165,9 +165,21 @@ public class Heath : MonoBehaviour
         {
             a = Color.black;
         }
-        if (HitLight && flash != null) flash.SetOriginColor(a);
-        else sp.color = a;
+        if (HitLight && flash != null)
+        {
+            flash.SetOriginColor(a);
+            hasBaseColor = false;//所有权在 flash 手上，缓存作废
+        }
+        else
+        {
+            if (hasBaseColor && a == lastBaseColor) return;//颜色没变就不碰 SpriteRenderer，省一次渲染侧同步
+            lastBaseColor = a;
+            hasBaseColor = true;
+            sp.color = a;
+        }
     }
+    Color lastBaseColor;
+    bool hasBaseColor;
 
     public GameObject showHit;
 

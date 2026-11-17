@@ -1,4 +1,4 @@
-#nullable disable
+﻿#nullable disable
 // Shared source: compiled into the Unity plugin (in-Unity snippet compile
 // path) and linked into the Locus compile server (LocusCompileServer.csproj),
 // so both compile paths decide the expression-mode retry the same way. Keep it

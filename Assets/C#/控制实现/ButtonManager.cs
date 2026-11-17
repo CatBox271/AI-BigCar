@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class ButtonManager : MonoBehaviour
 {
+    public static ButtonManager Instance;
+    private void Awake()
+    {
+        Instance = this;
+    }
     public GameObject Button;
-    public  List<Transform> all_button = new() { };
+    public List<Transform> all_button = new() { };
     bool show;
     public void ClearButton()//清空button
     {

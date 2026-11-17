@@ -1,4 +1,4 @@
-// 2026-06-22 - Unity 6.5 (6000.5) replaced the 32-bit InstanceID with the 64-bit
+﻿// 2026-06-22 - Unity 6.5 (6000.5) replaced the 32-bit InstanceID with the 64-bit
 // EntityId and turned GetInstanceID()/IsLoadingAssetPreview(int) into obsolete
 // compile errors (CS0619). See issue #95.
 

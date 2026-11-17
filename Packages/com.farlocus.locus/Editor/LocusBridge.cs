@@ -1,4 +1,4 @@
-// 2026-03-28 - Introduce Unity edit sessions via Auto Refresh suppression and persist recompile results across domain reloads
+﻿// 2026-03-28 - Introduce Unity edit sessions via Auto Refresh suppression and persist recompile results across domain reloads
 
 using UnityEngine;
 using UnityEditor;

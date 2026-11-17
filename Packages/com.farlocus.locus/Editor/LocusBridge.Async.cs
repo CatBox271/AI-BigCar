@@ -1,4 +1,4 @@
-// Locus private async primitives.
+﻿// Locus private async primitives.
 //
 // Lightweight, allocation-light thread-hopping awaitables modeled on UniTask's
 // SwitchToMainThread / SwitchToThreadPool — but deliberately built on Locus's

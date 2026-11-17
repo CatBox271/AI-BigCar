@@ -9,6 +9,19 @@ public class Txt : MonoBehaviour
     public string context;
     string last;
     public List<string> con;
+
+    //字符字符串查表：飘字数字只有数字/小数点/负号，原来每个字符都 char.ToString() 分配一个 string
+    static readonly string[] charCache = BuildCharCache();
+    static string[] BuildCharCache()
+    {
+        string[] arr = new string[128];
+        for (int i = 0; i < arr.Length; i++) arr[i] = ((char)i).ToString();
+        return arr;
+    }
+    static string CharStr(char c)
+    {
+        return c < 128 ? charCache[c] : c.ToString();
+    }
     [Tooltip("字号。字间距、水平偏移、竖直偏移都按它等比缩放")]
     public float size = 15f;
     [Tooltip("水平偏移 = offset × size")]
@@ -50,7 +63,49 @@ public class Txt : MonoBehaviour
         }
     }
 
-    void Update()
+    //原来每个 Txt 每帧都在查 context 变没变、字符够不够。改成挂到 Clock 的 0.1 秒桶上统一刷，
+    //外部改完 context 想立刻生效就自己调一次 Flush()（ShowHit.Setting 里就是这么做的）。
+    public const float RefreshInterval = 0.1f;
+    static readonly ClockBucket refreshBucket = Clock.Bucket(RefreshInterval);
+    static readonly List<Txt> all = new();
+    bool listed;
+
+    static Txt()
+    {
+        refreshBucket.OnDue += StepAll;//0.1 秒到期才刷一遍，不是每帧
+    }
+
+    static void StepAll(float passed)
+    {
+        for (int i = all.Count - 1; i >= 0; i--)
+        {
+            Txt t = all[i];
+            if (t == null)
+            {
+                all[i] = all[all.Count - 1];
+                all.RemoveAt(all.Count - 1);
+                continue;
+            }
+            t.Flush();
+        }
+    }
+
+    void OnEnable()
+    {
+        if (listed) return;
+        listed = true;
+        all.Add(this);
+    }
+
+    void OnDisable()
+    {
+        if (!listed) return;
+        listed = false;
+        all.Remove(this);
+    }
+
+    /// <summary>按当前 context 补齐字符并重建字符表。改完 context 想立刻生效就调它。</summary>
+    public void Flush()
     {
         //按实际子物体数量补字符：context 变短时 ShowNum 会自毁，拿字段记数量会和子物体对不上
         for (int i = transform.childCount; i < context.Length; i++)
@@ -74,7 +129,7 @@ public class Txt : MonoBehaviour
             con.Clear();
             for(int i = 0;i<context.Length;i++)
             {
-                con.Add(context[i].ToString());
+                con.Add(CharStr(context[i]));
             }
         }
     }

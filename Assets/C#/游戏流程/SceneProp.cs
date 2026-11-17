@@ -7,6 +7,7 @@ public class SceneProp : MonoBehaviour
     public static SceneProp Instance;
     public GameMode gameMode;
     public GameManager.GameState StartGameState;
+    public bool center_out_die = true;
     void Awake()
     {
         Instance = this;
