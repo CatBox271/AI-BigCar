@@ -2,263 +2,1268 @@
   "codes": [
     {
       "kind": "true",
-      "describe": "<color=#FFFF80FF>真</color>：输出布尔真（+∞），同时写到下方、右侧的变量块"
+      "pages": [
+        {
+          "title": "<Title>真：布尔常量</Title>\n<Small>布尔只有真假两种状态，此块恒定输出 [真]</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "上",
+              "text": "运行到此块时，此指令会依次向<color=#9BE0FF><b>右</b></color>、<color=#9BE0FF><b>下</b></color>传递 <color=#7DFF9E><b>[真]</b></color>，用来开启 <color=#FFE48A><b>动力轮</b></color> 等物理开关。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "对于 <color=#FFE48A><b>动力轮</b></color>，收到 <color=#7DFF9E><b>[真]</b></color> 后会开始加速且状态一直延续；想停下来需要再传一次 <color=#7DFF9E><b>[假]</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "false",
-      "describe": "<color=#FFFF80FF>假</color>：输出布尔假（−∞），同时写到下方、右侧的变量块"
+      "pages": [
+        {
+          "title": "<Title>假：布尔常量</Title>\n<Small>布尔只有真假两种状态，此块恒定输出 [假]</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "上",
+              "text": "运行到此块时，此指令会依次向<color=#9BE0FF><b>右</b></color>、<color=#9BE0FF><b>下</b></color>传递 <color=#7DFF9E><b>[假]</b></color>，用来关闭 <color=#FFE48A><b>动力轮</b></color> 等开关组件。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "由于开关状态会持续保持，想要彻底刹车或关闭组件，必须用此块或其它能输出 <color=#7DFF9E><b>[假]</b></color> 的块覆盖。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "if",
-      "describe": "<color=#FFFF80FF>如果</color>：左或上为真时执行右边和下边的内容，并把真写进下方、右侧的变量块；为假时禁掉后面的否则、再如果"
+      "pages": [
+        {
+          "title": "<Title>如果：条件入口</Title>\n<Small>读取左方或上方的布尔信号，任一为 [真] 就放行</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "上",
+              "text": "此指令会检查<color=#9BE0FF><b>左</b></color>与<color=#9BE0FF><b>上</b></color>两个入口，只要有一个是 <color=#7DFF9E><b>[真]</b></color> 就算成立（若喂入数字则当 <color=#7DFF9E><b>[假]</b></color> 处理）。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "条件成立时，此指令放行<color=#9BE0FF><b>右</b></color>与<color=#9BE0FF><b>下</b></color>的格子在本帧运行，并把 <color=#7DFF9E><b>[真]</b></color> 写入右、下的<color=#FFE48A><b>布尔变量</b></color>。"
+            }
+          ]
+        },
+        {
+          "title": "<Title>如果：不成立与分支链</Title>\n<Small>不成立时不会输出 [假]，且会放过后续分支</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "右",
+              "text": "条件不成立时，此指令会屏蔽<color=#9BE0FF><b>右</b></color>、<color=#9BE0FF><b>下</b></color>的普通格子，但不会写入 <color=#7DFF9E><b>[假]</b></color>，下游变量仍保留上一帧的值。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "即使不成立，此指令也会放过<color=#9BE0FF><b>右</b></color>、<color=#9BE0FF><b>下</b></color>的 <color=#FFAD00><b>否则</b></color> 与 <color=#FFAD00><b>再如果</b></color>，让整条分支链继续往下判断。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "else",
-      "describe": "<color=#FFFF80FF>否则</color>：上一个如果/再如果都没成立时才执行，生效时把真写进下方、右侧的变量块，否则禁掉自己的内容"
+      "pages": [
+        {
+          "title": "<Title>否则：分支兜底</Title>\n<Small>前面的如果/再如果都没成立时，才轮到它执行</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "左",
+              "text": "此指令会优先在同一行往<color=#9BE0FF><b>左</b></color>找、或在同一列往<color=#9BE0FF><b>上</b></color>找，匹配最近的 <color=#FFAD00><b>如果</b></color>、<color=#FFAD00><b>再如果</b></color> 或 <color=#FFAD00><b>如果不是</b></color>。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "中间碰到另一个 <color=#FFAD00><b>否则</b></color> 或跨行就会停下；找不到配对时，此块自动失效。"
+            }
+          ]
+        },
+        {
+          "title": "<Title>否则：执行与屏蔽</Title>\n<Small>取前一支结果的反面，决定是否放行</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "右",
+              "text": "若配对的前支为 <color=#7DFF9E><b>[假]</b></color>，此指令生效：放行<color=#9BE0FF><b>右</b></color>、<color=#9BE0FF><b>下</b></color>格子，并把 <color=#7DFF9E><b>[真]</b></color> 传给右、下的<color=#FFE48A><b>布尔变量</b></color>。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "若前支已经为 <color=#7DFF9E><b>[真]</b></color>，此指令会把自己的<color=#9BE0FF><b>右</b></color>、<color=#9BE0FF><b>下</b></color>格子全部屏蔽，本帧不再运行。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "elif",
-      "describe": "<color=#FFFF80FF>再如果</color>：上一支都没成立时才判断自己，成立时按如果的规则执行和传值"
+      "pages": [
+        {
+          "title": "<Title>再如果：多路分支</Title>\n<Small>前一支没成立时，再判断自己的条件</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "左",
+              "text": "此指令先向<color=#9BE0FF><b>左</b></color>、向<color=#9BE0FF><b>上</b></color>回溯配对的 <color=#FFAD00><b>如果</b></color> 链；若前面已经有分支成立，本块直接跳过并屏蔽<color=#9BE0FF><b>右</b></color>、<color=#9BE0FF><b>下</b></color>。"
+            },
+            {
+              "to": "下",
+              "line": "上",
+              "text": "只有前支全为 <color=#7DFF9E><b>[假]</b></color> 时，此指令才会按 <color=#FFAD00><b>如果</b></color> 的规则读取<color=#9BE0FF><b>左</b></color>或<color=#9BE0FF><b>上</b></color>的条件，成立时再传 <color=#7DFF9E><b>[真]</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "+",
-      "describe": "<color=#FFFF80FF>加法</color>：上 + 左"
+      "pages": [
+        {
+          "title": "<Title>加法：两数相加</Title>\n<Small>计算 上方 + 左方 的结果并向下、右传递</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "上",
+              "text": "此指令读取<color=#9BE0FF><b>上</b></color>与<color=#9BE0FF><b>左</b></color>两个数字做加法；哪一侧为空或不是数字，就按 <color=#FFE48A><b>0</b></color> 处理。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "算出的和会留在本格，并尝试写入<color=#9BE0FF><b>右</b></color>和<color=#9BE0FF><b>下</b></color>的<color=#FFE48A><b>数字变量</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "+=",
-      "describe": "<color=#FFFF80FF>累加</color>：把上、下、左、右的值加进命中的数字变量"
+      "pages": [
+        {
+          "title": "<Title>累加：汇总写入变量</Title>\n<Small>把四周所有数字加起来，直接写进相邻的数字变量</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "上",
+              "text": "此指令会先在<color=#9BE0FF><b>上</b></color>、<color=#9BE0FF><b>下</b></color>、<color=#9BE0FF><b>左</b></color>、<color=#9BE0FF><b>右</b></color>四个方向找一个<color=#FFE48A><b>数字变量</b></color>；找不到就什么都不做。"
+            },
+            {
+              "to": "下",
+              "line": "右",
+              "text": "找到后，它会主动触发<color=#9BE0FF><b>右</b></color>、<color=#9BE0FF><b>下</b></color>的算子并把四向所有数字相加（含变量原值），覆盖写回该<color=#FFE48A><b>数字变量</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "-",
-      "describe": "<color=#FFFF80FF>减法</color>：上 − 左"
+      "pages": [
+        {
+          "title": "<Title>减法：两数相减</Title>\n<Small>固定用 上方 减去 左方</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "上",
+              "text": "此指令用<color=#9BE0FF><b>上</b></color>方的数字减去<color=#9BE0FF><b>左</b></color>方的数字；任意一侧为空或非数字时按 <color=#FFE48A><b>0</b></color> 计算。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "算出的差值留在本格，并尝试写入<color=#9BE0FF><b>右</b></color>和<color=#9BE0FF><b>下</b></color>的<color=#FFE48A><b>数字变量</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "-=",
-      "describe": "<color=#FFFF80FF>累减</color>：从命中的数字变量里减去其它方向的值"
+      "pages": [
+        {
+          "title": "<Title>累减：从变量扣除</Title>\n<Small>从相邻的数字变量里减去其它方向的数值</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "上",
+              "text": "此指令先在四周寻找一个<color=#FFE48A><b>数字变量</b></color>并读取它的当前值（非数字按 <color=#FFE48A><b>0</b></color> 算）。"
+            },
+            {
+              "to": "下",
+              "line": "右",
+              "text": "接着主动触发<color=#9BE0FF><b>右</b></color>、<color=#9BE0FF><b>下</b></color>的算子，依次减去除该变量以外其它三向的数字，再写回该<color=#FFE48A><b>数字变量</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "*",
-      "describe": "<color=#FFFF80FF>乘法</color>：上 × 左"
+      "pages": [
+        {
+          "title": "<Title>乘法：两数相乘</Title>\n<Small>计算 上方 × 左方 的乘积</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "上",
+              "text": "此指令将<color=#9BE0FF><b>上</b></color>方与<color=#9BE0FF><b>左</b></color>方的数字相乘；若某侧为空或非数字，默认按 <color=#FFE48A><b>1</b></color> 处理。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "算出的乘积留在本格，并尝试写入<color=#9BE0FF><b>右</b></color>和<color=#9BE0FF><b>下</b></color>的<color=#FFE48A><b>数字变量</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "*=",
-      "describe": "<color=#FFFF80FF>累乘</color>：把其它方向的值乘进命中的数字变量"
+      "pages": [
+        {
+          "title": "<Title>累乘：倍率写回变量</Title>\n<Small>把四周其它方向的数字乘进相邻的数字变量</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "上",
+              "text": "此指令先在四周找到一个<color=#FFE48A><b>数字变量</b></color>并读出它的当前值（未初始化时按 <color=#FFE48A><b>1</b></color> 算）。"
+            },
+            {
+              "to": "下",
+              "line": "右",
+              "text": "然后触发<color=#9BE0FF><b>右</b></color>、<color=#9BE0FF><b>下</b></color>的算子，把其余三个方向的数字依次乘上去（空位按 <color=#FFE48A><b>1</b></color>），再写回该<color=#FFE48A><b>数字变量</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "/",
-      "describe": "<color=#FFFF80FF>除法</color>：上 ÷ 左，左为 0 时直接跳过"
+      "pages": [
+        {
+          "title": "<Title>除法：两数相除</Title>\n<Small>固定用 上方 除以 左方，除数为 0 时跳过</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "上",
+              "text": "此指令用<color=#9BE0FF><b>上</b></color>方的数字除以<color=#9BE0FF><b>左</b></color>方的数字；空位默认按 <color=#FFE48A><b>1</b></color> 处理。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "注意：若<color=#9BE0FF><b>左</b></color>方（除数）为 <color=#FFE48A><b>0</b></color>，此指令会直接跳过，不写结果也不报错。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "/=",
-      "describe": "<color=#FFFF80FF>累除</color>：用其它方向的值依次除命中的数字变量"
+      "pages": [
+        {
+          "title": "<Title>累除：连续除写回变量</Title>\n<Small>用其它方向的数字依次去除相邻的数字变量</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "上",
+              "text": "此指令先在四周找一个<color=#FFE48A><b>数字变量</b></color>并读出原值（非数字按 <color=#FFE48A><b>0</b></color> 算），再触发<color=#9BE0FF><b>右</b></color>、<color=#9BE0FF><b>下</b></color>的算子。"
+            },
+            {
+              "to": "下",
+              "line": "右",
+              "text": "随后依次除以另外三向的数字（空位按 <color=#FFE48A><b>1</b></color>）；一旦遇到某个除数为 <color=#FFE48A><b>0</b></color>，整条指令直接中止不写回。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "more",
-      "describe": "<color=#FFFF80FF>大于</color>：上 > 左 时输出真（只比较数字）"
+      "pages": [
+        {
+          "title": "<Title>大于：多路比大小</Title>\n<Small>判断最先读到的基准值是否严格大于其余输入</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "上",
+              "text": "此指令按 <color=#9BE0FF><b>上</b></color> → <color=#9BE0FF><b>左</b></color> → <color=#9BE0FF><b>右</b></color> 顺序读取数字（会主动触发<color=#9BE0FF><b>右</b></color>侧算子），最先读到的有效数字作为基准。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "三路都有值时，意思是 <color=#FFE48A><b>上 > 左 且 上 > 右</b></color>（不是连环大小）；至少要有 2 个数字才比对，否则直接输出 <color=#7DFF9E><b>[假]</b></color>。"
+            }
+          ]
+        },
+        {
+          "title": "<Title>大于：自适应输出口</Title>\n<Small>右侧只有接了数字才当输入，没接数字时也能输出</Small>",
+          "notes": [
+            {
+              "to": "下",
+              "line": "右",
+              "text": "此指令一定会把结果写入<color=#9BE0FF><b>下</b></color>方变量；若<color=#9BE0FF><b>右</b></color>侧不是有效数字（比如放了<color=#FFE48A><b>布尔变量</b></color>），结果也会同时写入<color=#9BE0FF><b>右</b></color>侧。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "less",
-      "describe": "<color=#FFFF80FF>小于</color>：上 < 左 时输出真（只比较数字）"
+      "pages": [
+        {
+          "title": "<Title>小于：多路比大小</Title>\n<Small>判断最先读到的基准值是否严格小于其余输入</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "上",
+              "text": "此指令按 <color=#9BE0FF><b>上</b></color> → <color=#9BE0FF><b>左</b></color> → <color=#9BE0FF><b>右</b></color> 顺序收集数字（会主动触发<color=#9BE0FF><b>右</b></color>侧算子），最先读到的有效数字作为基准。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "三路都有值时，判断的是 <color=#FFE48A><b>上 < 左 且 上 < 右</b></color>；若有效数字不足 2 个（例如只接了 1 个数），直接输出 <color=#7DFF9E><b>[假]</b></color>。"
+            }
+          ]
+        },
+        {
+          "title": "<Title>小于：自适应输出口</Title>\n<Small>布尔与数字不能混比，右侧空着数字时可作输出</Small>",
+          "notes": [
+            {
+              "to": "下",
+              "line": "右",
+              "text": "此指令只比较数字（传入布尔会被忽略）；结果固定写给<color=#9BE0FF><b>下</b></color>方，若<color=#9BE0FF><b>右</b></color>侧没有读到数字，也会把结果写给<color=#9BE0FF><b>右</b></color>侧。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "equal",
-      "describe": "<color=#FFFF80FF>等于</color>：上 = 左 时输出真（只比较数字）"
+      "pages": [
+        {
+          "title": "<Title>等于：数值判等</Title>\n<Small>检查所有参与比较的数字是否完全相等</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "上",
+              "text": "此指令按 <color=#9BE0FF><b>上</b></color> → <color=#9BE0FF><b>左</b></color> → <color=#9BE0FF><b>右</b></color> 顺序读取数字（会主动触发<color=#9BE0FF><b>右</b></color>侧算子），只要有一个不相等就输出 <color=#7DFF9E><b>[假]</b></color>。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "注意：只认数字，把开关布尔拿来跟 <color=#FFE48A><b>0</b></color> 比会因有效数字不足 2 个而永远输出 <color=#7DFF9E><b>[假]</b></color>。"
+            }
+          ]
+        },
+        {
+          "title": "<Title>等于：自适应输出口</Title>\n<Small>右侧未作为数字输入时，可兼作结果输出口</Small>",
+          "notes": [
+            {
+              "to": "下",
+              "line": "右",
+              "text": "此指令会把判等结果写入<color=#9BE0FF><b>下</b></color>方；若<color=#9BE0FF><b>右</b></color>侧未提供有效数字，结果也会同步写入<color=#9BE0FF><b>右</b></color>侧变量。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "!",
-      "describe": "<color=#FFFF80FF>非</color>：布尔取反，读左（缺省读上）"
+      "pages": [
+        {
+          "title": "<Title>非：布尔取反</Title>\n<Small>把 [真] 变成 [假]，把 [假] 变成 [真]</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "左",
+              "text": "此指令优先读取<color=#9BE0FF><b>左</b></color>侧的布尔值；若<color=#9BE0FF><b>左</b></color>侧不是布尔，则改读<color=#9BE0FF><b>上</b></color>方。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "如果左、上都没有有效布尔值，此指令直接跳过不输出；有值时则翻转后传给<color=#9BE0FF><b>右</b></color>和<color=#9BE0FF><b>下</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "&",
-      "describe": "<color=#FFFF80FF>与</color>：上和左都为真才为真"
+      "pages": [
+        {
+          "title": "<Title>与：且门运算</Title>\n<Small>上方和左方必须同时为 [真]，结果才为 [真]</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "上",
+              "text": "此指令读取<color=#9BE0FF><b>上</b></color>方与<color=#9BE0FF><b>左</b></color>方的布尔值（若某侧没接或不是布尔，默认当 <color=#7DFF9E><b>[假]</b></color> 处理）。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "只有两侧都是 <color=#7DFF9E><b>[真]</b></color> 才向<color=#9BE0FF><b>右</b></color>和<color=#9BE0FF><b>下</b></color>输出 <color=#7DFF9E><b>[真]</b></color>，否则输出 <color=#7DFF9E><b>[假]</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "|",
-      "describe": "<color=#FFFF80FF>或</color>：上或左有一个为真就为真"
+      "pages": [
+        {
+          "title": "<Title>或：或门运算</Title>\n<Small>上方或左方只要有一个为 [真]，结果就为 [真]</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "上",
+              "text": "此指令读取<color=#9BE0FF><b>上</b></color>方与<color=#9BE0FF><b>左</b></color>方的布尔值（缺失或非布尔值按 <color=#7DFF9E><b>[假]</b></color> 算）。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "只要有一侧为 <color=#7DFF9E><b>[真]</b></color>，此指令就向<color=#9BE0FF><b>右</b></color>和<color=#9BE0FF><b>下</b></color>输出 <color=#7DFF9E><b>[真]</b></color>；全为 <color=#7DFF9E><b>[假]</b></color> 时才输出 <color=#7DFF9E><b>[假]</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "^",
-      "describe": "<color=#FFFF80FF>异或</color>：上和左不同才为真"
+      "pages": [
+        {
+          "title": "<Title>异或：不同才为真</Title>\n<Small>上方和左方的真假状态不同时，输出 [真]</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "上",
+              "text": "此指令读取<color=#9BE0FF><b>上</b></color>方与<color=#9BE0FF><b>左</b></color>方的布尔值（缺失或非布尔值按 <color=#7DFF9E><b>[假]</b></color> 算）。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "一真一假时输出 <color=#7DFF9E><b>[真]</b></color>，同真或同假时输出 <color=#7DFF9E><b>[假]</b></color>，结果写往<color=#9BE0FF><b>右</b></color>与<color=#9BE0FF><b>下</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "lerp",
-      "describe": "<color=#FFFF80FF>插值</color>：按 上 的进度在 左 → 右 之间取值"
+      "pages": [
+        {
+          "title": "<Title>插值：平滑过渡</Title>\n<Small>按 上方 的进度（0~1），在 左方 到 右方 之间取值</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "上",
+              "text": "此指令读取<color=#9BE0FF><b>上</b></color>方作为进度（缺省 <color=#FFE48A><b>0.5</b></color>）、<color=#9BE0FF><b>左</b></color>方作为起点（缺省 <color=#FFE48A><b>0</b></color>）。"
+            },
+            {
+              "to": "下",
+              "line": "右",
+              "text": "它会主动触发<color=#9BE0FF><b>右</b></color>侧算子作为终点（缺省 <color=#FFE48A><b>360</b></color>），算出的插值结果仅写给<color=#9BE0FF><b>下</b></color>方的<color=#FFE48A><b>数字变量</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "pow",
-      "describe": "<color=#FFFF80FF>乘方</color>：上 的 左 次方"
+      "pages": [
+        {
+          "title": "<Title>乘方：计算幂次</Title>\n<Small>计算 上方 的 左方 次方</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "上",
+              "text": "此指令取<color=#9BE0FF><b>上</b></color>方数字为底数、<color=#9BE0FF><b>左</b></color>方数字为指数（任意一侧缺失时默认按 <color=#FFE48A><b>2</b></color> 算）。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "算出的幂结果保存在本格，并尝试传给<color=#9BE0FF><b>右</b></color>侧与<color=#9BE0FF><b>下</b></color>方的<color=#FFE48A><b>数字变量</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "log",
-      "describe": "<color=#FFFF80FF>对数</color>：以左为底求上的对数，两个都必须大于 0"
+      "pages": [
+        {
+          "title": "<Title>对数：求对数值</Title>\n<Small>以 左方 为底，求 上方 的对数</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "上",
+              "text": "此指令读取<color=#9BE0FF><b>上</b></color>方（真数）与<color=#9BE0FF><b>左</b></color>方（底数），两个数字都必须严格大于 <color=#FFE48A><b>0</b></color>。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "若任意一侧缺失、非数字或 ≤ <color=#FFE48A><b>0</b></color>，此指令直接跳过不写结果；有效时结果传给<color=#9BE0FF><b>右</b></color>、<color=#9BE0FF><b>下</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "max",
-      "describe": "<color=#FFFF80FF>取大</color>：上、左里取大的那个"
+      "pages": [
+        {
+          "title": "<Title>取大：两数取最大值</Title>\n<Small>比较 上方 和 左方，输出较大的那个数字</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "上",
+              "text": "此指令读取<color=#9BE0FF><b>上</b></color>方与<color=#9BE0FF><b>左</b></color>方的数字；任意一侧为空或不是数字时直接跳过不输出。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "两侧都是有效数字时，此指令选出较大值写入本格，并传给<color=#9BE0FF><b>右</b></color>侧与<color=#9BE0FF><b>下</b></color>方的<color=#FFE48A><b>数字变量</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "min",
-      "describe": "<color=#FFFF80FF>取小</color>：上、左里取小的那个"
+      "pages": [
+        {
+          "title": "<Title>取小：两数取最小值</Title>\n<Small>比较 上方 和 左方，输出较小的那个数字</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "上",
+              "text": "此指令读取<color=#9BE0FF><b>上</b></color>方与<color=#9BE0FF><b>左</b></color>方的数字；任意一侧为空或不是数字时直接跳过不输出。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "两侧都是有效数字时，此指令选出较小值写入本格，并传给<color=#9BE0FF><b>右</b></color>侧与<color=#9BE0FF><b>下</b></color>方的<color=#FFE48A><b>数字变量</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "clamp",
-      "describe": "<color=#FFFF80FF>夹取</color>：把上夹到 左 到 右 之间"
+      "pages": [
+        {
+          "title": "<Title>夹取：限制范围</Title>\n<Small>把 上方 的数字夹在 左方(下限) 到 右方(上限) 之间</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "上",
+              "text": "此指令依次读取<color=#9BE0FF><b>上</b></color>（原值）、<color=#9BE0FF><b>左</b></color>（下限）并主动触发<color=#9BE0FF><b>右</b></color>（上限）；任意一个缺省或非数字都会直接跳过。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "夹取后的结果仅写入<color=#9BE0FF><b>下</b></color>方的<color=#FFE48A><b>数字变量</b></color>；注意若下限大于上限，结果会直接取上限值。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "sin",
-      "describe": "<color=#FFFF80FF>正弦</color>：读左（缺省读上），按角度计算"
+      "pages": [
+        {
+          "title": "<Title>正弦：角度求正弦</Title>\n<Small>输入角度（度数制），输出 -1 到 1 之间的正弦值</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "左",
+              "text": "此指令优先读取<color=#9BE0FF><b>左</b></color>侧的数字，若<color=#9BE0FF><b>左</b></color>侧无效则改读<color=#9BE0FF><b>上</b></color>方（均为角度制）；两侧都无效则跳过。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "计算出的正弦值会写入本格，并传给<color=#9BE0FF><b>右</b></color>侧与<color=#9BE0FF><b>下</b></color>方的<color=#FFE48A><b>数字变量</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "cos",
-      "describe": "<color=#FFFF80FF>余弦</color>：读左（缺省读上），按角度计算"
+      "pages": [
+        {
+          "title": "<Title>余弦：角度求余弦</Title>\n<Small>输入角度（度数制），输出 -1 到 1 之间的余弦值</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "左",
+              "text": "此指令优先读取<color=#9BE0FF><b>左</b></color>侧的数字，若<color=#9BE0FF><b>左</b></color>侧无效则改读<color=#9BE0FF><b>上</b></color>方（均为角度制）；两侧都无效则跳过。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "计算出的余弦值会写入本格，并传给<color=#9BE0FF><b>右</b></color>侧与<color=#9BE0FF><b>下</b></color>方的<color=#FFE48A><b>数字变量</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "tan",
-      "describe": "<color=#FFFF80FF>正切</color>：读左（缺省读上），按角度计算"
+      "pages": [
+        {
+          "title": "<Title>正切：角度求正切</Title>\n<Small>输入角度（度数制），输出该角度的正切值</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "左",
+              "text": "此指令优先读取<color=#9BE0FF><b>左</b></color>侧角度，缺省时改读<color=#9BE0FF><b>上</b></color>方；在 90° 或 270° 附近数值会变得极大。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "计算出的正切值会写入本格，并传给<color=#9BE0FF><b>右</b></color>侧与<color=#9BE0FF><b>下</b></color>方的<color=#FFE48A><b>数字变量</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "asin",
-      "describe": "<color=#FFFF80FF>反正弦</color>：读左（缺省读上），结果换算成角度"
+      "pages": [
+        {
+          "title": "<Title>反正弦：数值转角度</Title>\n<Small>输入 -1 到 1 的正弦值，反算出对应角度（度数制）</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "左",
+              "text": "此指令优先读取<color=#9BE0FF><b>左</b></color>侧数字，缺省时改读<color=#9BE0FF><b>上</b></color>方；建议输入限制在 <color=#FFE48A><b>-1 ~ 1</b></color> 之间。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "换算后的角度值（-90° ~ 90°）写入本格，并传给<color=#9BE0FF><b>右</b></color>侧与<color=#9BE0FF><b>下</b></color>方的<color=#FFE48A><b>数字变量</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "acos",
-      "describe": "<color=#FFFF80FF>反余弦</color>：读左（缺省读上），结果换算成角度"
+      "pages": [
+        {
+          "title": "<Title>反余弦：数值转角度</Title>\n<Small>输入 -1 到 1 的余弦值，反算出对应角度（度数制）</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "左",
+              "text": "此指令优先读取<color=#9BE0FF><b>左</b></color>侧数字，缺省时改读<color=#9BE0FF><b>上</b></color>方；输入应在 <color=#FFE48A><b>-1 ~ 1</b></color> 之间。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "换算后的角度值（0° ~ 180°）写入本格，并传给<color=#9BE0FF><b>右</b></color>侧与<color=#9BE0FF><b>下</b></color>方的<color=#FFE48A><b>数字变量</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "atan",
-      "describe": "<color=#FFFF80FF>反正切</color>：读左（缺省读上），结果换算成角度"
+      "pages": [
+        {
+          "title": "<Title>反正切：数值转角度</Title>\n<Small>输入任意正切值，反算出对应角度（度数制）</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "左",
+              "text": "此指令优先读取<color=#9BE0FF><b>左</b></color>侧数字，缺省时改读<color=#9BE0FF><b>上</b></color>方；两侧都无效则跳过。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "换算后的角度值（-90° ~ 90°）写入本格，并传给<color=#9BE0FF><b>右</b></color>侧与<color=#9BE0FF><b>下</b></color>方的<color=#FFE48A><b>数字变量</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "abs",
-      "describe": "<color=#FFFF80FF>绝对值</color>：读左（缺省读上）"
+      "pages": [
+        {
+          "title": "<Title>绝对值：去掉负号</Title>\n<Small>把负数变成正数，正数和 0 保持不变</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "左",
+              "text": "此指令优先读取<color=#9BE0FF><b>左</b></color>侧数字，缺省时改读<color=#9BE0FF><b>上</b></color>方；常用于只关心大小、不管方向的倾角或速度。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "处理后的非负数值写入本格，并传给<color=#9BE0FF><b>右</b></color>侧与<color=#9BE0FF><b>下</b></color>方的<color=#FFE48A><b>数字变量</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "floor",
-      "describe": "<color=#FFFF80FF>向下取整</color>：读左（缺省读上）"
+      "pages": [
+        {
+          "title": "<Title>向下取整：舍去小数</Title>\n<Small>往小的方向取整数（例如 3.9 变 3，-1.2 变 -2）</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "左",
+              "text": "此指令优先读取<color=#9BE0FF><b>左</b></color>侧数字，缺省时改读<color=#9BE0FF><b>上</b></color>方；两侧都无效则跳过。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "取整后的数字写入本格，并传给<color=#9BE0FF><b>右</b></color>侧与<color=#9BE0FF><b>下</b></color>方的<color=#FFE48A><b>数字变量</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "round",
-      "describe": "<color=#FFFF80FF>四舍五入</color>：读左（缺省读上）"
+      "pages": [
+        {
+          "title": "<Title>四舍五入：取最接近整数</Title>\n<Small>把小数按四舍五入变成整数（半数 .5 会向偶数靠拢）</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "左",
+              "text": "此指令优先读取<color=#9BE0FF><b>左</b></color>侧数字，缺省时改读<color=#9BE0FF><b>上</b></color>方；两侧都无效则跳过。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "取整后的数字写入本格，并传给<color=#9BE0FF><b>右</b></color>侧与<color=#9BE0FF><b>下</b></color>方的<color=#FFE48A><b>数字变量</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "ceil",
-      "describe": "<color=#FFFF80FF>向上取整</color>：读左（缺省读上）"
+      "pages": [
+        {
+          "title": "<Title>向上取整：有小数就进一</Title>\n<Small>往大的方向取整数（例如 3.1 变 4，-1.9 变 -1）</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "左",
+              "text": "此指令优先读取<color=#9BE0FF><b>左</b></color>侧数字，缺省时改读<color=#9BE0FF><b>上</b></color>方；两侧都无效则跳过。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "取整后的数字写入本格，并传给<color=#9BE0FF><b>右</b></color>侧与<color=#9BE0FF><b>下</b></color>方的<color=#FFE48A><b>数字变量</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "g_s",
-      "describe": "<color=#FFFF80FF>速度</color>：刚体速度大小 × Times"
+      "pages": [
+        {
+          "title": "<Title>速度：载具总速率</Title>\n<Small>读取当前芯片所在刚体的实时速度大小</Small>",
+          "notes": [
+            {
+              "to": "下",
+              "line": "下",
+              "text": "此指令无需输入，每帧自动读取载具整体速率（不区分正负方向），并传给<color=#9BE0FF><b>右</b></color>侧与<color=#9BE0FF><b>下</b></color>方的<color=#FFE48A><b>数字变量</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "g_sa",
-      "describe": "<color=#FFFF80FF>加速度</color>：速度的变化率"
+      "pages": [
+        {
+          "title": "<Title>加速度：速率变化快慢</Title>\n<Small>读取当前载具速率正在变快还是变慢</Small>",
+          "notes": [
+            {
+              "to": "下",
+              "line": "下",
+              "text": "此指令无需输入，输出本帧速度大小的变化率（加速为正、减速为负），传给<color=#9BE0FF><b>右</b></color>侧与<color=#9BE0FF><b>下</b></color>方的<color=#FFE48A><b>数字变量</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "g_vx",
-      "describe": "<color=#FFFF80FF>横向速度</color>：线速度的 x 分量"
+      "pages": [
+        {
+          "title": "<Title>横向速度：水平分速度</Title>\n<Small>读取载具在世界水平方向（X 轴）上的移动速度</Small>",
+          "notes": [
+            {
+              "to": "下",
+              "line": "下",
+              "text": "此指令无需输入，向右移动为正、向左移动为负，结果传给<color=#9BE0FF><b>右</b></color>侧与<color=#9BE0FF><b>下</b></color>方的<color=#FFE48A><b>数字变量</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "g_vy",
-      "describe": "<color=#FFFF80FF>纵向速度</color>：线速度的 y 分量"
+      "pages": [
+        {
+          "title": "<Title>纵向速度：垂直分速度</Title>\n<Small>读取载具在世界垂直方向（Y 轴）上的升降速度</Small>",
+          "notes": [
+            {
+              "to": "下",
+              "line": "下",
+              "text": "此指令无需输入，上升为正、下落为负，适合用来做防摔或空中姿态控制，结果传给<color=#9BE0FF><b>右</b></color>与<color=#9BE0FF><b>下</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "g_a",
-      "describe": "<color=#FFFF80FF>角速度</color>：刚体的旋转速度"
+      "pages": [
+        {
+          "title": "<Title>角速度：旋转快慢</Title>\n<Small>读取载具当前翻滚或转向的旋转速度</Small>",
+          "notes": [
+            {
+              "to": "下",
+              "line": "下",
+              "text": "此指令无需输入，输出载具的旋转角速度（常配合 <color=#FFAD00><b>垂直夹角</b></color> 做车身平衡），结果传给<color=#9BE0FF><b>右</b></color>与<color=#9BE0FF><b>下</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "g_vxa",
-      "describe": "<color=#FFFF80FF>横向加速度</color>：线速度 x 的变化率"
+      "pages": [
+        {
+          "title": "<Title>横向加速度：水平推力感</Title>\n<Small>读取水平方向速度（X 轴）的瞬时变化率</Small>",
+          "notes": [
+            {
+              "to": "下",
+              "line": "下",
+              "text": "此指令无需输入，能反映载具左右加速或撞击减速的瞬间变化，结果传给<color=#9BE0FF><b>右</b></color>侧与<color=#9BE0FF><b>下</b></color>方的<color=#FFE48A><b>数字变量</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "g_vya",
-      "describe": "<color=#FFFF80FF>纵向加速度</color>：线速度 y 的变化率"
+      "pages": [
+        {
+          "title": "<Title>纵向加速度：垂直过载</Title>\n<Small>读取垂直方向速度（Y 轴）的瞬时变化率</Small>",
+          "notes": [
+            {
+              "to": "下",
+              "line": "下",
+              "text": "此指令无需输入，适合检测起跳、落地冲击或浮空推力变化，结果传给<color=#9BE0FF><b>右</b></color>侧与<color=#9BE0FF><b>下</b></color>方的<color=#FFE48A><b>数字变量</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "g_aa",
-      "describe": "<color=#FFFF80FF>角加速度</color>：角速度的变化率"
+      "pages": [
+        {
+          "title": "<Title>角加速度：旋转变化率</Title>\n<Small>读取载具角速度正在加快还是减慢</Small>",
+          "notes": [
+            {
+              "to": "下",
+              "line": "下",
+              "text": "此指令无需输入，输出旋转角速度的变化率，用于精细阻尼控制，结果传给<color=#9BE0FF><b>右</b></color>侧与<color=#9BE0FF><b>下</b></color>方的<color=#FFE48A><b>数字变量</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "v_a",
-      "describe": "<color=#FFFF80FF>垂直夹角</color>：车身与竖直方向的夹角，左倾为负、右倾为正"
+      "pages": [
+        {
+          "title": "<Title>垂直夹角：车身倾斜度</Title>\n<Small>读取车身与竖直向上的夹角（左倾为负，右倾为正）</Small>",
+          "notes": [
+            {
+              "to": "下",
+              "line": "下",
+              "text": "此指令无需输入，车头朝正上方为 <color=#FFE48A><b>0°</b></color>，向右歪为正角度、向左歪为负角度，结果传给<color=#9BE0FF><b>右</b></color>与<color=#9BE0FF><b>下</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "for",
-      "describe": "<color=#FFFF80FF>循环</color>：右边和下边各执行 b 次，次数读左（缺省读上）"
+      "pages": [
+        {
+          "title": "<Title>循环：重复执行多次</Title>\n<Small>读取次数 b，把 右边 和 下边 各重复执行 b 次</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "左",
+              "text": "此指令优先从<color=#9BE0FF><b>左</b></color>侧读循环次数 b（缺省改读<color=#9BE0FF><b>上</b></color>方）；若 b ≤ 0 则直接跳过。"
+            },
+            {
+              "to": "下",
+              "line": "右",
+              "text": "执行顺序是先把<color=#9BE0FF><b>右</b></color>侧格子连跑 b 次，再把<color=#9BE0FF><b>下</b></color>方格子连跑 b 次；跑完后会屏蔽右、下避免本帧再跑一次。"
+            }
+          ]
+        },
+        {
+          "title": "<Title>循环：跨帧保护机制</Title>\n<Small>单帧最多跑 200 次，超出自动切到下一帧继续</Small>",
+          "notes": [
+            {
+              "to": "下",
+              "line": "none",
+              "text": "为了防止死循环卡死游戏，芯片单帧累计循环达到 <color=#FFE48A><b>200</b></color> 次时会暂停，下一帧从断点接着跑完剩余次数。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "while_do",
-      "describe": "<color=#FFFF80FF>当型循环</color>：指令预留，尚未实现"
+      "pages": [
+        {
+          "title": "<Title>当型循环：预留指令</Title>\n<Small>此指令目前仅作预留，尚未实现运行逻辑</Small>",
+          "notes": [
+            {
+              "to": "下",
+              "line": "none",
+              "text": "此指令当前内部为空实现，放进芯片可以保存但运行时不会做任何事；需要循环请改用 <color=#FFAD00><b>循环</b></color> 或 <color=#FFAD00><b>跳转</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "do_while",
-      "describe": "<color=#FFFF80FF>直到型循环</color>：指令预留，尚未实现"
+      "pages": [
+        {
+          "title": "<Title>直到型循环：预留指令</Title>\n<Small>此指令目前仅作预留，尚未实现运行逻辑</Small>",
+          "notes": [
+            {
+              "to": "下",
+              "line": "none",
+              "text": "此指令当前内部为空实现，运行时不会触发任何效果；需要循环请改用 <color=#FFAD00><b>循环</b></color> 或 <color=#FFAD00><b>跳转</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "print",
-      "describe": "<color=#FFFF80FF>打印</color>：把上、左的值打到芯片终端"
+      "pages": [
+        {
+          "title": "<Title>打印：调试输出到终端</Title>\n<Small>把 上方 和 左方 的数字或真假值打印到芯片终端</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "上",
+              "text": "此指令依次检查<color=#9BE0FF><b>上</b></color>方与<color=#9BE0FF><b>左</b></color>方：无论是数字还是布尔，只要有有效值就会打印到屏幕终端里。"
+            },
+            {
+              "to": "下",
+              "line": "左",
+              "text": "此指令仅用于玩家调试观察数值，不会向<color=#9BE0FF><b>右</b></color>、<color=#9BE0FF><b>下</b></color>输出任何值。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "p_x",
-      "describe": "<color=#FFFF80FF>X 坐标</color>：本格的世界坐标 x"
+      "pages": [
+        {
+          "title": "<Title>X 坐标：世界水平位置</Title>\n<Small>读取芯片当前所在的世界 X 坐标</Small>",
+          "notes": [
+            {
+              "to": "下",
+              "line": "下",
+              "text": "此指令无需输入，每帧读取芯片当前的世界水平坐标 X，并传给<color=#9BE0FF><b>右</b></color>侧与<color=#9BE0FF><b>下</b></color>方的<color=#FFE48A><b>数字变量</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "p_y",
-      "describe": "<color=#FFFF80FF>Y 坐标</color>：本格的世界坐标 y"
+      "pages": [
+        {
+          "title": "<Title>Y 坐标：世界高度位置</Title>\n<Small>读取芯片当前所在的世界 Y 坐标</Small>",
+          "notes": [
+            {
+              "to": "下",
+              "line": "下",
+              "text": "此指令无需输入，每帧读取芯片当前的世界高度坐标 Y，并传给<color=#9BE0FF><b>右</b></color>侧与<color=#9BE0FF><b>下</b></color>方的<color=#FFE48A><b>数字变量</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "start",
-      "describe": "<color=#FFFF80FF>启动</color>：第一次先跑一遍下方，之后每帧跑右边"
+      "pages": [
+        {
+          "title": "<Title>启动：首帧初始化 + 主循环</Title>\n<Small>芯片启动后先跑一次下方，之后每帧跑一次右方</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "下",
+              "text": "首次触发时，此指令会先执行一次<color=#9BE0FF><b>下</b></color>方的初始化逻辑（若未跨帧暂停，之后不再重复跑下方）。"
+            },
+            {
+              "to": "下",
+              "line": "右",
+              "text": "随后每帧都会主动执行<color=#9BE0FF><b>右</b></color>侧格子作为循环体，并把自己长期屏蔽，防止主循环重复触发。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "time",
-      "describe": "<color=#FFFF80FF>计时</color>：指令预留，尚未实现"
+      "pages": [
+        {
+          "title": "<Title>计时：预留指令</Title>\n<Small>此指令目前仅作预留，尚未实现运行逻辑</Small>",
+          "notes": [
+            {
+              "to": "下",
+              "line": "none",
+              "text": "此指令当前内部为空实现，运行时不会产生计时数值；如需累加时间请配合 <color=#FFAD00><b>时间增量</b></color> 与 <color=#FFAD00><b>累加</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "delta_time",
-      "describe": "<color=#FFFF80FF>时间增量</color>：本帧的时间间隔"
+      "pages": [
+        {
+          "title": "<Title>时间增量：本帧间隔秒数</Title>\n<Small>读取上一帧到本帧经过的时间（秒）</Small>",
+          "notes": [
+            {
+              "to": "下",
+              "line": "下",
+              "text": "此指令无需输入，输出当前帧的时间间隔，常配合 <color=#FFAD00><b>累加</b></color> 写进<color=#FFE48A><b>数字变量</b></color>用来做秒表或定时。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "if_not",
-      "describe": "<color=#FFFF80FF>如果不是</color>：左、上都为假时才执行右边和下边的内容，其余和如果一样"
+      "pages": [
+        {
+          "title": "<Title>如果不是：条件取反开关</Title>\n<Small>左方和上方全为 [假] 时才成立，其余规则与 如果 相同</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "上",
+              "text": "此指令检查<color=#9BE0FF><b>左</b></color>与<color=#9BE0FF><b>上</b></color>的布尔值（缺省或数字当 <color=#7DFF9E><b>[假]</b></color>）：只有两侧都为 <color=#7DFF9E><b>[假]</b></color> 时条件才成立。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "成立时放行<color=#9BE0FF><b>右</b></color>、<color=#9BE0FF><b>下</b></color>并传 <color=#7DFF9E><b>[真]</b></color>；不成立时屏蔽<color=#9BE0FF><b>右</b></color>、<color=#9BE0FF><b>下</b></color>（但会放过 <color=#FFAD00><b>否则</b></color> 与 <color=#FFAD00><b>再如果</b></color>）。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "Item:",
-      "describe": "<color=#FFFF80FF>输出</color>：把左边（缺省读上）的值写到同名按钮上，数字进数值、布尔进开关"
+      "pages": [
+        {
+          "title": "<Title>输出组件：驱动载具零件</Title>\n<Small>把结果写进同名载具组件（如轮子、螺旋桨、舵机）</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "左",
+              "text": "此指令优先读取<color=#9BE0FF><b>左</b></color>侧的值，缺省时改读<color=#9BE0FF><b>上</b></color>方；写给指定的同名输出组件。"
+            },
+            {
+              "to": "下",
+              "line": "none",
+              "text": "注意类型必须匹配：开关型组件（轮子/螺旋桨/炮台）只认 <color=#7DFF9E><b>[真]</b></color>/<color=#7DFF9E><b>[假]</b></color>，数值型组件（铰链/尾翼）只认数字，喂错会被忽略。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "Input:Bool:",
-      "describe": "<color=#FFFF80FF>输入真伪</color>：读同名开关按钮的真假"
+      "pages": [
+        {
+          "title": "<Title>输入真伪：读取开关按钮</Title>\n<Small>读取你在界面上按下的同名开关按钮状态</Small>",
+          "notes": [
+            {
+              "to": "下",
+              "line": "下",
+              "text": "此指令无需上游输入，每帧读取玩家操作的同名开关按钮状态（按下为 <color=#7DFF9E><b>[真]</b></color>、松开为 <color=#7DFF9E><b>[假]</b></color>），写入本格并传给<color=#9BE0FF><b>右</b></color>与<color=#9BE0FF><b>下</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "Input:Num:",
-      "describe": "<color=#FFFF80FF>输入数字</color>：读同名数字按钮的数值"
+      "pages": [
+        {
+          "title": "<Title>输入数字：读取数字滑条</Title>\n<Small>读取你在界面上调节的同名数字控件数值</Small>",
+          "notes": [
+            {
+              "to": "下",
+              "line": "下",
+              "text": "此指令无需上游输入，每帧读取同名数字输入控件的当前数值，写入本格并传给<color=#9BE0FF><b>右</b></color>侧与<color=#9BE0FF><b>下</b></color>方的<color=#FFE48A><b>数字变量</b></color>。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "List:",
-      "describe": "<color=#FFFF80FF>列表</color>：指令预留，尚未实现"
+      "pages": [
+        {
+          "title": "<Title>列表：预留指令</Title>\n<Small>此指令目前仅作预留，尚未实现运行逻辑</Small>",
+          "notes": [
+            {
+              "to": "下",
+              "line": "none",
+              "text": "此指令当前内部为空实现，运行时不会读取或存储列表数据。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "Value:",
-      "describe": "<color=#FFFF80FF>常量</color>：填在格子里的固定数字"
+      "pages": [
+        {
+          "title": "<Title>常量：固定数字</Title>\n<Small>把格子里填好的数字直接输出出去</Small>",
+          "notes": [
+            {
+              "to": "下",
+              "line": "下",
+              "text": "此指令把格子里设定的固定数字写入本格，并尝试传给<color=#9BE0FF><b>右</b></color>侧与<color=#9BE0FF><b>下</b></color>方的<color=#FFE48A><b>数字变量</b></color>，也可直接供相邻算子读取。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "Num:",
-      "describe": "<color=#FFFF80FF>数字变量</color>：读出变量值，并把它传给下方、右侧的同类变量块"
+      "pages": [
+        {
+          "title": "<Title>数字变量：按名字存数字</Title>\n<Small>同名的数字变量共用同一个值，并会自动向右下传递</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "上",
+              "text": "此指令优先使用本格刚被写入的数字，没有则读取同名<color=#FFE48A><b>数字变量</b></color>的共享值（都没有时默认为 <color=#FFE48A><b>0</b></color>）。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "读出后会写回同名变量，并继续向<color=#9BE0FF><b>右</b></color>和<color=#9BE0FF><b>下</b></color>传递；注意两个同名变量紧挨着会自动覆盖传递。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "Bool:",
-      "describe": "<color=#FFFF80FF>布尔变量</color>：读出变量值，并把它传给下方、右侧的同类变量块"
+      "pages": [
+        {
+          "title": "<Title>布尔变量：按名字存真假</Title>\n<Small>同名的布尔变量共用同一个真假值，并会自动向右下传递</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "上",
+              "text": "此指令优先使用本格刚被写入的真假值，没有则读取同名<color=#FFE48A><b>布尔变量</b></color>的共享值（都没有时默认为 <color=#7DFF9E><b>[假]</b></color>）。"
+            },
+            {
+              "to": "下",
+              "line": "下",
+              "text": "读出后会写回同名变量，并继续向<color=#9BE0FF><b>右</b></color>和<color=#9BE0FF><b>下</b></color>传递；注意两个同名变量上下或左右紧挨着会自动流过去。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "{",
-      "describe": "<color=#FFFF80FF>括弧</color>：把一块区域圈起来，只有被触发时才整块执行"
+      "pages": [
+        {
+          "title": "<Title>括弧：打包一块区域</Title>\n<Small>把从本格到右下角编号的区域圈起来，当成一个整体来触发</Small>",
+          "notes": [
+            {
+              "to": "上",
+              "line": "none",
+              "text": "写法是 { 加上两位终点格子编号（终点必须在本格的<color=#9BE0FF><b>右下方</b></color>，否则不生效）；圈里的其它格子默认不会参加主循环。"
+            },
+            {
+              "to": "下",
+              "line": "none",
+              "text": "只有当上游（如 <color=#FFAD00><b>如果</b></color> 或 <color=#FFAD00><b>循环</b></color>）允许本格执行时，才会按顺序把圈内所有格子整块跑一遍；本格还可同时叠写其它指令。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "goto:",
-      "describe": "<color=#FFFF80FF>跳转</color>：跳到格子里写的编号位置继续执行"
+      "pages": [
+        {
+          "title": "<Title>跳转：跳到指定格子</Title>\n<Small>直接把当前执行位置改到填好编号的那一格（0~99）</Small>",
+          "notes": [
+            {
+              "to": "下",
+              "line": "none",
+              "text": "运行到此块时，此指令把执行指针直接改写为格子里写的编号（0~99），从而实现跳过片段或回头循环。"
+            }
+          ]
+        }
+      ]
     },
     {
       "kind": "wait:",
-      "describe": "<color=#FFFF80FF>等待</color>：指令预留，尚未实现"
+      "pages": [
+        {
+          "title": "<Title>等待：预留指令</Title>\n<Small>此指令目前仅作预留，尚未实现，请勿在芯片中使用</Small>",
+          "notes": [
+            {
+              "to": "下",
+              "line": "none",
+              "text": "注意：此指令目前为未注册的空预留项，放进芯片运行时可能会触发异常，请暂时不要使用。"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

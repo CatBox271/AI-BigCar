@@ -166,10 +166,27 @@ public class GameManager : MonoBehaviour
 
     #region 代码百科
     [System.Serializable]
+    public class CodeNote
+    {
+        public string to;//这条说明摆到哪个位置：上/下/左/右（默认兼作连线方向）
+        public string line;//显式指定连线目标方向：上/下/左/右，留空表示沿用 to，写 "none" 表示不连线
+        public string text;//这条说明的正文，支持 <color=#RRGGBB> / <Title> / <Small> / <nobr>
+    }
+
+    [System.Serializable]
+    public class CodePage
+    {
+        public string title;//这一页讲哪个方面，显示在标题位
+        public List<CodeNote> notes = new();//这一页的说明，最多四条
+    }
+
+    [System.Serializable]
     public class CodeInfo
     {
         public string kind;//指令字符串，和 IC_Code.accurate / obscure 里的写法一致
-        public string describe;//详细描述
+        public string title;//旧的单页标题（回退用）
+        public List<CodeNote> notes = new();//旧的单页说明（回退用）
+        public List<CodePage> pages = new();//一页讲一个方面，左右箭头在这几页之间翻
     }
 
     [System.Serializable]
@@ -205,20 +222,6 @@ public class GameManager : MonoBehaviour
         codeLibrary.Clear();
     }
 
-    public static string GetCodeDescribe(string kind)
-    {
-        if (string.IsNullOrEmpty(kind)) return "";
-        for (int i = 0; i < CodeLibrary.Count; i++)
-        {
-            if (CodeLibrary[i].kind == kind) return CodeLibrary[i].describe;
-        }
-        //带名字的指令（Item:xx / Input:Bool:xx / Num:xx 之类）退回前缀那一条
-        for (int i = 0; i < CodeLibrary.Count; i++)
-        {
-            if (kind.StartsWith(CodeLibrary[i].kind)) return CodeLibrary[i].describe;
-        }
-        return "";
-    }
     #endregion
 
     #region 贴图管理
