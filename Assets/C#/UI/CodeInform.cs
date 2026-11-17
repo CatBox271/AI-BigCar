@@ -8,10 +8,10 @@ public class CodeInform : MonoBehaviour
     public Text text;
     public Animator anim;//Canvas 上那个 Animator（MoveVehicle）
 
-    public void Show(string kind)//点哪个指令块就把它的说明显示到代码百科上
+    public void Show(string kind)//百科打开时才更新说明，没打开就忽略
     {
+        if (!anim.GetBool("百科")) return;
         text.text = GameManager.GetCodeDescribe(kind);
-        anim.SetBool("百科", true);
     }
 
     public void Hide()//收起代码百科
