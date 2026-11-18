@@ -1,10 +1,10 @@
-{
+﻿{
   "codes": [
     {
       "kind": "true",
       "pages": [
         {
-          "title": "<Title>真：布尔常量</Title>\n<Small>布尔只有真假两种状态，此块恒定输出 [真]</Small>",
+          "title": "<Title><color=#FF0000>真</color>：布尔常量</Title>\n<Small>布尔只有真假两种状态，此块恒定输出 [真]</Small>",
           "notes": [
             {
               "to": "上",
@@ -24,7 +24,7 @@
       "kind": "false",
       "pages": [
         {
-          "title": "<Title>假：布尔常量</Title>\n<Small>布尔只有真假两种状态，此块恒定输出 [假]</Small>",
+          "title": "<Title><color=#FF0000>假</color>：布尔常量</Title>\n<Small>布尔只有真假两种状态，此块恒定输出 [假]</Small>",
           "notes": [
             {
               "to": "上",
@@ -44,7 +44,7 @@
       "kind": "if",
       "pages": [
         {
-          "title": "<Title>如果：条件入口</Title>\n<Small>读取左方或上方的布尔信号，任一为 [真] 就放行</Small>",
+          "title": "<Title><color=#FFAD00>如果</color>：条件入口</Title>\n<Small>读取左方或上方的布尔信号，任一为 [真] 就放行</Small>",
           "notes": [
             {
               "to": "上",
@@ -59,7 +59,7 @@
           ]
         },
         {
-          "title": "<Title>如果：不成立与分支链</Title>\n<Small>不成立时不会输出 [假]，且会放过后续分支</Small>",
+          "title": "<Title><color=#FFAD00>如果</color>：不成立与分支链</Title>\n<Small>不成立时不会输出 [假]，且会放过后续分支</Small>",
           "notes": [
             {
               "to": "上",
@@ -79,7 +79,7 @@
       "kind": "else",
       "pages": [
         {
-          "title": "<Title>否则：分支兜底</Title>\n<Small>前面的如果/再如果都没成立时，才轮到它执行</Small>",
+          "title": "<Title><color=#FFAD00>否则</color>：分支兜底</Title>\n<Small>前面的如果/再如果都没成立时，才轮到它执行</Small>",
           "notes": [
             {
               "to": "上",
@@ -94,7 +94,7 @@
           ]
         },
         {
-          "title": "<Title>否则：执行与屏蔽</Title>\n<Small>取前一支结果的反面，决定是否放行</Small>",
+          "title": "<Title><color=#FFAD00>否则</color>：执行与屏蔽</Title>\n<Small>取前一支结果的反面，决定是否放行</Small>",
           "notes": [
             {
               "to": "上",
@@ -114,12 +114,12 @@
       "kind": "elif",
       "pages": [
         {
-          "title": "<Title>再如果：多路分支</Title>\n<Small>前一支没成立时，再判断自己的条件</Small>",
+          "title": "<Title><color=#FFAD00>再如果</color>：多路分支</Title>\n<Small>前一支没成立时，再判断自己的条件</Small>",
           "notes": [
             {
               "to": "上",
               "line": "左",
-              "text": "此指令先向<color=#9BE0FF><b>左</b></color>、向<color=#9BE0FF><b>上</b></color>回溯配对的 <color=#FFAD00><b>如果</b></color> 链；若前面已经有分支成立，本块直接跳过并屏蔽<color=#9BE0FF><b>右</b></color>、<color=#9BE0FF><b>下</b></color>。"
+              "text": "此指令会在同一行往<color=#9BE0FF><b>左</b></color>、或在同一列往<color=#9BE0FF><b>上</b></color>找最近的 <color=#FFAD00><b>如果</b></color> 链；若前面已有分支成立，本块直接跳过并屏蔽<color=#9BE0FF><b>右</b></color>、<color=#9BE0FF><b>下</b></color>。"
             },
             {
               "to": "下",
@@ -134,7 +134,7 @@
       "kind": "+",
       "pages": [
         {
-          "title": "<Title>加法：两数相加</Title>\n<Small>计算 上方 + 左方 的结果并向下、右传递</Small>",
+          "title": "<Title><color=#95FF99>加法</color>：两数相加</Title>\n<Small>计算 上方 + 左方 的结果并向下、右传递</Small>",
           "notes": [
             {
               "to": "上",
@@ -154,7 +154,7 @@
       "kind": "+=",
       "pages": [
         {
-          "title": "<Title>累加：汇总写入变量</Title>\n<Small>把四周所有数字加起来，直接写进相邻的数字变量</Small>",
+          "title": "<Title><color=#00FF2F>累加</color>：汇总写入变量</Title>\n<Small>把四周所有数字加起来，直接写进相邻的数字变量</Small>",
           "notes": [
             {
               "to": "上",
@@ -164,7 +164,7 @@
             {
               "to": "下",
               "line": "右",
-              "text": "找到后，它会主动触发<color=#9BE0FF><b>右</b></color>、<color=#9BE0FF><b>下</b></color>的算子并把四向所有数字相加（含变量原值），覆盖写回该<color=#FFE48A><b>数字变量</b></color>。"
+              "text": "找到后，此指令会主动触发<color=#9BE0FF><b>右</b></color>、<color=#9BE0FF><b>下</b></color>的算子并把四向所有数字相加（含变量原值），覆盖写回该<color=#FFE48A><b>数字变量</b></color>。"
             }
           ]
         }
@@ -174,7 +174,7 @@
       "kind": "-",
       "pages": [
         {
-          "title": "<Title>减法：两数相减</Title>\n<Small>固定用 上方 减去 左方</Small>",
+          "title": "<Title><color=#95FF99>减法</color>：两数相减</Title>\n<Small>固定用 上方 减去 左方</Small>",
           "notes": [
             {
               "to": "上",
@@ -194,7 +194,7 @@
       "kind": "-=",
       "pages": [
         {
-          "title": "<Title>累减：从变量扣除</Title>\n<Small>从相邻的数字变量里减去其它方向的数值</Small>",
+          "title": "<Title><color=#00FF2F>累减</color>：从变量扣除</Title>\n<Small>从相邻的数字变量里减去其它方向的数值</Small>",
           "notes": [
             {
               "to": "上",
@@ -204,7 +204,7 @@
             {
               "to": "下",
               "line": "右",
-              "text": "接着主动触发<color=#9BE0FF><b>右</b></color>、<color=#9BE0FF><b>下</b></color>的算子，依次减去除该变量以外其它三向的数字，再写回该<color=#FFE48A><b>数字变量</b></color>。"
+              "text": "接着此指令会主动触发<color=#9BE0FF><b>右</b></color>、<color=#9BE0FF><b>下</b></color>的算子，依次减去除该变量以外其它三向的数字，再写回该<color=#FFE48A><b>数字变量</b></color>。"
             }
           ]
         }
@@ -214,7 +214,7 @@
       "kind": "*",
       "pages": [
         {
-          "title": "<Title>乘法：两数相乘</Title>\n<Small>计算 上方 × 左方 的乘积</Small>",
+          "title": "<Title><color=#95FF99>乘法</color>：两数相乘</Title>\n<Small>计算 上方 × 左方 的乘积</Small>",
           "notes": [
             {
               "to": "上",
@@ -234,7 +234,7 @@
       "kind": "*=",
       "pages": [
         {
-          "title": "<Title>累乘：倍率写回变量</Title>\n<Small>把四周其它方向的数字乘进相邻的数字变量</Small>",
+          "title": "<Title><color=#00FF2F>累乘</color>：倍率写回变量</Title>\n<Small>把四周其它方向的数字乘进相邻的数字变量</Small>",
           "notes": [
             {
               "to": "上",
@@ -244,7 +244,7 @@
             {
               "to": "下",
               "line": "右",
-              "text": "然后触发<color=#9BE0FF><b>右</b></color>、<color=#9BE0FF><b>下</b></color>的算子，把其余三个方向的数字依次乘上去（空位按 <color=#FFE48A><b>1</b></color>），再写回该<color=#FFE48A><b>数字变量</b></color>。"
+              "text": "然后此指令会触发<color=#9BE0FF><b>右</b></color>、<color=#9BE0FF><b>下</b></color>的算子，把其余三个方向的数字依次乘上去（空位按 <color=#FFE48A><b>1</b></color>），再写回该<color=#FFE48A><b>数字变量</b></color>。"
             }
           ]
         }
@@ -254,7 +254,7 @@
       "kind": "/",
       "pages": [
         {
-          "title": "<Title>除法：两数相除</Title>\n<Small>固定用 上方 除以 左方，除数为 0 时跳过</Small>",
+          "title": "<Title><color=#95FF99>除法</color>：两数相除</Title>\n<Small>固定用 上方 除以 左方，除数为 0 时跳过</Small>",
           "notes": [
             {
               "to": "上",
@@ -274,7 +274,7 @@
       "kind": "/=",
       "pages": [
         {
-          "title": "<Title>累除：连续除写回变量</Title>\n<Small>用其它方向的数字依次去除相邻的数字变量</Small>",
+          "title": "<Title><color=#00FF2F>累除</color>：连续除写回变量</Title>\n<Small>用其它方向的数字依次去除相邻的数字变量</Small>",
           "notes": [
             {
               "to": "上",
@@ -284,7 +284,7 @@
             {
               "to": "下",
               "line": "右",
-              "text": "随后依次除以另外三向的数字（空位按 <color=#FFE48A><b>1</b></color>）；一旦遇到某个除数为 <color=#FFE48A><b>0</b></color>，整条指令直接中止不写回。"
+              "text": "随后依次除以另外三向的数字（空位按 <color=#FFE48A><b>1</b></color>）；一旦遇到某个除数为 <color=#FFE48A><b>0</b></color>，此指令直接中止不写回。"
             }
           ]
         }
@@ -294,7 +294,7 @@
       "kind": "more",
       "pages": [
         {
-          "title": "<Title>大于：多路比大小</Title>\n<Small>判断最先读到的基准值是否严格大于其余输入</Small>",
+          "title": "<Title><color=#00ECE6>大于</color>：多路比大小</Title>\n<Small>判断最先读到的基准值是否严格大于其余输入</Small>",
           "notes": [
             {
               "to": "上",
@@ -309,7 +309,7 @@
           ]
         },
         {
-          "title": "<Title>大于：自适应输出口</Title>\n<Small>右侧只有接了数字才当输入，没接数字时也能输出</Small>",
+          "title": "<Title><color=#00ECE6>大于</color>：自适应输出口</Title>\n<Small>右侧只有接了数字才当输入，没接数字时也能输出</Small>",
           "notes": [
             {
               "to": "下",
@@ -324,7 +324,7 @@
       "kind": "less",
       "pages": [
         {
-          "title": "<Title>小于：多路比大小</Title>\n<Small>判断最先读到的基准值是否严格小于其余输入</Small>",
+          "title": "<Title><color=#00ECE6>小于</color>：多路比大小</Title>\n<Small>判断最先读到的基准值是否严格小于其余输入</Small>",
           "notes": [
             {
               "to": "上",
@@ -339,7 +339,7 @@
           ]
         },
         {
-          "title": "<Title>小于：自适应输出口</Title>\n<Small>布尔与数字不能混比，右侧空着数字时可作输出</Small>",
+          "title": "<Title><color=#00ECE6>小于</color>：自适应输出口</Title>\n<Small>布尔与数字不能混比，右侧空着数字时可作输出</Small>",
           "notes": [
             {
               "to": "下",
@@ -354,7 +354,7 @@
       "kind": "equal",
       "pages": [
         {
-          "title": "<Title>等于：数值判等</Title>\n<Small>检查所有参与比较的数字是否完全相等</Small>",
+          "title": "<Title><color=#00ECE6>等于</color>：数值判等</Title>\n<Small>检查所有参与比较的数字是否完全相等</Small>",
           "notes": [
             {
               "to": "上",
@@ -369,7 +369,7 @@
           ]
         },
         {
-          "title": "<Title>等于：自适应输出口</Title>\n<Small>右侧未作为数字输入时，可兼作结果输出口</Small>",
+          "title": "<Title><color=#00ECE6>等于</color>：自适应输出口</Title>\n<Small>右侧未作为数字输入时，可兼作结果输出口</Small>",
           "notes": [
             {
               "to": "下",
@@ -384,7 +384,7 @@
       "kind": "!",
       "pages": [
         {
-          "title": "<Title>非：布尔取反</Title>\n<Small>把 [真] 变成 [假]，把 [假] 变成 [真]</Small>",
+          "title": "<Title><color=#00A8FF>非</color>：布尔取反</Title>\n<Small>把 [真] 变成 [假]，把 [假] 变成 [真]</Small>",
           "notes": [
             {
               "to": "上",
@@ -404,7 +404,7 @@
       "kind": "&",
       "pages": [
         {
-          "title": "<Title>与：且门运算</Title>\n<Small>上方和左方必须同时为 [真]，结果才为 [真]</Small>",
+          "title": "<Title><color=#00A8FF>与</color>：且门运算</Title>\n<Small>上方和左方必须同时为 [真]，结果才为 [真]</Small>",
           "notes": [
             {
               "to": "上",
@@ -424,7 +424,7 @@
       "kind": "|",
       "pages": [
         {
-          "title": "<Title>或：或门运算</Title>\n<Small>上方或左方只要有一个为 [真]，结果就为 [真]</Small>",
+          "title": "<Title><color=#00A8FF>或</color>：或门运算</Title>\n<Small>上方或左方只要有一个为 [真]，结果就为 [真]</Small>",
           "notes": [
             {
               "to": "上",
@@ -444,7 +444,7 @@
       "kind": "^",
       "pages": [
         {
-          "title": "<Title>异或：不同才为真</Title>\n<Small>上方和左方的真假状态不同时，输出 [真]</Small>",
+          "title": "<Title><color=#00A8FF>异或</color>：不同才为真</Title>\n<Small>上方和左方的真假状态不同时，输出 [真]</Small>",
           "notes": [
             {
               "to": "上",
@@ -454,7 +454,7 @@
             {
               "to": "下",
               "line": "下",
-              "text": "一真一假时输出 <color=#7DFF9E><b>[真]</b></color>，同真或同假时输出 <color=#7DFF9E><b>[假]</b></color>，结果写往<color=#9BE0FF><b>右</b></color>与<color=#9BE0FF><b>下</b></color>。"
+              "text": "一真一假时此指令输出 <color=#7DFF9E><b>[真]</b></color>，同真或同假时输出 <color=#7DFF9E><b>[假]</b></color>，结果写往<color=#9BE0FF><b>右</b></color>与<color=#9BE0FF><b>下</b></color>。"
             }
           ]
         }
@@ -464,7 +464,7 @@
       "kind": "lerp",
       "pages": [
         {
-          "title": "<Title>插值：平滑过渡</Title>\n<Small>按 上方 的进度（0~1），在 左方 到 右方 之间取值</Small>",
+          "title": "<Title><color=#CAFF70>插值</color>：平滑过渡</Title>\n<Small>按 上方 的进度（0~1），在 左方 到 右方 之间取值</Small>",
           "notes": [
             {
               "to": "上",
@@ -484,7 +484,7 @@
       "kind": "pow",
       "pages": [
         {
-          "title": "<Title>乘方：计算幂次</Title>\n<Small>计算 上方 的 左方 次方</Small>",
+          "title": "<Title><color=#CAFF70>乘方</color>：计算幂次</Title>\n<Small>计算 上方 的 左方 次方</Small>",
           "notes": [
             {
               "to": "上",
@@ -504,7 +504,7 @@
       "kind": "log",
       "pages": [
         {
-          "title": "<Title>对数：求对数值</Title>\n<Small>以 左方 为底，求 上方 的对数</Small>",
+          "title": "<Title><color=#CAFF70>对数</color>：求对数值</Title>\n<Small>以 左方 为底，求 上方 的对数</Small>",
           "notes": [
             {
               "to": "上",
@@ -524,7 +524,7 @@
       "kind": "max",
       "pages": [
         {
-          "title": "<Title>取大：两数取最大值</Title>\n<Small>比较 上方 和 左方，输出较大的那个数字</Small>",
+          "title": "<Title><color=#4DFFB6>取大</color>：两数取最大值</Title>\n<Small>比较 上方 和 左方，输出较大的那个数字</Small>",
           "notes": [
             {
               "to": "上",
@@ -544,7 +544,7 @@
       "kind": "min",
       "pages": [
         {
-          "title": "<Title>取小：两数取最小值</Title>\n<Small>比较 上方 和 左方，输出较小的那个数字</Small>",
+          "title": "<Title><color=#4DFFB6>取小</color>：两数取最小值</Title>\n<Small>比较 上方 和 左方，输出较小的那个数字</Small>",
           "notes": [
             {
               "to": "上",
@@ -564,7 +564,7 @@
       "kind": "clamp",
       "pages": [
         {
-          "title": "<Title>夹取：限制范围</Title>\n<Small>把 上方 的数字夹在 左方(下限) 到 右方(上限) 之间</Small>",
+          "title": "<Title><color=#4DFFB6>夹取</color>：限制范围</Title>\n<Small>把 上方 的数字夹在 左方(下限) 到 右方(上限) 之间</Small>",
           "notes": [
             {
               "to": "上",
@@ -584,7 +584,7 @@
       "kind": "sin",
       "pages": [
         {
-          "title": "<Title>正弦：角度求正弦</Title>\n<Small>输入角度（度数制），输出 -1 到 1 之间的正弦值</Small>",
+          "title": "<Title><color=#CAFF70>正弦</color>：角度求正弦</Title>\n<Small>输入角度（度数制），输出 -1 到 1 之间的正弦值</Small>",
           "notes": [
             {
               "to": "上",
@@ -604,7 +604,7 @@
       "kind": "cos",
       "pages": [
         {
-          "title": "<Title>余弦：角度求余弦</Title>\n<Small>输入角度（度数制），输出 -1 到 1 之间的余弦值</Small>",
+          "title": "<Title><color=#CAFF70>余弦</color>：角度求余弦</Title>\n<Small>输入角度（度数制），输出 -1 到 1 之间的余弦值</Small>",
           "notes": [
             {
               "to": "上",
@@ -624,7 +624,7 @@
       "kind": "tan",
       "pages": [
         {
-          "title": "<Title>正切：角度求正切</Title>\n<Small>输入角度（度数制），输出该角度的正切值</Small>",
+          "title": "<Title><color=#CAFF70>正切</color>：角度求正切</Title>\n<Small>输入角度（度数制），输出该角度的正切值</Small>",
           "notes": [
             {
               "to": "上",
@@ -644,7 +644,7 @@
       "kind": "asin",
       "pages": [
         {
-          "title": "<Title>反正弦：数值转角度</Title>\n<Small>输入 -1 到 1 的正弦值，反算出对应角度（度数制）</Small>",
+          "title": "<Title><color=#CAFF70>反正弦</color>：数值转角度</Title>\n<Small>输入 -1 到 1 的正弦值，反算出对应角度（度数制）</Small>",
           "notes": [
             {
               "to": "上",
@@ -664,7 +664,7 @@
       "kind": "acos",
       "pages": [
         {
-          "title": "<Title>反余弦：数值转角度</Title>\n<Small>输入 -1 到 1 的余弦值，反算出对应角度（度数制）</Small>",
+          "title": "<Title><color=#CAFF70>反余弦</color>：数值转角度</Title>\n<Small>输入 -1 到 1 的余弦值，反算出对应角度（度数制）</Small>",
           "notes": [
             {
               "to": "上",
@@ -684,7 +684,7 @@
       "kind": "atan",
       "pages": [
         {
-          "title": "<Title>反正切：数值转角度</Title>\n<Small>输入任意正切值，反算出对应角度（度数制）</Small>",
+          "title": "<Title><color=#CAFF70>反正切</color>：数值转角度</Title>\n<Small>输入任意正切值，反算出对应角度（度数制）</Small>",
           "notes": [
             {
               "to": "上",
@@ -704,7 +704,7 @@
       "kind": "abs",
       "pages": [
         {
-          "title": "<Title>绝对值：去掉负号</Title>\n<Small>把负数变成正数，正数和 0 保持不变</Small>",
+          "title": "<Title><color=#4DFFB6>绝对值</color>：去掉负号</Title>\n<Small>把负数变成正数，正数和 0 保持不变</Small>",
           "notes": [
             {
               "to": "上",
@@ -724,7 +724,7 @@
       "kind": "floor",
       "pages": [
         {
-          "title": "<Title>向下取整：舍去小数</Title>\n<Small>往小的方向取整数（例如 3.9 变 3，-1.2 变 -2）</Small>",
+          "title": "<Title><color=#4DFFB6>向下取整</color>：舍去小数</Title>\n<Small>往小的方向取整数（例如 3.9 变 3，-1.2 变 -2）</Small>",
           "notes": [
             {
               "to": "上",
@@ -744,7 +744,7 @@
       "kind": "round",
       "pages": [
         {
-          "title": "<Title>四舍五入：取最接近整数</Title>\n<Small>把小数按四舍五入变成整数（半数 .5 会向偶数靠拢）</Small>",
+          "title": "<Title><color=#4DFFB6>四舍五入</color>：取最接近整数</Title>\n<Small>把小数按四舍五入变成整数（半数 .5 会向偶数靠拢）</Small>",
           "notes": [
             {
               "to": "上",
@@ -764,7 +764,7 @@
       "kind": "ceil",
       "pages": [
         {
-          "title": "<Title>向上取整：有小数就进一</Title>\n<Small>往大的方向取整数（例如 3.1 变 4，-1.9 变 -1）</Small>",
+          "title": "<Title><color=#4DFFB6>向上取整</color>：有小数就进一</Title>\n<Small>往大的方向取整数（例如 3.1 变 4，-1.9 变 -1）</Small>",
           "notes": [
             {
               "to": "上",
@@ -784,7 +784,7 @@
       "kind": "g_s",
       "pages": [
         {
-          "title": "<Title>速度：载具总速率</Title>\n<Small>读取当前芯片所在刚体的实时速度大小</Small>",
+          "title": "<Title><color=#FFFFFF>速度</color>：载具总速率</Title>\n<Small>读取当前芯片所在刚体的实时速度大小</Small>",
           "notes": [
             {
               "to": "下",
@@ -799,7 +799,7 @@
       "kind": "g_sa",
       "pages": [
         {
-          "title": "<Title>加速度：速率变化快慢</Title>\n<Small>读取当前载具速率正在变快还是变慢</Small>",
+          "title": "<Title><color=#A4A4A4>加速度</color>：速率变化快慢</Title>\n<Small>读取当前载具速率正在变快还是变慢</Small>",
           "notes": [
             {
               "to": "下",
@@ -814,7 +814,7 @@
       "kind": "g_vx",
       "pages": [
         {
-          "title": "<Title>横向速度：水平分速度</Title>\n<Small>读取载具在世界水平方向（X 轴）上的移动速度</Small>",
+          "title": "<Title><color=#FFFFFF>横向速度</color>：水平分速度</Title>\n<Small>读取载具在世界水平方向（X 轴）上的移动速度</Small>",
           "notes": [
             {
               "to": "下",
@@ -829,7 +829,7 @@
       "kind": "g_vy",
       "pages": [
         {
-          "title": "<Title>纵向速度：垂直分速度</Title>\n<Small>读取载具在世界垂直方向（Y 轴）上的升降速度</Small>",
+          "title": "<Title><color=#FFFFFF>纵向速度</color>：垂直分速度</Title>\n<Small>读取载具在世界垂直方向（Y 轴）上的升降速度</Small>",
           "notes": [
             {
               "to": "下",
@@ -844,7 +844,7 @@
       "kind": "g_a",
       "pages": [
         {
-          "title": "<Title>角速度：旋转快慢</Title>\n<Small>读取载具当前翻滚或转向的旋转速度</Small>",
+          "title": "<Title><color=#FEFFB7>角速度</color>：旋转快慢</Title>\n<Small>读取载具当前翻滚或转向的旋转速度</Small>",
           "notes": [
             {
               "to": "下",
@@ -859,7 +859,7 @@
       "kind": "g_vxa",
       "pages": [
         {
-          "title": "<Title>横向加速度：水平推力感</Title>\n<Small>读取水平方向速度（X 轴）的瞬时变化率</Small>",
+          "title": "<Title><color=#A4A4A4>横向加速度</color>：水平推力感</Title>\n<Small>读取水平方向速度（X 轴）的瞬时变化率</Small>",
           "notes": [
             {
               "to": "下",
@@ -874,7 +874,7 @@
       "kind": "g_vya",
       "pages": [
         {
-          "title": "<Title>纵向加速度：垂直过载</Title>\n<Small>读取垂直方向速度（Y 轴）的瞬时变化率</Small>",
+          "title": "<Title><color=#A4A4A4>纵向加速度</color>：垂直过载</Title>\n<Small>读取垂直方向速度（Y 轴）的瞬时变化率</Small>",
           "notes": [
             {
               "to": "下",
@@ -889,7 +889,7 @@
       "kind": "g_aa",
       "pages": [
         {
-          "title": "<Title>角加速度：旋转变化率</Title>\n<Small>读取载具角速度正在加快还是减慢</Small>",
+          "title": "<Title><color=#FDFF77>角加速度</color>：旋转变化率</Title>\n<Small>读取载具角速度正在加快还是减慢</Small>",
           "notes": [
             {
               "to": "下",
@@ -904,7 +904,7 @@
       "kind": "v_a",
       "pages": [
         {
-          "title": "<Title>垂直夹角：车身倾斜度</Title>\n<Small>读取车身与竖直向上的夹角（左倾为负，右倾为正）</Small>",
+          "title": "<Title><color=#FFE225>垂直夹角</color>：车身倾斜度</Title>\n<Small>读取车身与竖直向上的夹角（左倾为负，右倾为正）</Small>",
           "notes": [
             {
               "to": "下",
@@ -919,7 +919,7 @@
       "kind": "for",
       "pages": [
         {
-          "title": "<Title>循环：重复执行多次</Title>\n<Small>读取次数 b，把 右边 和 下边 各重复执行 b 次</Small>",
+          "title": "<Title><color=#FF6800>循环</color>：重复执行多次</Title>\n<Small>读取次数 b，把 右边 和 下边 各重复执行 b 次</Small>",
           "notes": [
             {
               "to": "上",
@@ -934,7 +934,7 @@
           ]
         },
         {
-          "title": "<Title>循环：跨帧保护机制</Title>\n<Small>单帧最多跑 200 次，超出自动切到下一帧继续</Small>",
+          "title": "<Title><color=#FF6800>循环</color>：跨帧保护机制</Title>\n<Small>单帧最多跑 200 次，超出自动切到下一帧继续</Small>",
           "notes": [
             {
               "to": "下",
@@ -949,7 +949,7 @@
       "kind": "while_do",
       "pages": [
         {
-          "title": "<Title>当型循环：预留指令</Title>\n<Small>此指令目前仅作预留，尚未实现运行逻辑</Small>",
+          "title": "<Title><color=#FF6800>当型循环</color>：预留指令</Title>\n<Small>此指令目前仅作预留，尚未实现运行逻辑</Small>",
           "notes": [
             {
               "to": "下",
@@ -964,7 +964,7 @@
       "kind": "do_while",
       "pages": [
         {
-          "title": "<Title>直到型循环：预留指令</Title>\n<Small>此指令目前仅作预留，尚未实现运行逻辑</Small>",
+          "title": "<Title><color=#FF6800>直到型循环</color>：预留指令</Title>\n<Small>此指令目前仅作预留，尚未实现运行逻辑</Small>",
           "notes": [
             {
               "to": "下",
@@ -979,7 +979,7 @@
       "kind": "print",
       "pages": [
         {
-          "title": "<Title>打印：调试输出到终端</Title>\n<Small>把 上方 和 左方 的数字或真假值打印到芯片终端</Small>",
+          "title": "<Title><color=#FF6800>打印</color>：调试输出到终端</Title>\n<Small>把 上方 和 左方 的数字或真假值打印到芯片终端</Small>",
           "notes": [
             {
               "to": "上",
@@ -999,7 +999,7 @@
       "kind": "p_x",
       "pages": [
         {
-          "title": "<Title>X 坐标：世界水平位置</Title>\n<Small>读取芯片当前所在的世界 X 坐标</Small>",
+          "title": "<Title><color=#FFE225>X 坐标</color>：世界水平位置</Title>\n<Small>读取芯片当前所在的世界 X 坐标</Small>",
           "notes": [
             {
               "to": "下",
@@ -1014,7 +1014,7 @@
       "kind": "p_y",
       "pages": [
         {
-          "title": "<Title>Y 坐标：世界高度位置</Title>\n<Small>读取芯片当前所在的世界 Y 坐标</Small>",
+          "title": "<Title><color=#FFE225>Y 坐标</color>：世界高度位置</Title>\n<Small>读取芯片当前所在的世界 Y 坐标</Small>",
           "notes": [
             {
               "to": "下",
@@ -1029,7 +1029,7 @@
       "kind": "start",
       "pages": [
         {
-          "title": "<Title>启动：首帧初始化 + 主循环</Title>\n<Small>芯片启动后先跑一次下方，之后每帧跑一次右方</Small>",
+          "title": "<Title><color=#FFAD00>启动</color>：首帧初始化 + 主循环</Title>\n<Small>芯片启动后先跑一次下方，之后每帧跑一次右方</Small>",
           "notes": [
             {
               "to": "上",
@@ -1049,7 +1049,7 @@
       "kind": "time",
       "pages": [
         {
-          "title": "<Title>计时：预留指令</Title>\n<Small>此指令目前仅作预留，尚未实现运行逻辑</Small>",
+          "title": "<Title><color=#FF3926>计时</color>：预留指令</Title>\n<Small>此指令目前仅作预留，尚未实现运行逻辑</Small>",
           "notes": [
             {
               "to": "下",
@@ -1064,7 +1064,7 @@
       "kind": "delta_time",
       "pages": [
         {
-          "title": "<Title>时间增量：本帧间隔秒数</Title>\n<Small>读取上一帧到本帧经过的时间（秒）</Small>",
+          "title": "<Title><color=#FF3926>时间增量</color>：本帧间隔秒数</Title>\n<Small>读取上一帧到本帧经过的时间（秒）</Small>",
           "notes": [
             {
               "to": "下",
@@ -1079,7 +1079,7 @@
       "kind": "if_not",
       "pages": [
         {
-          "title": "<Title>如果不是：条件取反开关</Title>\n<Small>左方和上方全为 [假] 时才成立，其余规则与 如果 相同</Small>",
+          "title": "<Title><color=#FFAD00>如果不是</color>：条件取反开关</Title>\n<Small>左方和上方全为 [假] 时才成立，其余规则与 如果 相同</Small>",
           "notes": [
             {
               "to": "上",
@@ -1099,7 +1099,7 @@
       "kind": "Item:",
       "pages": [
         {
-          "title": "<Title>输出组件：驱动载具零件</Title>\n<Small>把结果写进同名载具组件（如轮子、螺旋桨、舵机）</Small>",
+          "title": "<Title><color=#FFAD00>输出组件</color>：驱动载具零件</Title>\n<Small>把结果写进同名载具组件（如轮子、螺旋桨、舵机）</Small>",
           "notes": [
             {
               "to": "上",
@@ -1119,7 +1119,7 @@
       "kind": "Input:Bool:",
       "pages": [
         {
-          "title": "<Title>输入真伪：读取开关按钮</Title>\n<Small>读取你在界面上按下的同名开关按钮状态</Small>",
+          "title": "<Title><color=#4380FF>输入真伪</color>：读取开关按钮</Title>\n<Small>读取你在界面上按下的同名开关按钮状态</Small>",
           "notes": [
             {
               "to": "下",
@@ -1134,7 +1134,7 @@
       "kind": "Input:Num:",
       "pages": [
         {
-          "title": "<Title>输入数字：读取数字滑条</Title>\n<Small>读取你在界面上调节的同名数字控件数值</Small>",
+          "title": "<Title><color=#6AFF7D>输入数字</color>：读取数字滑条</Title>\n<Small>读取你在界面上调节的同名数字控件数值</Small>",
           "notes": [
             {
               "to": "下",
@@ -1149,7 +1149,7 @@
       "kind": "List:",
       "pages": [
         {
-          "title": "<Title>列表：预留指令</Title>\n<Small>此指令目前仅作预留，尚未实现运行逻辑</Small>",
+          "title": "<Title><color=#FF6800>列表</color>：预留指令</Title>\n<Small>此指令目前仅作预留，尚未实现运行逻辑</Small>",
           "notes": [
             {
               "to": "下",
@@ -1164,7 +1164,7 @@
       "kind": "Value:",
       "pages": [
         {
-          "title": "<Title>常量：固定数字</Title>\n<Small>把格子里填好的数字直接输出出去</Small>",
+          "title": "<Title><color=#FF0000>常量</color>：固定数字</Title>\n<Small>把格子里填好的数字直接输出出去</Small>",
           "notes": [
             {
               "to": "下",
@@ -1179,7 +1179,7 @@
       "kind": "Num:",
       "pages": [
         {
-          "title": "<Title>数字变量：按名字存数字</Title>\n<Small>同名的数字变量共用同一个值，并会自动向右下传递</Small>",
+          "title": "<Title><color=#169F00>数字变量</color>：按名字存数字</Title>\n<Small>同名的数字变量共用同一个值，并会自动向右下传递</Small>",
           "notes": [
             {
               "to": "上",
@@ -1199,7 +1199,7 @@
       "kind": "Bool:",
       "pages": [
         {
-          "title": "<Title>布尔变量：按名字存真假</Title>\n<Small>同名的布尔变量共用同一个真假值，并会自动向右下传递</Small>",
+          "title": "<Title><color=#005CFF>布尔变量</color>：按名字存真假</Title>\n<Small>同名的布尔变量共用同一个真假值，并会自动向右下传递</Small>",
           "notes": [
             {
               "to": "上",
@@ -1219,7 +1219,7 @@
       "kind": "{",
       "pages": [
         {
-          "title": "<Title>括弧：打包一块区域</Title>\n<Small>把从本格到右下角编号的区域圈起来，当成一个整体来触发</Small>",
+          "title": "<Title><color=#FF6800>括弧</color>：打包一块区域</Title>\n<Small>把从本格到右下角编号的区域圈起来，当成一个整体来触发</Small>",
           "notes": [
             {
               "to": "上",
@@ -1239,7 +1239,7 @@
       "kind": "goto:",
       "pages": [
         {
-          "title": "<Title>跳转：跳到指定格子</Title>\n<Small>直接把当前执行位置改到填好编号的那一格（0~99）</Small>",
+          "title": "<Title><color=#FF6800>跳转</color>：跳到指定格子</Title>\n<Small>直接把当前执行位置改到填好编号的那一格（0~99）</Small>",
           "notes": [
             {
               "to": "下",
@@ -1254,7 +1254,7 @@
       "kind": "wait:",
       "pages": [
         {
-          "title": "<Title>等待：预留指令</Title>\n<Small>此指令目前仅作预留，尚未实现，请勿在芯片中使用</Small>",
+          "title": "<Title><color=#FFAD00>等待</color>：预留指令</Title>\n<Small>此指令目前仅作预留，尚未实现，请勿在芯片中使用</Small>",
           "notes": [
             {
               "to": "下",

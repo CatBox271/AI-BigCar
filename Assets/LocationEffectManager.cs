@@ -13,6 +13,12 @@ public enum EffectKind
     adv,// advent effect rate percent add
 }
 
+public enum ApplyKind
+{
+    加,
+    乘,
+    百分比,
+}
 [System.Serializable]
 public class LocationEffect
 {
@@ -20,22 +26,38 @@ public class LocationEffect
     [System.Serializable]
     public class CarEffect//上层先排好序，先forever后！forever，然后在小组里按EffectKind的顺序排序执行，对外说是先加再乘，percent乘算
     {
-        public EffectKind effectKind;
+        public EffectKind effect;
+        public ApplyKind apply;
         public float effectNum;
         public bool forever;
         public void Apply(OwnCar car)
         {
-            switch (effectKind)
+            switch (effect)
             {
 
             }
         }
         public void Cancel(OwnCar car)
         {
-            switch (effectKind)
+            switch (effect)
             {
 
             }
+        }
+        /// <summary>
+        /// 用于排序
+        /// </summary>
+        /// <param name="A"></param>
+        /// <param name="B"></param>
+        /// <returns>1A大-1B大0AB相等 </returns>
+        public static int Compare(CarEffect A, CarEffect B)
+        {
+            if (A.forever ^ B.forever) return A.forever ? 1 : -1;
+            if ((int)A.effect < (int)B.effect) return 1;
+            if ((int)A.effect > (int)B.effect) return -1;
+            if ((int)A.apply < (int)B.apply) return 1;
+            if ((int)A.apply > (int)B.apply) return -1;
+            return 0;
         }
     }
     public string pic_name;

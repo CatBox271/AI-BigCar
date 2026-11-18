@@ -2681,7 +2681,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 744005603}
+  - {fileID: 1661956465}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3451,7 +3451,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   car: {fileID: 607472069}
-  effectPic: {fileID: 0}
+  effectPic: {fileID: 8746771696989260745, guid: cdd1f879db5a6a34483fba89cc869181, type: 3}
 --- !u!1 &278152307
 GameObject:
   m_ObjectHideFlags: 0
@@ -8066,17 +8066,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &662136039 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7213221229620536478, guid: cdd1f879db5a6a34483fba89cc869181, type: 3}
-  m_PrefabInstance: {fileID: 1810274808449500511}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &664563663
 GameObject:
   m_ObjectHideFlags: 0
@@ -8653,6 +8642,97 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!21 &696408923
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_CoronaFade
+  m_Shader: {fileID: 4800000, guid: e08bb392559e7764483ad8a694ee672a, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SilkTex:
+        m_Texture: {fileID: 2800000, guid: a1c9fb2830553b44da866e28f2e8dfe9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AngularFreq: 30
+    - _BandSharp: 1
+    - _BandWidth: 0.3
+    - _Bands: 16
+    - _Blocks: 1.4
+    - _Brightness: 1
+    - _Contrast: 0.75
+    - _Core: 1
+    - _CoreAmount: 1
+    - _CorePow: 2.2
+    - _CorePower: 1.4
+    - _CoreWidth: 0.012
+    - _Detail: 1.6
+    - _Dissolve: 0.55
+    - _EdgeSharp: 0.012
+    - _EdgeSoftness: 0.03
+    - _FadeLength: 0.9
+    - _Falloff: 1.6
+    - _Fibers: 22
+    - _Flow: 0.6
+    - _Glow: 1
+    - _GlowPower: 1
+    - _GlowScale: 2.2
+    - _GlowWidth: 0.85
+    - _Haze: 0.45
+    - _HueShift: 0.1
+    - _LayerSpread: 1
+    - _Layers: 0.35
+    - _Mirror: 0
+    - _Mode: 5
+    - _RadialFreq: 2
+    - _Reach: 2.2
+    - _Saturation: 0.75
+    - _ScaleX: 1.4
+    - _ScaleY: 9
+    - _Scroll: 0.35
+    - _Sharpness: 1.3
+    - _Silk: 26
+    - _SilkFreq: 24
+    - _SilkSharp: 0.42
+    - _SourceX: -0.45
+    - _Speed: 0.35
+    - _Spread: 0.3
+    - _Streaks: 5.5
+    - _W1: 0.05
+    - _W2: 0.26
+    - _W3: 0.55
+    - _WaveDepth: 0.85
+    - _Waves: 12
+    - _Width: 1
+    - _Wobble: 1.6
+    m_Colors:
+    - _Color: {r: 0, g: 0.47835827, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Tiling: {r: 1, g: 1.6, b: 0, a: 0}
+    - _UVRect: {r: 0, g: 0, b: 1, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1 &709505173
 GameObject:
   m_ObjectHideFlags: 0
@@ -9089,97 +9169,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7503918161517790506, guid: ab8aa5797786ea24f99c06b7435d34a8, type: 3}
   m_PrefabInstance: {fileID: 740444315}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &744005603
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: M_CoronaFade
-  m_Shader: {fileID: 4800000, guid: e08bb392559e7764483ad8a694ee672a, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SilkTex:
-        m_Texture: {fileID: 2800000, guid: a1c9fb2830553b44da866e28f2e8dfe9, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _AngularFreq: 30
-    - _BandSharp: 1
-    - _BandWidth: 0.3
-    - _Bands: 16
-    - _Blocks: 1.4
-    - _Brightness: 1
-    - _Contrast: 0.75
-    - _Core: 1
-    - _CoreAmount: 1
-    - _CorePow: 2.2
-    - _CorePower: 1.4
-    - _CoreWidth: 0.012
-    - _Detail: 1.6
-    - _Dissolve: 0.55
-    - _EdgeSharp: 0.012
-    - _EdgeSoftness: 0.03
-    - _FadeLength: 0.9
-    - _Falloff: 1.6
-    - _Fibers: 22
-    - _Flow: 0.6
-    - _Glow: 1
-    - _GlowPower: 1
-    - _GlowScale: 2.2
-    - _GlowWidth: 0.85
-    - _Haze: 0.45
-    - _HueShift: 0.1
-    - _LayerSpread: 1
-    - _Layers: 0.35
-    - _Mirror: 1
-    - _Mode: 5
-    - _RadialFreq: 2
-    - _Reach: 2.2
-    - _Saturation: 0.75
-    - _ScaleX: 1.4
-    - _ScaleY: 9
-    - _Scroll: 0.35
-    - _Sharpness: 1.3
-    - _Silk: 26
-    - _SilkFreq: 24
-    - _SilkSharp: 0.42
-    - _SourceX: -0.45
-    - _Speed: 0.35
-    - _Spread: 0.3
-    - _Streaks: 5.5
-    - _W1: 0.05
-    - _W2: 0.26
-    - _W3: 0.55
-    - _WaveDepth: 0.85
-    - _Waves: 12
-    - _Width: 1
-    - _Wobble: 1.6
-    m_Colors:
-    - _Color: {r: 1, g: 0, b: 0.07960701, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Tiling: {r: 1, g: 1.6, b: 0, a: 0}
-    - _UVRect: {r: 0, g: 0, b: 1, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &755825913
 GameObject:
   m_ObjectHideFlags: 0
@@ -11126,6 +11115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameMode: 2
   StartGameState: 0
+  center_out_die: 1
 --- !u!4 &981048324 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5757320234265635096, guid: 19a9637c93a47dc4e95a8e6872d0c8c9, type: 3}
@@ -14572,35 +14562,6 @@ MonoBehaviour:
   Velaffect: 0.5
   BlendRate: 0
   CombinedX: 0
---- !u!1 &1393236629 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8746771696989260745, guid: cdd1f879db5a6a34483fba89cc869181, type: 3}
-  m_PrefabInstance: {fileID: 1810274808449500511}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1393236630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1393236629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ae8b49a9827c3f4f855cbd79fb2297b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  kind: 2
-  text_content: "\xD72"
-  text: {fileID: 662136039}
-  pic: {fileID: 1839979686}
-  textTransformEditor:
-    local_position: {x: -19, y: 0, z: 0}
-    local_euler_angles: {x: 0, y: 0, z: 0}
-    local_scale: {x: 1, y: 1, z: 1}
-  picTransformEditor:
-    local_position: {x: 0, y: 0, z: 0}
-    local_euler_angles: {x: 0, y: 0, z: 0}
-    local_scale: {x: 1, y: 1, z: 1}
 --- !u!1 &1394284902
 GameObject:
   m_ObjectHideFlags: 0
@@ -15695,97 +15656,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!21 &1503295793
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: M_CoronaFade
-  m_Shader: {fileID: 4800000, guid: e08bb392559e7764483ad8a694ee672a, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SilkTex:
-        m_Texture: {fileID: 2800000, guid: a1c9fb2830553b44da866e28f2e8dfe9, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _AngularFreq: 30
-    - _BandSharp: 1
-    - _BandWidth: 0.3
-    - _Bands: 16
-    - _Blocks: 1.4
-    - _Brightness: 1
-    - _Contrast: 0.75
-    - _Core: 1
-    - _CoreAmount: 1
-    - _CorePow: 2.2
-    - _CorePower: 1.4
-    - _CoreWidth: 0.012
-    - _Detail: 1.6
-    - _Dissolve: 0.55
-    - _EdgeSharp: 0.012
-    - _EdgeSoftness: 0.03
-    - _FadeLength: 0.9
-    - _Falloff: 1.6
-    - _Fibers: 22
-    - _Flow: 0.6
-    - _Glow: 1
-    - _GlowPower: 1
-    - _GlowScale: 2.2
-    - _GlowWidth: 0.85
-    - _Haze: 0.45
-    - _HueShift: 0.1
-    - _LayerSpread: 1
-    - _Layers: 0.35
-    - _Mirror: 0
-    - _Mode: 5
-    - _RadialFreq: 2
-    - _Reach: 2.2
-    - _Saturation: 0.75
-    - _ScaleX: 1.4
-    - _ScaleY: 9
-    - _Scroll: 0.35
-    - _Sharpness: 1.3
-    - _Silk: 26
-    - _SilkFreq: 24
-    - _SilkSharp: 0.42
-    - _SourceX: -0.45
-    - _Speed: 0.35
-    - _Spread: 0.3
-    - _Streaks: 5.5
-    - _W1: 0.05
-    - _W2: 0.26
-    - _W3: 0.55
-    - _WaveDepth: 0.85
-    - _Waves: 12
-    - _Width: 1
-    - _Wobble: 1.6
-    m_Colors:
-    - _Color: {r: 0, g: 0.47835827, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Tiling: {r: 1, g: 1.6, b: 0, a: 0}
-    - _UVRect: {r: 0, g: 0, b: 1, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &1504213373
 GameObject:
   m_ObjectHideFlags: 0
@@ -17556,6 +17426,98 @@ Transform:
   - {fileID: 1724546792}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!21 &1661956465
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_CoronaFade
+  m_Shader: {fileID: 4800000, guid: e08bb392559e7764483ad8a694ee672a, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _MIRROR_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SilkTex:
+        m_Texture: {fileID: 2800000, guid: a1c9fb2830553b44da866e28f2e8dfe9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AngularFreq: 30
+    - _BandSharp: 1
+    - _BandWidth: 0.3
+    - _Bands: 16
+    - _Blocks: 1.4
+    - _Brightness: 1
+    - _Contrast: 0.75
+    - _Core: 1
+    - _CoreAmount: 1
+    - _CorePow: 2.2
+    - _CorePower: 1.4
+    - _CoreWidth: 0.012
+    - _Detail: 1.6
+    - _Dissolve: 0.55
+    - _EdgeSharp: 0.012
+    - _EdgeSoftness: 0.03
+    - _FadeLength: 0.9
+    - _Falloff: 1.6
+    - _Fibers: 22
+    - _Flow: 0.6
+    - _Glow: 1
+    - _GlowPower: 1
+    - _GlowScale: 2.2
+    - _GlowWidth: 0.85
+    - _Haze: 0.45
+    - _HueShift: 0.1
+    - _LayerSpread: 1
+    - _Layers: 0.35
+    - _Mirror: 1
+    - _Mode: 5
+    - _RadialFreq: 2
+    - _Reach: 2.2
+    - _Saturation: 0.75
+    - _ScaleX: 1.4
+    - _ScaleY: 9
+    - _Scroll: 0.35
+    - _Sharpness: 1.3
+    - _Silk: 26
+    - _SilkFreq: 24
+    - _SilkSharp: 0.42
+    - _SourceX: -0.45
+    - _Speed: 0.35
+    - _Spread: 0.3
+    - _Streaks: 5.5
+    - _W1: 0.05
+    - _W2: 0.26
+    - _W3: 0.55
+    - _WaveDepth: 0.85
+    - _Waves: 12
+    - _Width: 1
+    - _Wobble: 1.6
+    m_Colors:
+    - _Color: {r: 1, g: 0, b: 0.07960701, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Tiling: {r: 1, g: 1.6, b: 0, a: 0}
+    - _UVRect: {r: 0, g: 0, b: 1, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1 &1665652413
 GameObject:
   m_ObjectHideFlags: 0
@@ -20001,11 +19963,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!212 &1839979686 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 6845731526200423342, guid: cdd1f879db5a6a34483fba89cc869181, type: 3}
-  m_PrefabInstance: {fileID: 1810274808449500511}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1841104019
 GameObject:
   m_ObjectHideFlags: 0
@@ -20693,7 +20650,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1503295793}
+  - {fileID: 696408923}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -23146,8 +23103,12 @@ PrefabInstance:
       value: -9
       objectReference: {fileID: 0}
     - target: {fileID: 7213221229620536478, guid: cdd1f879db5a6a34483fba89cc869181, type: 3}
+      propertyPath: m_text
+      value: "\xD72"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7213221229620536478, guid: cdd1f879db5a6a34483fba89cc869181, type: 3}
       propertyPath: m_fontSize
-      value: 38.3
+      value: 43.65
       objectReference: {fileID: 0}
     - target: {fileID: 7213221229620536478, guid: cdd1f879db5a6a34483fba89cc869181, type: 3}
       propertyPath: m_margin.w
@@ -23164,6 +23125,10 @@ PrefabInstance:
     - target: {fileID: 7213221229620536478, guid: cdd1f879db5a6a34483fba89cc869181, type: 3}
       propertyPath: m_margin.z
       value: -2.5821686
+      objectReference: {fileID: 0}
+    - target: {fileID: 7213221229620536478, guid: cdd1f879db5a6a34483fba89cc869181, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8654773331361975900, guid: cdd1f879db5a6a34483fba89cc869181, type: 3}
       propertyPath: m_LocalPosition.x
@@ -23212,10 +23177,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8746771696989260745, guid: cdd1f879db5a6a34483fba89cc869181, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1393236630}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdd1f879db5a6a34483fba89cc869181, type: 3}
 --- !u!4 &1944779692608067278
 Transform:

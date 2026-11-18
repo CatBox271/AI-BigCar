@@ -170,10 +170,13 @@ public class SaveMode : MonoBehaviour
                 i += 100;
                 continue;
             }
-            CellCount++;
+            float cell = float.Parse(vs.carsave[i]);
+            if (cell >= 0 && cell < 1000) CellCount++;//负数(-1000系)是上一格的连接数据，不算格子
             ConfirmCarSave.Add(vs.carsave[i]);
         }
         car_height = car_width == 0 ? 0 : CellCount / car_width;//按格子行数算真实高度
+        print(new Vector2Int(car_width, car_height));
+
         //Closet
         bool ok = false;
         List<OwnCar> ocl = mv.bm.FindCar();
@@ -181,6 +184,7 @@ public class SaveMode : MonoBehaviour
         {
 
             Vector2Int Size = ocl[Choosed].ColliderArea;
+            print(Size);
             if (Size.x >= car_width && Size.y >= car_height)
             {
                 ok = true;
@@ -194,6 +198,7 @@ public class SaveMode : MonoBehaviour
         }
         else
         {
+
             //加载空间不足提示
             ShowCarName.text = "空间不足，放不下<" + vs.carsave[0] + ">";
             mv.anim.Play("LoadReplaceConfirm");

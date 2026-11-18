@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Linq;
 
 public class IC_Code : MonoBehaviour,ION
 {
@@ -1840,6 +1841,11 @@ public class IC_Code : MonoBehaviour,ION
                     if ((1 < k && k < 5) || (44 < k && k < 48) || k == 54)
                     {
                         Ban(new() { Index(where[i], 1), Index(where[i], 3) });
+                    }
+                    int bracket = BracketStart.IndexOf(where[i]);
+                    if (bracket != -1)
+                    {
+                        Ban(BracketContext[bracket].Skip(1).ToList());
                     }
                 }
             }
