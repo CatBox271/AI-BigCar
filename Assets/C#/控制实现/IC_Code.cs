@@ -134,6 +134,13 @@ public class IC_Code : MonoBehaviour,ION
             B6,
             B7,
             B8,
+            B9,
+            B10,
+            B11,
+            B12,
+            B13,
+            B14,
+            B15,
         };
         SceneProp sceneProp = SceneProp.Instance;
         VideoMode = sceneProp != null && (sceneProp.gameMode == SceneProp.GameMode.video || sceneProp.gameMode == SceneProp.GameMode.card);
@@ -510,12 +517,24 @@ public class IC_Code : MonoBehaviour,ION
                         }
                     }
                     break;
+                case 12:
+                    print("readonlyN");
+                    WSN(i, str[13..]);
+                    break;
+                case 13:
+                    WSN(i, str[12..]);
+                    break;
+                case 14:
+                    WSN(i, str[14..]);
+                    break;
+                case 15:
+                    WSN(i, str[13..]);
+                    break;
             }
         }
     }
 
-
-    public readonly List<string> obscure = new() {
+    private static readonly List<string> obscure = new() {
         "Item:",//-2:0
         "Input:Bool:",
         "Input:Num:",//-4:2
@@ -525,10 +544,16 @@ public class IC_Code : MonoBehaviour,ION
         "Bool:",//-8:6
         "{",
         "goto:",//-10:8
-        "wait:"
+        "wait:",
+        "Output_Bool:",//-12:10
+        "Output_Num:",
+        "readonly_Num:",//-14:12
+        "setonly_Num:",
+        "readonly_Bool:",//-16:14
+        "setonly_Bool:",
     };
     //转换
-    public readonly List<string> accurate = new() {
+    private static readonly List<string> accurate = new() {
         "true",//0
         "false",
         "if",
@@ -703,9 +728,33 @@ public class IC_Code : MonoBehaviour,ION
 
     }
 
-    private void B12()//未注册的预留项
+    private void B12()//readonly Num,只出的数字变量，和B5共享一个值
     {
-
+        float ram = NumRead(runAt,true);
+        if (!IsNum(ram)) ram = 0;
+        NumWrite(runAt, ram, true);
+        Assignment(runAt, ram);
+    }
+    private void B13()//setonly Num,只改的数字变量，和B5共享一个值
+    {
+        float ram = Read(runAt);
+        if (!IsNum(ram)) ram = NumRead(runAt, true);
+        if (!IsNum(ram)) ram = 0;
+        NumWrite(runAt, ram, true);
+    }
+    private void B14()//readonly Bool,只出的Bool变量
+    {
+        float ram = BoolRead(runAt, true);
+        if (!IsBool(ram)) ram = float.NegativeInfinity;
+        BoolWrite(runAt, ram, true);
+        Assignment(runAt, ram);
+    }
+    private void B15()//setonly Bool,只改的Bool变量
+    {
+        float ram = Read(runAt);
+        if (!IsBool(ram)) ram = BoolRead(runAt, true);
+        if (!IsBool(ram)) ram = float.NegativeInfinity;
+        BoolWrite(runAt, ram, true);
     }
     #endregion
 
@@ -754,7 +803,6 @@ public class IC_Code : MonoBehaviour,ION
     private void A4()//elif：上一个 if 为假才继续判断
     {
         float b = -IfFinder(runAt);//elif
-        print(b);
         if (!float.IsPositiveInfinity(b))//上一支成立，本支整个跳过，也不传值
         {
             Ban(null, null, new() { 3, 4 });
@@ -777,7 +825,7 @@ public class IC_Code : MonoBehaviour,ION
    
     private void A6()//+=：把上、下、左、右的值加总后写进命中的 Num 变量
     {
-        AroundHave(new() { -7 }, runAt, out List<sbyte> ID);
+        AroundHave(new() { -7,-14 ,-15 }, runAt, out List<sbyte> ID);
 
         if (ID.Count == 0) return;
 
@@ -785,11 +833,11 @@ public class IC_Code : MonoBehaviour,ION
         for (sbyte i = 0; i < 4; i++)
         {
             if (i % 2 == 1) JustActive(runAt, i);//右和下
-            float num1 = GetNum(runAt, i);
+            float num1 = GetNum(runAt, i, ID.Contains(Index(runAt, i)));
             if (!IsNum(num1)) num1 = 0;
             all += num1;
         }
-        NumWrite(ID[0], all);
+        NumWrite(ID[0], all, true);
     }
 
     private void A7()//减法：上 − 左
@@ -805,21 +853,21 @@ public class IC_Code : MonoBehaviour,ION
 
     private void A8()//-=：从命中的 Num 变量里减去其它方向的值
     {
-        AroundHave(new() { -7 }, runAt, out List<sbyte> ID);
+        AroundHave(new() { -7, -14, -15 }, runAt, out List<sbyte> ID);
 
         if (ID.Count == 0) return;
 
-        float all = NumRead(ID[0]);
+        float all = NumRead(ID[0], true);
         if (!IsNum(all)) all = 0;//现在芯片还没有NAN的处理
         for (sbyte i = 0; i < 4; i++)
         {
             if (i % 2 == 1) JustActive(runAt, i);//右和下
             if (Index(runAt, i) == ID[0]) continue;
-            float num1 = GetNum(runAt, i);
+            float num1 = GetNum(runAt, i, ID.Contains(Index(runAt, i)));
             if (!IsNum(num1)) num1 = 0;
             all -= num1;
         }
-        NumWrite(ID[0], all);
+        NumWrite(ID[0], all, true);
     }
 
     private void A9()//乘法：上 × 左
@@ -835,21 +883,21 @@ public class IC_Code : MonoBehaviour,ION
 
     private void A10()//*=：把其它方向的值乘进命中的 Num 变量
     {
-        AroundHave(new() { -7 }, runAt, out List<sbyte> ID);
+        AroundHave(new() { -7, -14, -15 }, runAt, out List<sbyte> ID);
 
         if (ID.Count == 0) return;
 
-        float all = NumRead(ID[0]);//因为以前这里忘记写取输入了
+        float all = NumRead(ID[0], true);//因为以前这里忘记写取输入了
         if (!IsNum(all)) all = 1;//现在芯片还没有NAN的处理
         for (sbyte i = 0; i < 4; i++)
         {
             if (i % 2 == 1) JustActive(runAt, i);//右和下
             if (Index(runAt, i) == ID[0]) continue;
-            float num1 = GetNum(runAt, i);
+            float num1 = GetNum(runAt, i, ID.Contains(Index(runAt, i)));
             if (!IsNum(num1)) num1 = 1;
             all *= num1;
         }
-        NumWrite(ID[0], all);
+        NumWrite(ID[0], all, true);
     }
 
     private void A11()//除法：上 ÷ 左，除数为 0 直接返回
@@ -866,22 +914,22 @@ public class IC_Code : MonoBehaviour,ION
 
     private void A12()///=：用其它方向的值依次除命中的 Num 变量
     {
-        AroundHave(new() { -7 }, runAt, out List<sbyte> ID);
+        AroundHave(new() { -7, -14, -15 }, runAt, out List<sbyte> ID);
 
         if (ID.Count == 0) return;
 
-        float all = NumRead(ID[0]);
+        float all = NumRead(ID[0], true);
         if (!IsNum(all)) all = 0;
         for (sbyte i = 0; i < 4; i++)
         {
             if (i % 2 == 1) JustActive(runAt, i);//右和下
             if (Index(runAt, i) == ID[0]) continue;
-            float num1 = GetNum(runAt, i);
+            float num1 = GetNum(runAt, i, ID.Contains(Index(runAt, i)));
             if (!IsNum(num1)) num1 = 1;
             if (num1 == 0) return;
             all /= num1;
         }
-        NumWrite(ID[0], all);
+        NumWrite(ID[0], all, true);
     }
 
     void JustActive(sbyte where,sbyte f)
@@ -1589,7 +1637,7 @@ public class IC_Code : MonoBehaviour,ION
     readonly List<sbyte> CRR = new() {5, 7, 9, 11, 49, 50, 52 };
     bool CanRightRead(sbyte s)
     {
-        return (-9 < s && s < -1 && s != -5) || (s > 19 && s < 45) || CRR.Contains(s);
+        return (-9 < s && s < -1 && s != -5)||(s <= -14 ||s >= -17 ) || (s > 19 && s < 45) || CRR.Contains(s);
     }
     float GetBool(sbyte i, sbyte kind)
     {
@@ -1598,12 +1646,12 @@ public class IC_Code : MonoBehaviour,ION
         float f = Read(idx);
         return float.IsInfinity(f) ? f : BoolRead(idx);
     }
-    float GetNum(sbyte i, sbyte kind)
+    float GetNum(sbyte i, sbyte kind ,bool sure = false)
     {
         sbyte idx = Index(i, kind);
         if (idx == -1) return float.NaN;
         float f = Read(idx);
-        return IsNum(f) ? f : NumRead(idx);
+        return IsNum(f) ? f : NumRead(idx,sure);
     }
     void Assignment(sbyte i, sbyte[] kind, float v)
     {
@@ -1642,11 +1690,11 @@ public class IC_Code : MonoBehaviour,ION
         }
         else Memery[mi] = v;
     }
-    void NumWrite(sbyte i, float v)
+    void NumWrite(sbyte i, float v, bool sure = false)
     {
         if (i == -1) return;
         if (!IsNum(v)) return;
-        if (Code[i] == -7)
+        if (Code[i] == -7 || sure)
         {
             string st = RSN(i);
             if (st == null) return;
@@ -1655,10 +1703,10 @@ public class IC_Code : MonoBehaviour,ION
             else NumList[k] = (st, v);
         }
     }
-    float NumRead(sbyte i)
+    float NumRead(sbyte i, bool sure = false)
     {
         if (i == -1) return float.NaN;
-        if (Code[i] == -7)
+        if (Code[i] == -7 || Code[i] == -14 || sure)
         {
             string st = RSN(i);
             if (st == null) return float.NaN;
@@ -1668,11 +1716,11 @@ public class IC_Code : MonoBehaviour,ION
         }
         return float.NaN;
     }
-    void BoolWrite(sbyte i, float v)
+    void BoolWrite(sbyte i, float v, bool sure = false)
     {
         if (i == -1) return;
         if (!IsBool(v)) return;
-        if (Code[i] == -8)
+        if (Code[i] == -8 || Code[i] == -17 || sure)
         {
             string st = RSN(i);
             if (st == null) return;
@@ -1681,10 +1729,10 @@ public class IC_Code : MonoBehaviour,ION
             else BoolList[k] = (st, v);
         }
     }
-    float BoolRead(sbyte i)
+    float BoolRead(sbyte i, bool sure = false)
     {
         if (i == -1) return float.NaN;
-        if (Code[i] == -8)
+        if (Code[i] == -8 || Code[i] == -16 || sure)
         {
             string st = RSN(i);
             if (st == null) return float.NaN;

@@ -224,6 +224,26 @@ public class CodeManager : MonoBehaviour
                 SetCode(i, SpecialGet[5].Copy(i, str.Replace("Value:", "")));
                 return;
             }
+            if (str.StartsWith("readonly_Num:"))
+            {
+                SetCode(i, SpecialGet[6].Copy(i, str.Replace("readonly_Num:", "")));
+                return;
+            }
+            if (str.StartsWith("setonly_Num:"))
+            {
+                SetCode(i, SpecialGet[7].Copy(i, str.Replace("setonly_Num:", "")));
+                return;
+            }
+            if (str.StartsWith("readonly_Bool:"))
+            {
+                SetCode(i, SpecialGet[8].Copy(i, str.Replace("readonly_Bool:", "")));
+                return;
+            }
+            if (str.StartsWith("setonly_Bool:"))
+            {
+                SetCode(i, SpecialGet[9].Copy(i, str.Replace("setonly_Bool:", "")));
+                return;
+            }
         }
     }
 

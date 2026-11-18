@@ -87,7 +87,7 @@ public class BlockManager : MonoBehaviour
     }
     private Dictionary<Vector3Int, List<float>> CacheBlockAnimationDelay = new();
 
-    public void RefreshLevel(int ocl_index = -1,List<string> send_car_design = null)//加载存档
+    public void RefreshLevel(int ocl_index = -1, List<string> send_car_design = null, bool immediately = false)//加载存档
     {
         List<OwnCar> ocl = FindCar();
         List<string> car_design = new();
@@ -113,27 +113,32 @@ public class BlockManager : MonoBehaviour
             ocl[i].ClearCar();
             int index = -1;
             int inside = 0;
+
+            //计算显示时间
             List<float> anim_delay = new();
-            Vector3Int area = new (ocl[i].ColliderArea.x, ocl[i].ColliderArea.y, ocl[i].Camp);
-            if (!CacheBlockAnimationDelay.TryGetValue(area, out anim_delay))
+            if (!immediately)
             {
-                anim_delay = new();
-                if (ocl[i].Camp == 2)
+                Vector3Int area = new(ocl[i].ColliderArea.x, ocl[i].ColliderArea.y, ocl[i].Camp);
+                if (!CacheBlockAnimationDelay.TryGetValue(area, out anim_delay))
                 {
-                    for (int c = 0; c < area.x * area.y; c++)
+                    anim_delay = new();
+                    if (ocl[i].Camp == 2)
                     {
-                        anim_delay.Add((c % area.x + c / area.y) / (float)(area.x * area.y));
+                        for (int c = 0; c < area.x * area.y; c++)
+                        {
+                            anim_delay.Add((c % area.x + c / area.y) / (float)(area.x * area.y));
+                        }
                     }
-                }
-                else
-                {
-                    for (int c = 0; c < area.x * area.y; c++)
+                    else
                     {
-                        int mirror = c - c % area.x + area.x - 1 - c % area.x;
-                        anim_delay.Add((mirror % area.x + mirror / area.y) / (float)(area.x * area.y));
+                        for (int c = 0; c < area.x * area.y; c++)
+                        {
+                            int mirror = c - c % area.x + area.x - 1 - c % area.x;
+                            anim_delay.Add((mirror % area.x + mirror / area.y) / (float)(area.x * area.y));
+                        }
                     }
+                    CacheBlockAnimationDelay[area] = anim_delay;
                 }
-                CacheBlockAnimationDelay[area] = anim_delay;
             }
             for (int a = 0; count < car_design.Count; a++)
             {
@@ -171,7 +176,7 @@ public class BlockManager : MonoBehaviour
                             string n = GameManager.GetBlockCodeName((int)add);
                             last_go = PutBlock(n, index,ocl[i].transform);
 
-                            last_go.GetComponent<Heath>().StartBlockAnimation(anim_delay[index]);
+                            if(!immediately) last_go.GetComponent<Heath>().StartBlockAnimation(anim_delay[index]);
 
                             //对战模式下，要把物体设置为可碰撞
                             if (ocl_index != -1)
@@ -427,7 +432,7 @@ public class BlockManager : MonoBehaviour
 
     public void MV_Special()
     {
-        RefreshLevel();
+        RefreshLevel(immediately: true);
     }
     IEnumerator Late()
     {

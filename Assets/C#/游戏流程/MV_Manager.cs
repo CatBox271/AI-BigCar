@@ -217,8 +217,6 @@ public class MV_Manager : MonoBehaviour
     }
     public void DoTo(List<string> ChangeTo)
     {
-
-
         GetRecord();
         Record();
 
@@ -234,6 +232,10 @@ public class MV_Manager : MonoBehaviour
         bm.MV_Special();
         GetRecord();
     }
+    /// <summary>
+    /// 供Canvas里的按钮调用的
+    /// </summary>
+    /// <param name="add"></param>
     public void DoTo(int add)
     {
         bm.FindCar().ForEach(s => s.ClearCar());
